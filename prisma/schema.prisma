@@ -66,6 +66,7 @@ model User {
   role            Role     @default(STUDENT)
   isActive        Boolean  @default(true)
   avatarUrl       String?
+  lastSeen        DateTime?
   tenantId        String
   tenant          Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   createdAt       DateTime @default(now())

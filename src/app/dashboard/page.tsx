@@ -9,6 +9,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import {
   Users,
   FileText,
   Calendar,
@@ -16,6 +25,7 @@ import {
   GraduationCap,
   Calculator,
   Trophy,
+  Clock,
 } from "lucide-react";
 
 export default async function DashboardPage() {
@@ -99,6 +109,10 @@ export default async function DashboardPage() {
             </a>
           </CardContent>
         </Card>
+
+        {user.role === "SUPER_ADMIN" && (
+          <AllUsersTable tenantId={user.tenantId} />
+        )}
       </div>
     );
   }
@@ -167,5 +181,91 @@ export default async function DashboardPage() {
         </Card>
       )}
     </div>
+  );
+}
+
+function formatLastSeen(date: string | Date | null): string {
+  if (!date) return "Never";
+  const now = Date.now();
+  const diff = now - new Date(date).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days < 7) return `${days}d ago`;
+  return new Date(date).toLocaleDateString();
+}
+
+async function AllUsersTable({ tenantId }: { tenantId: string }) {
+  const users = await prisma.user.findMany({
+    where: { tenantId },
+    orderBy: { lastSeen: { sort: "desc", nulls: "last" } },
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      email: true,
+      role: true,
+      isActive: true,
+      lastSeen: true,
+    },
+  });
+
+  const roleBadge: Record<string, "default" | "destructive" | "secondary"> = {
+    SUPER_ADMIN: "destructive",
+    COUNSELOR: "default",
+    STUDENT: "secondary",
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Clock className="h-5 w-5" />
+          All Users — Last Seen
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>User</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Last Seen</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {users.map((u) => (
+              <TableRow key={u.id}>
+                <TableCell>
+                  <div>
+                    <p className="text-sm font-medium">{u.firstName} {u.lastName}</p>
+                    <p className="text-xs text-muted-foreground">{u.email}</p>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <Badge variant={roleBadge[u.role] || "secondary"}>
+                    {u.role.replace("_", " ")}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <Badge variant={u.isActive ? "success" : "secondary"}>
+                    {u.isActive ? "Active" : "Inactive"}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
+                    {formatLastSeen(u.lastSeen)}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
   );
 }

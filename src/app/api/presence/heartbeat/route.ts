@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { setStudentPresence } from "@/lib/redis";
 
 export async function POST(request: NextRequest) {
@@ -20,6 +21,11 @@ export async function POST(request: NextRequest) {
   const { status, testTitle } = await request.json();
 
   await setStudentPresence(tenantId, session.user.id, status, testTitle);
+
+  await prisma.user.update({
+    where: { id: session.user.id },
+    data: { lastSeen: new Date() },
+  });
 
   return NextResponse.json({ ok: true });
 }

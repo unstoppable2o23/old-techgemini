@@ -45,6 +45,19 @@ const STATUS_CONFIG: Record<
   OFFLINE: { label: "Offline", variant: "secondary", dot: "bg-gray-400" },
 };
 
+function formatLastSeen(date: string | Date): string {
+  const now = Date.now();
+  const diff = now - new Date(date).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days < 7) return `${days}d ago`;
+  return new Date(date).toLocaleDateString();
+}
+
 export function StudentManagementClient({
   students: initialStudents,
 }: {
@@ -167,6 +180,7 @@ export function StudentManagementClient({
               <TableRow>
                 <TableHead className="w-[250px]">Student</TableHead>
                 <TableHead>Status</TableHead>
+                <TableHead>Last Seen</TableHead>
                 <TableHead>Account</TableHead>
                 <TableHead className="min-w-[400px]">
                   Feature Access
@@ -178,7 +192,7 @@ export function StudentManagementClient({
               {filteredStudents.length === 0 ? (
                 <TableRow>
                   <TableCell
-                    colSpan={5}
+                    colSpan={6}
                     className="h-32 text-center text-muted-foreground"
                   >
                     No students found
@@ -223,6 +237,14 @@ export function StudentManagementClient({
                           />
                           {sConfig.label}
                         </Badge>
+                      </TableCell>
+
+                      <TableCell>
+                        <span className="text-sm text-muted-foreground whitespace-nowrap">
+                          {student.lastSeen
+                            ? formatLastSeen(student.lastSeen)
+                            : "Never"}
+                        </span>
                       </TableCell>
 
                       <TableCell>
