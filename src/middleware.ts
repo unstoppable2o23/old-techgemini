@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PUBLIC_PATHS = [
+const AUTH_PATHS = [
   "/auth/login",
   "/auth/register",
   "/auth/forgot-password",
-  "/api/auth",
 ];
 
 export function middleware(request: NextRequest) {
@@ -14,11 +13,22 @@ export function middleware(request: NextRequest) {
   const subdomain = extractSubdomain(hostname);
 
   if (
-    PUBLIC_PATHS.some((p) => pathname.startsWith(p)) ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/static") ||
     pathname === "/favicon.ico"
   ) {
+    return NextResponse.next();
+  }
+
+  if (AUTH_PATHS.some((p) => pathname.startsWith(p))) {
+    const cookie = request.headers.get("cookie") || "";
+    if (
+      cookie.includes("next-auth.session-token") ||
+      cookie.includes("__Secure-next-auth.session-token") ||
+      cookie.includes("__Host-next-auth.session-token")
+    ) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
     return NextResponse.next();
   }
 

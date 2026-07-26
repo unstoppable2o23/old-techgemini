@@ -100,7 +100,7 @@ export function TopNav() {
           )}
         </div>
 
-        {authStatus === "loading" ? null : authStatus === "authenticated" ? (
+        {authStatus === "authenticated" ? (
           <>
             <ul className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {

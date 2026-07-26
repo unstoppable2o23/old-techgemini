@@ -4,20 +4,6 @@ declare module "next" {
   export type Metadata = Record<string, unknown>;
 }
 
-declare module "next/server" {
-  export class NextResponse extends Response {
-    static next(config?: { request?: { headers?: Headers } }): NextResponse;
-    static json(body: unknown, init?: ResponseInit): NextResponse;
-    static redirect(url: string | URL, status?: number): NextResponse;
-  }
-
-  export class NextRequest extends Request {
-    nextUrl: URL;
-    headers: Headers;
-    constructor(input: string | URL, init?: RequestInit);
-  }
-}
-
 declare module "next/navigation" {
   export function redirect(url: string): never;
   export function usePathname(): string;
