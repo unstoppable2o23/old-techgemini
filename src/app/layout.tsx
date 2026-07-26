@@ -4,6 +4,7 @@ import { SessionProvider } from "@/providers/session-provider";
 import { TenantThemeProvider } from "@/providers/tenant-theme-provider";
 import { TopNav } from "@/components/layout/top-nav";
 import { AccessDeniedModal } from "@/components/access-denied-modal";
+import { SessionTimeout } from "@/components/session-timeout";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default async function RootLayout({
           <TenantThemeProvider>
             <TopNav />
             <main className="pt-16">{children}</main>
+            <SessionTimeout />
             <AccessDeniedModal />
             <Toaster />
           </TenantThemeProvider>
