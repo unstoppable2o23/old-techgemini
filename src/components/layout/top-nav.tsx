@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useTenant } from "@/providers/tenant-theme-provider";
 import { useFeatureFlags } from "@/hooks/use-feature-flags";
 import { usePresence } from "@/hooks/use-presence";
@@ -193,9 +193,9 @@ export function TopNav() {
                     <a href="/settings">Settings</a>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <a href="/api/auth/signout">Sign out</a>
-                  </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
+                Sign out
+              </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
