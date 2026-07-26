@@ -100,119 +100,125 @@ export function TopNav() {
           )}
         </div>
 
-        <ul className="hidden md:flex items-center gap-1">
-          {navItems.map((item) => {
-            const enabled = canShowItem(item);
-            const isActive = pathname.startsWith(item.href);
-            return (
-              <li key={item.href}>
-                <Link
-                  href={enabled ? item.href : "#"}
-                  onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                  className={`relative inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-accent/10 text-accent"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent/5"
-                  } ${!enabled ? "opacity-50 cursor-not-allowed" : ""}`}
-                >
-                  {item.label}
-                  {!enabled && <Lock className="h-3.5 w-3.5" />}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="flex items-center gap-3">
-          <Badge
-            variant="outline"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1"
-          >
-            <span
-              className={`h-2 w-2 rounded-full ${currentStatus.dot}`}
-            />
-            <span className="text-xs">{currentStatus.label}</span>
-          </Badge>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                {unreadCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
-                    {unreadCount > 9 ? "9+" : unreadCount}
-                  </span>
-                )}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-80">
-              <div className="flex items-center justify-between px-4 py-2 border-b">
-                <span className="text-sm font-semibold">Notifications</span>
-              </div>
-              <div className="max-h-64 overflow-y-auto">
-                {notifications.length === 0 ? (
-                  <p className="px-4 py-6 text-center text-sm text-muted-foreground">
-                    No notifications yet
-                  </p>
-                ) : (
-                  notifications.slice(0, 10).map((n) => (
+        {session ? (
+          <>
+            <ul className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => {
+                const enabled = canShowItem(item);
+                const isActive = pathname.startsWith(item.href);
+                return (
+                  <li key={item.href}>
                     <Link
-                      key={n.id}
-                      href={n.linkUrl || "#"}
-                      className={`block px-4 py-3 text-sm hover:bg-accent/5 transition-colors ${
-                        !n.read
-                          ? "bg-accent/5 border-l-2 border-accent"
-                          : ""
-                      }`}
+                      href={enabled ? item.href : "#"}
+                      onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
+                      className={`relative inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                        isActive
+                          ? "bg-accent/10 text-accent"
+                          : "text-muted-foreground hover:text-foreground hover:bg-accent/5"
+                      } ${!enabled ? "opacity-50 cursor-not-allowed" : ""}`}
                     >
-                      <p className="font-medium">{n.title}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                        {n.message}
-                      </p>
+                      {item.label}
+                      {!enabled && <Lock className="h-3.5 w-3.5" />}
                     </Link>
-                  ))
-                )}
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                  </li>
+                );
+              })}
+            </ul>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Avatar fallback="U" />
+            <div className="flex items-center gap-3">
+              <Badge
+                variant="outline"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1"
+              >
+                <span className={`h-2 w-2 rounded-full ${currentStatus.dot}`} />
+                <span className="text-xs">{currentStatus.label}</span>
+              </Badge>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Button variant="ghost" size="icon" className="relative">
+                    <Bell className="h-5 w-5" />
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
+                        {unreadCount > 9 ? "9+" : unreadCount}
+                      </span>
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-80">
+                  <div className="flex items-center justify-between px-4 py-2 border-b">
+                    <span className="text-sm font-semibold">Notifications</span>
+                  </div>
+                  <div className="max-h-64 overflow-y-auto">
+                    {notifications.length === 0 ? (
+                      <p className="px-4 py-6 text-center text-sm text-muted-foreground">
+                        No notifications yet
+                      </p>
+                    ) : (
+                      notifications.slice(0, 10).map((n) => (
+                        <Link
+                          key={n.id}
+                          href={n.linkUrl || "#"}
+                          className={`block px-4 py-3 text-sm hover:bg-accent/5 transition-colors ${
+                            !n.read ? "bg-accent/5 border-l-2 border-accent" : ""
+                          }`}
+                        >
+                          <p className="font-medium">{n.title}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                            {n.message}
+                          </p>
+                        </Link>
+                      ))
+                    )}
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Avatar fallback="U" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <div className="px-3 py-2 border-b">
+                    <p className="text-sm font-medium">
+                      {session?.user?.firstName} {session?.user?.lastName}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {session?.user?.email}
+                    </p>
+                  </div>
+                  <DropdownMenuItem>
+                    <a href="/settings">Settings</a>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <a href="/api/auth/signout">Sign out</a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <div className="px-3 py-2 border-b">
-                <p className="text-sm font-medium">
-                  {session?.user?.firstName} {session?.user?.lastName}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {session?.user?.email}
-                </p>
-              </div>
-              <DropdownMenuItem>
-                <a href="/settings">Settings</a>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <a href="/api/auth/signout">Sign out</a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
+            </div>
+          </>
+        ) : (
+          <div className="flex items-center gap-3">
+            <Link href="/auth/login">
+              <Button variant="default" size="sm">Sign In</Button>
+            </Link>
+          </div>
+        )}
       </nav>
 
-      {mobileMenuOpen && (
+      {session && mobileMenuOpen && (
         <div className="md:hidden border-t bg-background">
           <ul className="space-y-1 px-4 py-3">
             {navItems.map((item) => {
