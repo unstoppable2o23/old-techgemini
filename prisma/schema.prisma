@@ -1,0 +1,209 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  COUNSELOR
+  STUDENT
+}
+
+enum TestStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum NotificationType {
+  TEST_COMPLETED
+  APPOINTMENT_SCHEDULED
+  APPOINTMENT_REMINDER
+  FEATURE_REQUEST
+  SYSTEM
+}
+
+enum StudentStatus {
+  ONLINE
+  IN_TEST
+  OFFLINE
+}
+
+model Tenant {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  subdomain    String   @unique
+  customDomain String?  @unique
+  logoUrl      String?
+  brandName    String?
+  primaryColor String   @default("#0F172A")
+  accentColor  String   @default("#3B82F6")
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  users User[]
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  passwordHash    String
+  firstName       String
+  lastName        String
+  role            Role     @default(STUDENT)
+  isActive        Boolean  @default(true)
+  avatarUrl       String?
+  tenantId        String
+  tenant          Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  counselorProfile        CounselorProfile?
+  studentProfile          StudentProfile?
+  sentNotifications       Notification[]    @relation("SentBy")
+  receivedNotifications   Notification[]    @relation("SentTo")
+  appointmentsAsUser      Appointment[]     @relation("AppointmentUser")
+  appointmentsAsCounselor Appointment[]     @relation("CounselorAppointments")
+  createdTests            Test[]
+
+  @@index([tenantId])
+  @@index([email])
+  @@index([role])
+}
+
+model CounselorProfile {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String?
+  bio        String?
+  phone      String?
+  calendarId String?
+  students   StudentProfile[] @relation("AssignedCounselor")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model StudentProfile {
+  id            String        @id @default(cuid())
+  userId        String        @unique
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  counselorId   String?
+  counselor     CounselorProfile? @relation("AssignedCounselor", fields: [counselorId], references: [id])
+  gradeLevel    String?
+  targetCountry String?
+  status        StudentStatus @default(OFFLINE)
+  featureAccess StudentFeatureAccess?
+  testResults   TestResult[]
+  appointments  Appointment[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([counselorId])
+}
+
+model StudentFeatureAccess {
+  id               String  @id @default(cuid())
+  studentProfileId String  @unique
+  studentProfile   StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  collegeSearch    Boolean @default(false)
+  collegeFinder    Boolean @default(false)
+  aiOddsCalculator Boolean @default(false)
+  mockTests        Boolean @default(false)
+  scholarshipHub   Boolean @default(false)
+  appointments     Boolean @default(false)
+  webinars         Boolean @default(false)
+  analytics        Boolean @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([studentProfileId])
+}
+
+model Test {
+  id           String     @id @default(cuid())
+  tenantId     String
+  title        String
+  description  String?
+  subject      String
+  durationMins Int
+  totalMarks   Int
+  status       TestStatus @default(DRAFT)
+  createdById  String
+  createdBy    User       @relation(fields: [createdById], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  results TestResult[]
+
+  @@index([tenantId])
+}
+
+model TestResult {
+  id                String   @id @default(cuid())
+  studentId         String
+  student           StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  testId            String
+  test              Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+  score             Int
+  totalMarks        Int
+  percentage        Float
+  answers           Json?
+  submittedAt       DateTime @default(now())
+  notifiedCounselor Boolean  @default(false)
+
+  @@index([studentId])
+  @@index([testId])
+}
+
+model Appointment {
+  id           String             @id @default(cuid())
+  studentId    String
+  student      StudentProfile     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  counselorId  String
+  counselor    User               @relation("CounselorAppointments", fields: [counselorId], references: [id])
+  userId       String
+  user         User               @relation("AppointmentUser", fields: [userId], references: [id])
+  title        String
+  description  String?
+  startTime    DateTime
+  endTime      DateTime
+  meetLink     String?
+  status       AppointmentStatus  @default(PENDING)
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@index([counselorId])
+  @@index([studentId])
+  @@index([startTime])
+}
+
+model Notification {
+  id          String           @id @default(cuid())
+  type        NotificationType
+  title       String
+  message     String
+  linkUrl     String?
+  read        Boolean          @default(false)
+  senderId    String?
+  sender      User?            @relation("SentBy", fields: [senderId], references: [id])
+  recipientId String
+  recipient   User             @relation("SentTo", fields: [recipientId], references: [id])
+  createdAt   DateTime         @default(now())
+
+  @@index([recipientId, read])
+  @@index([recipientId, createdAt])
+}
