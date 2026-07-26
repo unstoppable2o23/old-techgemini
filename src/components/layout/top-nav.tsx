@@ -53,6 +53,8 @@ export function TopNav() {
   const { notifications, unreadCount } = useNotifications();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  if (pathname.startsWith("/auth")) return null;
+
   const role = session?.user?.role;
   const isCounselor = role === "COUNSELOR" || role === "SUPER_ADMIN";
   const navItems = isCounselor ? COUNSELOR_NAV_ITEMS : STUDENT_NAV_ITEMS;
