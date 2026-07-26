@@ -5,13 +5,10 @@ declare module "next" {
 }
 
 declare module "next/server" {
-  export class NextResponse {
+  export class NextResponse extends Response {
     static next(config?: { request?: { headers?: Headers } }): NextResponse;
     static json(body: unknown, init?: ResponseInit): NextResponse;
     static redirect(url: string | URL, status?: number): NextResponse;
-    headers: Headers;
-    status: number;
-    constructor(body?: BodyInit | null, init?: ResponseInit);
   }
 
   export class NextRequest extends Request {
@@ -118,10 +115,7 @@ declare module "next-auth" {
     options: AuthOptions
   ): Promise<Session | null>;
 
-  const NextAuth: (options: AuthOptions) => {
-    GET: (req: Request) => Promise<Response>;
-    POST: (req: Request) => Promise<Response>;
-  };
+  const NextAuth: (options: AuthOptions) => (req: any, ctx?: any) => Promise<Response>;
   export default NextAuth;
 }
 
