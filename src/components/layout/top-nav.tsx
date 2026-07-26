@@ -46,7 +46,7 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
 
 export function TopNav() {
   const pathname = usePathname();
-  const { data: session } = useSession();
+  const { data: session, status: authStatus } = useSession();
   const tenant = useTenant();
   const { flags } = useFeatureFlags();
   const { status } = usePresence();
@@ -100,7 +100,7 @@ export function TopNav() {
           )}
         </div>
 
-        {session ? (
+        {authStatus === "loading" ? null : authStatus === "authenticated" ? (
           <>
             <ul className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {
