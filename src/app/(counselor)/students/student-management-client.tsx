@@ -22,8 +22,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Avatar } from "@/components/ui/avatar";
-import { Search, CheckCircle2, XCircle, MoreHorizontal } from "lucide-react";
+import { Search, CheckCircle2, XCircle, MoreHorizontal, Plus, Loader2 } from "lucide-react";
 
 const FEATURE_LABELS: Record<string, string> = {
   collegeSearch: "College Search",
@@ -67,6 +74,10 @@ export function StudentManagementClient({
   const [students, setStudents] = useState(initialStudents);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [addOpen, setAddOpen] = useState(false);
+  const [addForm, setAddForm] = useState({ firstName: "", lastName: "", email: "", password: "" });
+  const [adding, setAdding] = useState(false);
+  const [addError, setAddError] = useState("");
 
   const filteredStudents = students.filter((s) => {
     const nameMatch =
@@ -139,15 +150,101 @@ export function StudentManagementClient({
     }
   }
 
+  async function addStudent() {
+    setAdding(true);
+    setAddError("");
+    try {
+      const res = await fetch("/api/counselor/students", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(addForm),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAddError(data.error || "Failed to create student");
+        return;
+      }
+      setStudents((prev) => [data.student, ...prev]);
+      setAddOpen(false);
+      setAddForm({ firstName: "", lastName: "", email: "", password: "" });
+      router.refresh();
+    } catch {
+      setAddError("Failed to create student");
+    } finally {
+      setAdding(false);
+    }
+  }
+
   return (
     <div className="space-y-6 p-6 pt-20">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">
-          Student Management
-        </h1>
-        <p className="text-muted-foreground">
-          Manage students, control feature access, and monitor activity.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Student Management
+          </h1>
+          <p className="text-muted-foreground">
+            Manage students, control feature access, and monitor activity.
+          </p>
+        </div>
+        <Button onClick={() => setAddOpen(true)}>
+          <Plus className="h-4 w-4 mr-1" />
+          Add Student
+        </Button>
+        <Dialog open={addOpen} onOpenChange={setAddOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Add Student</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              {addError && (
+                <p className="text-sm text-destructive">{addError}</p>
+              )}
+              <div className="space-y-2">
+                <label className="text-sm font-medium">First Name</label>
+                <Input
+                  value={addForm.firstName}
+                  onChange={(e) => setAddForm({ ...addForm, firstName: e.target.value })}
+                  placeholder="John"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Last Name</label>
+                <Input
+                  value={addForm.lastName}
+                  onChange={(e) => setAddForm({ ...addForm, lastName: e.target.value })}
+                  placeholder="Doe"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Email</label>
+                <Input
+                  type="email"
+                  value={addForm.email}
+                  onChange={(e) => setAddForm({ ...addForm, email: e.target.value })}
+                  placeholder="john@example.com"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Password</label>
+                <Input
+                  type="password"
+                  value={addForm.password}
+                  onChange={(e) => setAddForm({ ...addForm, password: e.target.value })}
+                  placeholder="Min 6 characters"
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setAddOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={addStudent} disabled={adding}>
+                {adding ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : null}
+                Create Student
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
