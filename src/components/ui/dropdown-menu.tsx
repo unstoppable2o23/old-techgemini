@@ -26,11 +26,8 @@ const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
             open,
           });
         }
-        if (
-          React.isValidElement(child) &&
-          child.type === DropdownMenuContent &&
-          open
-        ) {
+        if (React.isValidElement(child) && child.type === DropdownMenuContent) {
+          if (!open) return null;
           return child;
         }
         return child;
