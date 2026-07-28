@@ -56,7 +56,7 @@ export function TopNav() {
   const tenant = useTenant();
   const { flags } = useFeatureFlags();
   const { status } = usePresence();
-  const { notifications, unreadCount } = useNotifications();
+  const { notifications, unreadCount, refresh: refreshNotifications } = useNotifications();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   if (pathname.startsWith("/auth")) return null;
@@ -145,7 +145,11 @@ export function TopNav() {
                 <span className="text-xs">{currentStatus.label}</span>
               </Badge>
 
-              <DropdownMenu>
+              <DropdownMenu onOpenChange={(open) => {
+                  if (open && unreadCount > 0) {
+                    fetch("/api/notifications", { method: "PATCH" }).then(() => refreshNotifications());
+                  }
+                }}>
                 <DropdownMenuTrigger>
                   <Button variant="ghost" size="icon" className="relative">
                     <Bell className="h-5 w-5" />
@@ -159,6 +163,7 @@ export function TopNav() {
                 <DropdownMenuContent className="w-80">
                   <div className="flex items-center justify-between px-4 py-2 border-b">
                     <span className="text-sm font-semibold">Notifications</span>
+                    {unreadCount > 0 && <span className="text-xs text-muted-foreground">{unreadCount} new</span>}
                   </div>
                   <div className="max-h-64 overflow-y-auto">
                     {notifications.length === 0 ? (
@@ -170,6 +175,11 @@ export function TopNav() {
                         <Link
                           key={n.id}
                           href={n.linkUrl || "#"}
+                          onClick={() => {
+                            if (!n.read) {
+                              fetch(`/api/notifications/${n.id}`, { method: "PATCH" }).then(() => refreshNotifications());
+                            }
+                          }}
                           className={`block px-4 py-3 text-sm hover:bg-accent/5 transition-colors ${
                             !n.read ? "bg-accent/5 border-l-2 border-accent" : ""
                           }`}

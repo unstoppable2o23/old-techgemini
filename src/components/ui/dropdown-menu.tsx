@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
+const DropdownMenu = ({ children, onOpenChange }: { children: React.ReactNode; onOpenChange?: (open: boolean) => void }) => {
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -11,18 +11,19 @@ const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
     const handler = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
+        onOpenChange?.(false);
       }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  }, [onOpenChange]);
 
   return (
     <div ref={ref} className="relative inline-block">
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === DropdownMenuTrigger) {
           return React.cloneElement(child as React.ReactElement<any>, {
-            onClick: () => setOpen(!open),
+            onClick: () => { setOpen(!open); onOpenChange?.(!open); },
             open,
           });
         }
