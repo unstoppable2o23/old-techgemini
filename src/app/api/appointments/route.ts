@@ -17,7 +17,7 @@ export async function GET() {
     ? { userId: user.id }
     : { counselorId: user.id };
 
-  const [appointments, counselorInfo] = await Promise.all([
+    const [appointments, counselorInfo] = await Promise.all([
     prisma.appointment.findMany({
       where,
       orderBy: { startTime: "desc" },
@@ -30,6 +30,9 @@ export async function GET() {
         counselor: {
           select: { firstName: true, lastName: true, email: true },
         },
+        paymentProof: {
+          select: { id: true, verified: true, fileName: true, expiresAt: true },
+        },
       },
     }),
     isStudent
@@ -40,6 +43,11 @@ export async function GET() {
               select: {
                 user: { select: { firstName: true, lastName: true, email: true } },
                 title: true,
+                counsellingPrice: true,
+                assessmentPrice: true,
+                indiaPrice: true,
+                internationalPrice: true,
+                upiId: true,
               },
             },
           },
@@ -64,7 +72,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { title, description, startTime, endTime } = await request.json();
+    const { title, description, startTime, endTime, package: pkg, amount } = await request.json();
     if (!title || !startTime || !endTime) {
       return NextResponse.json({ error: "Title, startTime, and endTime are required" }, { status: 400 });
     }
@@ -85,9 +93,11 @@ export async function POST(request: NextRequest) {
     const appointment = await prisma.appointment.create({
       data: {
         title,
+        package: pkg || null,
         description,
         startTime: new Date(startTime),
         endTime: new Date(endTime),
+        amount: amount ? parseInt(amount) : null,
         studentId: studentProfile.id,
         counselorId: studentProfile.counselor.userId,
         userId: session.user.id,

@@ -90,16 +90,22 @@ model User {
 }
 
 model CounselorProfile {
-  id         String   @id @default(cuid())
-  userId     String   @unique
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title      String?
-  bio        String?
-  phone      String?
-  calendarId String?
-  students   StudentProfile[] @relation("AssignedCounselor")
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title              String?
+  bio                String?
+  phone              String?
+  calendarId         String?
+  counsellingPrice   Int      @default(2000)
+  assessmentPrice    Int      @default(4000)
+  indiaPrice         Int      @default(14000)
+  internationalPrice Int      @default(95000)
+  upiId              String?
+  students           StudentProfile[] @relation("AssignedCounselor")
+  paymentProofs      PaymentProof[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }
 
 model StudentProfile {
@@ -183,17 +189,36 @@ model Appointment {
   userId       String
   user         User               @relation("AppointmentUser", fields: [userId], references: [id])
   title        String
+  package      String?
   description  String?
   startTime    DateTime
   endTime      DateTime
   meetLink     String?
+  amount       Int?
   status       AppointmentStatus  @default(PENDING)
+  paymentProof PaymentProof?
   createdAt    DateTime           @default(now())
   updatedAt    DateTime           @updatedAt
 
   @@index([counselorId])
   @@index([studentId])
   @@index([startTime])
+}
+
+model PaymentProof {
+  id             String      @id @default(cuid())
+  appointmentId  String      @unique
+  appointment    Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  fileUrl        String
+  fileName       String
+  verified       Boolean     @default(false)
+  counselorId    String
+  counselor      CounselorProfile @relation(fields: [counselorId], references: [id])
+  createdAt      DateTime    @default(now())
+  expiresAt      DateTime
+
+  @@index([expiresAt])
+  @@index([counselorId])
 }
 
 model University {

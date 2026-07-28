@@ -1,16 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Users, Plus, Loader2, CheckCircle2, AlertCircle, UserPlus } from "lucide-react";
+import { Users, Plus, Loader2, UserPlus, IndianRupee } from "lucide-react";
 
 export default function AdminCounselorsPage() {
-  const { data: session } = useSession();
   const [counselors, setCounselors] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -20,14 +18,12 @@ export default function AdminCounselorsPage() {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
+  const [counsellingPrice, setCounsellingPrice] = useState("2000");
+  const [assessmentPrice, setAssessmentPrice] = useState("4000");
+  const [indiaPrice, setIndiaPrice] = useState("14000");
+  const [internationalPrice, setInternationalPrice] = useState("95000");
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ success?: string; error?: string } | null>(null);
-
-  const fetchCounselors = useCallback(async () => {
-    setLoading(true);
-    const res = await fetch("/api/universities?limit=1");
-    setLoading(false);
-  }, []);
 
   useEffect(() => {
     async function load() {
@@ -52,12 +48,13 @@ export default function AdminCounselorsPage() {
     const res = await fetch("/api/admin/counselors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, password, title, phone }),
+      body: JSON.stringify({ firstName, lastName, email, password, title, phone, counsellingPrice, assessmentPrice, indiaPrice, internationalPrice }),
     });
     const data = await res.json();
     if (res.ok) {
       setResult({ success: `Counselor ${firstName} ${lastName} created` });
       setFirstName(""); setLastName(""); setEmail(""); setPassword(""); setTitle(""); setPhone("");
+      setCounsellingPrice("2000"); setAssessmentPrice("4000"); setIndiaPrice("14000"); setInternationalPrice("95000");
       setShowForm(false);
       setCounselors((prev) => [...prev, data.user]);
     } else {
@@ -67,7 +64,7 @@ export default function AdminCounselorsPage() {
   }
 
   return (
-    <div className="space-y-6 p-6 pt-20 max-w-5xl mx-auto">
+    <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Users className="h-8 w-8 text-accent" />
@@ -114,6 +111,27 @@ export default function AdminCounselorsPage() {
                   <Input value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
               </div>
+              <div>
+                <p className="text-sm font-medium mb-2 flex items-center gap-1"><IndianRupee className="h-4 w-4" /> Service Pricing (defaults)</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Counselling</label>
+                    <Input type="number" value={counsellingPrice} onChange={(e) => setCounsellingPrice(e.target.value)} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Counselling + Assessment</label>
+                    <Input type="number" value={assessmentPrice} onChange={(e) => setAssessmentPrice(e.target.value)} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">India Admission</label>
+                    <Input type="number" value={indiaPrice} onChange={(e) => setIndiaPrice(e.target.value)} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">International</label>
+                    <Input type="number" value={internationalPrice} onChange={(e) => setInternationalPrice(e.target.value)} />
+                  </div>
+                </div>
+              </div>
               {result?.error && <p className="text-sm text-destructive">{result.error}</p>}
               {result?.success && <p className="text-sm text-green-600">{result.success}</p>}
               <Button type="submit" disabled={submitting} className="w-full">
@@ -131,9 +149,7 @@ export default function AdminCounselorsPage() {
           {loading ? (
             <div className="py-12 text-center text-muted-foreground">Loading...</div>
           ) : counselors.length === 0 ? (
-            <div className="py-12 text-center text-muted-foreground">
-              No counselors yet. Click "Add Counselor" to create one.
-            </div>
+            <div className="py-12 text-center text-muted-foreground">No counselors yet.</div>
           ) : (
             <Table>
               <TableHeader>
@@ -141,7 +157,10 @@ export default function AdminCounselorsPage() {
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
                   <TableHead>Title</TableHead>
-                  <TableHead>Phone</TableHead>
+                  <TableHead className="text-right">Counselling</TableHead>
+                  <TableHead className="text-right">+ Assessment</TableHead>
+                  <TableHead className="text-right">India</TableHead>
+                  <TableHead className="text-right">International</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
@@ -151,7 +170,10 @@ export default function AdminCounselorsPage() {
                     <TableCell className="font-medium">{c.firstName} {c.lastName}</TableCell>
                     <TableCell>{c.email}</TableCell>
                     <TableCell>{c.counselorProfile?.title || "—"}</TableCell>
-                    <TableCell>{c.counselorProfile?.phone || "—"}</TableCell>
+                    <TableCell className="text-right">Rs {c.counselorProfile?.counsellingPrice?.toLocaleString() || "2,000"}</TableCell>
+                    <TableCell className="text-right">Rs {c.counselorProfile?.assessmentPrice?.toLocaleString() || "4,000"}</TableCell>
+                    <TableCell className="text-right">Rs {c.counselorProfile?.indiaPrice?.toLocaleString() || "14,000"}</TableCell>
+                    <TableCell className="text-right">Rs {c.counselorProfile?.internationalPrice?.toLocaleString() || "95,000"}</TableCell>
                     <TableCell>
                       <Badge variant={c.isActive ? "success" : "secondary"}>
                         {c.isActive ? "Active" : "Inactive"}

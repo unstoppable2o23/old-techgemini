@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { firstName, lastName, email, password, title, phone } = await request.json();
+    const { firstName, lastName, email, password, title, phone, counsellingPrice, assessmentPrice, indiaPrice, internationalPrice } = await request.json();
     if (!firstName || !lastName || !email || !password) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
@@ -47,7 +47,14 @@ export async function POST(request: NextRequest) {
         role: "COUNSELOR",
         tenantId: session.user.tenantId,
         counselorProfile: {
-          create: { title: title || null, phone: phone || null },
+          create: {
+            title: title || null,
+            phone: phone || null,
+            counsellingPrice: counsellingPrice ? parseInt(counsellingPrice) : 2000,
+            assessmentPrice: assessmentPrice ? parseInt(assessmentPrice) : 4000,
+            indiaPrice: indiaPrice ? parseInt(indiaPrice) : 14000,
+            internationalPrice: internationalPrice ? parseInt(internationalPrice) : 95000,
+          },
         },
       },
       include: { counselorProfile: true },

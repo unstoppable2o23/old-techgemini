@@ -1,30 +1,39 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Calendar, CheckCircle2, XCircle, Clock, ExternalLink, Loader2, MessageSquare } from "lucide-react";
+import { Calendar, CheckCircle2, XCircle, Clock, ExternalLink, Loader2, MessageSquare, Download, IndianRupee, Eye } from "lucide-react";
+
+interface PaymentProof {
+  id: string;
+  fileUrl: string;
+  fileName: string;
+  verified: boolean;
+  expiresAt: string;
+}
 
 interface Appointment {
   id: string;
   title: string;
+  package: string | null;
   description: string | null;
   startTime: string;
   endTime: string;
   meetLink: string | null;
+  amount: number | null;
   status: "PENDING" | "CONFIRMED" | "CANCELLED" | "COMPLETED";
   student: { user: { firstName: string; lastName: string; email: string } };
-  counselor: { firstName: string; lastName: string; email: string };
+  paymentProof: PaymentProof | null;
 }
 
 export default function CalendarPage() {
-  const { data: session } = useSession();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [meetLinks, setMeetLinks] = useState<Record<string, string>>({});
   const [updating, setUpdating] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const fetchAppointments = useCallback(async () => {
     setLoading(true);
@@ -48,12 +57,23 @@ export default function CalendarPage() {
     setUpdating(null);
   }
 
-  const groups: Record<string, Appointment[]> = {
-    PENDING: [],
-    CONFIRMED: [],
-    COMPLETED: [],
-    CANCELLED: [],
-  };
+  async function verifyPayment(proofId: string, appointmentId: string) {
+    setUpdating(appointmentId);
+    await fetch(`/api/payment-proof/${proofId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ verified: true }),
+    });
+    await fetchAppointments();
+    setUpdating(null);
+  }
+
+  function viewProof(url: string) {
+    const w = window.open();
+    if (w) w.document.write(`<img src="${url}" style="max-width:100%;max-height:100vh" />`);
+  }
+
+  const groups: Record<string, Appointment[]> = { PENDING: [], CONFIRMED: [], COMPLETED: [], CANCELLED: [] };
   appointments.forEach((a) => { (groups[a.status] || groups.PENDING).push(a); });
 
   const statusColors: Record<string, string> = {
@@ -76,11 +96,7 @@ export default function CalendarPage() {
       {loading ? (
         <div className="text-center py-12 text-muted-foreground">Loading appointments...</div>
       ) : appointments.length === 0 ? (
-        <Card>
-          <CardContent className="py-12 text-center text-muted-foreground">
-            No appointments yet. Students will book here.
-          </CardContent>
-        </Card>
+        <Card><CardContent className="py-12 text-center text-muted-foreground">No appointments yet.</CardContent></Card>
       ) : (
         ["PENDING", "CONFIRMED", "COMPLETED", "CANCELLED"].map((status) => {
           const list = groups[status];
@@ -106,13 +122,16 @@ export default function CalendarPage() {
                           {appt.student.user.firstName} {appt.student.user.lastName}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          {new Date(appt.startTime).toLocaleDateString("en-US", {
-                            weekday: "short", month: "short", day: "numeric",
-                          })}{" "}
+                          {new Date(appt.startTime).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}{" "}
                           {new Date(appt.startTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
                           {" — "}
                           {new Date(appt.endTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
                         </p>
+                        {appt.amount && (
+                          <p className="text-xs font-medium text-accent mt-1 flex items-center gap-1">
+                            <IndianRupee className="h-3 w-3" /> Rs {appt.amount?.toLocaleString()}
+                          </p>
+                        )}
                         {appt.description && (
                           <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
                             <MessageSquare className="h-3 w-3" /> {appt.description}
@@ -124,23 +143,46 @@ export default function CalendarPage() {
                             <ExternalLink className="h-3 w-3" /> Join Meeting
                           </a>
                         )}
+
+                        {appt.paymentProof && (
+                          <div className="mt-2 pt-2 border-t flex items-center gap-3">
+                            <button onClick={() => viewProof(appt.paymentProof!.fileUrl)}
+                              className="text-xs text-accent hover:underline inline-flex items-center gap-1">
+                              <Eye className="h-3 w-3" /> View Payment Proof
+                            </button>
+                            <a href={appt.paymentProof.fileUrl} download={appt.paymentProof.fileName}
+                              className="text-xs text-accent hover:underline inline-flex items-center gap-1">
+                              <Download className="h-3 w-3" /> Download
+                            </a>
+                            {!appt.paymentProof.verified && (
+                              <span className="text-[10px] text-muted-foreground">
+                                Auto-deletes {new Date(appt.paymentProof.expiresAt).toLocaleDateString()}
+                              </span>
+                            )}
+                          </div>
+                        )}
                       </div>
+
                       <div className="flex gap-2 shrink-0">
                         {appt.status === "PENDING" && (
                           <>
                             <div className="space-y-1">
-                              <Input
-                                placeholder="Meet link (optional)"
-                                value={meetLinks[appt.id] || ""}
+                              <Input placeholder="Meet link" value={meetLinks[appt.id] || ""}
                                 onChange={(e) => setMeetLinks((prev) => ({ ...prev, [appt.id]: e.target.value }))}
-                                className="h-8 text-xs w-44"
-                              />
+                                className="h-8 text-xs w-44" />
                             </div>
-                            <Button size="sm" variant="default" disabled={updating === appt.id}
-                              onClick={() => updateStatus(appt.id, "CONFIRMED")}>
-                              {updating === appt.id ? <Loader2 className="h-3 w-3 animate-spin" /> : <CheckCircle2 className="h-3 w-3 mr-1" />}
-                              Confirm
-                            </Button>
+                            {appt.paymentProof && !appt.paymentProof.verified ? (
+                              <Button size="sm" disabled={updating === appt.id}
+                                onClick={() => verifyPayment(appt.paymentProof!.id, appt.id)}>
+                                <CheckCircle2 className="h-3 w-3 mr-1" /> Verify & Confirm
+                              </Button>
+                            ) : (
+                              <Button size="sm" variant="default" disabled={updating === appt.id}
+                                onClick={() => updateStatus(appt.id, "CONFIRMED")}>
+                                {updating === appt.id ? <Loader2 className="h-3 w-3 animate-spin" /> : <CheckCircle2 className="h-3 w-3 mr-1" />}
+                                Confirm
+                              </Button>
+                            )}
                             <Button size="sm" variant="outline" disabled={updating === appt.id}
                               onClick={() => updateStatus(appt.id, "CANCELLED")}>
                               Decline
@@ -151,7 +193,7 @@ export default function CalendarPage() {
                           <Button size="sm" variant="outline" disabled={updating === appt.id}
                             onClick={() => updateStatus(appt.id, "COMPLETED")}>
                             {updating === appt.id ? <Loader2 className="h-3 w-3 animate-spin" /> : null}
-                            Mark Complete
+                            Complete
                           </Button>
                         )}
                       </div>
