@@ -63,8 +63,9 @@ export function TopNav() {
 
   const role = session?.user?.role;
   const isCounselor = role === "COUNSELOR" || role === "SUPER_ADMIN";
+  const isSuperAdmin = role === "SUPER_ADMIN";
   const isUniversityAdmin = role === "UNIVERSITY_ADMIN";
-  const navItems = isUniversityAdmin ? UNIVERSITY_ADMIN_NAV_ITEMS : isCounselor ? COUNSELOR_NAV_ITEMS : STUDENT_NAV_ITEMS;
+  const navItems = isUniversityAdmin ? UNIVERSITY_ADMIN_NAV_ITEMS : isCounselor ? (isSuperAdmin ? [...COUNSELOR_NAV_ITEMS, { label: "Counselors", href: "/admin/counselors" }] : COUNSELOR_NAV_ITEMS) : STUDENT_NAV_ITEMS;
 
   const statusConfig: Record<string, { label: string; dot: string }> = {
     ONLINE: { label: "Online", dot: "bg-green-500" },
