@@ -11,6 +11,7 @@ enum Role {
   SUPER_ADMIN
   COUNSELOR
   STUDENT
+  UNIVERSITY_ADMIN
 }
 
 enum TestStatus {
@@ -66,8 +67,10 @@ model User {
   role            Role     @default(STUDENT)
   isActive        Boolean  @default(true)
   avatarUrl       String?
-  lastSeen        DateTime?
-  tenantId        String
+  lastSeen          DateTime?
+  totalUsageMinutes Int       @default(0)
+  lastHeartbeatAt   DateTime?
+  tenantId          String
   tenant          Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -79,6 +82,7 @@ model User {
   appointmentsAsUser      Appointment[]     @relation("AppointmentUser")
   appointmentsAsCounselor Appointment[]     @relation("CounselorAppointments")
   createdTests            Test[]
+  dailyUsage              DailyUsage[]
 
   @@index([tenantId])
   @@index([email])
@@ -190,6 +194,51 @@ model Appointment {
   @@index([counselorId])
   @@index([studentId])
   @@index([startTime])
+}
+
+model University {
+  id                   String   @id @default(cuid())
+  tenantId             String
+  name                 String
+  country              String
+  region               String?
+  qsRank               Int?
+  previousRank         Int?
+  status               String?
+  size                 String?
+  focus                String?
+  research             String?
+  overallScore         Float?
+  academicRepScore     Float?
+  employerRepScore     Float?
+  facultyStudentScore  Float?
+  citationsScore       Float?
+  intlFacultyScore     Float?
+  intlStudentScore     Float?
+  employmentScore      Float?
+  sustainabilityScore  Float?
+  domains              String[] @default([])
+  webPages             String[] @default([])
+  logoUrl              String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([tenantId])
+  @@index([country])
+}
+
+model DailyUsage {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date         DateTime
+  totalMinutes Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([userId, date])
+  @@index([date])
+  @@index([userId])
 }
 
 model Notification {

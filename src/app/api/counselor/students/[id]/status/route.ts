@@ -35,14 +35,16 @@ export async function PATCH(
     return NextResponse.json({ error: "Student not found" }, { status: 404 });
   }
 
-  if (
-    session.user.role === "COUNSELOR" &&
-    student.studentProfile?.counselorId !== session.user.id
-  ) {
-    return NextResponse.json(
-      { error: "Student not assigned to you" },
-      { status: 403 }
-    );
+  if (session.user.role === "COUNSELOR") {
+    const counselorProfile = await prisma.counselorProfile.findUnique({
+      where: { userId: session.user.id },
+    });
+    if (!counselorProfile || student.studentProfile?.counselorId !== counselorProfile.id) {
+      return NextResponse.json(
+        { error: "Student not assigned to you" },
+        { status: 403 }
+      );
+    }
   }
 
   await prisma.user.update({

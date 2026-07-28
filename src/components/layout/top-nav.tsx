@@ -30,6 +30,7 @@ const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Overview", href: "/dashboard" },
   { label: "Student Management", href: "/students" },
   { label: "Feature Flags", href: "/feature-flags" },
+  { label: "Universities", href: "/universities" },
   { label: "Calendar", href: "/calendar" },
   { label: "Webinars", href: "/webinars" },
   { label: "Analytics", href: "/analytics" },
@@ -42,6 +43,11 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
   { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests" },
   { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub" },
   { label: "Appointments", href: "/appointments", featureKey: "appointments" },
+];
+
+const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "Universities", href: "/universities" },
 ];
 
 export function TopNav() {
@@ -57,7 +63,8 @@ export function TopNav() {
 
   const role = session?.user?.role;
   const isCounselor = role === "COUNSELOR" || role === "SUPER_ADMIN";
-  const navItems = isCounselor ? COUNSELOR_NAV_ITEMS : STUDENT_NAV_ITEMS;
+  const isUniversityAdmin = role === "UNIVERSITY_ADMIN";
+  const navItems = isUniversityAdmin ? UNIVERSITY_ADMIN_NAV_ITEMS : isCounselor ? COUNSELOR_NAV_ITEMS : STUDENT_NAV_ITEMS;
 
   const statusConfig: Record<string, { label: string; dot: string }> = {
     ONLINE: { label: "Online", dot: "bg-green-500" },
@@ -72,6 +79,7 @@ export function TopNav() {
 
   function canShowItem(item: NavItem): boolean {
     if (isCounselor) return true;
+    if (isUniversityAdmin) return true;
     if (!item.featureKey) return true;
     return (flags as any)[item.featureKey] === true;
   }

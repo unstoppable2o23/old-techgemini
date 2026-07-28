@@ -30,7 +30,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Avatar } from "@/components/ui/avatar";
-import { Search, CheckCircle2, XCircle, MoreHorizontal, Plus, Loader2 } from "lucide-react";
+import { Search, CheckCircle2, XCircle, KeyRound, Plus, Loader2, Clock } from "lucide-react";
+import { formatUsageMinutes } from "@/lib/format-utils";
 
 const FEATURE_LABELS: Record<string, string> = {
   collegeSearch: "College Search",
@@ -78,6 +79,10 @@ export function StudentManagementClient({
   const [addForm, setAddForm] = useState({ firstName: "", lastName: "", email: "", password: "" });
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState("");
+  const [resetTarget, setResetTarget] = useState<{ id: string; name: string } | null>(null);
+  const [resetPassword, setResetPassword] = useState("");
+  const [resetting, setResetting] = useState(false);
+  const [resetError, setResetError] = useState("");
 
   const filteredStudents = students.filter((s) => {
     const nameMatch =
@@ -172,6 +177,30 @@ export function StudentManagementClient({
       setAddError("Failed to create student");
     } finally {
       setAdding(false);
+    }
+  }
+
+  async function resetStudentPassword() {
+    if (!resetTarget) return;
+    setResetting(true);
+    setResetError("");
+    try {
+      const res = await fetch(`/api/counselor/students/${resetTarget.id}/password`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: resetPassword }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setResetError(data.error || "Failed to reset password");
+        return;
+      }
+      setResetTarget(null);
+      setResetPassword("");
+    } catch {
+      setResetError("Failed to reset password");
+    } finally {
+      setResetting(false);
     }
   }
 
@@ -278,6 +307,7 @@ export function StudentManagementClient({
                 <TableHead className="w-[250px]">Student</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Last Seen</TableHead>
+                <TableHead>Usage Time</TableHead>
                 <TableHead>Account</TableHead>
                 <TableHead className="min-w-[400px]">
                   Feature Access
@@ -289,7 +319,7 @@ export function StudentManagementClient({
               {filteredStudents.length === 0 ? (
                 <TableRow>
                   <TableCell
-                    colSpan={6}
+                    colSpan={7}
                     className="h-32 text-center text-muted-foreground"
                   >
                     No students found
@@ -345,6 +375,13 @@ export function StudentManagementClient({
                       </TableCell>
 
                       <TableCell>
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                          <Clock className="h-3 w-3" />
+                          {formatUsageMinutes(student.totalUsageMinutes ?? 0)}
+                        </div>
+                      </TableCell>
+
+                      <TableCell>
                         <Switch
                           checked={student.isActive}
                           onCheckedChange={(checked) =>
@@ -389,8 +426,14 @@ export function StudentManagementClient({
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8"
+                          title="Reset Password"
+                          onClick={() => {
+                            setResetTarget({ id: student.id, name: `${student.firstName} ${student.lastName}` });
+                            setResetPassword("");
+                            setResetError("");
+                          }}
                         >
-                          <MoreHorizontal className="h-4 w-4" />
+                          <KeyRound className="h-4 w-4" />
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -401,6 +444,40 @@ export function StudentManagementClient({
           </Table>
         </CardContent>
       </Card>
+
+      <Dialog open={!!resetTarget} onOpenChange={(open) => { if (!open) setResetTarget(null); }}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reset Password</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            {resetError && (
+              <p className="text-sm text-destructive">{resetError}</p>
+            )}
+            <p className="text-sm text-muted-foreground">
+              Reset password for <strong>{resetTarget?.name}</strong>
+            </p>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">New Password</label>
+              <Input
+                type="password"
+                value={resetPassword}
+                onChange={(e) => setResetPassword(e.target.value)}
+                placeholder="Min 6 characters"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setResetTarget(null)}>
+              Cancel
+            </Button>
+            <Button onClick={resetStudentPassword} disabled={resetting || resetPassword.length < 6}>
+              {resetting ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : null}
+              Update Password
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

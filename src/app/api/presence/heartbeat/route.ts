@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { setStudentPresence } from "@/lib/redis";
 
+
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) {
@@ -22,10 +23,37 @@ export async function POST(request: NextRequest) {
 
   await setStudentPresence(tenantId, session.user.id, status, testTitle);
 
+  const now = new Date();
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { lastHeartbeatAt: true, totalUsageMinutes: true },
+  });
+
+  let totalUsageMinutes = user?.totalUsageMinutes ?? 0;
+  const lastHeartbeat = user?.lastHeartbeatAt;
+  let addedMinutes = 0;
+
+  if (lastHeartbeat) {
+    const elapsed = (now.getTime() - lastHeartbeat.getTime()) / 60000;
+    if (elapsed >= 0.5 && elapsed <= 5) {
+      addedMinutes = Math.ceil(elapsed);
+      totalUsageMinutes += addedMinutes;
+    }
+  }
+
   await prisma.user.update({
     where: { id: session.user.id },
-    data: { lastSeen: new Date() },
+    data: { lastSeen: now, lastHeartbeatAt: now, totalUsageMinutes },
   });
+
+  if (addedMinutes > 0) {
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    await prisma.dailyUsage.upsert({
+      where: { userId_date: { userId: session.user.id, date: today } },
+      create: { userId: session.user.id, date: today, totalMinutes: addedMinutes },
+      update: { totalMinutes: { increment: addedMinutes } },
+    });
+  }
 
   return NextResponse.json({ ok: true });
 }

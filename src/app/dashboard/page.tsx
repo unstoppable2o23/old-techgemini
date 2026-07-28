@@ -26,13 +26,29 @@ import {
   Calculator,
   Trophy,
   Clock,
+  Timer,
+  ClipboardCheck,
 } from "lucide-react";
+import { formatUsageMinutes } from "@/lib/format-utils";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) redirect("/auth/login");
   const user = session.user;
   const isCounselor = user.role === "COUNSELOR" || user.role === "SUPER_ADMIN";
+  const isUniversityAdmin = user.role === "UNIVERSITY_ADMIN";
+
+  if (isUniversityAdmin) {
+    return (
+      <div className="space-y-6 p-6 pt-20">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">University Admin Dashboard</h1>
+          <p className="text-muted-foreground">Welcome back, {user.firstName} — read-only view</p>
+        </div>
+        <AllUsersTable tenantId={user.tenantId} />
+      </div>
+    );
+  }
 
   if (isCounselor) {
     const studentCount = await prisma.user.count({
@@ -110,6 +126,10 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
 
+        {user.role === "COUNSELOR" && (
+          <MyStudentsTable tenantId={user.tenantId} counselorUserId={user.id} />
+        )}
+
         {user.role === "SUPER_ADMIN" && (
           <AllUsersTable tenantId={user.tenantId} />
         )}
@@ -184,6 +204,12 @@ export default async function DashboardPage() {
   );
 }
 
+const STATUS_CONFIG: Record<string, { label: string; variant: "success" | "warning" | "secondary"; dot: string }> = {
+  ONLINE: { label: "Online", variant: "success", dot: "bg-green-500" },
+  IN_TEST: { label: "In Test", variant: "warning", dot: "bg-orange-500" },
+  OFFLINE: { label: "Offline", variant: "secondary", dot: "bg-gray-400" },
+};
+
 function formatLastSeen(date: string | Date | null): string {
   if (!date) return "Never";
   const now = Date.now();
@@ -198,6 +224,92 @@ function formatLastSeen(date: string | Date | null): string {
   return new Date(date).toLocaleDateString();
 }
 
+async function MyStudentsTable({ tenantId, counselorUserId }: { tenantId: string; counselorUserId: string }) {
+  const students = await prisma.user.findMany({
+    where: {
+      role: "STUDENT",
+      tenantId,
+      studentProfile: { counselor: { userId: counselorUserId } },
+    },
+    orderBy: { lastSeen: { sort: "desc", nulls: "last" } },
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      email: true,
+      isActive: true,
+      lastSeen: true,
+      totalUsageMinutes: true,
+      studentProfile: { select: { status: true, _count: { select: { testResults: true } } } },
+    },
+  });
+
+  if (students.length === 0) return null;
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Users className="h-5 w-5" />
+          My Students
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Student</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Tests</TableHead>
+              <TableHead>Last Seen</TableHead>
+              <TableHead>Usage Time</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {students.map((s) => {
+              const status = s.studentProfile?.status || "OFFLINE";
+              const sc = STATUS_CONFIG[status] || STATUS_CONFIG.OFFLINE;
+              return (
+                <TableRow key={s.id}>
+                  <TableCell>
+                    <div>
+                      <p className="text-sm font-medium">{s.firstName} {s.lastName}</p>
+                      <p className="text-xs text-muted-foreground">{s.email}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={sc.variant} className="gap-1.5">
+                      <span className={`h-1.5 w-1.5 rounded-full ${sc.dot}`} />
+                      {sc.label}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <ClipboardCheck className="h-3 w-3" />
+                      {s.studentProfile?._count?.testResults || 0}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <span className="text-sm text-muted-foreground whitespace-nowrap">
+                      {formatLastSeen(s.lastSeen)}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Timer className="h-3 w-3" />
+                      {formatUsageMinutes(s.totalUsageMinutes ?? 0)}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
+  );
+}
+
 async function AllUsersTable({ tenantId }: { tenantId: string }) {
   const users = await prisma.user.findMany({
     where: { tenantId },
@@ -210,6 +322,7 @@ async function AllUsersTable({ tenantId }: { tenantId: string }) {
       role: true,
       isActive: true,
       lastSeen: true,
+      totalUsageMinutes: true,
     },
   });
 
@@ -217,6 +330,7 @@ async function AllUsersTable({ tenantId }: { tenantId: string }) {
     SUPER_ADMIN: "destructive",
     COUNSELOR: "default",
     STUDENT: "secondary",
+    UNIVERSITY_ADMIN: "default",
   };
 
   return (
@@ -235,6 +349,7 @@ async function AllUsersTable({ tenantId }: { tenantId: string }) {
               <TableHead>Role</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Last Seen</TableHead>
+              <TableHead>Usage Time</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -260,6 +375,12 @@ async function AllUsersTable({ tenantId }: { tenantId: string }) {
                   <span className="text-sm text-muted-foreground whitespace-nowrap">
                     {formatLastSeen(u.lastSeen)}
                   </span>
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Timer className="h-3 w-3" />
+                    {formatUsageMinutes(u.totalUsageMinutes ?? 0)}
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

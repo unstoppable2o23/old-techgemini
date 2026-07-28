@@ -1,0 +1,114 @@
+import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+
+export async function GET() {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const user = session.user;
+  const isStudent = user.role === "STUDENT";
+
+  const where = isStudent
+    ? { userId: user.id }
+    : { counselorId: user.id };
+
+  const [appointments, counselorInfo] = await Promise.all([
+    prisma.appointment.findMany({
+      where,
+      orderBy: { startTime: "desc" },
+      include: {
+        student: {
+          select: {
+            user: { select: { firstName: true, lastName: true, email: true } },
+          },
+        },
+        counselor: {
+          select: { firstName: true, lastName: true, email: true },
+        },
+      },
+    }),
+    isStudent
+      ? prisma.studentProfile.findUnique({
+          where: { userId: user.id },
+          include: {
+            counselor: {
+              select: {
+                user: { select: { firstName: true, lastName: true, email: true } },
+                title: true,
+              },
+            },
+          },
+        })
+      : Promise.resolve(null),
+  ]);
+
+  return NextResponse.json({
+    appointments,
+    counselor: counselorInfo?.counselor || null,
+  });
+}
+
+export async function POST(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (session.user.role !== "STUDENT") {
+    return NextResponse.json({ error: "Only students can book appointments" }, { status: 403 });
+  }
+
+  try {
+    const { title, description, startTime, endTime } = await request.json();
+    if (!title || !startTime || !endTime) {
+      return NextResponse.json({ error: "Title, startTime, and endTime are required" }, { status: 400 });
+    }
+
+    const studentProfile = await prisma.studentProfile.findUnique({
+      where: { userId: session.user.id },
+      include: { counselor: true },
+    });
+
+    if (!studentProfile) {
+      return NextResponse.json({ error: "Student profile not found" }, { status: 404 });
+    }
+
+    if (!studentProfile.counselor) {
+      return NextResponse.json({ error: "No counselor assigned" }, { status: 400 });
+    }
+
+    const appointment = await prisma.appointment.create({
+      data: {
+        title,
+        description,
+        startTime: new Date(startTime),
+        endTime: new Date(endTime),
+        studentId: studentProfile.id,
+        counselorId: studentProfile.counselor.userId,
+        userId: session.user.id,
+        status: "PENDING",
+      },
+    });
+
+    await fetch(`${process.env.NEXTAUTH_URL}/api/notifications`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "APPOINTMENT_SCHEDULED",
+        title: "New Appointment Request",
+        message: `${session.user.firstName} ${session.user.lastName} booked "${title}" on ${new Date(startTime).toLocaleDateString()}`,
+        linkUrl: "/calendar",
+        recipientId: studentProfile.counselor.userId,
+      }),
+    });
+
+    return NextResponse.json({ appointment }, { status: 201 });
+  } catch (error) {
+    console.error("Failed to create appointment:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
