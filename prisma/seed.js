@@ -71,11 +71,12 @@ async function main() {
 
   const studentProfile = await prisma.studentProfile.upsert({
     where: { userId: studentUser.id },
-    update: {},
+    update: { counselorId: counselorProfile.id },
     create: {
       userId: studentUser.id,
       gradeLevel: "12",
       targetCountry: "USA",
+      counselorId: counselorProfile.id,
     },
   });
 
