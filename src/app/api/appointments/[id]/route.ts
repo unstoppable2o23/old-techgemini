@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { redis } from "@/lib/redis";
 
 export async function PATCH(
   request: NextRequest,
@@ -46,17 +47,29 @@ export async function PATCH(
       COMPLETED: "Completed",
     };
 
-    await fetch(`${process.env.NEXTAUTH_URL}/api/notifications`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    const notification = await prisma.notification.create({
+      data: {
         type: status === "CONFIRMED" ? "APPOINTMENT_SCHEDULED" : "APPOINTMENT_REMINDER",
         title: `Appointment ${statusLabels[status]}`,
         message: `Your appointment "${appointment.title}" has been ${statusLabels[status].toLowerCase()}${meetLink ? `. Join: ${meetLink}` : ""}`,
         linkUrl: "/appointments",
         recipientId: appointment.student.userId,
-      }),
+        senderId: session.user.id,
+      },
     });
+
+    await redis.publish(
+      `channel:notify:${appointment.student.userId}`,
+      JSON.stringify({
+        id: notification.id,
+        type: notification.type,
+        title: notification.title,
+        message: notification.message,
+        linkUrl: notification.linkUrl,
+        read: notification.read,
+        createdAt: notification.createdAt.toISOString(),
+      })
+    );
 
     return NextResponse.json({ appointment: updated });
   } catch (error) {

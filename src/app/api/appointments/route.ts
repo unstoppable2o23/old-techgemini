@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { redis } from "@/lib/redis";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
@@ -94,17 +95,29 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    await fetch(`${process.env.NEXTAUTH_URL}/api/notifications`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    const notification = await prisma.notification.create({
+      data: {
         type: "APPOINTMENT_SCHEDULED",
         title: "New Appointment Request",
         message: `${session.user.firstName} ${session.user.lastName} booked "${title}" on ${new Date(startTime).toLocaleDateString()}`,
         linkUrl: "/calendar",
         recipientId: studentProfile.counselor.userId,
-      }),
+        senderId: session.user.id,
+      },
     });
+
+    await redis.publish(
+      `channel:notify:${studentProfile.counselor.userId}`,
+      JSON.stringify({
+        id: notification.id,
+        type: notification.type,
+        title: notification.title,
+        message: notification.message,
+        linkUrl: notification.linkUrl,
+        read: notification.read,
+        createdAt: notification.createdAt.toISOString(),
+      })
+    );
 
     return NextResponse.json({ appointment }, { status: 201 });
   } catch (error) {
