@@ -33,6 +33,7 @@ const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Universities", href: "/universities" },
   { label: "Calendar", href: "/calendar" },
   { label: "Webinars", href: "/webinars" },
+  { label: "Messages", href: "/messages" },
   { label: "Analytics", href: "/analytics" },
 ];
 
@@ -43,6 +44,7 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
   { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests" },
   { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub" },
   { label: "Appointments", href: "/appointments", featureKey: "appointments" },
+  { label: "Messages", href: "/messages" },
 ];
 
 const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
