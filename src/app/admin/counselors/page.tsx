@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Users, Plus, Loader2, UserPlus, IndianRupee } from "lucide-react";
+import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle } from "lucide-react";
 
 export default function AdminCounselorsPage() {
   const [counselors, setCounselors] = useState<any[]>([]);
@@ -18,6 +18,8 @@ export default function AdminCounselorsPage() {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
+  const [whatsappCountryCode, setWhatsappCountryCode] = useState("91");
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const [counsellingPrice, setCounsellingPrice] = useState("2000");
   const [assessmentPrice, setAssessmentPrice] = useState("4000");
   const [indiaPrice, setIndiaPrice] = useState("14000");
@@ -48,12 +50,13 @@ export default function AdminCounselorsPage() {
     const res = await fetch("/api/admin/counselors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ firstName, lastName, email, password, title, phone, counsellingPrice, assessmentPrice, indiaPrice, internationalPrice }),
+      body: JSON.stringify({ firstName, lastName, email, password, title, phone, whatsappCountryCode, whatsappNumber, counsellingPrice, assessmentPrice, indiaPrice, internationalPrice }),
     });
     const data = await res.json();
     if (res.ok) {
       setResult({ success: `Counselor ${firstName} ${lastName} created` });
       setFirstName(""); setLastName(""); setEmail(""); setPassword(""); setTitle(""); setPhone("");
+      setWhatsappCountryCode("91"); setWhatsappNumber("");
       setCounsellingPrice("2000"); setAssessmentPrice("4000"); setIndiaPrice("14000"); setInternationalPrice("95000");
       setShowForm(false);
       setCounselors((prev) => [...prev, data.user]);
@@ -112,6 +115,19 @@ export default function AdminCounselorsPage() {
                 </div>
               </div>
               <div>
+                <p className="text-sm font-medium mb-2 flex items-center gap-1"><MessageCircle className="h-4 w-4" /> WhatsApp</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Country Code</label>
+                    <Input value={whatsappCountryCode} onChange={(e) => setWhatsappCountryCode(e.target.value)} placeholder="91" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Phone Number</label>
+                    <Input value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} placeholder="9876543210" />
+                  </div>
+                </div>
+              </div>
+              <div>
                 <p className="text-sm font-medium mb-2 flex items-center gap-1"><IndianRupee className="h-4 w-4" /> Service Pricing (defaults)</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div>
@@ -157,6 +173,7 @@ export default function AdminCounselorsPage() {
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
                   <TableHead>Title</TableHead>
+                  <TableHead>WhatsApp</TableHead>
                   <TableHead className="text-right">Counselling</TableHead>
                   <TableHead className="text-right">+ Assessment</TableHead>
                   <TableHead className="text-right">India</TableHead>
@@ -165,22 +182,35 @@ export default function AdminCounselorsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {counselors.map((c: any) => (
-                  <TableRow key={c.id}>
-                    <TableCell className="font-medium">{c.firstName} {c.lastName}</TableCell>
-                    <TableCell>{c.email}</TableCell>
-                    <TableCell>{c.counselorProfile?.title || "—"}</TableCell>
-                    <TableCell className="text-right">Rs {c.counselorProfile?.counsellingPrice?.toLocaleString() || "2,000"}</TableCell>
-                    <TableCell className="text-right">Rs {c.counselorProfile?.assessmentPrice?.toLocaleString() || "4,000"}</TableCell>
-                    <TableCell className="text-right">Rs {c.counselorProfile?.indiaPrice?.toLocaleString() || "14,000"}</TableCell>
-                    <TableCell className="text-right">Rs {c.counselorProfile?.internationalPrice?.toLocaleString() || "95,000"}</TableCell>
-                    <TableCell>
-                      <Badge variant={c.isActive ? "success" : "secondary"}>
-                        {c.isActive ? "Active" : "Inactive"}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {counselors.map((c: any) => {
+                  const wa = c.counselorProfile;
+                  const waLink = wa?.whatsappCountryCode && wa?.whatsappNumber
+                    ? `https://wa.me/${wa.whatsappCountryCode}${wa.whatsappNumber}`
+                    : null;
+                  return (
+                    <TableRow key={c.id}>
+                      <TableCell className="font-medium">{c.firstName} {c.lastName}</TableCell>
+                      <TableCell>{c.email}</TableCell>
+                      <TableCell>{c.counselorProfile?.title || "—"}</TableCell>
+                      <TableCell>
+                        {waLink ? (
+                          <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-green-600 hover:underline">
+                            <MessageCircle className="h-3 w-3" /> {wa.whatsappCountryCode} {wa.whatsappNumber}
+                          </a>
+                        ) : "—"}
+                      </TableCell>
+                      <TableCell className="text-right">Rs {c.counselorProfile?.counsellingPrice?.toLocaleString() || "2,000"}</TableCell>
+                      <TableCell className="text-right">Rs {c.counselorProfile?.assessmentPrice?.toLocaleString() || "4,000"}</TableCell>
+                      <TableCell className="text-right">Rs {c.counselorProfile?.indiaPrice?.toLocaleString() || "14,000"}</TableCell>
+                      <TableCell className="text-right">Rs {c.counselorProfile?.internationalPrice?.toLocaleString() || "95,000"}</TableCell>
+                      <TableCell>
+                        <Badge variant={c.isActive ? "success" : "secondary"}>
+                          {c.isActive ? "Active" : "Inactive"}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           )}

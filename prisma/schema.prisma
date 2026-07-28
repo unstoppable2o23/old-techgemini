@@ -105,6 +105,8 @@ model CounselorProfile {
   title              String?
   bio                String?
   phone              String?
+  whatsappCountryCode String?
+  whatsappNumber     String?
   calendarId         String?
   counsellingPrice   Int      @default(2000)
   assessmentPrice    Int      @default(4000)
@@ -147,6 +149,7 @@ model StudentFeatureAccess {
   appointments     Boolean @default(false)
   webinars         Boolean @default(false)
   analytics        Boolean @default(false)
+  chat             Boolean @default(true)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 

@@ -27,6 +27,7 @@ export async function PATCH(
     "appointments",
     "webinars",
     "analytics",
+    "chat",
   ];
 
   const updateData: Record<string, boolean> = {};

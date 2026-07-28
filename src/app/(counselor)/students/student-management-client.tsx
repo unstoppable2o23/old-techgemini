@@ -42,6 +42,7 @@ const FEATURE_LABELS: Record<string, string> = {
   appointments: "Appointments",
   webinars: "Webinars",
   analytics: "Analytics",
+  chat: "Chat",
 };
 
 const STATUS_CONFIG: Record<

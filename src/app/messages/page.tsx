@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquare, Send, Loader2, CheckCircle2, XCircle, Lock } from "lucide-react";
+import { MessageSquare, Send, Loader2, CheckCircle2, XCircle, Lock, MessageCircle } from "lucide-react";
 
 interface Message {
   id: string;
@@ -20,7 +20,10 @@ interface Chat {
   id: string;
   status: "PENDING" | "ACTIVE" | "CLOSED";
   student?: { id: string; firstName: string; lastName: string; email: string };
-  counselor?: { id: string; firstName: string; lastName: string; email: string };
+  counselor?: {
+    id: string; firstName: string; lastName: string; email: string;
+    counselorProfile?: { whatsappCountryCode?: string; whatsappNumber?: string };
+  };
   messages: Message[];
   createdAt: string;
 }
@@ -106,6 +109,132 @@ export default function MessagesPage() {
   const openChat = chats.find((c) => c.status !== "CLOSED");
   const otherPerson = activeChat ? (isStudent ? activeChat.counselor : activeChat.student) : null;
 
+  const whatsappLink = (() => {
+    const wa = activeChat?.counselor?.counselorProfile;
+    return wa?.whatsappCountryCode && wa?.whatsappNumber
+      ? `https://wa.me/${wa.whatsappCountryCode}${wa.whatsappNumber}`
+      : null;
+  })();
+
+  const counselorWaLink = (() => {
+    if (chats.length === 0) return null;
+    const wa = chats[0]?.counselor?.counselorProfile;
+    return wa?.whatsappCountryCode && wa?.whatsappNumber
+      ? `https://wa.me/${wa.whatsappCountryCode}${wa.whatsappNumber}`
+      : null;
+  })();
+
+  function renderMainContent() {
+    if (isStudent && !openChat && !requestSent) {
+      return (
+        <div className="flex-1 flex items-center justify-center p-6">
+          <Card className="w-full max-w-md">
+            <CardHeader><CardTitle>Chat with Your Counselor</CardTitle></CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground">Send a message to start chatting.</p>
+              <Input value={initialMsg} onChange={(e) => setInitialMsg(e.target.value)}
+                placeholder="Hi, I'd like to discuss..." />
+              <Button onClick={startChat} className="w-full" disabled={!initialMsg.trim()}>
+                <Send className="h-4 w-4 mr-2" /> Send Request
+              </Button>
+              {counselorWaLink && (
+                <div className="pt-2 border-t">
+                  <p className="text-xs text-muted-foreground mb-2">Or reach out directly on WhatsApp:</p>
+                  <a href={counselorWaLink} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:underline">
+                    <MessageCircle className="h-4 w-4" /> Chat on WhatsApp
+                  </a>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+
+    if (isStudent && openChat?.status === "PENDING") {
+      return (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-accent" />
+            <p className="font-medium">Waiting for counselor to accept...</p>
+            {counselorWaLink && (
+              <a href={counselorWaLink} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-green-600 hover:underline">
+                <MessageCircle className="h-4 w-4" /> Chat on WhatsApp instead
+              </a>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    if (activeChat?.status === "ACTIVE") {
+      return (
+        <>
+          <div className="p-4 border-b flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <MessageSquare className="h-4 w-4 text-accent" />
+              <span className="font-medium">{otherPerson?.firstName} {otherPerson?.lastName}</span>
+              <Badge variant="success" className="text-[10px]">Active</Badge>
+            </div>
+            <div className="flex items-center gap-2">
+              {isStudent && whatsappLink && (
+                <a href={whatsappLink} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-green-600 hover:underline">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp
+                </a>
+              )}
+              {!isStudent && (
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline"
+                    onClick={() => updateChat(activeChat.id, { grantAccess: true })}
+                    disabled={actionLoading === activeChat.id}>
+                    <Lock className="h-3 w-3 mr-1" /> Grant Booking Access
+                  </Button>
+                  <Button size="sm" variant="ghost"
+                    onClick={() => updateChat(activeChat.id, { status: "CLOSED" })}
+                    disabled={actionLoading === activeChat.id}>
+                    Close
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            {messages.map((m) => {
+              const isMe = m.senderId === session?.user?.id;
+              return (
+                <div key={m.id} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
+                  <div className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${isMe ? "bg-accent text-accent-foreground" : "bg-muted"}`}>
+                    {!isMe && <p className="text-xs opacity-60 mb-1">{m.sender.firstName}</p>}
+                    <p>{m.content}</p>
+                    <p className="text-[10px] opacity-60 mt-1">{new Date(m.createdAt).toLocaleTimeString()}</p>
+                  </div>
+                </div>
+              );
+            })}
+            <div ref={bottomRef} />
+          </div>
+          <div className="p-4 border-t">
+            <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} className="flex gap-2">
+              <Input value={newMsg} onChange={(e) => setNewMsg(e.target.value)} placeholder="Type a message..." />
+              <Button type="submit" size="icon" disabled={sending || !newMsg.trim()}>
+                {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+              </Button>
+            </form>
+          </div>
+        </>
+      );
+    }
+
+    return (
+      <div className="flex-1 flex items-center justify-center text-muted-foreground">
+        <p>{isStudent ? "No active conversation" : "Select a conversation"}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-[calc(100vh-4rem)] pt-16">
       <div className={`${isStudent ? "w-72" : "w-80"} border-r flex flex-col shrink-0`}>
@@ -154,79 +283,7 @@ export default function MessagesPage() {
       </div>
 
       <div className="flex-1 flex flex-col">
-        {isStudent && !openChat && !requestSent ? (
-          <div className="flex-1 flex items-center justify-center p-6">
-            <Card className="w-full max-w-md">
-              <CardHeader><CardTitle>Chat with Your Counselor</CardTitle></CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground">Send a message to start chatting.</p>
-                <Input value={initialMsg} onChange={(e) => setInitialMsg(e.target.value)}
-                  placeholder="Hi, I'd like to discuss..." />
-                <Button onClick={startChat} className="w-full" disabled={!initialMsg.trim()}>
-                  <Send className="h-4 w-4 mr-2" /> Send Request
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        ) : isStudent && openChat?.status === "PENDING" ? (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-accent" />
-              <p className="font-medium">Waiting for counselor to accept...</p>
-            </div>
-          </div>
-        ) : activeChat && activeChat.status === "ACTIVE" ? (
-          <>
-            <div className="p-4 border-b flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <MessageSquare className="h-4 w-4 text-accent" />
-                <span className="font-medium">{otherPerson?.firstName} {otherPerson?.lastName}</span>
-                <Badge variant="success" className="text-[10px]">Active</Badge>
-              </div>
-              {!isStudent && (
-                <div className="flex gap-2">
-                  <Button size="sm" variant="outline"
-                    onClick={() => updateChat(activeChat.id, { grantAccess: true })}
-                    disabled={actionLoading === activeChat.id}>
-                    <Lock className="h-3 w-3 mr-1" /> Grant Booking Access
-                  </Button>
-                  <Button size="sm" variant="ghost"
-                    onClick={() => updateChat(activeChat.id, { status: "CLOSED" })}
-                    disabled={actionLoading === activeChat.id}>
-                    Close
-                  </Button>
-                </div>
-              )}
-            </div>
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
-              {messages.map((m) => {
-                const isMe = m.senderId === session?.user?.id;
-                return (
-                  <div key={m.id} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
-                    <div className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${isMe ? "bg-accent text-accent-foreground" : "bg-muted"}`}>
-                      {!isMe && <p className="text-xs opacity-60 mb-1">{m.sender.firstName}</p>}
-                      <p>{m.content}</p>
-                      <p className="text-[10px] opacity-60 mt-1">{new Date(m.createdAt).toLocaleTimeString()}</p>
-                    </div>
-                  </div>
-                );
-              })}
-              <div ref={bottomRef} />
-            </div>
-            <div className="p-4 border-t">
-              <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} className="flex gap-2">
-                <Input value={newMsg} onChange={(e) => setNewMsg(e.target.value)} placeholder="Type a message..." />
-                <Button type="submit" size="icon" disabled={sending || !newMsg.trim()}>
-                  {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-                </Button>
-              </form>
-            </div>
-          </>
-        ) : (
-          <div className="flex-1 flex items-center justify-center text-muted-foreground">
-            <p>{isStudent ? "No active conversation" : "Select a conversation"}</p>
-          </div>
-        )}
+        {renderMainContent()}
       </div>
     </div>
   );

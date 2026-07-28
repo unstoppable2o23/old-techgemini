@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { firstName, lastName, email, password, title, phone, counsellingPrice, assessmentPrice, indiaPrice, internationalPrice } = await request.json();
+    const { firstName, lastName, email, password, title, phone, whatsappCountryCode, whatsappNumber, counsellingPrice, assessmentPrice, indiaPrice, internationalPrice } = await request.json();
     if (!firstName || !lastName || !email || !password) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
@@ -50,6 +50,8 @@ export async function POST(request: NextRequest) {
           create: {
             title: title || null,
             phone: phone || null,
+            whatsappCountryCode: whatsappCountryCode || null,
+            whatsappNumber: whatsappNumber || null,
             counsellingPrice: counsellingPrice ? parseInt(counsellingPrice) : 2000,
             assessmentPrice: assessmentPrice ? parseInt(assessmentPrice) : 4000,
             indiaPrice: indiaPrice ? parseInt(indiaPrice) : 14000,

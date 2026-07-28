@@ -15,7 +15,12 @@ export async function GET() {
     orderBy: { updatedAt: "desc" },
     include: {
       student: { select: { id: true, firstName: true, lastName: true, email: true } },
-      counselor: { select: { id: true, firstName: true, lastName: true, email: true } },
+      counselor: {
+        select: {
+          id: true, firstName: true, lastName: true, email: true,
+          counselorProfile: { select: { whatsappCountryCode: true, whatsappNumber: true } },
+        },
+      },
       messages: { orderBy: { createdAt: "desc" }, take: 1 },
     },
   });
@@ -35,10 +40,17 @@ export async function POST(request: NextRequest) {
 
     const profile = await prisma.studentProfile.findUnique({
       where: { userId: session.user.id },
-      include: { counselor: true },
+      include: {
+        counselor: true,
+        featureAccess: true,
+      },
     });
 
     if (!profile?.counselor) return NextResponse.json({ error: "No counselor assigned" }, { status: 400 });
+
+    if (!profile.featureAccess?.chat) {
+      return NextResponse.json({ error: "Chat is disabled by your counselor" }, { status: 403 });
+    }
 
     const existing = await prisma.chat.findFirst({
       where: { studentId: session.user.id, counselorId: profile.counselor.userId, status: { not: "CLOSED" } },
