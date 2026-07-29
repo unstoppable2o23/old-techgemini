@@ -130,6 +130,11 @@ model StudentProfile {
   gender        String?
   gradeLevel    String?
   targetCountry String?
+  targetColleges String[]
+  targetCountries String[]
+  preferredCareer String?
+  prospectiveSessions String[]
+  careerPrefsFilled Boolean @default(false)
   status        StudentStatus @default(OFFLINE)
   featureAccess StudentFeatureAccess?
   testResults   TestResult[]

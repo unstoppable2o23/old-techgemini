@@ -60,6 +60,10 @@ export async function PATCH(
     if (body.gender !== undefined) profileData.gender = body.gender || null;
     if (body.gradeLevel !== undefined) profileData.gradeLevel = body.gradeLevel || null;
     if (body.dateOfBirth !== undefined) profileData.dateOfBirth = body.dateOfBirth ? new Date(body.dateOfBirth) : null;
+    if (body.preferredCareer !== undefined) profileData.preferredCareer = body.preferredCareer || null;
+    if (body.targetColleges !== undefined) profileData.targetColleges = body.targetColleges;
+    if (body.targetCountries !== undefined) profileData.targetCountries = body.targetCountries;
+    if (body.prospectiveSessions !== undefined) profileData.prospectiveSessions = body.prospectiveSessions;
 
     if (Object.keys(userData).length > 0) {
       await prisma.user.update({ where: { id }, data: userData });

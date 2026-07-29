@@ -37,6 +37,17 @@ export default async function DashboardPage() {
   const user = session.user;
   const isCounselor = user.role === "COUNSELOR" || user.role === "SUPER_ADMIN";
   const isUniversityAdmin = user.role === "UNIVERSITY_ADMIN";
+  const isStudent = user.role === "STUDENT";
+
+  if (isStudent) {
+    const profile = await prisma.studentProfile.findUnique({
+      where: { userId: user.id },
+      select: { careerPrefsFilled: true },
+    });
+    if (!profile?.careerPrefsFilled) {
+      redirect("/career-preferences");
+    }
+  }
 
   if (isUniversityAdmin) {
     return (

@@ -228,6 +228,10 @@ export function StudentManagementClient({
       gender: p.gender || "",
       gradeLevel: p.gradeLevel || "",
       dateOfBirth: p.dateOfBirth ? p.dateOfBirth.slice(0, 10) : "",
+      targetColleges: p.targetColleges || [],
+      targetCountries: p.targetCountries || [],
+      preferredCareer: p.preferredCareer || "",
+      prospectiveSessions: p.prospectiveSessions || [],
     });
     setProfileLoading(false);
   }
@@ -536,6 +540,35 @@ export function StudentManagementClient({
                   </SelectContent>
                 </Select>
               </div>
+              {profileData.preferredCareer || profileData.targetColleges?.length > 0 || profileData.targetCountries?.length > 0 ? (
+                <div className="border-t pt-4 space-y-3">
+                  <p className="text-sm font-semibold">Career Preferences</p>
+                  {profileData.targetColleges?.length > 0 && (
+                    <div>
+                      <Label>Target Colleges</Label>
+                      <p className="text-sm text-muted-foreground">{profileData.targetColleges.join(", ")}</p>
+                    </div>
+                  )}
+                  {profileData.targetCountries?.length > 0 && (
+                    <div>
+                      <Label>Target Countries</Label>
+                      <p className="text-sm text-muted-foreground">{profileData.targetCountries.join(", ")}</p>
+                    </div>
+                  )}
+                  {profileData.preferredCareer && (
+                    <div>
+                      <Label>Preferred Career</Label>
+                      <p className="text-sm text-muted-foreground">{profileData.preferredCareer}</p>
+                    </div>
+                  )}
+                  {profileData.prospectiveSessions?.length > 0 && (
+                    <div>
+                      <Label>Prospective Sessions</Label>
+                      <p className="text-sm text-muted-foreground">{profileData.prospectiveSessions.join(", ")}</p>
+                    </div>
+                  )}
+                </div>
+              ) : null}
               {profileSaved && <p className="text-sm text-green-600">Saved successfully!</p>}
             </div>
           ) : null}
