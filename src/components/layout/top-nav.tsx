@@ -9,7 +9,6 @@ import { useFeatureFlags } from "@/hooks/use-feature-flags";
 import { usePresence } from "@/hooks/use-presence";
 import { useNotifications } from "@/hooks/use-notifications";
 import { Button } from "@/components/ui/button";
-import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -18,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Bell, Lock, Menu, X } from "lucide-react";
+import { Bell, Lock, Menu, X, User } from "lucide-react";
 
 type NavItem = {
   label: string;
@@ -200,7 +199,7 @@ export function TopNav() {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <Button variant="ghost" size="icon" className="rounded-full">
-                    <Avatar fallback="U" />
+                    <User className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
