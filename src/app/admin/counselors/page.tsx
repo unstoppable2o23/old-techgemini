@@ -5,8 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone } from "lucide-react";
+import {
+  Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,
+} from "@/components/ui/dialog";
+import { Switch } from "@/components/ui/switch";
+import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone, Pencil } from "lucide-react";
 
 export default function AdminCounselorsPage() {
   const [counselors, setCounselors] = useState<any[]>([]);
@@ -31,6 +34,10 @@ export default function AdminCounselorsPage() {
   const [broadcastMessage, setBroadcastMessage] = useState("");
   const [broadcasting, setBroadcasting] = useState(false);
   const [broadcastResult, setBroadcastResult] = useState<{ success?: string; error?: string } | null>(null);
+  const [editTarget, setEditTarget] = useState<any>(null);
+  const [editForm, setEditForm] = useState<any>({});
+  const [editSaving, setEditSaving] = useState(false);
+  const [editResult, setEditResult] = useState<{ success?: string; error?: string } | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -94,6 +101,57 @@ export default function AdminCounselorsPage() {
       setBroadcastResult({ error: data.error || "Failed to send" });
     }
     setBroadcasting(false);
+  }
+
+  function openEdit(c: any) {
+    const p = c.counselorProfile || {};
+    setEditTarget(c);
+    setEditForm({
+      firstName: c.firstName || "",
+      lastName: c.lastName || "",
+      email: c.email || "",
+      title: p.title || "",
+      phone: p.phone || "",
+      whatsappCountryCode: p.whatsappCountryCode || "91",
+      whatsappNumber: p.whatsappNumber || "",
+      counsellingPrice: String(p.counsellingPrice ?? 2000),
+      assessmentPrice: String(p.assessmentPrice ?? 4000),
+      indiaPrice: String(p.indiaPrice ?? 14000),
+      internationalPrice: String(p.internationalPrice ?? 95000),
+      upiId: p.upiId || "",
+      isActive: c.isActive !== false,
+    });
+    setEditResult(null);
+  }
+
+  async function handleEditSave() {
+    if (!editTarget) return;
+    setEditSaving(true);
+    setEditResult(null);
+    const res = await fetch(`/api/admin/counselors/${editTarget.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editForm),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setEditResult({ success: "Updated successfully" });
+      setCounselors((prev) => prev.map((c) => c.id === editTarget.id ? data.user : c));
+      setTimeout(() => setEditTarget(null), 1000);
+    } else {
+      setEditResult({ error: data.error || "Failed to update" });
+    }
+    setEditSaving(false);
+  }
+
+  async function toggleCounselorStatus(c: any) {
+    const newVal = !c.isActive;
+    setCounselors((prev) => prev.map((x) => x.id === c.id ? { ...x, isActive: newVal } : x));
+    await fetch(`/api/admin/counselors/${c.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isActive: newVal }),
+    });
   }
 
   return (
@@ -243,6 +301,7 @@ export default function AdminCounselorsPage() {
                   <TableHead className="text-right">India</TableHead>
                   <TableHead className="text-right">International</TableHead>
                   <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -268,9 +327,12 @@ export default function AdminCounselorsPage() {
                       <TableCell className="text-right">Rs {c.counselorProfile?.indiaPrice?.toLocaleString() || "14,000"}</TableCell>
                       <TableCell className="text-right">Rs {c.counselorProfile?.internationalPrice?.toLocaleString() || "95,000"}</TableCell>
                       <TableCell>
-                        <Badge variant={c.isActive ? "success" : "secondary"}>
-                          {c.isActive ? "Active" : "Inactive"}
-                        </Badge>
+                        <Switch checked={c.isActive !== false} onCheckedChange={() => toggleCounselorStatus(c)} />
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => openEdit(c)}>
+                          <Pencil className="h-4 w-4" />
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );
@@ -280,6 +342,95 @@ export default function AdminCounselorsPage() {
           )}
         </CardContent>
       </Card>
+
+      <Dialog open={!!editTarget} onOpenChange={(o) => { if (!o) setEditTarget(null); }}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          <DialogHeader><DialogTitle>Edit Counselor</DialogTitle></DialogHeader>
+          {editTarget && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium">First Name</label>
+                  <Input value={editForm.firstName} onChange={(e) => setEditForm({ ...editForm, firstName: e.target.value })} />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Last Name</label>
+                  <Input value={editForm.lastName} onChange={(e) => setEditForm({ ...editForm, lastName: e.target.value })} />
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium">Email</label>
+                <Input value={editForm.email} onChange={(e) => setEditForm({ ...editForm, email: e.target.value })} />
+              </div>
+              <div>
+                <label className="text-sm font-medium">New Password (leave blank to keep)</label>
+                <Input type="password" value={editForm.password || ""} onChange={(e) => setEditForm({ ...editForm, password: e.target.value })} placeholder="Min 6 chars" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium">Title</label>
+                  <Input value={editForm.title} onChange={(e) => setEditForm({ ...editForm, title: e.target.value })} />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Phone</label>
+                  <Input value={editForm.phone} onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })} />
+                </div>
+              </div>
+              <div>
+                <p className="text-sm font-medium mb-2 flex items-center gap-1"><MessageCircle className="h-4 w-4" /> WhatsApp</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Country Code</label>
+                    <Input value={editForm.whatsappCountryCode} onChange={(e) => setEditForm({ ...editForm, whatsappCountryCode: e.target.value })} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">Number</label>
+                    <Input value={editForm.whatsappNumber} onChange={(e) => setEditForm({ ...editForm, whatsappNumber: e.target.value })} />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm font-medium mb-2 flex items-center gap-1"><IndianRupee className="h-4 w-4" /> Pricing</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div>
+                    <label className="text-xs text-muted-foreground">Counselling</label>
+                    <Input type="number" value={editForm.counsellingPrice} onChange={(e) => setEditForm({ ...editForm, counsellingPrice: e.target.value })} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">+ Assessment</label>
+                    <Input type="number" value={editForm.assessmentPrice} onChange={(e) => setEditForm({ ...editForm, assessmentPrice: e.target.value })} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">India</label>
+                    <Input type="number" value={editForm.indiaPrice} onChange={(e) => setEditForm({ ...editForm, indiaPrice: e.target.value })} />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground">International</label>
+                    <Input type="number" value={editForm.internationalPrice} onChange={(e) => setEditForm({ ...editForm, internationalPrice: e.target.value })} />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium">UPI ID</label>
+                <Input value={editForm.upiId} onChange={(e) => setEditForm({ ...editForm, upiId: e.target.value })} placeholder="counselor@upi" />
+              </div>
+              <div className="flex items-center gap-3">
+                <label className="text-sm font-medium">Active</label>
+                <Switch checked={editForm.isActive} onCheckedChange={(v) => setEditForm({ ...editForm, isActive: v })} />
+              </div>
+              {editResult?.error && <p className="text-sm text-destructive">{editResult.error}</p>}
+              {editResult?.success && <p className="text-sm text-green-600">{editResult.success}</p>}
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditTarget(null)}>Cancel</Button>
+            <Button onClick={handleEditSave} disabled={editSaving}>
+              {editSaving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Pencil className="h-4 w-4 mr-2" />}
+              Save
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
