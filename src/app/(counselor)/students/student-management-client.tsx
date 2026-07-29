@@ -29,8 +29,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { Avatar } from "@/components/ui/avatar";
-import { Search, CheckCircle2, XCircle, KeyRound, Plus, Loader2, Clock } from "lucide-react";
+import { Search, CheckCircle2, XCircle, KeyRound, Plus, Loader2, Clock, User } from "lucide-react";
 import { formatUsageMinutes } from "@/lib/format-utils";
 
 const FEATURE_LABELS: Record<string, string> = {
@@ -84,6 +85,12 @@ export function StudentManagementClient({
   const [resetPassword, setResetPassword] = useState("");
   const [resetting, setResetting] = useState(false);
   const [resetError, setResetError] = useState("");
+  const [profileTarget, setProfileTarget] = useState<any>(null);
+  const [profileData, setProfileData] = useState<any>(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+  const [profileSaving, setProfileSaving] = useState(false);
+  const [profileSaved, setProfileSaved] = useState(false);
+  const GRADE_OPTIONS = ["8th", "9th", "10th", "11th", "12th", "Pursuing UG", "Completed UG"];
 
   const filteredStudents = students.filter((s) => {
     const nameMatch =
@@ -203,6 +210,39 @@ export function StudentManagementClient({
     } finally {
       setResetting(false);
     }
+  }
+
+  async function openProfile(student: any) {
+    setProfileTarget(student);
+    setProfileLoading(true);
+    setProfileSaved(false);
+    const res = await fetch(`/api/counselor/students/${student.id}/profile`);
+    const data = await res.json();
+    const s = data.student;
+    const p = s?.studentProfile || {};
+    setProfileData({
+      firstName: s?.firstName || "",
+      lastName: s?.lastName || "",
+      email: s?.email || "",
+      mobile: p.mobile || "",
+      gender: p.gender || "",
+      gradeLevel: p.gradeLevel || "",
+      dateOfBirth: p.dateOfBirth ? p.dateOfBirth.slice(0, 10) : "",
+    });
+    setProfileLoading(false);
+  }
+
+  async function saveProfile() {
+    if (!profileTarget) return;
+    setProfileSaving(true);
+    setProfileSaved(false);
+    await fetch(`/api/counselor/students/${profileTarget.id}/profile`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(profileData),
+    });
+    setProfileSaved(true);
+    setProfileSaving(false);
   }
 
   return (
@@ -423,19 +463,20 @@ export function StudentManagementClient({
                       </TableCell>
 
                       <TableCell className="text-right">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8"
-                          title="Reset Password"
-                          onClick={() => {
-                            setResetTarget({ id: student.id, name: `${student.firstName} ${student.lastName}` });
-                            setResetPassword("");
-                            setResetError("");
-                          }}
-                        >
-                          <KeyRound className="h-4 w-4" />
-                        </Button>
+                        <div className="flex items-center justify-end gap-1">
+                          <Button variant="ghost" size="icon" className="h-8 w-8" title="View Profile"
+                            onClick={() => openProfile(student)}>
+                            <User className="h-4 w-4" />
+                          </Button>
+                          <Button variant="ghost" size="icon" className="h-8 w-8" title="Reset Password"
+                            onClick={() => {
+                              setResetTarget({ id: student.id, name: `${student.firstName} ${student.lastName}` });
+                              setResetPassword("");
+                              setResetError("");
+                            }}>
+                            <KeyRound className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   );
@@ -445,6 +486,68 @@ export function StudentManagementClient({
           </Table>
         </CardContent>
       </Card>
+
+      <Dialog open={!!profileTarget} onOpenChange={(o) => { if (!o) { setProfileTarget(null); setProfileData(null); } }}>
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          <DialogHeader><DialogTitle>Student Profile</DialogTitle></DialogHeader>
+          {profileLoading ? (
+            <div className="py-8 text-center text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin mx-auto" /></div>
+          ) : profileData ? (
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>First Name</Label>
+                  <Input value={profileData.firstName} onChange={(e) => setProfileData({ ...profileData, firstName: e.target.value })} />
+                </div>
+                <div className="space-y-2">
+                  <Label>Last Name</Label>
+                  <Input value={profileData.lastName} onChange={(e) => setProfileData({ ...profileData, lastName: e.target.value })} />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>Email</Label>
+                <Input value={profileData.email} onChange={(e) => setProfileData({ ...profileData, email: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Mobile</Label>
+                <Input value={profileData.mobile} onChange={(e) => setProfileData({ ...profileData, mobile: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Date of Birth</Label>
+                <Input type="date" value={profileData.dateOfBirth} onChange={(e) => setProfileData({ ...profileData, dateOfBirth: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Gender</Label>
+                <Select value={profileData.gender} onValueChange={(v) => setProfileData({ ...profileData, gender: v })}>
+                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Male">Male</SelectItem>
+                    <SelectItem value="Female">Female</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label>Student Status</Label>
+                <Select value={profileData.gradeLevel} onValueChange={(v) => setProfileData({ ...profileData, gradeLevel: v })}>
+                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    {GRADE_OPTIONS.map((g) => <SelectItem key={g} value={g}>{g}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              {profileSaved && <p className="text-sm text-green-600">Saved successfully!</p>}
+            </div>
+          ) : null}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => { setProfileTarget(null); setProfileData(null); }}>Cancel</Button>
+            <Button onClick={saveProfile} disabled={profileSaving}>
+              {profileSaving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : null}
+              Save Changes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={!!resetTarget} onOpenChange={(open) => { if (!open) setResetTarget(null); }}>
         <DialogContent>

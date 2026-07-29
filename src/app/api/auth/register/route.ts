@@ -5,13 +5,13 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { firstName, lastName, email, password } = body;
+    const { firstName, lastName, email, password, dateOfBirth, mobile, gender, gradeLevel } = body;
 
     if (body._hp) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    if (!firstName || !lastName || !email || !password) {
+    if (!firstName || !lastName || !email || !password || !mobile || !gender || !gradeLevel) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -63,20 +63,18 @@ export async function POST(request: NextRequest) {
         passwordHash,
         role: "STUDENT",
         tenantId: tenant.id,
+        studentProfile: {
+          create: {
+            dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
+            mobile: mobile || null,
+            gender: gender || null,
+            gradeLevel: gradeLevel || null,
+            featureAccess: { create: {} },
+          },
+        },
       },
-      include: {
-        studentProfile: true,
-      },
+      include: { studentProfile: true },
     });
-
-    if (!user.studentProfile) {
-      await prisma.studentProfile.create({
-        data: { userId: user.id },
-      });
-      await prisma.studentFeatureAccess.create({
-        data: { studentProfileId: user.id },
-      });
-    }
 
     return NextResponse.json(
       { message: "Account created successfully" },

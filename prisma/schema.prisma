@@ -125,6 +125,9 @@ model StudentProfile {
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   counselorId   String?
   counselor     CounselorProfile? @relation("AssignedCounselor", fields: [counselorId], references: [id])
+  dateOfBirth   DateTime?
+  mobile        String?
+  gender        String?
   gradeLevel    String?
   targetCountry String?
   status        StudentStatus @default(OFFLINE)
