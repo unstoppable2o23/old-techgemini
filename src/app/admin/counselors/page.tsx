@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle } from "lucide-react";
+import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone } from "lucide-react";
 
 export default function AdminCounselorsPage() {
   const [counselors, setCounselors] = useState<any[]>([]);
@@ -26,6 +26,11 @@ export default function AdminCounselorsPage() {
   const [internationalPrice, setInternationalPrice] = useState("95000");
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ success?: string; error?: string } | null>(null);
+  const [broadcastOpen, setBroadcastOpen] = useState(false);
+  const [broadcastTitle, setBroadcastTitle] = useState("");
+  const [broadcastMessage, setBroadcastMessage] = useState("");
+  const [broadcasting, setBroadcasting] = useState(false);
+  const [broadcastResult, setBroadcastResult] = useState<{ success?: string; error?: string } | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -64,6 +69,31 @@ export default function AdminCounselorsPage() {
       setResult({ error: data.error || "Failed to create counselor" });
     }
     setSubmitting(false);
+  }
+
+  async function handleBroadcast(e: React.FormEvent) {
+    e.preventDefault();
+    setBroadcastResult(null);
+    if (!broadcastTitle.trim() || !broadcastMessage.trim()) {
+      setBroadcastResult({ error: "Title and message are required" });
+      return;
+    }
+    setBroadcasting(true);
+    const res = await fetch("/api/admin/notifications/broadcast", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: broadcastTitle, message: broadcastMessage }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setBroadcastResult({ success: `Notification sent to ${data.count} counselor(s)` });
+      setBroadcastTitle("");
+      setBroadcastMessage("");
+      setBroadcastOpen(false);
+    } else {
+      setBroadcastResult({ error: data.error || "Failed to send" });
+    }
+    setBroadcasting(false);
   }
 
   return (
@@ -153,6 +183,40 @@ export default function AdminCounselorsPage() {
               <Button type="submit" disabled={submitting} className="w-full">
                 {submitting ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Plus className="h-4 w-4 mr-2" />}
                 Create Counselor
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      )}
+
+      <div className="flex items-center justify-end">
+        <Button variant="outline" onClick={() => setBroadcastOpen(!broadcastOpen)}>
+          <Megaphone className="h-4 w-4 mr-2" />
+          {broadcastOpen ? "Close" : "Broadcast Notification"}
+        </Button>
+      </div>
+
+      {broadcastOpen && (
+        <Card>
+          <CardHeader><CardTitle className="flex items-center gap-2"><Megaphone className="h-5 w-5" /> Send Notification to All Counselors</CardTitle></CardHeader>
+          <CardContent>
+            <form onSubmit={handleBroadcast} className="space-y-4">
+              <div>
+                <label className="text-sm font-medium">Title</label>
+                <Input value={broadcastTitle} onChange={(e) => setBroadcastTitle(e.target.value)}
+                  placeholder="e.g. System Maintenance" />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Message</label>
+                <textarea value={broadcastMessage} onChange={(e) => setBroadcastMessage(e.target.value)}
+                  placeholder="Describe the issue or update..."
+                  className="flex w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[100px] resize-y" />
+              </div>
+              {broadcastResult?.error && <p className="text-sm text-destructive">{broadcastResult.error}</p>}
+              {broadcastResult?.success && <p className="text-sm text-green-600">{broadcastResult.success}</p>}
+              <Button type="submit" disabled={broadcasting || !broadcastTitle.trim() || !broadcastMessage.trim()}>
+                {broadcasting ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Megaphone className="h-4 w-4 mr-2" />}
+                Send to All Counselors
               </Button>
             </form>
           </CardContent>
