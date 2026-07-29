@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const sortBy = searchParams.get("sortBy") || "qsRank";
   const sortOrder = searchParams.get("sortOrder") || "asc";
   const page = parseInt(searchParams.get("page") || "1");
-  const limit = Math.min(parseInt(searchParams.get("limit") || "50"), 100);
+  const limit = Math.min(parseInt(searchParams.get("limit") || "50"), 500);
 
   const where: any = { tenantId: session.user.tenantId };
   if (search) where.name = { contains: search, mode: "insensitive" };

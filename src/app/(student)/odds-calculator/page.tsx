@@ -1,18 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, GraduationCap, Target, TrendingUp, Sparkles, X, Plus } from "lucide-react";
-
-interface University {
-  id: string;
-  name: string;
-  country: string;
-  qsRank: number | null;
-  overallScore: number | null;
-}
+import { Search, GraduationCap, Target, TrendingUp, Sparkles, Loader2 } from "lucide-react";
 
 function deriveSelectivity(qsRank: number | null): number {
   if (!qsRank) return 0.50;
@@ -39,59 +31,46 @@ export default function OddsCalculatorPage() {
   const [gpa, setGpa] = useState("3.5");
   const [sat, setSat] = useState("1200");
   const [ecs, setEcs] = useState("5");
-  const [results, setResults] = useState<{ name: string; odds: number; category: { label: string; color: string }; qsRank: number | null }[] | null>(null);
-
+  const [results, setResults] = useState<any[] | null>(null);
+  const [calculating, setCalculating] = useState(false);
+  const [resultCount, setResultCount] = useState(0);
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState<University[]>([]);
-  const [selected, setSelected] = useState<University[]>([]);
-  const [searching, setSearching] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (!search.trim()) { setSearchResults([]); return; }
-    debounceRef.current = setTimeout(async () => {
-      setSearching(true);
-      const res = await fetch(`/api/universities?search=${encodeURIComponent(search)}&limit=20&sortBy=qsRank&sortOrder=asc`);
-      const data = await res.json();
-      setSearchResults((data.universities || []).filter((u: University) => !selected.find((s) => s.id === u.id)));
-      setSearching(false);
-    }, 300);
-  }, [search, selected]);
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) setShowDropdown(false);
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
-
-  function addUniversity(u: University) {
-    setSelected((prev) => [...prev, u]);
-    setSearch("");
-    setSearchResults([]);
-    setShowDropdown(false);
-  }
-
-  function removeUniversity(id: string) {
-    setSelected((prev) => prev.filter((u) => u.id !== id));
-  }
-
-  function calculate() {
+  async function calculate() {
     const g = parseFloat(gpa) || 0;
     const s = parseInt(sat) || 0;
     const e = parseInt(ecs) || 0;
-    const calculated = selected.map((u) => ({
-      name: u.name,
-      qsRank: u.qsRank,
-      odds: calculateOdds(g, s, e, deriveSelectivity(u.qsRank)),
-      category: getCategory(calculateOdds(g, s, e, deriveSelectivity(u.qsRank))),
-    })).sort((a, b) => b.odds - a.odds);
+
+    setCalculating(true);
+    setResults(null);
+
+    const res = await fetch("/api/universities?sortBy=qsRank&sortOrder=asc&limit=500");
+    const data = await res.json();
+    const universities = data.universities || [];
+
+    const calculated = universities
+      .filter((u: any) => u.qsRank)
+      .map((u: any) => ({
+        id: u.id,
+        name: u.name,
+        country: u.country,
+        qsRank: u.qsRank,
+        odds: calculateOdds(g, s, e, deriveSelectivity(u.qsRank)),
+        category: getCategory(calculateOdds(g, s, e, deriveSelectivity(u.qsRank))),
+      }))
+      .sort((a: any, b: any) => b.odds - a.odds);
+
     setResults(calculated);
+    setResultCount(calculated.length);
+    setCalculating(false);
   }
+
+  const filtered = useMemo(() => {
+    if (!results) return [];
+    if (!search.trim()) return results;
+    const q = search.toLowerCase();
+    return results.filter((r) => r.name.toLowerCase().includes(q) || (r.country || "").toLowerCase().includes(q));
+  }, [results, search]);
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-4xl mx-auto">
@@ -99,7 +78,7 @@ export default function OddsCalculatorPage() {
         <Target className="h-8 w-8 text-accent" />
         <div>
           <h1 className="text-2xl font-bold tracking-tight">AI Odds Calculator</h1>
-          <p className="text-muted-foreground">Estimate your admission chances at any university worldwide</p>
+          <p className="text-muted-foreground">Enter your scores to see your admission chances at universities worldwide</p>
         </div>
       </div>
 
@@ -120,66 +99,9 @@ export default function OddsCalculatorPage() {
               <Input type="number" min="0" max="10" value={ecs} onChange={(e) => setEcs(e.target.value)} />
             </div>
           </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader><CardTitle>Select Universities</CardTitle></CardHeader>
-        <CardContent className="space-y-4">
-          <div className="relative" ref={dropdownRef}>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Search universities to add..."
-                value={search}
-                onChange={(e) => { setSearch(e.target.value); setShowDropdown(true); }}
-                onFocus={() => setShowDropdown(true)}
-                className="pl-9"
-              />
-            </div>
-            {showDropdown && search && (
-              <div className="absolute z-50 top-full mt-1 w-full bg-background border rounded-md shadow-lg max-h-60 overflow-y-auto">
-                {searching ? (
-                  <div className="p-3 text-sm text-muted-foreground">Searching...</div>
-                ) : searchResults.length === 0 ? (
-                  <div className="p-3 text-sm text-muted-foreground">No universities found.</div>
-                ) : searchResults.map((u) => (
-                  <button
-                    key={u.id}
-                    onClick={() => addUniversity(u)}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-muted flex items-center justify-between"
-                  >
-                    <div>
-                      <span className="font-medium">{u.name}</span>
-                      <span className="text-muted-foreground ml-2">{u.country}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {u.qsRank && <span className="text-xs text-muted-foreground">#{u.qsRank}</span>}
-                      <Plus className="h-4 w-4 text-accent" />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {selected.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {selected.map((u) => (
-                <span key={u.id} className="inline-flex items-center gap-1.5 bg-accent/10 text-accent text-sm px-3 py-1.5 rounded-full">
-                  {u.name}
-                  {u.qsRank && <span className="text-xs opacity-70">#{u.qsRank}</span>}
-                  <button onClick={() => removeUniversity(u.id)} className="hover:bg-accent/20 rounded-full p-0.5">
-                    <X className="h-3.5 w-3.5" />
-                  </button>
-                </span>
-              ))}
-            </div>
-          )}
-
-          <Button onClick={calculate} disabled={selected.length === 0} className="w-full">
-            <Sparkles className="h-4 w-4 mr-2" />
-            Calculate My Odds ({selected.length} universities)
+          <Button onClick={calculate} disabled={calculating} className="w-full">
+            {calculating ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Sparkles className="h-4 w-4 mr-2" />}
+            {calculating ? "Analyzing universities..." : "Calculate My Odds"}
           </Button>
         </CardContent>
       </Card>
@@ -190,34 +112,36 @@ export default function OddsCalculatorPage() {
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
               Your Admission Odds
+              <span className="text-sm font-normal text-muted-foreground">({resultCount} universities)</span>
             </CardTitle>
+            <div className="relative mt-2">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input value={search} onChange={(e) => setSearch(e.target.value)}
+                placeholder="Filter by university name or country..."
+                className="pl-9" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {results.map((r) => (
-                <div key={r.name} className="flex items-center justify-between border-b pb-2 last:border-0">
-                  <div className="flex items-center gap-3 min-w-0">
+            <div className="space-y-1 max-h-[600px] overflow-y-auto pr-1">
+              {filtered.length === 0 ? (
+                <p className="text-sm text-muted-foreground py-4 text-center">No universities match your search.</p>
+              ) : filtered.map((r) => (
+                <div key={r.id} className="flex items-center justify-between py-2.5 border-b last:border-0 hover:bg-muted/30 px-2 rounded-sm">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
                     <GraduationCap className="h-4 w-4 text-muted-foreground shrink-0" />
                     <div className="truncate">
                       <span className="text-sm font-medium">{r.name}</span>
                       {r.qsRank && <span className="text-xs text-muted-foreground ml-1.5">#{r.qsRank}</span>}
+                      {r.country && <span className="text-xs text-muted-foreground ml-2">{r.country}</span>}
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 shrink-0">
-                    <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all ${
-                          r.odds >= 80 ? "bg-green-500" : r.odds >= 50 ? "bg-amber-500" : r.odds >= 25 ? "bg-orange-500" : "bg-red-500"
-                        }`}
-                        style={{ width: `${r.odds}%` }}
-                      />
+                  <div className="flex items-center gap-3 shrink-0 ml-4">
+                    <div className="w-28 h-2.5 bg-muted rounded-full overflow-hidden">
+                      <div className={`h-full rounded-full transition-all ${r.odds >= 80 ? "bg-green-500" : r.odds >= 50 ? "bg-amber-500" : r.odds >= 25 ? "bg-orange-500" : "bg-red-500"}`}
+                        style={{ width: `${r.odds}%` }} />
                     </div>
-                    <span className={`text-sm font-bold w-12 text-right ${r.category.color}`}>
-                      {r.odds}%
-                    </span>
-                    <span className={`text-xs w-24 text-right ${r.category.color}`}>
-                      {r.category.label}
-                    </span>
+                    <span className={`text-sm font-bold w-10 text-right ${r.category.color}`}>{r.odds}%</span>
+                    <span className={`text-xs w-22 text-right ${r.category.color}`}>{r.category.label}</span>
                   </div>
                 </div>
               ))}
