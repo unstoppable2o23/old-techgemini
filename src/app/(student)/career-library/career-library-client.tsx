@@ -338,7 +338,7 @@ export default function CareerLibraryClient() {
       {/* HERO */}
       <div className="text-center animate-fade-in-up">
         <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight">
-          Explore <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">{trendingCareers.length || ""} Career Options</span>
+          Explore <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">New Age Careers</span>
         </h1>
         <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
           Explore careers with role insights, opportunities, growth scope, and steps to become one.
