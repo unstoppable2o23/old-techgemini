@@ -9,44 +9,48 @@ import {
   Sparkles,
   Briefcase,
   ArrowRight,
-  BarChart,
-  Cpu,
-  Target,
-  TrendingUp,
-  Zap,
-  Building,
-  Users,
-  Globe,
-  Layers,
-  CirclePlay,
-  CheckCircle,
-  Youtube,
-  Calendar,
-  MapPin,
-  Volume2,
-  GraduationCap,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import {
+  FaChartBar,
+  FaMicrochip,
+  FaBullseye,
+  FaChartLine,
+  FaBolt,
+  FaBuilding,
+  FaBriefcase,
+  FaUsers,
+  FaGlobe,
+  FaLayerGroup,
+  FaPlayCircle,
+  FaCheckCircle,
+  FaYoutube,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaVolumeUp,
+  FaGraduationCap,
+  FaMagic,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
 
-const ICONS: Record<string, LucideIcon> = {
-  barChart: BarChart,
-  cpu: Cpu,
-  target: Target,
-  trendingUp: TrendingUp,
-  zap: Zap,
-  building: Building,
-  briefcase: Briefcase,
-  users: Users,
-  globe: Globe,
-  generic: Layers,
-  playCircle: CirclePlay,
-  checkCircle: CheckCircle,
-  youtube: Youtube,
-  calendar: Calendar,
-  mapPin: MapPin,
-  volumeHigh: Volume2,
-  gradHat: GraduationCap,
-  sparkles: Sparkles,
+const ICONS: Record<string, IconType> = {
+  barChart: FaChartBar,
+  cpu: FaMicrochip,
+  target: FaBullseye,
+  trendingUp: FaChartLine,
+  zap: FaBolt,
+  building: FaBuilding,
+  briefcase: FaBriefcase,
+  users: FaUsers,
+  globe: FaGlobe,
+  generic: FaLayerGroup,
+  playCircle: FaPlayCircle,
+  checkCircle: FaCheckCircle,
+  youtube: FaYoutube,
+  calendar: FaCalendarAlt,
+  mapPin: FaMapMarkerAlt,
+  volumeHigh: FaVolumeUp,
+  gradHat: FaGraduationCap,
+  sparkles: FaMagic,
 };
 
 // Original page styling per career (icon + color)
@@ -420,22 +424,20 @@ export default function CareerLibraryClient() {
             {trendingCareers.map((c, idx) => {
               const badge = TRENDING_BADGES[idx % TRENDING_BADGES.length];
               const style = CAREER_STYLES[c.name] || { iconType: "generic", bg: "bg-slate-100", text: "text-slate-600" };
-              const Icon = ICONS[style.iconType] || Layers;
+              const Icon = ICONS[style.iconType] || FaLayerGroup;
               return (
                 <button
                   key={c.id}
                   onClick={() => goToCareer(c.slug)}
-                  className="text-left group border rounded-2xl p-5 min-h-[160px] flex flex-col gap-3 transition-all hover:shadow-lg hover:-translate-y-1 hover:border-accent/40"
+                  className="text-left group border rounded-2xl p-5 min-h-[160px] flex flex-col items-center gap-3 text-center transition-all hover:shadow-lg hover:-translate-y-1 hover:border-accent/40"
                 >
-                  <div className="flex items-start justify-between">
-                    <span className={`p-3 rounded-xl ${style.bg} ${style.text}`}>
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <Badge className={`${badge.color} text-[10px]`}>
-                      {badge.label} {badge.icon}
-                    </Badge>
-                  </div>
-                  <p className="text-sm md:text-base font-semibold leading-snug group-hover:text-accent transition-colors mt-auto">
+                  <span className={`p-4 rounded-full ${style.bg} ${style.text} shadow-sm transition-transform group-hover:scale-110`}>
+                    <Icon className="h-7 w-7" />
+                  </span>
+                  <Badge className={`${badge.color} text-[10px]`}>
+                    {badge.label} {badge.icon}
+                  </Badge>
+                  <p className="text-sm md:text-base font-semibold leading-snug group-hover:text-accent transition-colors">
                     {c.title}
                   </p>
                 </button>
