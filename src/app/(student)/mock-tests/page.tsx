@@ -10,11 +10,12 @@ export default async function MockTestsPage() {
   const user = session.user;
   if (user.role !== "STUDENT") redirect("/auth/login");
 
-  const access = await prisma.studentFeatureAccess.findUnique({
-    where: { studentProfileId: user.id },
+  const studentProfile = await prisma.studentProfile.findUnique({
+    where: { userId: user.id },
+    include: { featureAccess: true },
   });
 
-  if (!access?.mockTests) redirect("/dashboard");
+  if (!studentProfile?.featureAccess?.mockTests) redirect("/dashboard");
 
   return (
     <div className="p-6 pt-20">

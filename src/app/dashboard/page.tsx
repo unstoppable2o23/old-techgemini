@@ -150,12 +150,14 @@ export default async function DashboardPage() {
   }
 
   // Student view
-  const featureAccess = await prisma.studentFeatureAccess.findUnique({
-    where: { studentProfileId: user.id },
+  const studentProfile = await prisma.studentProfile.findUnique({
+    where: { userId: user.id },
+    include: { featureAccess: true },
   });
+  const featureAccess = studentProfile?.featureAccess;
 
   const recentResults = await prisma.testResult.findMany({
-    where: { studentId: user.id },
+    where: { studentId: studentProfile?.id },
     orderBy: { submittedAt: "desc" },
     take: 5,
     include: { test: true },

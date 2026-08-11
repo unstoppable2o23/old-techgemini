@@ -12,6 +12,7 @@ export interface StudentFeatureFlags {
   appointments: boolean;
   webinars: boolean;
   analytics: boolean;
+  careerLibrary: boolean;
 }
 
 const EMPTY_FLAGS: StudentFeatureFlags = {
@@ -23,6 +24,7 @@ const EMPTY_FLAGS: StudentFeatureFlags = {
   appointments: false,
   webinars: false,
   analytics: false,
+  careerLibrary: false,
 };
 
 const ALL_ENABLED: StudentFeatureFlags = {
@@ -34,6 +36,7 @@ const ALL_ENABLED: StudentFeatureFlags = {
   appointments: true,
   webinars: true,
   analytics: true,
+  careerLibrary: true,
 };
 
 export function useFeatureFlags() {

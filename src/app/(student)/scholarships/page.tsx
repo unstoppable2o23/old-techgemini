@@ -10,11 +10,12 @@ export default async function ScholarshipsPage() {
   const user = session.user;
   if (user.role !== "STUDENT") redirect("/auth/login");
 
-  const access = await prisma.studentFeatureAccess.findUnique({
-    where: { studentProfileId: user.id },
+  const studentProfile = await prisma.studentProfile.findUnique({
+    where: { userId: user.id },
+    include: { featureAccess: true },
   });
 
-  if (!access?.scholarshipHub) redirect("/dashboard");
+  if (!studentProfile?.featureAccess?.scholarshipHub) redirect("/dashboard");
 
   return (
     <div className="p-6 pt-20">

@@ -12,11 +12,12 @@ export default async function CareerLibraryPage() {
   if (isStaff) return <CareerLibraryClient />;
   if (user.role !== "STUDENT") redirect("/auth/login");
 
-  const access = await prisma.studentFeatureAccess.findUnique({
-    where: { studentProfileId: user.id },
+  const studentProfile = await prisma.studentProfile.findUnique({
+    where: { userId: user.id },
+    include: { featureAccess: true },
   });
 
-  if (!access?.careerLibrary) redirect("/dashboard");
+  if (!studentProfile?.featureAccess?.careerLibrary) redirect("/dashboard");
 
   return <CareerLibraryClient />;
 }
