@@ -9,7 +9,187 @@ import {
   Sparkles,
   Briefcase,
   ArrowRight,
+  BarChart,
+  Cpu,
+  Target,
+  TrendingUp,
+  Zap,
+  Building,
+  Users,
+  Globe,
+  Layers,
+  CirclePlay,
+  CheckCircle,
+  Youtube,
+  Calendar,
+  MapPin,
+  Volume2,
+  GraduationCap,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+const ICONS: Record<string, LucideIcon> = {
+  barChart: BarChart,
+  cpu: Cpu,
+  target: Target,
+  trendingUp: TrendingUp,
+  zap: Zap,
+  building: Building,
+  briefcase: Briefcase,
+  users: Users,
+  globe: Globe,
+  generic: Layers,
+  playCircle: CirclePlay,
+  checkCircle: CheckCircle,
+  youtube: Youtube,
+  calendar: Calendar,
+  mapPin: MapPin,
+  volumeHigh: Volume2,
+  gradHat: GraduationCap,
+  sparkles: Sparkles,
+};
+
+// Original page styling per career (icon + color)
+const CAREER_STYLES: Record<string, { iconType: string; bg: string; text: string }> = {
+  "Data Science": { iconType: "barChart", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Software Engineering": { iconType: "cpu", bg: "bg-blue-100", text: "text-blue-600" },
+  "Product Management": { iconType: "target", bg: "bg-rose-100", text: "text-rose-600" },
+  "Digital Marketing": { iconType: "trendingUp", bg: "bg-emerald-100", text: "text-emerald-600" },
+  "User Experience Design UX": { iconType: "zap", bg: "bg-purple-100", text: "text-purple-600" },
+  "Civil Services": { iconType: "building", bg: "bg-orange-100", text: "text-orange-600" },
+  "Investment Banking": { iconType: "briefcase", bg: "bg-slate-200", text: "text-slate-700" },
+  "Medicine": { iconType: "users", bg: "bg-red-100", text: "text-red-600" },
+  "Law": { iconType: "briefcase", bg: "bg-amber-100", text: "text-amber-600" },
+  "Architecture": { iconType: "building", bg: "bg-teal-100", text: "text-teal-600" },
+  "Aviation": { iconType: "globe", bg: "bg-sky-100", text: "text-sky-600" },
+  "Culinary Arts": { iconType: "generic", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Psychology": { iconType: "users", bg: "bg-pink-100", text: "text-pink-600" },
+  "Cyber Security": { iconType: "zap", bg: "bg-green-100", text: "text-green-600" },
+  "Artificial Intelligence": { iconType: "cpu", bg: "bg-violet-100", text: "text-violet-600" },
+  "Blockchain Technology": { iconType: "generic", bg: "bg-gray-100", text: "text-gray-700" },
+  "Cloud Computing": { iconType: "globe", bg: "bg-cyan-100", text: "text-cyan-600" },
+  "Robotics Engineering": { iconType: "cpu", bg: "bg-red-50", text: "text-red-700" },
+  "Sustainability": { iconType: "globe", bg: "bg-green-50", text: "text-green-700" },
+  "Drone Technology": { iconType: "zap", bg: "bg-blue-50", text: "text-blue-700" },
+  "Ethical Hacking": { iconType: "zap", bg: "bg-black/10", text: "text-black" },
+  "Full Stack Development": { iconType: "cpu", bg: "bg-indigo-50", text: "text-indigo-700" },
+  "DevOps": { iconType: "generic", bg: "bg-orange-50", text: "text-orange-700" },
+  "Game Development": { iconType: "playCircle", bg: "bg-purple-50", text: "text-purple-700" },
+  "Bioinformatics": { iconType: "users", bg: "bg-teal-50", text: "text-teal-700" },
+  "Content Creation": { iconType: "youtube", bg: "bg-rose-50", text: "text-rose-700" },
+  "Social Media Management": { iconType: "users", bg: "bg-pink-50", text: "text-pink-700" },
+  "Financial Analysis": { iconType: "trendingUp", bg: "bg-yellow-50", text: "text-yellow-700" },
+  "Interior Design": { iconType: "building", bg: "bg-amber-50", text: "text-amber-700" },
+  "Event Management": { iconType: "calendar", bg: "bg-fuchsia-50", text: "text-fuchsia-700" },
+  "Fashion Design": { iconType: "generic", bg: "bg-rose-100", text: "text-rose-800" },
+  "Journalism": { iconType: "generic", bg: "bg-slate-100", text: "text-slate-800" },
+  "Veterinary Science": { iconType: "users", bg: "bg-emerald-100", text: "text-emerald-800" },
+  "Nutrition and Dietetics": { iconType: "users", bg: "bg-lime-100", text: "text-lime-800" },
+  "Sports Management": { iconType: "trendingUp", bg: "bg-blue-100", text: "text-blue-800" },
+  "Supply Chain Management": { iconType: "mapPin", bg: "bg-orange-100", text: "text-orange-800" },
+  "Human Resource Management": { iconType: "users", bg: "bg-violet-100", text: "text-violet-800" },
+  "Sales Management": { iconType: "trendingUp", bg: "bg-red-100", text: "text-red-800" },
+  "Actuarial Science": { iconType: "barChart", bg: "bg-cyan-100", text: "text-cyan-800" },
+  "Renewable Energy Engineering": { iconType: "zap", bg: "bg-green-100", text: "text-green-800" },
+  "Internet of Things": { iconType: "cpu", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Mobile Application Development": { iconType: "cpu", bg: "bg-blue-100", text: "text-blue-600" },
+  "Software Testing and Quality Assurance": { iconType: "checkCircle", bg: "bg-emerald-100", text: "text-emerald-600" },
+  "Hardware and Networking": { iconType: "cpu", bg: "bg-slate-100", text: "text-slate-600" },
+  "Information Technology Business Analysis": { iconType: "barChart", bg: "bg-purple-100", text: "text-purple-600" },
+  "User Interface Design": { iconType: "sparkles", bg: "bg-pink-100", text: "text-pink-600" },
+  "Graphic Design": { iconType: "sparkles", bg: "bg-rose-100", text: "text-rose-600" },
+  "Product Design": { iconType: "sparkles", bg: "bg-orange-100", text: "text-orange-600" },
+  "Industrial Design": { iconType: "building", bg: "bg-amber-100", text: "text-amber-600" },
+  "Visual Merchandising": { iconType: "sparkles", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Animation": { iconType: "playCircle", bg: "bg-lime-100", text: "text-lime-600" },
+  "Multimedia and Gaming": { iconType: "playCircle", bg: "bg-green-100", text: "text-green-600" },
+  "Photography": { iconType: "generic", bg: "bg-teal-100", text: "text-teal-600" },
+  "Sound Engineering": { iconType: "volumeHigh", bg: "bg-cyan-100", text: "text-cyan-600" },
+  "Image Consulting": { iconType: "users", bg: "bg-sky-100", text: "text-sky-600" },
+  "Fine Arts": { iconType: "sparkles", bg: "bg-blue-100", text: "text-blue-600" },
+  "Performing Arts": { iconType: "sparkles", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Public Relations": { iconType: "users", bg: "bg-violet-100", text: "text-violet-600" },
+  "Advertising": { iconType: "trendingUp", bg: "bg-purple-100", text: "text-purple-600" },
+  "Corporate Communication": { iconType: "briefcase", bg: "bg-fuchsia-100", text: "text-fuchsia-600" },
+  "Creative Writing": { iconType: "generic", bg: "bg-pink-100", text: "text-pink-600" },
+  "Interpretation and Translation": { iconType: "globe", bg: "bg-rose-100", text: "text-rose-600" },
+  "Business Management": { iconType: "briefcase", bg: "bg-red-100", text: "text-red-600" },
+  "Entrepreneurship": { iconType: "trendingUp", bg: "bg-orange-100", text: "text-orange-600" },
+  "Strategy Consulting": { iconType: "target", bg: "bg-amber-100", text: "text-amber-600" },
+  "Project Management": { iconType: "checkCircle", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Operations Management": { iconType: "briefcase", bg: "bg-lime-100", text: "text-lime-600" },
+  "Retail Management": { iconType: "briefcase", bg: "bg-green-100", text: "text-green-600" },
+  "Growth Marketing": { iconType: "trendingUp", bg: "bg-emerald-100", text: "text-emerald-600" },
+  "Performance Marketing": { iconType: "trendingUp", bg: "bg-teal-100", text: "text-teal-600" },
+  "Brand Management": { iconType: "sparkles", bg: "bg-cyan-100", text: "text-cyan-600" },
+  "Chartered Accountancy": { iconType: "barChart", bg: "bg-sky-100", text: "text-sky-600" },
+  "Cost and Management Accounting": { iconType: "barChart", bg: "bg-blue-100", text: "text-blue-600" },
+  "Company Secretaryship": { iconType: "briefcase", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Financial Planning": { iconType: "barChart", bg: "bg-violet-100", text: "text-violet-600" },
+  "Risk Management": { iconType: "target", bg: "bg-purple-100", text: "text-purple-600" },
+  "Economics": { iconType: "globe", bg: "bg-fuchsia-100", text: "text-fuchsia-600" },
+  "Biotechnology Research": { iconType: "globe", bg: "bg-pink-100", text: "text-pink-600" },
+  "Clinical Research": { iconType: "users", bg: "bg-rose-100", text: "text-rose-600" },
+  "Biomedical Engineering": { iconType: "generic", bg: "bg-red-100", text: "text-red-600" },
+  "Pharmacology": { iconType: "generic", bg: "bg-orange-100", text: "text-orange-600" },
+  "Genetics": { iconType: "generic", bg: "bg-amber-100", text: "text-amber-600" },
+  "Environmental Science": { iconType: "globe", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Nanotechnology": { iconType: "cpu", bg: "bg-lime-100", text: "text-lime-600" },
+  "Dentistry": { iconType: "users", bg: "bg-green-100", text: "text-green-600" },
+  "Physiotherapy": { iconType: "users", bg: "bg-emerald-100", text: "text-emerald-600" },
+  "Sports Physiotherapy": { iconType: "users", bg: "bg-teal-100", text: "text-teal-600" },
+  "Optometry": { iconType: "users", bg: "bg-cyan-100", text: "text-cyan-600" },
+  "Audiology": { iconType: "volumeHigh", bg: "bg-sky-100", text: "text-sky-600" },
+  "Medical Laboratory Sciences": { iconType: "generic", bg: "bg-blue-100", text: "text-blue-600" },
+  "Radiology Technology": { iconType: "zap", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Nursing": { iconType: "users", bg: "bg-violet-100", text: "text-violet-600" },
+  "Occupational Therapy": { iconType: "users", bg: "bg-purple-100", text: "text-purple-600" },
+  "Mechanical Engineering": { iconType: "building", bg: "bg-fuchsia-100", text: "text-fuchsia-600" },
+  "Civil Engineering": { iconType: "building", bg: "bg-pink-100", text: "text-pink-600" },
+  "Electrical Engineering": { iconType: "zap", bg: "bg-rose-100", text: "text-rose-600" },
+  "Electronics Engineering": { iconType: "cpu", bg: "bg-red-100", text: "text-red-600" },
+  "Aerospace Engineering": { iconType: "globe", bg: "bg-orange-100", text: "text-orange-600" },
+  "Chemical Engineering": { iconType: "generic", bg: "bg-amber-100", text: "text-amber-600" },
+  "Industrial Quality Engineering": { iconType: "checkCircle", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Urban Planning": { iconType: "building", bg: "bg-lime-100", text: "text-lime-600" },
+  "Construction Management": { iconType: "building", bg: "bg-green-100", text: "text-green-600" },
+  "Landscape Design": { iconType: "building", bg: "bg-emerald-100", text: "text-emerald-600" },
+  "Climate Science": { iconType: "globe", bg: "bg-teal-100", text: "text-teal-600" },
+  "Agricultural Engineering": { iconType: "generic", bg: "bg-cyan-100", text: "text-cyan-600" },
+  "Agri Business Management": { iconType: "briefcase", bg: "bg-sky-100", text: "text-sky-600" },
+  "Food Technology": { iconType: "generic", bg: "bg-blue-100", text: "text-blue-600" },
+  "Dairy Technology": { iconType: "generic", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Forestry": { iconType: "globe", bg: "bg-violet-100", text: "text-violet-600" },
+  "Wildlife Biology": { iconType: "globe", bg: "bg-purple-100", text: "text-purple-600" },
+  "Air Traffic Management": { iconType: "globe", bg: "bg-fuchsia-100", text: "text-fuchsia-600" },
+  "Cabin Services": { iconType: "users", bg: "bg-pink-100", text: "text-pink-600" },
+  "Maritime Studies": { iconType: "globe", bg: "bg-rose-100", text: "text-rose-600" },
+  "Logistics and Transportation Management": { iconType: "mapPin", bg: "bg-red-100", text: "text-red-600" },
+  "Hotel Management": { iconType: "building", bg: "bg-orange-100", text: "text-orange-600" },
+  "Travel and Tourism Management": { iconType: "globe", bg: "bg-amber-100", text: "text-amber-600" },
+  "Sports Coaching": { iconType: "users", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Professional Sports": { iconType: "users", bg: "bg-lime-100", text: "text-lime-600" },
+  "Physical Training": { iconType: "users", bg: "bg-green-100", text: "text-green-600" },
+  "School Education": { iconType: "gradHat", bg: "bg-emerald-100", text: "text-emerald-600" },
+  "Higher Education and Academia": { iconType: "gradHat", bg: "bg-teal-100", text: "text-teal-600" },
+  "Corporate Training": { iconType: "users", bg: "bg-cyan-100", text: "text-cyan-600" },
+  "Education Administration": { iconType: "briefcase", bg: "bg-sky-100", text: "text-sky-600" },
+  "Library Sciences": { iconType: "gradHat", bg: "bg-blue-100", text: "text-blue-600" },
+  "Career Counselling": { iconType: "users", bg: "bg-indigo-100", text: "text-indigo-600" },
+  "Mentoring and Coaching": { iconType: "users", bg: "bg-violet-100", text: "text-violet-600" },
+  "Forensic Science": { iconType: "generic", bg: "bg-purple-100", text: "text-purple-600" },
+  "Law Enforcement Studies": { iconType: "target", bg: "bg-fuchsia-100", text: "text-fuchsia-600" },
+  "Disaster Management": { iconType: "target", bg: "bg-pink-100", text: "text-pink-600" },
+  "Defence Services": { iconType: "target", bg: "bg-rose-100", text: "text-rose-600" },
+  "Economic Services": { iconType: "barChart", bg: "bg-red-100", text: "text-red-600" },
+  "Staff Selection Services": { iconType: "users", bg: "bg-orange-100", text: "text-orange-600" },
+  "Investment Advisory": { iconType: "trendingUp", bg: "bg-amber-100", text: "text-amber-600" },
+  "Sustainability Analytics": { iconType: "barChart", bg: "bg-yellow-100", text: "text-yellow-600" },
+  "Health Informatics": { iconType: "cpu", bg: "bg-lime-100", text: "text-lime-600" },
+  "Agriculture Research": { iconType: "globe", bg: "bg-lime-100", text: "text-lime-700" },
+  "Pilot": { iconType: "globe", bg: "bg-sky-100", text: "text-sky-600" },
+  "Airforce": { iconType: "target", bg: "bg-blue-200", text: "text-blue-800" },
+};
 
 const TRENDING_BADGES = [
   { label: "In Demand", icon: "🔥", color: "bg-rose-100 text-rose-700 border-rose-200" },
@@ -236,19 +416,26 @@ export default function CareerLibraryClient() {
         {loading ? (
           <div className="text-center py-12 text-muted-foreground">Loading careers...</div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
             {trendingCareers.map((c, idx) => {
               const badge = TRENDING_BADGES[idx % TRENDING_BADGES.length];
+              const style = CAREER_STYLES[c.name] || { iconType: "generic", bg: "bg-slate-100", text: "text-slate-600" };
+              const Icon = ICONS[style.iconType] || Layers;
               return (
                 <button
                   key={c.id}
                   onClick={() => goToCareer(c.slug)}
-                  className="text-left group border rounded-2xl p-4 transition-all hover:shadow-md hover:-translate-y-0.5"
+                  className="text-left group border rounded-2xl p-5 min-h-[160px] flex flex-col gap-3 transition-all hover:shadow-lg hover:-translate-y-1 hover:border-accent/40"
                 >
-                  <Badge className={`${badge.color} mb-3`}>
-                    {badge.label} {badge.icon}
-                  </Badge>
-                  <p className="text-sm font-semibold group-hover:text-accent transition-colors">
+                  <div className="flex items-start justify-between">
+                    <span className={`p-3 rounded-xl ${style.bg} ${style.text}`}>
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <Badge className={`${badge.color} text-[10px]`}>
+                      {badge.label} {badge.icon}
+                    </Badge>
+                  </div>
+                  <p className="text-sm md:text-base font-semibold leading-snug group-hover:text-accent transition-colors mt-auto">
                     {c.title}
                   </p>
                 </button>
