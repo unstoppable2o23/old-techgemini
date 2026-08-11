@@ -21,9 +21,15 @@ export function usePresence() {
   async function sendHeartbeat() {
     if (!session?.user?.id) return;
     try {
+      const tenantId = document
+        .querySelector('meta[name="x-tenant-id"]')
+        ?.getAttribute("content");
       await fetch("/api/presence/heartbeat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(tenantId ? { "x-tenant-id": tenantId } : {}),
+        },
         body: JSON.stringify({
           status: status.current,
           testTitle: status.testTitle,

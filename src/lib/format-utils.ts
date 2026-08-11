@@ -1,7 +1,8 @@
 export function formatUsageMinutes(totalMinutes: number): string {
-  if (!totalMinutes) return "0m";
-  if (totalMinutes < 60) return `${totalMinutes}m`;
-  const h = Math.floor(totalMinutes / 60);
-  const m = totalMinutes % 60;
+  const mins = Math.round(totalMinutes);
+  if (!mins) return "0m";
+  if (mins < 60) return `${mins}m`;
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
   return `${h}h ${m}m`;
 }

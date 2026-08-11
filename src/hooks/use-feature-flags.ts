@@ -57,5 +57,17 @@ export function useFeatureFlags() {
     }
   }, [session]);
 
+  useEffect(() => {
+    if (session?.user?.role !== "STUDENT") return;
+    function onFocus() {
+      fetch("/api/student/feature-flags")
+        .then((res) => res.json())
+        .then((data) => setFlags(data.flags || EMPTY_FLAGS))
+        .catch(() => {});
+    }
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+  }, [session]);
+
   return { flags, loading };
 }

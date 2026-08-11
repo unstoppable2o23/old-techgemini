@@ -21,7 +21,9 @@ export async function PATCH(
   const data: any = {};
   if (status) data.status = status;
 
-  await prisma.chat.update({ where: { id }, data });
+  if (Object.keys(data).length > 0) {
+    await prisma.chat.update({ where: { id }, data });
+  }
 
   if (status === "ACTIVE") {
     await prisma.notification.create({

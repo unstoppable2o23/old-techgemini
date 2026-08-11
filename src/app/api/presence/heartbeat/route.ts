@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   const now = new Date();
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { lastHeartbeatAt: true, totalUsageMinutes: true },
+    select: { role: true, lastHeartbeatAt: true, totalUsageMinutes: true },
   });
 
   let totalUsageMinutes = user?.totalUsageMinutes ?? 0;
@@ -35,9 +35,9 @@ export async function POST(request: NextRequest) {
 
   if (lastHeartbeat) {
     const elapsed = (now.getTime() - lastHeartbeat.getTime()) / 60000;
-    if (elapsed >= 0.5 && elapsed <= 5) {
-      addedMinutes = Math.ceil(elapsed);
-      totalUsageMinutes += addedMinutes;
+    if (elapsed > 0 && elapsed <= 5) {
+      addedMinutes = Math.round(elapsed * 10) / 10;
+      totalUsageMinutes = Math.round((totalUsageMinutes + addedMinutes) * 10) / 10;
     }
   }
 
@@ -52,6 +52,13 @@ export async function POST(request: NextRequest) {
       where: { userId_date: { userId: session.user.id, date: today } },
       create: { userId: session.user.id, date: today, totalMinutes: addedMinutes },
       update: { totalMinutes: { increment: addedMinutes } },
+    });
+  }
+
+  if (user?.role === "STUDENT") {
+    await prisma.studentProfile.updateMany({
+      where: { userId: session.user.id },
+      data: { status },
     });
   }
 

@@ -74,7 +74,7 @@ model User {
   isActive        Boolean  @default(true)
   avatarUrl       String?
   lastSeen          DateTime?
-  totalUsageMinutes Int       @default(0)
+  totalUsageMinutes Float      @default(0)
   lastHeartbeatAt   DateTime?
   tenantId          String
   tenant          Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
@@ -340,7 +340,7 @@ model DailyUsage {
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   date         DateTime
-  totalMinutes Int      @default(0)
+  totalMinutes Float      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
