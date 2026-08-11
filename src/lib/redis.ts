@@ -1,3 +1,5 @@
+import { Redis } from "@upstash/redis";
+
 type PresenceData = {
   status: "ONLINE" | "IN_TEST" | "OFFLINE";
   testTitle?: string;
@@ -17,13 +19,40 @@ type NotificationPayload = {
 const PRESENCE_PREFIX = "presence:";
 const NOTIFICATION_PREFIX = "notify:";
 
-const store = new Map<string, string>();
+const hasRedis =
+  !!process.env.REDIS_URL &&
+  !!process.env.REDIS_TOKEN &&
+  /^https:\/\//.test(process.env.REDIS_URL);
 
+function createUpstash(): Redis | null {
+  if (!hasRedis) return null;
+  try {
+    return new Redis({
+      url: process.env.REDIS_URL!,
+      token: process.env.REDIS_TOKEN!,
+    });
+  } catch (e) {
+    console.error("Failed to init Upstash Redis, falling back to in-memory:", e);
+    return null;
+  }
+}
+
+const upstash = createUpstash();
+
+// Local/dev fallback when no Upstash Redis is configured.
+const store = new Map<string, string>();
 const subscribers = new Map<string, Set<(data: string) => void>>();
 
-export const redis = {
-  async setex(key: string, _ttl: number, value: string) {
+type SubscribeHandle = {
+  unsubscribe: () => void;
+};
+
+const localRedis = {
+  async setex(key: string, ttl: number, value: string) {
     store.set(key, value);
+    if (ttl > 0) {
+      setTimeout(() => store.delete(key), ttl * 1000);
+    }
   },
 
   async get(key: string): Promise<string | null> {
@@ -48,32 +77,78 @@ export const redis = {
     }
   },
 
-  subscribe(channel: string, callback: (message: string) => void) {
+  subscribe(channel: string, callback: (message: string) => void): SubscribeHandle {
     if (!subscribers.has(channel)) {
       subscribers.set(channel, new Set());
     }
     subscribers.get(channel)!.add(callback);
-    return { unsub: () => subscribers.get(channel)?.delete(callback) };
+    return { unsubscribe: () => subscribers.get(channel)?.delete(callback) };
   },
 
   duplicate() {
-    return redis;
+    return localRedis;
   },
 
   async connect() {},
 };
 
+export const redis = upstash
+  ? {
+      async setex(key: string, ttl: number, value: string) {
+        await upstash.setex(key, ttl, value);
+      },
+
+      async get(key: string): Promise<string | null> {
+        return upstash.get<string>(key);
+      },
+
+      async mget(...keys: string[]): Promise<(string | null)[]> {
+        if (keys.length === 0) return [];
+        const result = await upstash.mget<(string | null)[]>(keys);
+        return result.map((r) => (r == null ? null : String(r)));
+      },
+
+      async keys(pattern: string): Promise<string[]> {
+        return upstash.keys(pattern);
+      },
+
+      async publish(channel: string, message: string) {
+        await upstash.publish(channel, message);
+      },
+
+      subscribe(channel: string, callback: (message: string) => void): SubscribeHandle {
+        const subscriber = upstash.subscribe<string>(channel);
+        const listener = (event: { channel: string; message: string }) => {
+          callback(event.message);
+        };
+        subscriber.on("message", listener);
+        return {
+          unsubscribe: () => {
+            subscriber.removeAllListeners();
+            subscriber.unsubscribe().catch(() => {});
+          },
+        };
+      },
+
+      duplicate() {
+        return this;
+      },
+
+      async connect() {},
+    }
+  : localRedis;
+
 export async function setStudentPresence(
-  _tenantId: string,
+  tenantId: string,
   studentId: string,
   status: "ONLINE" | "IN_TEST" | "OFFLINE",
   testTitle?: string
 ) {
-  const key = `${PRESENCE_PREFIX}${_tenantId}:${studentId}`;
+  const key = `${PRESENCE_PREFIX}${tenantId}:${studentId}`;
   const payload: PresenceData = { status, testTitle, timestamp: Date.now() };
   await redis.setex(key, 30, JSON.stringify(payload));
   await redis.publish(
-    `channel:presence:${_tenantId}`,
+    `channel:presence:${tenantId}`,
     JSON.stringify(payload)
   );
 }
@@ -84,7 +159,11 @@ export async function getStudentPresence(
 ): Promise<PresenceData> {
   const raw = await redis.get(`${PRESENCE_PREFIX}${tenantId}:${studentId}`);
   if (!raw) return { status: "OFFLINE", timestamp: Date.now() };
-  return JSON.parse(raw);
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return { status: "OFFLINE", timestamp: Date.now() };
+  }
 }
 
 export async function getAllStudentPresences(tenantId: string) {

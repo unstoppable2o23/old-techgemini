@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
   Table,
@@ -92,6 +92,15 @@ export function StudentManagementClient({
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileSaved, setProfileSaved] = useState(false);
   const GRADE_OPTIONS = ["8th", "9th", "10th", "11th", "12th", "Pursuing UG", "Completed UG"];
+
+  useEffect(() => {
+    setStudents(initialStudents);
+  }, [initialStudents]);
+
+  useEffect(() => {
+    const id = setInterval(() => router.refresh(), 15000);
+    return () => clearInterval(id);
+  }, [router]);
 
   const filteredStudents = students.filter((s) => {
     const nameMatch =

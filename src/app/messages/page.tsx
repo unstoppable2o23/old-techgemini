@@ -57,10 +57,18 @@ export default function MessagesPage() {
   useEffect(() => { fetchChats() }, [fetchChats]);
 
   useEffect(() => {
+    const id = setInterval(fetchChats, 10000);
+    return () => clearInterval(id);
+  }, [fetchChats]);
+
+  useEffect(() => {
     if (!activeChat) return;
-    fetch(`/api/chat/${activeChat.id}/messages`).then((r) => r.json()).then((data) => {
+    const fetchMessages = () => fetch(`/api/chat/${activeChat.id}/messages`).then((r) => r.json()).then((data) => {
       setMessages(data.messages || []);
     });
+    fetchMessages();
+    const id = setInterval(fetchMessages, 5000);
+    return () => clearInterval(id);
   }, [activeChat]);
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);

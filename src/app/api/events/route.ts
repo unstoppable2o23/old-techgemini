@@ -33,6 +33,8 @@ export async function GET(request: NextRequest) {
 
       request.signal.addEventListener("abort", () => {
         clearInterval(keepAlive);
+        unsub1?.unsubscribe();
+        unsub2?.unsubscribe();
         controller.close();
       });
     },
