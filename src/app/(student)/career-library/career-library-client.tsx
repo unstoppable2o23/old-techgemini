@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search, GraduationCap, Briefcase, TrendingUp, IndianRupee } from "lucide-react";
+import {
+  Search,
+  GraduationCap,
+  Briefcase,
+  TrendingUp,
+  IndianRupee,
+  ArrowRight,
+} from "lucide-react";
 
 const DEMAND_STYLES: Record<string, string> = {
   High: "bg-green-100 text-green-700",
@@ -15,49 +22,147 @@ const DEMAND_STYLES: Record<string, string> = {
 };
 
 export default function CareerLibraryClient() {
+  const router = useRouter();
   const [careers, setCareers] = useState<any[]>([]);
-  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState("name");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const fetchCareers = useCallback(async () => {
     setLoading(true);
     const params = new URLSearchParams();
-    if (search) params.set("search", search);
+    if (query) params.set("search", query);
     params.set("sortBy", sortBy);
     const res = await fetch(`/api/careers?${params}`);
     const data = await res.json();
     setCareers(data.careers || []);
     setLoading(false);
-  }, [search, sortBy]);
+  }, [query, sortBy]);
 
   useEffect(() => {
     const t = setTimeout(fetchCareers, 250);
     return () => clearTimeout(t);
   }, [fetchCareers]);
 
+  useEffect(() => {
+    if (!query) {
+      setSuggestions([]);
+      setShowDropdown(false);
+      return;
+    }
+    const t = setTimeout(async () => {
+      const res = await fetch(`/api/careers?search=${encodeURIComponent(query)}`);
+      const data = await res.json();
+      setSuggestions(data.careers || []);
+      setShowDropdown(true);
+      setActiveIndex(-1);
+    }, 150);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(e.target as Node)
+      ) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  function goToCareer(slug: string) {
+    setShowDropdown(false);
+    router.push(`/career-library/${slug}`);
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (!showDropdown || suggestions.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => (i - 1 + suggestions.length) % suggestions.length);
+    } else if (e.key === "Enter") {
+      if (activeIndex >= 0 && suggestions[activeIndex]) {
+        e.preventDefault();
+        goToCareer(suggestions[activeIndex].slug);
+      } else if (suggestions.length > 0) {
+        e.preventDefault();
+        goToCareer(suggestions[0].slug);
+      }
+    } else if (e.key === "Escape") {
+      setShowDropdown(false);
+    }
+  }
+
   return (
-    <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
-      <div className="flex items-center gap-3">
-        <GraduationCap className="h-8 w-8 text-accent" />
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Career Library</h1>
-          <p className="text-muted-foreground">
-            Explore {careers.length > 0 ? `${careers.length} ` : ""}careers — pathways, salary, growth &amp; more
-          </p>
+    <div className="space-y-8 p-6 pt-20 max-w-6xl mx-auto">
+      <div className="text-center space-y-3">
+        <div className="flex items-center justify-center gap-3">
+          <GraduationCap className="h-10 w-10 text-accent" />
+          <h1 className="text-3xl font-bold tracking-tight">Career Library</h1>
         </div>
+        <p className="text-muted-foreground max-w-xl mx-auto">
+          Explore 138 careers across every field — discover pathways, salary insights,
+          eligibility, future outlook and more. Search by career, field, or interest.
+        </p>
       </div>
 
-      <div className="flex gap-4 flex-wrap">
-        <div className="relative flex-1 min-w-[200px]">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+      <div className="max-w-2xl mx-auto w-full relative" ref={dropdownRef}>
+        <div className="relative">
+          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder="Search careers..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="pl-9"
+            ref={inputRef}
+            placeholder="Search any career, e.g. Data Science, Medicine, Pilot..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+            onFocus={() => query && setShowDropdown(true)}
+            className="pl-12 py-7 text-lg rounded-xl shadow-sm"
           />
         </div>
+
+        {showDropdown && suggestions.length > 0 && (
+          <div className="absolute z-30 mt-2 w-full bg-background border rounded-xl shadow-lg overflow-hidden">
+            {suggestions.map((s, i) => (
+              <button
+                key={s.id}
+                onClick={() => goToCareer(s.slug)}
+                onMouseEnter={() => setActiveIndex(i)}
+                className={`w-full flex items-center justify-between gap-3 px-4 py-3 text-left transition-colors ${
+                  activeIndex === i ? "bg-accent/10" : "hover:bg-accent/5"
+                }`}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <Briefcase className="h-4 w-4 text-muted-foreground shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium truncate">{s.title}</p>
+                    {s.jobGrowth && (
+                      <p className="text-xs text-muted-foreground">
+                        {s.salaryEntry || ""} · Growth {s.jobGrowth}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-end">
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
@@ -118,12 +223,10 @@ export default function CareerLibraryClient() {
                       </span>
                     )}
                   </div>
-                  <Link href={`/career-library/${c.slug}`}>
-                    <Button variant="outline" className="w-full">
-                      <Briefcase className="h-4 w-4 mr-2" />
-                      View Career
-                    </Button>
-                  </Link>
+                  <Button variant="outline" className="w-full" onClick={() => goToCareer(c.slug)}>
+                    <Briefcase className="h-4 w-4 mr-2" />
+                    View Career
+                  </Button>
                 </div>
               </CardContent>
             </Card>
