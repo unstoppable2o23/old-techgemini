@@ -13,6 +13,10 @@ function slugify(name) {
     .replace(/^-+|-+$/g, "");
 }
 
+function cleanSalary(value) {
+  return typeof value === "string" ? value.replace(/^\?+/, "") : value || "";
+}
+
 async function main() {
   const file = path.resolve(__dirname, "careers-data.json");
   const careers = JSON.parse(fs.readFileSync(file, "utf8"));
@@ -33,9 +37,9 @@ async function main() {
       workNatureExamples: c.workNature?.examples || [],
       demandLevel: c.stats?.demandLevel || "Medium",
       salaryCurrency: c.stats?.salary?.currency || "INR",
-      salaryEntry: c.stats?.salary?.entry || "",
-      salaryMedian: c.stats?.salary?.median || null,
-      salarySenior: c.stats?.salary?.senior || "",
+      salaryEntry: cleanSalary(c.stats?.salary?.entry),
+      salaryMedian: cleanSalary(c.stats?.salary?.median),
+      salarySenior: cleanSalary(c.stats?.salary?.senior),
       jobGrowth: c.stats?.jobGrowth || "",
       topIndustries: c.stats?.topIndustries || [],
       futureOutlook: c.stats?.futureOutlook || "",

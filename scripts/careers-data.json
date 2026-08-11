@@ -61,9 +61,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?9-15 LPA",
-        "senior": "?25-40 LPA",
+        "entry": "4-7 LPA",
+        "median": "9-15 LPA",
+        "senior": "25-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+25%",
@@ -262,9 +262,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-40 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+22%",
@@ -475,9 +475,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-12 LPA",
-        "median": "?15-25 LPA",
-        "senior": "?30-60 LPA",
+        "entry": "6-12 LPA",
+        "median": "15-25 LPA",
+        "senior": "30-60 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+25%",
@@ -688,9 +688,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?10-18 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "10-18 LPA",
         "currency": "INR"
       },
       "jobGrowth": "20%",
@@ -906,9 +906,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?8-12 LPA",
-        "senior": "?20-35 LPA",
+        "entry": "3-6 LPA",
+        "median": "8-12 LPA",
+        "senior": "20-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+22%",
@@ -1108,9 +1108,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?7-10 LPA",
-        "median": "?15-25 LPA",
-        "senior": "?30-50 LPA",
+        "entry": "7-10 LPA",
+        "median": "15-25 LPA",
+        "senior": "30-50 LPA",
         "currency": "INR"
       },
       "jobGrowth": "Stable +6%",
@@ -1303,9 +1303,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?8-15 LPA",
-        "median": "?20-40 LPA",
-        "senior": "?60-150 LPA+",
+        "entry": "8-15 LPA",
+        "median": "20-40 LPA",
+        "senior": "60-150 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -1513,9 +1513,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-10 LPA",
-        "median": "?12-25 LPA",
-        "senior": "?25-50+ LPA",
+        "entry": "6-10 LPA",
+        "median": "12-25 LPA",
+        "senior": "25-50+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -1720,9 +1720,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?25-50+ LPA",
+        "entry": "3-6 LPA",
+        "median": "8-15 LPA",
+        "senior": "25-50+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -2159,9 +2159,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-8 LPA",
-        "median": "?10-25 LPA",
-        "senior": "?30-80 LPA",
+        "entry": "4-8 LPA",
+        "median": "10-25 LPA",
+        "senior": "30-80 LPA",
         "currency": "INR"
       },
       "jobGrowth": "15-20%",
@@ -2400,9 +2400,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "2.5-4 LPA",
+        "median": "5-8 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -2636,9 +2636,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -3256,9 +3256,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?5-8 LPA",
-        "median": "?10-18 LPA",
-        "senior": "?20-35 LPA",
+        "entry": "5-8 LPA",
+        "median": "10-18 LPA",
+        "senior": "20-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "22%",
@@ -3695,9 +3695,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -3894,9 +3894,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -4113,9 +4113,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+22%",
@@ -4312,9 +4312,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+25%",
@@ -4512,9 +4512,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -4729,9 +4729,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -4940,9 +4940,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -5156,9 +5156,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "4-7 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -5357,9 +5357,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -5548,9 +5548,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -5760,9 +5760,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -6410,9 +6410,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?15-30 LPA+",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "15-30 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -6817,9 +6817,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "4-7 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -7019,9 +7019,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "3-5 LPA",
+        "median": "5-8 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -7231,9 +7231,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -7820,9 +7820,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-9 LPA",
-        "median": "?12-18 LPA",
-        "senior": "?25-40 LPA",
+        "entry": "6-9 LPA",
+        "median": "12-18 LPA",
+        "senior": "25-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+15%",
@@ -8031,9 +8031,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-9 LPA",
-        "median": "?12-20 LPA",
-        "senior": "?25-40 LPA",
+        "entry": "6-9 LPA",
+        "median": "12-20 LPA",
+        "senior": "25-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -8219,9 +8219,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -8631,9 +8631,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -8834,9 +8834,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -9044,9 +9044,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4 LPA",
-        "median": "?4-8 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "2.5-4 LPA",
+        "median": "4-8 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -9243,9 +9243,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -9443,9 +9443,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -9643,9 +9643,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -9848,9 +9848,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?9-16 LPA",
-        "senior": "?20-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "9-16 LPA",
+        "senior": "20-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -10047,9 +10047,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -10281,9 +10281,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-18 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-18 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -10497,9 +10497,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "8-15 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -10708,9 +10708,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -10920,9 +10920,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2-4 LPA",
-        "median": "?4-8 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "2-4 LPA",
+        "median": "4-8 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+7%",
@@ -11111,9 +11111,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?10-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "10-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -11319,9 +11319,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -11551,9 +11551,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "2.5-4 LPA",
+        "median": "5-8 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+8%",
@@ -11754,9 +11754,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2-4 LPA",
-        "median": "?4-8 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "2-4 LPA",
+        "median": "4-8 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -11965,9 +11965,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -12153,9 +12153,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-15 LPA",
-        "senior": "?20-40 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-15 LPA",
+        "senior": "20-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "12-15%",
@@ -12352,9 +12352,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -12553,9 +12553,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4.5 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "2.5-4.5 LPA",
+        "median": "5-8 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -12764,9 +12764,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-40 LPA+",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-40 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -13185,9 +13185,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?10-18 LPA",
-        "median": "?25-40 LPA",
-        "senior": "?60-90 LPA+",
+        "entry": "10-18 LPA",
+        "median": "25-40 LPA",
+        "senior": "60-90 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+15%",
@@ -13388,9 +13388,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12-15%",
@@ -13596,9 +13596,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -13807,9 +13807,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -14005,9 +14005,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -14197,9 +14197,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?20-40 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "20-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+25%",
@@ -14407,9 +14407,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?9-15 LPA",
-        "senior": "?20-40 LPA+",
+        "entry": "4-7 LPA",
+        "median": "9-15 LPA",
+        "senior": "20-40 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+15%",
@@ -14606,9 +14606,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-9 LPA",
-        "median": "?12-18 LPA",
-        "senior": "?25-40 LPA",
+        "entry": "6-9 LPA",
+        "median": "12-18 LPA",
+        "senior": "25-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+15%",
@@ -14828,9 +14828,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -15054,9 +15054,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-40+ LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-40+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -15256,9 +15256,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -15455,9 +15455,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-14 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-14 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -15662,9 +15662,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?18-30 LPA+",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "18-30 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -15878,9 +15878,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?10-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "10-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -16108,9 +16108,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-35 LPA",
+        "entry": "3-6 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -16318,9 +16318,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -16516,9 +16516,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "12-15%",
@@ -16735,9 +16735,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -16946,9 +16946,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "15-20%",
@@ -17179,9 +17179,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -17414,9 +17414,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -17666,9 +17666,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?10-15 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "10-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -17894,9 +17894,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?15-30+ LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "15-30+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -18093,9 +18093,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -18296,9 +18296,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -18503,9 +18503,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4 LPA",
-        "median": "?4-7 LPA",
-        "senior": "?7-12 LPA",
+        "entry": "2.5-4 LPA",
+        "median": "4-7 LPA",
+        "senior": "7-12 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -18714,9 +18714,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4.5 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "2.5-4.5 LPA",
+        "median": "5-8 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -18928,9 +18928,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4.5 LPA",
-        "median": "?4.5-7 LPA",
-        "senior": "?7-12 LPA",
+        "entry": "2.5-4.5 LPA",
+        "median": "4.5-7 LPA",
+        "senior": "7-12 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -19164,9 +19164,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "3-5 LPA",
+        "median": "5-8 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -19363,9 +19363,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+9%",
@@ -19562,9 +19562,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+8%",
@@ -19768,9 +19768,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?25-40 LPA",
+        "entry": "3-5 LPA",
+        "median": "8-15 LPA",
+        "senior": "25-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+9%",
@@ -19965,9 +19965,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-6 LPA",
-        "median": "?8-12 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "4-6 LPA",
+        "median": "8-12 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+15%",
@@ -20189,9 +20189,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -20391,9 +20391,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+8%",
@@ -20604,9 +20604,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -20803,9 +20803,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-35 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-35 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -21015,9 +21015,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?9-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "9-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -21225,9 +21225,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -21425,9 +21425,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "4-7 LPA",
+        "median": "7-12 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -21635,9 +21635,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -21835,9 +21835,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -22033,9 +22033,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?18-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "18-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -22249,9 +22249,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "10-12%",
@@ -22454,9 +22454,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+8%",
@@ -22670,9 +22670,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-10 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -22886,9 +22886,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?7-10 LPA",
-        "median": "?12-18 LPA",
-        "senior": "?20-30 LPA",
+        "entry": "7-10 LPA",
+        "median": "12-18 LPA",
+        "senior": "20-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -23078,9 +23078,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-10 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -23275,9 +23275,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-10 LPA",
-        "median": "?15-25 LPA",
-        "senior": "?30-60+ LPA",
+        "entry": "6-10 LPA",
+        "median": "15-25 LPA",
+        "senior": "30-60+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "12-15%",
@@ -23507,9 +23507,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -23706,9 +23706,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?15-25 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "15-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -23904,9 +23904,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -24108,9 +24108,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-10 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -24309,9 +24309,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-15 LPA",
-        "senior": "?20-50 LPA+",
+        "entry": "3-6 LPA",
+        "median": "7-15 LPA",
+        "senior": "20-50 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+12-15%",
@@ -24533,9 +24533,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4 LPA",
-        "median": "?5-8 LPA",
-        "senior": "?10-20 LPA",
+        "entry": "2.5-4 LPA",
+        "median": "5-8 LPA",
+        "senior": "10-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -24769,9 +24769,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-10 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+8%",
@@ -25005,9 +25005,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6-10 LPA",
-        "median": "?10-20 LPA",
-        "senior": "?20-40 LPA",
+        "entry": "6-10 LPA",
+        "median": "10-20 LPA",
+        "senior": "20-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -25214,9 +25214,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -25416,9 +25416,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-12 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -25627,9 +25627,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?2.5-4 LPA",
-        "median": "?4-7 LPA",
-        "senior": "?7-12 LPA",
+        "entry": "2.5-4 LPA",
+        "median": "4-7 LPA",
+        "senior": "7-12 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+5%",
@@ -25839,9 +25839,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?12-20 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-9 LPA",
+        "senior": "12-20 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -26040,9 +26040,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-40+ LPA",
+        "entry": "3-6 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-40+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+20%",
@@ -26238,9 +26238,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-9 LPA",
-        "senior": "?8-15 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-9 LPA",
+        "senior": "8-15 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -26448,9 +26448,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-5 LPA",
-        "median": "?6-12 LPA",
-        "senior": "?15-30 LPA",
+        "entry": "3-5 LPA",
+        "median": "6-12 LPA",
+        "senior": "15-30 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -26675,9 +26675,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?7-12 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "7-12 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -26903,9 +26903,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?5.6-10 LPA",
-        "median": "?12-20 LPA",
-        "senior": "?25-45 LPA",
+        "entry": "5.6-10 LPA",
+        "median": "12-20 LPA",
+        "senior": "25-45 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",
@@ -27234,9 +27234,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-40 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+12%",
@@ -27665,9 +27665,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?20-40 LPA+",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "20-40 LPA+",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -27839,9 +27839,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?25-40 LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "25-40 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+22%",
@@ -28038,9 +28038,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?4-7 LPA",
-        "median": "?8-15 LPA",
-        "senior": "?18-30+ LPA",
+        "entry": "4-7 LPA",
+        "median": "8-15 LPA",
+        "senior": "18-30+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+18%",
@@ -28237,9 +28237,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?3-6 LPA",
-        "median": "?6-10 LPA",
-        "senior": "?12-25 LPA",
+        "entry": "3-6 LPA",
+        "median": "6-10 LPA",
+        "senior": "12-25 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -28436,9 +28436,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?10-15 LPA",
-        "median": "?30-50 LPA",
-        "senior": "?70-120 LPA",
+        "entry": "10-15 LPA",
+        "median": "30-50 LPA",
+        "senior": "70-120 LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10-15%",
@@ -28676,9 +28676,9 @@
     ],
     "stats": {
       "salary": {
-        "entry": "?6.7-13.2 LPA",
-        "median": "?15-25 LPA",
-        "senior": "?30-60+ LPA",
+        "entry": "6.7-13.2 LPA",
+        "median": "15-25 LPA",
+        "senior": "30-60+ LPA",
         "currency": "INR"
       },
       "jobGrowth": "+10%",

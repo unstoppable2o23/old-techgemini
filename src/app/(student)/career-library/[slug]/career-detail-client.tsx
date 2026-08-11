@@ -76,6 +76,7 @@ export default function CareerDetailClient({ career }: { career: any }) {
   const pathways: Pathway[] = career.pathways || [];
   const videos: Video[] = career.videoRecommendations || [];
   const visiblePathways = showAllPathways ? pathways : pathways.slice(0, 1);
+  const clean = (v?: string) => (typeof v === "string" ? v.replace(/^\?+/, "") : v || "");
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-4xl mx-auto">
@@ -101,13 +102,13 @@ export default function CareerDetailClient({ career }: { career: any }) {
           <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
             <IndianRupee className="h-3.5 w-3.5" /> Entry Salary
           </p>
-          <p className="font-semibold">{career.salaryEntry || "—"}</p>
+          <p className="font-semibold">{clean(career.salaryEntry) || ""}</p>
         </div>
         <div className="border rounded-lg p-4">
           <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
             <IndianRupee className="h-3.5 w-3.5" /> Senior Salary
           </p>
-          <p className="font-semibold">{career.salarySenior || "—"}</p>
+          <p className="font-semibold">{clean(career.salarySenior) || ""}</p>
         </div>
         <div className="border rounded-lg p-4">
           <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
