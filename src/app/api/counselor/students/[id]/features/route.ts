@@ -27,6 +27,7 @@ export async function PATCH(
     "appointments",
     "webinars",
     "analytics",
+    "careerLibrary",
     "chat",
   ];
 
