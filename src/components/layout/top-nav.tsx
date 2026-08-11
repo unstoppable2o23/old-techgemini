@@ -30,6 +30,7 @@ const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Student Management", href: "/students" },
   { label: "Feature Flags", href: "/feature-flags" },
   { label: "Universities", href: "/universities" },
+  { label: "Career Library", href: "/career-library" },
   { label: "Calendar", href: "/calendar" },
   { label: "Webinars", href: "/webinars" },
   { label: "Messages", href: "/messages" },
@@ -42,6 +43,7 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
   { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator" },
   { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests" },
   { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub" },
+  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary" },
   { label: "Appointments", href: "/appointments", featureKey: "appointments" },
   { label: "Messages", href: "/messages" },
 ];

@@ -28,6 +28,7 @@ import {
   Clock,
   Timer,
   ClipboardCheck,
+  Briefcase,
 } from "lucide-react";
 import { formatUsageMinutes } from "@/lib/format-utils";
 
@@ -165,6 +166,7 @@ export default async function DashboardPage() {
     { label: "AI Odds Calculator", icon: Calculator, enabled: featureAccess?.aiOddsCalculator, href: "/odds-calculator" },
     { label: "Mock Tests", icon: FileText, enabled: featureAccess?.mockTests, href: "/mock-tests" },
     { label: "Scholarships", icon: Trophy, enabled: featureAccess?.scholarshipHub, href: "/scholarships" },
+    { label: "Career Library", icon: Briefcase, enabled: featureAccess?.careerLibrary, href: "/career-library" },
   ];
 
   return (

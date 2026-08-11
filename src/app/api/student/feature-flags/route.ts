@@ -23,6 +23,7 @@ export async function GET() {
     appointments: false,
     webinars: false,
     analytics: false,
+    careerLibrary: false,
   };
 
   return NextResponse.json({ flags });

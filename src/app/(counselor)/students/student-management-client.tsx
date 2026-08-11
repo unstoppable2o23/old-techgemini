@@ -43,6 +43,7 @@ const FEATURE_LABELS: Record<string, string> = {
   appointments: "Appointments",
   webinars: "Webinars",
   analytics: "Analytics",
+  careerLibrary: "Career Library",
   chat: "Chat",
 };
 

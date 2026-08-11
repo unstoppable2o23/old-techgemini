@@ -157,6 +157,7 @@ model StudentFeatureAccess {
   appointments     Boolean @default(false)
   webinars         Boolean @default(false)
   analytics        Boolean @default(false)
+  careerLibrary    Boolean @default(false)
   chat             Boolean @default(true)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
@@ -299,6 +300,39 @@ model University {
 
   @@index([tenantId])
   @@index([country])
+}
+
+model Career {
+  id                  String   @id @default(cuid())
+  name                String   @unique
+  slug                String   @unique
+  title               String
+  introduction        String
+  whoShouldPursue     String[]
+  eligibility         String[]
+  workNatureDesc      String
+  workNatureExamples  String[]
+  demandLevel         String
+  salaryCurrency      String
+  salaryEntry         String
+  salaryMedian        String?
+  salarySenior        String
+  jobGrowth           String
+  topIndustries       String[]
+  futureOutlook       String
+  seoTitle            String?
+  seoDescription      String?
+  seoKeywords         String[]
+  faqs                Json
+  pathways            Json
+  conventionalOptions Json
+  newAgeOptions       Json
+  aiRelatedOptions    Json
+  videoRecommendations Json
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([name])
 }
 
 model DailyUsage {

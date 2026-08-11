@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "vercel-build": "prisma generate && prisma db push && next build"
+    "vercel-build": "prisma generate && prisma db push && node scripts/seed-careers.mjs && next build"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
