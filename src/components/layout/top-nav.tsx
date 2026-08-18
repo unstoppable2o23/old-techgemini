@@ -30,6 +30,7 @@ const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Student Management", href: "/students" },
   { label: "Feature Flags", href: "/feature-flags" },
   { label: "Universities", href: "/universities" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges" },
   { label: "Career Library", href: "/career-library" },
   { label: "Calendar", href: "/calendar" },
   { label: "Webinars", href: "/webinars" },
@@ -52,6 +53,7 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
 const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
   { label: "Dashboard", href: "/dashboard" },
   { label: "Universities", href: "/universities" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges" },
 ];
 
 export function TopNav() {
