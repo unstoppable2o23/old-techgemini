@@ -44,7 +44,7 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
   { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests" },
   { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub" },
   { label: "Career Library", href: "/career-library", featureKey: "careerLibrary" },
-  { label: "Indian Colleges", href: "/indian-colleges" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges" },
   { label: "Appointments", href: "/appointments", featureKey: "appointments" },
   { label: "Messages", href: "/messages" },
 ];
