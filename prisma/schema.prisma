@@ -302,6 +302,28 @@ model University {
   @@index([country])
 }
 
+model IndianInstitution {
+  id                    String  @id @default(cuid())
+  aisheCode             String  @unique
+  name                  String
+  type                  String
+  state                 String
+  district              String?
+  website               String?
+  yearOfEstablishment   String?
+  location              String?
+  institutionType       String?
+  management            String?
+  universityAisheCode   String?
+  universityName        String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([type, state])
+  @@index([name])
+  @@index([state])
+}
+
 model Career {
   id                  String   @id @default(cuid())
   name                String   @unique
