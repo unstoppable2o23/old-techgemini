@@ -124,8 +124,8 @@ export function TopNav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/60 bg-background/85 backdrop-blur-xl shadow-sm">
-      <nav className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
+      <nav className="mx-auto flex h-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="flex shrink-0 items-center gap-3">
           {tenant.logoUrl ? (
             <img
               src={tenant.logoUrl}
@@ -141,7 +141,7 @@ export function TopNav() {
 
         {authStatus === "authenticated" ? (
           <>
-            <ul className="hidden md:flex items-center gap-1">
+            <ul className="hidden md:flex min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto no-scrollbar">
               {navItems.map((item) => {
                 const enabled = canShowItem(item);
                 const isActive = pathname.startsWith(item.href);
@@ -152,10 +152,10 @@ export function TopNav() {
                       <Link
                         href={enabled ? item.href : "#"}
                         onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                        className="relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary to-accent text-white shadow-sm"
+                        className="relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary to-accent text-white shadow-sm"
                       >
                         <Icon className="h-4 w-4 text-white" />
-                        {item.label}
+                        <span className="hidden xl:inline">{item.label}</span>
                         {!enabled && <Lock className="h-3.5 w-3.5" />}
                       </Link>
                     </li>
@@ -166,14 +166,14 @@ export function TopNav() {
                     <Link
                       href={enabled ? item.href : "#"}
                       onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                      className={`group relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-all hover:shadow-sm text-muted-foreground hover:text-foreground ${
+                      className={`group relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-all hover:shadow-sm text-muted-foreground hover:text-foreground ${
                         !enabled ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                     >
                       <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/10 text-accent transition-colors group-hover:bg-accent/20">
                         <Icon className="h-4 w-4" />
                       </span>
-                      {item.label}
+                      <span className="hidden xl:inline">{item.label}</span>
                       {!enabled && <Lock className="h-3.5 w-3.5" />}
                     </Link>
                   </li>
@@ -181,10 +181,10 @@ export function TopNav() {
               })}
             </ul>
 
-            <div className="flex items-center gap-3">
+            <div className="flex shrink-0 items-center gap-3 pl-2">
               <Badge
                 variant="outline"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1"
+                className="hidden sm:inline-flex shrink-0 items-center gap-1.5 px-3 py-1"
               >
                 <span className={`h-2 w-2 rounded-full ${currentStatus.dot}`} />
                 <span className="text-xs">{currentStatus.label}</span>
