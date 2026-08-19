@@ -46,6 +46,10 @@ export async function PATCH(
     if (body.internationalPrice !== undefined) profileData.internationalPrice = parseInt(body.internationalPrice);
     if (body.upiId !== undefined) profileData.upiId = body.upiId || null;
 
+    if (body.logoUrl !== undefined) {
+      userData.logoUrl = body.logoUrl || null;
+    }
+
     if (Object.keys(userData).length > 0) {
       await prisma.user.update({ where: { id }, data: userData });
     }

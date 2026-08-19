@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { SessionProvider } from "@/providers/session-provider";
 import { TenantThemeProvider } from "@/providers/tenant-theme-provider";
 import { TopNav } from "@/components/layout/top-nav";
@@ -20,23 +22,50 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const headersList = await headers();
-  const tenantId = headersList.get("x-tenant-id") || "";
+  const subdomain = headersList.get("x-tenant-id") || "";
+  const session = await getServerSession(authOptions);
+
   let brandName = "";
   let logoUrl = "";
   let primaryColor = "#0F172A";
   let accentColor = "#4F46E5";
 
-  if (tenantId) {
-    const tenant = await prisma.tenant.findFirst({
-      where: {
-        OR: [{ id: tenantId }, { subdomain: tenantId }, { slug: tenantId }],
-      },
+  // Authoritative tenant comes from the authenticated session. For the login
+  // page (no session) we fall back to the request subdomain and finally to the
+  // first tenant so the platform branding still resolves on any hostname.
+  const tenantId =
+    session?.user?.tenantId ||
+    (await resolveTenantId(subdomain)) ||
+    (await firstTenantId());
+
+  const tenant = tenantId
+    ? await prisma.tenant.findFirst({
+        where: {
+          OR: [
+            { id: tenantId },
+            { subdomain: tenantId },
+            { slug: tenantId },
+          ],
+        },
+      })
+    : null;
+
+  if (tenant) {
+    brandName = tenant.brandName || "";
+    logoUrl = tenant.logoUrl || "";
+    primaryColor = tenant.primaryColor || primaryColor;
+    accentColor = tenant.accentColor || accentColor;
+  }
+
+  // Counselors may brand themselves individually; show their own logo in the
+  // header when present, falling back to the tenant logo.
+  if (session?.user?.id && (session.user.role === "COUNSELOR" || session.user.role === "SUPER_ADMIN")) {
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { logoUrl: true },
     });
-    if (tenant) {
-      brandName = tenant.brandName || "";
-      logoUrl = tenant.logoUrl || "";
-      primaryColor = tenant.primaryColor || primaryColor;
-      accentColor = tenant.accentColor || accentColor;
+    if (user?.logoUrl) {
+      logoUrl = user.logoUrl;
     }
   }
 
@@ -62,4 +91,19 @@ export default async function RootLayout({
       </body>
     </html>
   );
+}
+
+async function resolveTenantId(subdomain: string): Promise<string> {
+  const trimmed = subdomain?.trim();
+  if (!trimmed || trimmed === "default") return "";
+  const match = await prisma.tenant.findFirst({
+    where: { OR: [{ subdomain: trimmed }, { slug: trimmed }] },
+    select: { id: true },
+  });
+  return match?.id || "";
+}
+
+async function firstTenantId(): Promise<string> {
+  const t = await prisma.tenant.findFirst({ select: { id: true } });
+  return t?.id || "";
 }
