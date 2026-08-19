@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PageHeader } from "@/components/ui/page-header";
 import { Search, GraduationCap, Target, TrendingUp, Sparkles, Loader2 } from "lucide-react";
 
 function deriveSelectivity(qsRank: number | null): number {
@@ -74,13 +75,11 @@ export default function OddsCalculatorPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-4xl mx-auto">
-      <div className="flex items-center gap-3">
-        <Target className="h-8 w-8 text-accent" />
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">AI Odds Calculator</h1>
-          <p className="text-muted-foreground">Enter your scores to see your admission chances at universities worldwide</p>
-        </div>
-      </div>
+      <PageHeader
+        icon={Target}
+        title="AI Odds Calculator"
+        description="Enter your scores to see your admission chances at universities worldwide"
+      />
 
       <Card>
         <CardHeader><CardTitle>Your Profile</CardTitle></CardHeader>

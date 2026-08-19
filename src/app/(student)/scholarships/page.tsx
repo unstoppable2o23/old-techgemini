@@ -3,6 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Trophy } from "lucide-react";
 
 export default async function ScholarshipsPage() {
   const session = await getServerSession(authOptions);
@@ -18,8 +20,8 @@ export default async function ScholarshipsPage() {
   if (!studentProfile?.featureAccess?.scholarshipHub) redirect("/dashboard");
 
   return (
-    <div className="p-6 pt-20">
-      <h1 className="text-2xl font-bold tracking-tight mb-6">Scholarships</h1>
+    <div className="p-6 pt-20 space-y-6">
+      <PageHeader icon={Trophy} title="Scholarships" description="Find scholarships and funding opportunities" />
       <Card>
         <CardHeader><CardTitle>Scholarship Hub</CardTitle></CardHeader>
         <CardContent>

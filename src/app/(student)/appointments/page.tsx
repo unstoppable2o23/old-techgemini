@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -154,14 +155,12 @@ export default function AppointmentsPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Calendar className="h-8 w-8 text-accent" />
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Appointments</h1>
-            <p className="text-muted-foreground">Book one-on-one sessions with your counselor</p>
-          </div>
-        </div>
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <PageHeader
+          icon={Calendar}
+          title="Appointments"
+          description="Book one-on-one sessions with your counselor"
+        />
         <Button onClick={() => setShowForm(!showForm)}>
           <Plus className="h-4 w-4 mr-2" />
           {showForm ? "Cancel" : "Book Session"}

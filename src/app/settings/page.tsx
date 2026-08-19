@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, MessageCircle, IndianRupee, Smartphone, Save } from "lucide-react";
+import { Loader2, MessageCircle, IndianRupee, Smartphone, Save, Settings2 } from "lucide-react";
+import { PageHeader } from "@/components/ui/page-header";
 
 export default function SettingsPage() {
   const { data: session } = useSession();
@@ -63,7 +64,7 @@ export default function SettingsPage() {
   if (!isCounselor) {
     return (
       <div className="p-6 pt-20 max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold tracking-tight mb-6">Settings</h1>
+        <PageHeader icon={Settings2} title="Settings" description="Manage your account" />
         <Card>
           <CardHeader><CardTitle>Account</CardTitle></CardHeader>
           <CardContent>
@@ -76,7 +77,7 @@ export default function SettingsPage() {
 
   return (
     <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
+      <PageHeader icon={Settings2} title="Settings" description="Manage your appointments and portal settings" />
 
       <Card>
         <CardHeader><CardTitle className="flex items-center gap-2"><Smartphone className="h-5 w-5" /> Contact Info</CardTitle></CardHeader>

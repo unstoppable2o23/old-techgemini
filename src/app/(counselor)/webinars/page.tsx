@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Video } from "lucide-react";
 
 export default async function WebinarsPage() {
   const session = await getServerSession(authOptions);
@@ -11,8 +13,8 @@ export default async function WebinarsPage() {
   }
 
   return (
-    <div className="p-6 pt-20">
-      <h1 className="text-2xl font-bold tracking-tight mb-6">Webinars</h1>
+    <div className="p-6 pt-20 space-y-6">
+      <PageHeader icon={Video} title="Webinars" description="Create and manage webinar sessions" />
       <Card>
         <CardHeader><CardTitle>Manage Webinars</CardTitle></CardHeader>
         <CardContent>

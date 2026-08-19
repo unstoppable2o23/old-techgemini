@@ -9,6 +9,7 @@ import {
   Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
+import { PageHeader } from "@/components/ui/page-header";
 import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone, Pencil } from "lucide-react";
 
 export default function AdminCounselorsPage() {
@@ -156,14 +157,8 @@ export default function AdminCounselorsPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Users className="h-8 w-8 text-accent" />
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Manage Counselors</h1>
-            <p className="text-muted-foreground">Create and manage counselor accounts</p>
-          </div>
-        </div>
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <PageHeader icon={Users} title="Manage Counselors" description="Create and manage counselor accounts" />
         <Button onClick={() => setShowForm(!showForm)}>
           {showForm ? "Cancel" : <><UserPlus className="h-4 w-4 mr-2" /> Add Counselor</>}
         </Button>

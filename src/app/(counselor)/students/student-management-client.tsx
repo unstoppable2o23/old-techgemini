@@ -32,6 +32,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Avatar } from "@/components/ui/avatar";
 import { Search, CheckCircle2, XCircle, KeyRound, Plus, Loader2, Clock, User } from "lucide-react";
+import { PageHeader } from "@/components/ui/page-header";
 import { formatUsageMinutes } from "@/lib/format-utils";
 
 const FEATURE_LABELS: Record<string, string> = {
@@ -262,14 +263,7 @@ export function StudentManagementClient({
   return (
     <div className="space-y-6 p-6 pt-20">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">
-            Student Management
-          </h1>
-          <p className="text-muted-foreground">
-            Manage students, control feature access, and monitor activity.
-          </p>
-        </div>
+        <PageHeader icon={User} title="Student Management" description="Manage students, control feature access, and monitor activity." />
         <Button onClick={() => setAddOpen(true)}>
           <Plus className="h-4 w-4 mr-1" />
           Add Student

@@ -418,7 +418,16 @@ export default function CareerLibraryClient() {
         </h3>
 
         {loading ? (
-          <div className="text-center py-12 text-muted-foreground">Loading careers...</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <div key={i} className="rounded-2xl border p-5 min-h-[160px] flex flex-col items-center gap-3">
+                <div className="h-16 w-16 rounded-full bg-muted animate-pulse" />
+                <div className="h-3 w-20 rounded bg-muted animate-pulse" />
+                <div className="h-3 w-24 rounded bg-muted animate-pulse" />
+                <div className="h-3 w-16 rounded bg-muted animate-pulse" />
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
             {trendingCareers.map((c, idx) => {
@@ -429,7 +438,7 @@ export default function CareerLibraryClient() {
                 <button
                   key={c.id}
                   onClick={() => goToCareer(c.slug)}
-                  className="text-left group border rounded-2xl p-5 min-h-[160px] flex flex-col items-center gap-3 text-center transition-all hover:shadow-lg hover:-translate-y-1 hover:border-accent/40"
+                  className="group text-left border rounded-2xl p-5 min-h-[160px] flex flex-col items-center gap-3 text-center transition-all hover:shadow-xl hover:-translate-y-1 hover:border-accent/40 hover:bg-gradient-to-b hover:from-accent/5 hover:to-transparent"
                 >
                   <span className={`p-4 rounded-full ${style.bg} ${style.text} shadow-sm transition-transform group-hover:scale-110`}>
                     <Icon className="h-7 w-7" />

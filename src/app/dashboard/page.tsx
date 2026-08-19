@@ -31,6 +31,8 @@ import {
   Briefcase,
 } from "lucide-react";
 import { formatUsageMinutes } from "@/lib/format-utils";
+import { PageHeader } from "@/components/ui/page-header";
+import { StatCard } from "@/components/ui/stat-card";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -53,10 +55,11 @@ export default async function DashboardPage() {
   if (isUniversityAdmin) {
     return (
       <div className="space-y-6 p-6 pt-20">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">University Admin Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, {user.firstName} — read-only view</p>
-        </div>
+        <PageHeader
+          icon={Briefcase}
+          title="University Admin Dashboard"
+          description={`Welcome back, ${user.firstName} — read-only view`}
+        />
         <AllUsersTable tenantId={user.tenantId} />
       </div>
     );
@@ -87,28 +90,21 @@ export default async function DashboardPage() {
 
     const stats = [
       { title: "Total Students", value: studentCount, icon: Users, color: "text-blue-600" },
-      { title: "Tests Completed", value: testCount, icon: FileText, color: "text-green-600" },
-      { title: "Upcoming Appointments", value: upcomingAppointments, icon: Calendar, color: "text-purple-600" },
+      { title: "Tests Completed", value: testCount, icon: FileText, color: "text-purple-600" },
+      { title: "Upcoming Appointments", value: upcomingAppointments, icon: Calendar, color: "text-green-600" },
       { title: "Active Students", value: studentCount, icon: Activity, color: "text-orange-600" },
     ];
 
     return (
       <div className="space-y-6 p-6 pt-20">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Counselor Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, {user.firstName}</p>
-        </div>
+        <PageHeader
+          icon={Activity}
+          title="Counselor Dashboard"
+          description={`Welcome back, ${user.firstName}`}
+        />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <Card key={stat.title}>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-                <stat.icon className={`h-4 w-4 ${stat.color}`} />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stat.value}</div>
-              </CardContent>
-            </Card>
+            <StatCard key={stat.title} title={stat.title} value={stat.value} icon={stat.icon} />
           ))}
         </div>
         <Card>
@@ -173,10 +169,11 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Student Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back, {user.firstName}</p>
-      </div>
+      <PageHeader
+        icon={GraduationCap}
+        title="Student Dashboard"
+        description={`Welcome back, ${user.firstName}`}
+      />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {featureCards.map((f) => (

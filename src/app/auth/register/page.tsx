@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { GraduationCap } from "lucide-react";
 
 const GRADE_OPTIONS = [
   "8th", "9th", "10th", "11th", "12th", "Pursuing UG", "Completed UG",
@@ -66,9 +67,21 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-8">
-      <Card className="w-full max-w-md">
+    <div className="relative flex min-h-screen items-center justify-center px-4 py-8 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 60%, hsl(var(--primary)) 100%)",
+        }}
+      />
+      <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+      <Card className="relative w-full max-w-md bg-white/95 backdrop-blur-md shadow-2xl">
         <CardHeader className="text-center">
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-white shadow-lg">
+            <GraduationCap className="h-7 w-7" />
+          </div>
           <CardTitle className="text-2xl">Create Account</CardTitle>
           <CardDescription>Fill in your details to get started</CardDescription>
         </CardHeader>
@@ -132,7 +145,7 @@ export default function RegisterPage() {
               </Select>
             </div>
 
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" variant="gradient" className="w-full" disabled={loading}>
               {loading ? "Creating Account..." : "Sign Up"}
             </Button>
           </form>

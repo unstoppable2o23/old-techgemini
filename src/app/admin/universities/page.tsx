@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Upload, Search, Globe, Loader2, CheckCircle2, AlertCircle, Database } from "lucide-react";
+import { PageHeader } from "@/components/ui/page-header";
 
 export default function AdminUniversitiesPage() {
   const [universities, setUniversities] = useState<any[]>([]);
@@ -74,13 +75,11 @@ export default function AdminUniversitiesPage() {
   return (
     <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
       <div className="flex items-center justify-between flex-wrap gap-4">
-        <div className="flex items-center gap-3">
-          <Globe className="h-8 w-8 text-accent" />
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Universities</h1>
-            <p className="text-muted-foreground">Manage university database ({total} total)</p>
-          </div>
-        </div>
+        <PageHeader
+          icon={Globe}
+          title="Universities"
+          description={`Manage university database (${total} total)`}
+        />
         <div className="flex gap-2">
           <Button variant="outline" disabled={importing} onClick={importFromAPI}>
             {importing ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <Database className="h-4 w-4 mr-1" />}

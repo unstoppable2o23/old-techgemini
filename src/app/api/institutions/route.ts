@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const [total, institutions, states] = await Promise.all([
+  const [total, institutions] = await Promise.all([
     prisma.indianInstitution.count({ where }),
     prisma.indianInstitution.findMany({
       where,
@@ -97,7 +97,6 @@ export async function GET(request: NextRequest) {
         universityName: true,
       },
     }),
-    prisma.indianInstitution.findMany({ distinct: ["state"], select: { state: true }, orderBy: { state: "asc" } }),
   ]);
 
   return NextResponse.json({
@@ -106,6 +105,5 @@ export async function GET(request: NextRequest) {
     page,
     limit,
     totalPages: Math.max(1, Math.ceil(total / limit)),
-    states: states.map((s) => s.state).filter(Boolean),
   });
 }

@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { PageHeader } from "@/components/ui/page-header";
+import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { Search, Globe, MapPin, Trophy, GraduationCap, Users, BookOpen } from "lucide-react";
 
 export default function CollegeFinderPage() {
@@ -12,6 +15,7 @@ export default function CollegeFinderPage() {
   const [countries, setCountries] = useState<string[]>([]);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebouncedValue(search, 350);
   const [countryFilter, setCountryFilter] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -27,7 +31,7 @@ export default function CollegeFinderPage() {
       sortBy,
       sortOrder: sortBy === "name" ? "asc" : "asc",
     });
-    if (search) params.set("search", search);
+    if (debouncedSearch) params.set("search", debouncedSearch);
     if (countryFilter) params.set("country", countryFilter);
     const res = await fetch(`/api/universities?${params}`);
     const data = await res.json();
@@ -38,17 +42,16 @@ export default function CollegeFinderPage() {
     setLoading(false);
   }
 
-  useEffect(() => { fetchUniversities() }, [page, countryFilter, sortBy]);
+  useEffect(() => { fetchUniversities() }, [page, countryFilter, sortBy, debouncedSearch]);
+  useEffect(() => { setPage(1); }, [debouncedSearch, countryFilter, sortBy]);
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
-      <div className="flex items-center gap-3">
-        <GraduationCap className="h-8 w-8 text-accent" />
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">College Finder</h1>
-          <p className="text-muted-foreground">Browse {total} universities from around the world</p>
-        </div>
-      </div>
+      <PageHeader
+        icon={GraduationCap}
+        title="College Finder"
+        description={`Browse ${total.toLocaleString()} universities from around the world — QS rankings shown where available`}
+      />
 
       <div className="flex gap-4 flex-wrap">
         <div className="relative flex-1 min-w-[200px]">
@@ -80,7 +83,21 @@ export default function CollegeFinderPage() {
       </div>
 
       {loading ? (
-        <div className="text-center py-12 text-muted-foreground">Loading universities...</div>
+        <div className="space-y-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent className="pt-6">
+                <div className="flex gap-3">
+                  <Skeleton className="h-10 w-10 rounded-full" />
+                  <div className="flex-1 space-y-2">
+                    <Skeleton className="h-4 w-1/3" />
+                    <Skeleton className="h-3 w-1/4" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       ) : (
         <div className="space-y-4">
           {universities.length === 0 ? (

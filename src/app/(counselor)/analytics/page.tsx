@@ -15,6 +15,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { formatUsageMinutes } from "@/lib/format-utils";
+import { PageHeader } from "@/components/ui/page-header";
 
 export default async function AnalyticsPage() {
   const session = await getServerSession(authOptions);
@@ -151,13 +152,11 @@ export default async function AnalyticsPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
-      <div className="flex items-center gap-3">
-        <TrendingUp className="h-8 w-8 text-accent" />
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Analytics</h1>
-          <p className="text-muted-foreground">Performance metrics and platform insights</p>
-        </div>
-      </div>
+      <PageHeader
+        icon={TrendingUp}
+        title="Analytics"
+        description="Performance metrics and platform insights"
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s) => (

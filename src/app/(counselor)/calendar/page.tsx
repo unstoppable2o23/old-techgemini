@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PageHeader } from "@/components/ui/page-header";
 import { Calendar, CheckCircle2, XCircle, Clock, ExternalLink, Loader2, MessageSquare, Download, IndianRupee, Eye } from "lucide-react";
 
 interface PaymentProof {
@@ -85,13 +86,11 @@ export default function CalendarPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-5xl mx-auto">
-      <div className="flex items-center gap-3">
-        <Calendar className="h-8 w-8 text-accent" />
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Calendar</h1>
-          <p className="text-muted-foreground">Manage appointment requests from your students</p>
-        </div>
-      </div>
+      <PageHeader
+        icon={Calendar}
+        title="Calendar"
+        description="Manage appointment requests from your students"
+      />
 
       {loading ? (
         <div className="text-center py-12 text-muted-foreground">Loading appointments...</div>
