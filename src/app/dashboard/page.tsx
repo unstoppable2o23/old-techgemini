@@ -90,10 +90,10 @@ export default async function DashboardPage() {
     });
 
     const stats = [
-      { title: "Total Students", value: studentCount, icon: Users, color: "text-blue-600" },
-      { title: "Tests Completed", value: testCount, icon: FileText, color: "text-purple-600" },
-      { title: "Upcoming Appointments", value: upcomingAppointments, icon: Calendar, color: "text-green-600" },
-      { title: "Active Students", value: studentCount, icon: Activity, color: "text-orange-600" },
+      { title: "Total Students", value: studentCount, icon: Users, color: "text-blue-600", hint: "Registered students" },
+      { title: "Tests Completed", value: testCount, icon: FileText, color: "text-purple-600", hint: "All time" },
+      { title: "Upcoming Appointments", value: upcomingAppointments, icon: Calendar, color: "text-green-600", hint: "Confirmed" },
+      { title: "Active Students", value: studentCount, icon: Activity, color: "text-orange-600", hint: "Currently active" },
     ];
 
     return (
@@ -105,7 +105,7 @@ export default async function DashboardPage() {
         />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <StatCard key={stat.title} title={stat.title} value={stat.value} icon={stat.icon} />
+            <StatCard key={stat.title} title={stat.title} value={stat.value} icon={stat.icon} hint={stat.hint} />
           ))}
         </div>
         <Card>
@@ -271,9 +271,14 @@ async function MyStudentsTable({ tenantId, counselorUserId }: { tenantId: string
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Users className="h-5 w-5" />
+        <CardTitle className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25">
+            <Users className="h-5 w-5" />
+          </span>
           My Students
+          <Badge variant="secondary" className="ml-1 rounded-full px-2">
+            {students.length}
+          </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">

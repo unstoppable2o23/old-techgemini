@@ -15,6 +15,27 @@ const ICON_GRADIENTS: Record<string, string> = {
   rose: "from-rose-500 to-pink-600",
 };
 
+const CHIP_GLOWS: Record<string, string> = {
+  indigo: "shadow-primary/25",
+  teal: "shadow-teal-500/25",
+  amber: "shadow-amber-500/25",
+  rose: "shadow-rose-500/25",
+};
+
+const VALUE_COLORS: Record<string, string> = {
+  indigo: "text-primary",
+  teal: "text-teal-600",
+  amber: "text-amber-600",
+  rose: "text-rose-600",
+};
+
+const ACCENT_BARS: Record<string, string> = {
+  indigo: "from-primary to-accent",
+  teal: "from-teal-500 to-emerald-600",
+  amber: "from-amber-500 to-orange-600",
+  rose: "from-rose-500 to-pink-600",
+};
+
 export function StatCard({ title, value, icon: Icon, hint }: StatCardProps) {
   const key = title.match(/student/i)
     ? "indigo"
@@ -26,23 +47,33 @@ export function StatCard({ title, value, icon: Icon, hint }: StatCardProps) {
           ? "rose"
           : "indigo";
   const gradient = ICON_GRADIENTS[key] || ICON_GRADIENTS.indigo;
+  const glow = CHIP_GLOWS[key] || CHIP_GLOWS.indigo;
+  const valueColor = VALUE_COLORS[key] || VALUE_COLORS.indigo;
+  const accentBar = ACCENT_BARS[key] || ACCENT_BARS.indigo;
 
   return (
-    <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
-        </CardTitle>
-        <div
-          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-sm`}
-        >
-          <Icon className="h-5 w-5" />
+    <Card className="group relative overflow-hidden border-border/70 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+      <div className={`pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r ${accentBar} opacity-80`} />
+      <CardHeader className="flex flex-row items-start justify-between pb-2">
+        <div className="pt-1">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            {title}
+          </CardTitle>
+          <CardContent className="p-0 pt-1">
+            <div className={`text-3xl font-bold tracking-tight ${valueColor}`}>
+              {value}
+            </div>
+            {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
+          </CardContent>
+        </div>
+        <div className="flex shrink-0 flex-col items-end gap-2">
+          <div
+            className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} text-white shadow-md ${glow} transition-transform duration-200 group-hover:scale-110 group-hover:rotate-3`}
+          >
+            <Icon className="h-5 w-5" />
+          </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold tracking-tight">{value}</div>
-        {hint && <p className="mt-0.5 text-xs text-muted-foreground">{hint}</p>}
-      </CardContent>
     </Card>
   );
 }
