@@ -46,36 +46,38 @@ type NavItem = {
   href: string;
   featureKey?: string;
   icon: LucideIcon;
+  color: string;
+  tint: string;
 };
 
 const COUNSELOR_NAV_ITEMS: NavItem[] = [
-  { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Student Management", href: "/students", icon: Users },
-  { label: "Feature Flags", href: "/feature-flags", icon: Flag },
-  { label: "Universities", href: "/universities", icon: Building2 },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
-  { label: "Career Library", href: "/career-library", icon: Library },
-  { label: "Calendar", href: "/calendar", icon: CalendarDays },
-  { label: "Messages", href: "/messages", icon: MessageSquare },
-  { label: "Analytics", href: "/analytics", icon: BarChart3 },
+  { label: "Overview", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-500", tint: "group-hover:text-indigo-600 group-hover:bg-indigo-100" },
+  { label: "Student Management", href: "/students", icon: Users, color: "text-emerald-500", tint: "group-hover:text-emerald-600 group-hover:bg-emerald-100" },
+  { label: "Feature Flags", href: "/feature-flags", icon: Flag, color: "text-amber-500", tint: "group-hover:text-amber-600 group-hover:bg-amber-100" },
+  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-500", tint: "group-hover:text-blue-600 group-hover:bg-blue-100" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-500", tint: "group-hover:text-violet-600 group-hover:bg-violet-100" },
+  { label: "Career Library", href: "/career-library", icon: Library, color: "text-rose-500", tint: "group-hover:text-rose-600 group-hover:bg-rose-100" },
+  { label: "Calendar", href: "/calendar", icon: CalendarDays, color: "text-orange-500", tint: "group-hover:text-orange-600 group-hover:bg-orange-100" },
+  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-500", tint: "group-hover:text-cyan-600 group-hover:bg-cyan-100" },
+  { label: "Analytics", href: "/analytics", icon: BarChart3, color: "text-teal-500", tint: "group-hover:text-teal-600 group-hover:bg-teal-100" },
 ];
 
 const STUDENT_NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/dashboard", icon: LayoutDashboard },
-  { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search },
-  { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target },
-  { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText },
-  { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub", icon: Trophy },
-  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary", icon: Library },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
-  { label: "Appointments", href: "/appointments", featureKey: "appointments", icon: CalendarDays },
-  { label: "Messages", href: "/messages", icon: MessageSquare },
+  { label: "Home", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-500", tint: "group-hover:text-indigo-600 group-hover:bg-indigo-100" },
+  { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search, color: "text-blue-500", tint: "group-hover:text-blue-600 group-hover:bg-blue-100" },
+  { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target, color: "text-emerald-500", tint: "group-hover:text-emerald-600 group-hover:bg-emerald-100" },
+  { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText, color: "text-amber-500", tint: "group-hover:text-amber-600 group-hover:bg-amber-100" },
+  { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub", icon: Trophy, color: "text-yellow-500", tint: "group-hover:text-yellow-600 group-hover:bg-yellow-100" },
+  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary", icon: Library, color: "text-rose-500", tint: "group-hover:text-rose-600 group-hover:bg-rose-100" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-500", tint: "group-hover:text-violet-600 group-hover:bg-violet-100" },
+  { label: "Appointments", href: "/appointments", featureKey: "appointments", icon: CalendarDays, color: "text-orange-500", tint: "group-hover:text-orange-600 group-hover:bg-orange-100" },
+  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-500", tint: "group-hover:text-cyan-600 group-hover:bg-cyan-100" },
 ];
 
 const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Universities", href: "/universities", icon: Building2 },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-500", tint: "group-hover:text-indigo-600 group-hover:bg-indigo-100" },
+  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-500", tint: "group-hover:text-blue-600 group-hover:bg-blue-100" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-500", tint: "group-hover:text-violet-600 group-hover:bg-violet-100" },
 ];
 
 export function TopNav() {
@@ -93,7 +95,7 @@ export function TopNav() {
   const isCounselor = role === "COUNSELOR" || role === "SUPER_ADMIN";
   const isSuperAdmin = role === "SUPER_ADMIN";
   const isUniversityAdmin = role === "UNIVERSITY_ADMIN";
-  const navItems = isUniversityAdmin ? UNIVERSITY_ADMIN_NAV_ITEMS : isCounselor ? (isSuperAdmin ? [...COUNSELOR_NAV_ITEMS, { label: "Counselors", href: "/admin/counselors", icon: Users }] : COUNSELOR_NAV_ITEMS) : STUDENT_NAV_ITEMS;
+  const navItems = isUniversityAdmin ? UNIVERSITY_ADMIN_NAV_ITEMS : isCounselor ? (isSuperAdmin ? [...COUNSELOR_NAV_ITEMS, { label: "Counselors", href: "/admin/counselors", icon: Users, color: "text-fuchsia-500", tint: "group-hover:text-fuchsia-600 group-hover:bg-fuchsia-100" }] : COUNSELOR_NAV_ITEMS) : STUDENT_NAV_ITEMS;
 
   const statusConfig: Record<string, { label: string; dot: string }> = {
     ONLINE: { label: "Online", dot: "bg-green-500" },
@@ -170,7 +172,7 @@ export function TopNav() {
                         !enabled ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                     >
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/10 text-accent transition-colors group-hover:bg-accent/20">
+                      <span className={`flex h-7 w-7 items-center justify-center rounded-full bg-accent/10 transition-colors ${item.color} ${item.tint}`}>
                         <Icon className="h-4 w-4" />
                       </span>
                       <span className="hidden xl:inline">{item.label}</span>
@@ -324,7 +326,7 @@ export function TopNav() {
                         isActive ? "bg-white/20" : "bg-accent/10"
                       }`}
                     >
-                      <Icon className={`h-4 w-4 ${isActive ? "text-white" : "text-accent"}`} />
+                      <Icon className={`h-4 w-4 ${isActive ? "text-white" : item.color}`} />
                     </span>
                     <span className="truncate">{item.label}</span>
                     {!enabled && <Lock className="h-3.5 w-3.5 ml-auto" />}
