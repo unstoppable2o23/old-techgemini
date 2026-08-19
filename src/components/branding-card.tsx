@@ -38,18 +38,49 @@ export function BrandingCard() {
       setError("Please choose an image file");
       return;
     }
-    if (file.size > 2 * 1024 * 1024) {
-      setError("Logo must be under 2MB");
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Logo must be under 5MB");
       return;
     }
     const reader = new FileReader();
     reader.onload = () => {
       const url = String(reader.result);
-      setLogoPreview(url);
-      setLogoUrl(url);
-      setError("");
+      compressImage(url, file.type).then((compressed) => {
+        setLogoPreview(compressed);
+        setLogoUrl(compressed);
+        setError("");
+      });
     };
     reader.readAsDataURL(file);
+  }
+
+  function compressImage(dataUrl: string, mime: string): Promise<string> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX_DIM = 512;
+        let { width, height } = img;
+        const scale = Math.min(1, MAX_DIM / Math.max(width, height));
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          resolve(dataUrl);
+          return;
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+        const isPng = mime === "image/png" || dataUrl.startsWith("data:image/png");
+        const out = isPng
+          ? canvas.toDataURL("image/png")
+          : canvas.toDataURL("image/jpeg", 0.92);
+        resolve(out);
+      };
+      img.onerror = () => resolve(dataUrl);
+      img.src = dataUrl;
+    });
   }
 
   async function handleSave() {

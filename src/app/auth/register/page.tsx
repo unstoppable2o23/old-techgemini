@@ -2,12 +2,13 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap } from "lucide-react";
+import { BrandLogo } from "@/components/brand-logo";
 
 const GRADE_OPTIONS = [
   "8th", "9th", "10th", "11th", "12th", "Pursuing UG", "Completed UG",
@@ -79,9 +80,7 @@ export default function RegisterPage() {
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
       <Card className="relative w-full max-w-md bg-white/95 backdrop-blur-md shadow-2xl">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-white shadow-lg">
-            <GraduationCap className="h-7 w-7" />
-          </div>
+          <BrandLogo className="h-16 w-16" />
           <CardTitle className="text-2xl">Create Account</CardTitle>
           <CardDescription>Fill in your details to get started</CardDescription>
         </CardHeader>
@@ -149,6 +148,12 @@ export default function RegisterPage() {
               {loading ? "Creating Account..." : "Sign Up"}
             </Button>
           </form>
+          <div className="mt-6 text-center text-sm text-muted-foreground">
+            Already have an account?{" "}
+            <Link href="/auth/login" className="font-semibold text-accent hover:underline">
+              Sign in
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
