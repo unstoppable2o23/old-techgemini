@@ -64,11 +64,10 @@ export default function SettingsPage() {
     setSaving(false);
   }
 
-  if (true) {
+if (!isSuperAdmin && !isCounselor) {
     return (
       <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
-        <PageHeader icon={Settings2} title="Settings" description="Manage your account" />
-        {isSuperAdmin && <BrandingCard />}
+        <PageHeader icon={Settings2} title="Settings" description="Manage your account" eyebrow="Account" />
         <Card>
           <CardHeader><CardTitle>Account</CardTitle></CardHeader>
           <CardContent>
@@ -81,9 +80,16 @@ export default function SettingsPage() {
 
   return (
     <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
-      <PageHeader icon={Settings2} title="Settings" description="Manage your appointments and portal settings" />
+<PageHeader icon={Settings2} title="Settings" description="Manage your appointments and portal settings" eyebrow="Account" />
 
       {isSuperAdmin && <BrandingCard />}
+
+      <Card>
+        <CardHeader><CardTitle>Account</CardTitle></CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">Logged in as {session?.user?.email} ({session?.user?.role})</p>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader><CardTitle className="flex items-center gap-2"><Smartphone className="h-5 w-5" /> Contact Info</CardTitle></CardHeader>

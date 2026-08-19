@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { formatUsageMinutes } from "@/lib/format-utils";
 import { PageHeader } from "@/components/ui/page-header";
+import { StatCard } from "@/components/ui/stat-card";
 
 export default async function AnalyticsPage() {
   const session = await getServerSession(authOptions);
@@ -137,17 +138,17 @@ export default async function AnalyticsPage() {
   );
 
   const stats = [
-    { label: "Total Students", value: totalStudents, icon: Users, color: "text-blue-600", bg: "bg-blue-100" },
-    { label: "Active Now", value: activeStudents, icon: Activity, color: "text-green-600", bg: "bg-green-100" },
-    { label: "Tests Created", value: totalTests, icon: ClipboardCheck, color: "text-purple-600", bg: "bg-purple-100" },
-    { label: "Tests Completed", value: completedResults, icon: TrendingUp, color: "text-amber-600", bg: "bg-amber-100" },
-    { label: "Avg Score", value: averageScore._avg.percentage ? `${averageScore._avg.percentage.toFixed(1)}%` : "—", icon: GraduationCap, color: "text-cyan-600", bg: "bg-cyan-100" },
-    { label: "Appointments", value: totalAppointments, icon: CalendarCheck, color: "text-rose-600", bg: "bg-rose-100" },
+    { label: "Total Students", value: totalStudents, icon: Users },
+    { label: "Active Now", value: activeStudents, icon: Activity },
+    { label: "Tests Created", value: totalTests, icon: ClipboardCheck },
+    { label: "Tests Completed", value: completedResults, icon: TrendingUp },
+    { label: "Avg Score", value: averageScore._avg.percentage ? `${averageScore._avg.percentage.toFixed(1)}%` : "—", icon: GraduationCap },
+    { label: "Appointments", value: totalAppointments, icon: CalendarCheck },
   ];
 
   const usageStats = [
-    { label: "Total Platform Usage", value: formatUsageMinutes(totalUsageMinutes), icon: Clock, color: "text-indigo-600", bg: "bg-indigo-100" },
-    { label: "Avg Usage / Student", value: formatUsageMinutes(avgUsagePerStudent), icon: BarChart3, color: "text-teal-600", bg: "bg-teal-100" },
+    { label: "Total Platform Usage", value: formatUsageMinutes(totalUsageMinutes), icon: Clock, hint: "Across all users" },
+    { label: "Avg Usage / Student", value: formatUsageMinutes(avgUsagePerStudent), icon: BarChart3, hint: "Per student" },
   ];
 
   return (
@@ -156,44 +157,27 @@ export default async function AnalyticsPage() {
         icon={TrendingUp}
         title="Analytics"
         description="Performance metrics and platform insights"
+        eyebrow="Counselor"
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s) => (
-          <Card key={s.label}>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div className={`p-2 rounded-lg ${s.bg}`}>
-                  <s.icon className={`h-5 w-5 ${s.color}`} />
-                </div>
-              </div>
-              <p className="text-2xl font-bold mt-3">{s.value}</p>
-              <p className="text-xs text-muted-foreground">{s.label}</p>
-            </CardContent>
-          </Card>
+          <StatCard key={s.label} title={s.label} value={s.value} icon={s.icon} />
         ))}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {usageStats.map((s) => (
-          <Card key={s.label}>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div className={`p-2 rounded-lg ${s.bg}`}>
-                  <s.icon className={`h-5 w-5 ${s.color}`} />
-                </div>
-              </div>
-              <p className="text-2xl font-bold mt-3">{s.value}</p>
-              <p className="text-xs text-muted-foreground">{s.label}</p>
-            </CardContent>
-          </Card>
+          <StatCard key={s.label} title={s.label} value={s.value} icon={s.icon} hint={s.hint} />
         ))}
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
+          <CardTitle className="text-lg flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-sm">
+              <BarChart3 className="h-4 w-4" />
+            </span>
             Daily Platform Usage (Last 7 Days)
           </CardTitle>
         </CardHeader>
@@ -246,7 +230,12 @@ export default async function AnalyticsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
-          <CardHeader><CardTitle className="text-lg flex items-center gap-2"><Users className="h-4 w-4" /> Feature Usage</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-lg flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-sm">
+              <Users className="h-4 w-4" />
+            </span>
+            Feature Usage
+          </CardTitle></CardHeader>
           <CardContent>
             <div className="space-y-3">
               {[
@@ -275,7 +264,12 @@ export default async function AnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader><CardTitle className="text-lg flex items-center gap-2"><CalendarCheck className="h-4 w-4" /> Appointment Status</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-lg flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-sm">
+              <CalendarCheck className="h-4 w-4" />
+            </span>
+            Appointment Status
+          </CardTitle></CardHeader>
           <CardContent>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-amber-50 rounded-lg">
@@ -305,7 +299,12 @@ export default async function AnalyticsPage() {
       </div>
 
       <Card>
-        <CardHeader><CardTitle className="text-lg flex items-center gap-2"><ClipboardCheck className="h-4 w-4" /> Recent Test Results</CardTitle></CardHeader>
+        <CardHeader><CardTitle className="text-lg flex items-center gap-2.5">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-sm">
+            <ClipboardCheck className="h-4 w-4" />
+          </span>
+          Recent Test Results
+        </CardTitle></CardHeader>
         <CardContent>
           {recentResults.length === 0 ? (
             <p className="text-sm text-muted-foreground">No test results yet.</p>

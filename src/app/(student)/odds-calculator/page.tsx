@@ -79,6 +79,7 @@ export default function OddsCalculatorPage() {
         icon={Target}
         title="AI Odds Calculator"
         description="Enter your scores to see your admission chances at universities worldwide"
+        eyebrow="Student Tools"
       />
 
       <Card>

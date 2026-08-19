@@ -155,17 +155,18 @@ export default function AppointmentsPage() {
 
   return (
     <div className="space-y-6 p-6 pt-20 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between gap-4 flex-wrap">
-        <PageHeader
+      <PageHeader
           icon={Calendar}
           title="Appointments"
           description="Book one-on-one sessions with your counselor"
+          eyebrow="Student"
+          actions={
+            <Button onClick={() => setShowForm(!showForm)}>
+              <Plus className="h-4 w-4 mr-2" />
+              {showForm ? "Cancel" : "Book Session"}
+            </Button>
+          }
         />
-        <Button onClick={() => setShowForm(!showForm)}>
-          <Plus className="h-4 w-4 mr-2" />
-          {showForm ? "Cancel" : "Book Session"}
-        </Button>
-      </div>
 
       {counselor && (
         <Card>

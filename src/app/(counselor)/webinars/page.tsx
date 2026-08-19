@@ -14,7 +14,7 @@ export default async function WebinarsPage() {
 
   return (
     <div className="p-6 pt-20 space-y-6">
-      <PageHeader icon={Video} title="Webinars" description="Create and manage webinar sessions" />
+      <PageHeader icon={Video} title="Webinars" description="Create and manage webinar sessions" eyebrow="Counselor" />
       <Card>
         <CardHeader><CardTitle>Manage Webinars</CardTitle></CardHeader>
         <CardContent>

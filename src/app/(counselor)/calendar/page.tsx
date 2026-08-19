@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PageHeader } from "@/components/ui/page-header";
-import { Calendar, CheckCircle2, XCircle, Clock, ExternalLink, Loader2, MessageSquare, Download, IndianRupee, Eye } from "lucide-react";
+import { Calendar, CheckCircle2, XCircle, Clock, ExternalLink, Loader2, MessageSquare, Download, IndianRupee, Eye, type LucideIcon } from "lucide-react";
 
 interface PaymentProof {
   id: string;
@@ -77,11 +77,17 @@ export default function CalendarPage() {
   const groups: Record<string, Appointment[]> = { PENDING: [], CONFIRMED: [], COMPLETED: [], CANCELLED: [] };
   appointments.forEach((a) => { (groups[a.status] || groups.PENDING).push(a); });
 
-  const statusColors: Record<string, string> = {
-    PENDING: "border-l-amber-400",
-    CONFIRMED: "border-l-green-400",
-    COMPLETED: "border-l-blue-400",
-    CANCELLED: "border-l-gray-300",
+  const statusMeta: Record<string, { chip: string; text: string; label: string }> = {
+    PENDING: { chip: "from-amber-400 to-orange-500", text: "text-amber-600", label: "Pending" },
+    CONFIRMED: { chip: "from-emerald-400 to-teal-600", text: "text-emerald-600", label: "Confirmed" },
+    COMPLETED: { chip: "from-blue-400 to-indigo-600", text: "text-blue-600", label: "Completed" },
+    CANCELLED: { chip: "from-gray-400 to-gray-500", text: "text-muted-foreground", label: "Cancelled" },
+  };
+  const statusIcon: Record<string, LucideIcon> = {
+    PENDING: Clock,
+    CONFIRMED: CheckCircle2,
+    COMPLETED: CheckCircle2,
+    CANCELLED: XCircle,
   };
 
   return (
@@ -90,30 +96,41 @@ export default function CalendarPage() {
         icon={Calendar}
         title="Calendar"
         description="Manage appointment requests from your students"
+        eyebrow="Counselor"
       />
 
       {loading ? (
         <div className="text-center py-12 text-muted-foreground">Loading appointments...</div>
       ) : appointments.length === 0 ? (
-        <Card><CardContent className="py-12 text-center text-muted-foreground">No appointments yet.</CardContent></Card>
+        <Card>
+          <CardContent className="py-16 flex flex-col items-center justify-center gap-3 text-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/25">
+              <Calendar className="h-6 w-6" />
+            </div>
+            <p className="text-sm font-medium text-muted-foreground">No appointments yet</p>
+            <p className="text-xs text-muted-foreground/70">Your students' session requests will appear here as soon as they book.</p>
+          </CardContent>
+        </Card>
       ) : (
         ["PENDING", "CONFIRMED", "COMPLETED", "CANCELLED"].map((status) => {
           const list = groups[status];
           if (list.length === 0) return null;
           return (
-            <Card key={status} className="overflow-hidden">
-              <CardHeader className={`border-l-4 ${statusColors[status]} pb-3`}>
-                <CardTitle className="text-base flex items-center gap-2">
-                  {status === "PENDING" && <Clock className="h-4 w-4 text-amber-500" />}
-                  {status === "CONFIRMED" && <CheckCircle2 className="h-4 w-4 text-green-500" />}
-                  {status === "COMPLETED" && <CheckCircle2 className="h-4 w-4 text-blue-500" />}
-                  {status === "CANCELLED" && <XCircle className="h-4 w-4 text-gray-400" />}
-                  {status.charAt(0) + status.slice(1).toLowerCase()} ({list.length})
+            <Card key={status} className="overflow-hidden border-border/70">
+              <CardHeader className="border-b bg-muted/40 pb-3 flex flex-row items-center justify-between">
+                <CardTitle className="text-base flex items-center gap-2.5">
+                  <span className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${statusMeta[status].chip} text-white shadow-sm`}>
+                    {(() => { const Icon = statusIcon[status]; return <Icon className="h-4 w-4" />; })()}
+                  </span>
+                  <span className={`${statusMeta[status].text}`}>{statusMeta[status].label}</span>
                 </CardTitle>
+                <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-2 text-xs font-semibold text-muted-foreground ring-1 ring-border/60">
+                  {list.length}
+                </span>
               </CardHeader>
               <CardContent className="divide-y p-0">
                 {list.map((appt) => (
-                  <div key={appt.id} className={`p-4 ${statusColors[appt.status]} border-l-4`}>
+                  <div key={appt.id} className="p-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
                         <p className="font-medium">{appt.title}</p>

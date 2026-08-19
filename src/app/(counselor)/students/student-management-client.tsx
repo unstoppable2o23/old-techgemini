@@ -302,12 +302,18 @@ export function StudentManagementClient({
 
   return (
     <div className="space-y-6 p-6 pt-20">
-      <div className="flex items-center justify-between">
-        <PageHeader icon={User} title="Student Management" description="Manage students, control feature access, and monitor activity." />
-        <Button onClick={() => setAddOpen(true)}>
-          <Plus className="h-4 w-4 mr-1" />
-          Add Student
-        </Button>
+      <PageHeader
+          icon={User}
+          title="Student Management"
+          description="Manage students, control feature access, and monitor activity."
+          eyebrow="Counselor"
+          actions={
+            <Button onClick={() => setAddOpen(true)}>
+              <Plus className="h-4 w-4 mr-1" />
+              Add Student
+            </Button>
+          }
+        />
         <Dialog open={addOpen} onOpenChange={setAddOpen}>
           <DialogContent>
             <DialogHeader>
@@ -363,7 +369,6 @@ export function StudentManagementClient({
             </DialogFooter>
           </DialogContent>
         </Dialog>
-      </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">

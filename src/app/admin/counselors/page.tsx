@@ -212,7 +212,7 @@ export default function AdminCounselorsPage() {
   return (
     <div className="space-y-6 p-6 pt-20 max-w-6xl mx-auto">
       <div className="flex items-center justify-between gap-4 flex-wrap">
-        <PageHeader icon={Users} title="Manage Counselors" description="Create and manage counselor accounts" />
+        <PageHeader icon={Users} title="Manage Counselors" description="Create and manage counselor accounts" eyebrow="Admin" />
         <Button onClick={() => setShowForm(!showForm)}>
           {showForm ? "Cancel" : <><UserPlus className="h-4 w-4 mr-2" /> Add Counselor</>}
         </Button>

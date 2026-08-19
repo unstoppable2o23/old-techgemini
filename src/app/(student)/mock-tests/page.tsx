@@ -21,7 +21,7 @@ export default async function MockTestsPage() {
 
   return (
     <div className="p-6 pt-20 space-y-6">
-      <PageHeader icon={FileText} title="Mock Tests" description="Practice assessments to gauge your readiness" />
+      <PageHeader icon={FileText} title="Mock Tests" description="Practice assessments to gauge your readiness" eyebrow="Student Tools" />
       <Card>
         <CardHeader><CardTitle>Practice Assessments</CardTitle></CardHeader>
         <CardContent>

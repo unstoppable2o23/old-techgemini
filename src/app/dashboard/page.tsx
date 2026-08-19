@@ -60,6 +60,7 @@ export default async function DashboardPage() {
           icon={Briefcase}
           title="University Admin Dashboard"
           description={`Welcome back, ${user.firstName} — read-only view`}
+          eyebrow="Overview"
         />
         <AllUsersTable tenantId={user.tenantId} />
       </div>
@@ -102,6 +103,7 @@ export default async function DashboardPage() {
           icon={Activity}
           title="Counselor Dashboard"
           description={`Welcome back, ${user.firstName}`}
+          eyebrow="Overview"
         />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
@@ -173,6 +175,7 @@ export default async function DashboardPage() {
         icon={GraduationCap}
         title="Student Dashboard"
         description={`Welcome back, ${user.firstName}`}
+        eyebrow="Overview"
       />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

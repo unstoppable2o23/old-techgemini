@@ -82,7 +82,7 @@ export default async function RootLayout({
         <SessionProvider>
           <TenantThemeProvider>
             <TopNav />
-            <main className="pt-16">{children}</main>
+            <main>{children}</main>
             <SessionTimeout />
             <AccessDeniedModal />
             <Toaster />

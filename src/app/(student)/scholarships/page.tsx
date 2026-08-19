@@ -21,7 +21,7 @@ export default async function ScholarshipsPage() {
 
   return (
     <div className="p-6 pt-20 space-y-6">
-      <PageHeader icon={Trophy} title="Scholarships" description="Find scholarships and funding opportunities" />
+      <PageHeader icon={Trophy} title="Scholarships" description="Find scholarships and funding opportunities" eyebrow="Student Tools" />
       <Card>
         <CardHeader><CardTitle>Scholarship Hub</CardTitle></CardHeader>
         <CardContent>
