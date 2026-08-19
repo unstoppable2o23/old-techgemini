@@ -50,7 +50,6 @@ type NavItem = {
 };
 
 const COUNSELOR_NAV_ITEMS: NavItem[] = [
-  { label: "Overview", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-600", grad: "from-indigo-500 to-blue-600" },
   { label: "Student Management", href: "/students", icon: Users, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
   { label: "Feature Flags", href: "/feature-flags", icon: Flag, color: "text-amber-600", grad: "from-amber-400 to-orange-600" },
   { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
@@ -62,7 +61,6 @@ const COUNSELOR_NAV_ITEMS: NavItem[] = [
 ];
 
 const STUDENT_NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-600", grad: "from-indigo-500 to-blue-600" },
   { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search, color: "text-blue-600", grad: "from-blue-500 to-cyan-600" },
   { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
   { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText, color: "text-amber-600", grad: "from-amber-400 to-orange-600" },
@@ -74,7 +72,6 @@ const STUDENT_NAV_ITEMS: NavItem[] = [
 ];
 
 const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-600", grad: "from-indigo-500 to-blue-600" },
   { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
   { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
 ];
@@ -145,17 +142,19 @@ export function TopNav() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-indigo-500 via-pink-500 to-amber-400" />
       <nav className="mx-auto flex h-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex shrink-0 items-center gap-3">
-          {tenant.logoUrl ? (
-            <img
-              src={tenant.logoUrl}
-              alt={tenant.brandName || "Brand"}
-              className="h-14 w-auto max-w-[140px] object-contain"
-            />
-          ) : (
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md">
-              <LayoutDashboard className="h-5 w-5" />
-            </span>
-          )}
+          <Link href="/dashboard" className="flex items-center">
+            {tenant.logoUrl ? (
+              <img
+                src={tenant.logoUrl}
+                alt={tenant.brandName || "Brand"}
+                className="h-14 w-auto max-w-[140px] object-contain"
+              />
+            ) : (
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md">
+                <LayoutDashboard className="h-5 w-5" />
+              </span>
+            )}
+          </Link>
         </div>
 
         {authStatus === "authenticated" ? (
