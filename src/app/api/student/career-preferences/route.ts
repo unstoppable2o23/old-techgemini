@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { targetColleges, targetCountries, preferredCareer, prospectiveSessions } = await request.json();
+    const { targetColleges, targetCountries, preferredCareer, prospectiveSessions, studyLevel, exams } = await request.json();
 
     await prisma.studentProfile.update({
       where: { userId: session.user.id },
@@ -19,6 +19,8 @@ export async function POST(request: NextRequest) {
         targetCountries: targetCountries || [],
         preferredCareer: preferredCareer || null,
         prospectiveSessions: prospectiveSessions || [],
+        studyLevel: studyLevel || null,
+        exams: exams || [],
         careerPrefsFilled: true,
       },
     });

@@ -14,6 +14,16 @@ const GRADE_OPTIONS = [
   "8th", "9th", "10th", "11th", "12th", "Pursuing UG", "Completed UG",
 ];
 
+const STUDY_LEVEL_OPTIONS = [
+  "Bachelor's (Undergraduate)", "Master's (Postgraduate)",
+  "PhD / Doctorate", "Diploma / Foundation", "Other",
+];
+
+const EXAM_OPTIONS = [
+  "IELTS", "TOEFL", "SAT", "ACT", "GRE", "GMAT",
+  "A-Levels", "IB Diploma", "CELPIP", "PTE", "None yet",
+];
+
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({
@@ -25,6 +35,8 @@ export default function RegisterPage() {
     mobile: "",
     gender: "",
     gradeLevel: "",
+    studyLevel: "",
+    exams: [] as string[],
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,6 +45,15 @@ export default function RegisterPage() {
 
   function update(field: string, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function toggleExam(exam: string) {
+    setForm((prev) => ({
+      ...prev,
+      exams: prev.exams.includes(exam)
+        ? prev.exams.filter((e) => e !== exam)
+        : [...prev.exams, exam],
+    }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -142,6 +163,38 @@ export default function RegisterPage() {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label>What study level are you planning? *</Label>
+              <Select value={form.studyLevel} onValueChange={(v) => update("studyLevel", v)}>
+                <SelectTrigger><SelectValue>Select study level</SelectValue></SelectTrigger>
+                <SelectContent>
+                  {STUDY_LEVEL_OPTIONS.map((s) => (
+                    <SelectItem key={s} value={s}>{s}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Which entrance exams are you preparing for?</Label>
+              <div className="flex flex-wrap gap-2">
+                {EXAM_OPTIONS.map((exam) => (
+                  <button
+                    key={exam}
+                    type="button"
+                    onClick={() => toggleExam(exam)}
+                    className={`rounded-full px-3 py-1.5 text-sm border transition-colors ${
+                      form.exams.includes(exam)
+                        ? "bg-accent text-accent-foreground border-accent"
+                        : "text-muted-foreground border-border hover:border-accent"
+                    }`}
+                  >
+                    {exam}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <Button type="submit" variant="gradient" className="w-full" disabled={loading}>

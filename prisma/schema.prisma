@@ -130,6 +130,8 @@ model StudentProfile {
   mobile        String?
   gender        String?
   gradeLevel    String?
+  studyLevel    String?
+  exams         String[]  @default([])
   targetCountry String?
   targetColleges String[]
   targetCountries String[]
