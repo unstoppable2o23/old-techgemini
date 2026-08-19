@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -21,6 +21,23 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string | undefined>();
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (!email) {
+      setLogoUrl(undefined);
+      return;
+    }
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      fetch(`/api/public/logo?email=${encodeURIComponent(email)}`)
+        .then((r) => r.json())
+        .then((data) => setLogoUrl(data.logoUrl || undefined))
+        .catch(() => setLogoUrl(undefined));
+    }, 400);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [email]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,7 +73,7 @@ export default function LoginPage() {
 
       <Card className="relative w-full max-w-sm bg-white/95 backdrop-blur-md shadow-2xl">
         <CardHeader className="text-center">
-          <BrandLogo />
+          <BrandLogo override={logoUrl} />
           <CardTitle className="text-2xl">Sign In</CardTitle>
           <CardDescription>
             Enter your credentials to access the platform

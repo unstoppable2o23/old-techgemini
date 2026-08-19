@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -11,9 +11,9 @@ import { BrandingCard } from "@/components/branding-card";
 
 export default function SettingsPage() {
   const { data: session } = useSession();
-  const isCounselor = session?.user?.role === "COUNSELOR";
   const isSuperAdmin = session?.user?.role === "SUPER_ADMIN";
-  const canManageBranding = isCounselor || isSuperAdmin;
+  const isCounselor = session?.user?.role === "COUNSELOR";
+
 
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -64,11 +64,11 @@ export default function SettingsPage() {
     setSaving(false);
   }
 
-  if (!isCounselor) {
+  if (true) {
     return (
       <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
         <PageHeader icon={Settings2} title="Settings" description="Manage your account" />
-        {canManageBranding && <BrandingCard />}
+        {isSuperAdmin && <BrandingCard />}
         <Card>
           <CardHeader><CardTitle>Account</CardTitle></CardHeader>
           <CardContent>
@@ -83,7 +83,7 @@ export default function SettingsPage() {
     <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
       <PageHeader icon={Settings2} title="Settings" description="Manage your appointments and portal settings" />
 
-      {canManageBranding && <BrandingCard />}
+      {isSuperAdmin && <BrandingCard />}
 
       <Card>
         <CardHeader><CardTitle className="flex items-center gap-2"><Smartphone className="h-5 w-5" /> Contact Info</CardTitle></CardHeader>
@@ -161,3 +161,4 @@ export default function SettingsPage() {
     </div>
   );
 }
+

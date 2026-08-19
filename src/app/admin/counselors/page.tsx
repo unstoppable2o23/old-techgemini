@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { PageHeader } from "@/components/ui/page-header";
 import { BrandingCard } from "@/components/branding-card";
-import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone, Pencil } from "lucide-react";
+import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone, Pencil, ImagePlus, X } from "lucide-react";
 
 export default function AdminCounselorsPage() {
   const [counselors, setCounselors] = useState<any[]>([]);
@@ -39,6 +39,10 @@ export default function AdminCounselorsPage() {
   const [editTarget, setEditTarget] = useState<any>(null);
   const [editForm, setEditForm] = useState<any>({});
   const [editSaving, setEditSaving] = useState(false);
+  const [uploadTarget, setUploadTarget] = useState<string | null>(null);
+  const [logoUploading, setLogoUploading] = useState<string | null>(null);
+  const [logoError, setLogoError] = useState("");
+
   const [editResult, setEditResult] = useState<{ success?: string; error?: string } | null>(null);
 
   useEffect(() => {
@@ -154,6 +158,55 @@ export default function AdminCounselorsPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isActive: newVal }),
     });
+  }
+
+  const uploadInputRef = useRef<HTMLInputElement>(null);
+
+  function openLogoUpload(c: any) {
+    setLogoError("");
+    setUploadTarget(c.id);
+    uploadInputRef.current?.click();
+  }
+
+  async function handleLogoUploadChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const id = uploadTarget;
+    const file = e.target.files?.[0];
+    if (!id || !file) return;
+    const counselor = counselors.find((x) => x.id === id);
+    if (!counselor) return;
+    setLogoUploading(counselor.firstName || counselor.id);
+    setLogoError("");
+    try {
+      const dataUrl = await compressFile(file);
+      const res = await fetch(`/api/admin/counselors/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ logoUrl: dataUrl }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setCounselors((prev) => prev.map((x) => (x.id === id ? data.user : x)));
+      } else {
+        setLogoError("Failed to set logo");
+      }
+    } catch {
+      setLogoError("Failed to set logo");
+    }
+    setLogoUploading(null);
+    setUploadTarget(null);
+    e.target.value = "";
+  }
+
+  async function clearLogoFor(c: any) {
+    const res = await fetch(`/api/admin/counselors/${c.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ logoUrl: null }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setCounselors((prev) => prev.map((x) => (x.id === c.id ? data.user : x)));
+    }
   }
 
   return (
@@ -298,6 +351,7 @@ export default function AdminCounselorsPage() {
                   <TableHead className="text-right">+ Assessment</TableHead>
                   <TableHead className="text-right">India</TableHead>
                   <TableHead className="text-right">International</TableHead>
+                  <TableHead>Logo</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -324,8 +378,22 @@ export default function AdminCounselorsPage() {
                       <TableCell className="text-right">Rs {c.counselorProfile?.assessmentPrice?.toLocaleString() || "4,000"}</TableCell>
                       <TableCell className="text-right">Rs {c.counselorProfile?.indiaPrice?.toLocaleString() || "14,000"}</TableCell>
                       <TableCell className="text-right">Rs {c.counselorProfile?.internationalPrice?.toLocaleString() || "95,000"}</TableCell>
-                      <TableCell>
+                       <TableCell>
                         <Switch checked={c.isActive !== false} onCheckedChange={() => toggleCounselorStatus(c)} />
+                      </TableCell>
+                      <TableCell>
+                        {c.logoUrl ? (
+                          <div className="flex items-center gap-2">
+                            <img src={c.logoUrl} alt="logo" className="h-8 w-8 rounded object-contain" />
+                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => clearLogoFor(c)}>
+                              <X className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button variant="outline" size="sm" onClick={() => openLogoUpload(c)}>
+                            <ImagePlus className="h-4 w-4 mr-1" /> Set Logo
+                          </Button>
+                        )}
                       </TableCell>
                       <TableCell className="text-right">
                         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => openEdit(c)}>
@@ -429,6 +497,49 @@ export default function AdminCounselorsPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <input
+        ref={uploadInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleLogoUploadChange}
+      />
     </div>
   );
 }
+
+function compressFile(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = String(reader.result);
+      const img = new Image();
+      img.onload = () => {
+        const MAX_DIM = 512;
+        let { width, height } = img;
+        const scale = Math.min(1, MAX_DIM / Math.max(width, height));
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          resolve(dataUrl);
+          return;
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+        const out =
+          file.type === "image/png" || dataUrl.startsWith("data:image/png")
+            ? canvas.toDataURL("image/png")
+            : canvas.toDataURL("image/jpeg", 0.92);
+        resolve(out);
+      };
+      img.onerror = () => resolve(dataUrl);
+      img.src = dataUrl;
+    };
+    reader.onerror = () => reject(new Error("Could not read file"));
+    reader.readAsDataURL(file);
+  });
+}
+
