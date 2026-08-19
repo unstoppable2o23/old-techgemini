@@ -9,6 +9,9 @@ import {
   Sparkles,
   Briefcase,
   ArrowRight,
+  Compass,
+  Flame,
+  Building2,
 } from "lucide-react";
 import {
   FaChartBar,
@@ -51,6 +54,27 @@ const ICONS: Record<string, IconType> = {
   volumeHigh: FaVolumeUp,
   gradHat: FaGraduationCap,
   sparkles: FaMagic,
+};
+
+const GRADIENTS: Record<string, string> = {
+  barChart: "from-blue-500 to-indigo-600",
+  cpu: "from-cyan-500 to-blue-600",
+  target: "from-rose-500 to-pink-600",
+  trendingUp: "from-emerald-500 to-teal-600",
+  zap: "from-purple-500 to-fuchsia-600",
+  building: "from-orange-500 to-amber-600",
+  briefcase: "from-slate-500 to-slate-700",
+  users: "from-red-500 to-rose-600",
+  globe: "from-sky-500 to-cyan-600",
+  generic: "from-indigo-500 to-blue-600",
+  playCircle: "from-purple-500 to-indigo-600",
+  checkCircle: "from-emerald-500 to-green-600",
+  youtube: "from-rose-500 to-red-600",
+  calendar: "from-fuchsia-500 to-pink-600",
+  mapPin: "from-orange-500 to-red-600",
+  volumeHigh: "from-cyan-500 to-teal-600",
+  gradHat: "from-emerald-500 to-cyan-600",
+  sparkles: "from-pink-500 to-rose-600",
 };
 
 // Original page styling per career (icon + color)
@@ -201,6 +225,12 @@ const TRENDING_BADGES = [
   { label: "High Pay", icon: "💰", color: "bg-emerald-100 text-emerald-700 border-emerald-200" },
 ];
 
+const STAT_CARDS = [
+  { icon: Compass, label: "Careers Explored", grad: "from-indigo-500 to-violet-600" },
+  { icon: Flame, label: "High Demand", grad: "from-rose-500 to-orange-500" },
+  { icon: Building2, label: "Industry Sectors", grad: "from-cyan-500 to-sky-600" },
+];
+
 // Original page order of all careers (badges cycle by index % 3)
 const CAREER_ORDER = [
   "Data Science", "Software Engineering", "Product Management", "Digital Marketing",
@@ -277,6 +307,14 @@ export default function CareerLibraryClient() {
 
   const trendingCareers = orderedCareers();
 
+  const stats = [
+    { ...STAT_CARDS[0], value: trendingCareers.length },
+    { ...STAT_CARDS[1], value: trendingCareers.filter((c: any) => c.demandLevel === "High").length },
+    { ...STAT_CARDS[2], value: new Set(trendingCareers.flatMap((c: any) => c.topIndustries || [])).size },
+  ];
+
+  const clean = (v?: string) => (typeof v === "string" ? v.replace(/^\?+/, "") : v || "");
+
   useEffect(() => {
     if (!query) {
       setSuggestions([]);
@@ -337,85 +375,117 @@ export default function CareerLibraryClient() {
       setShowDropdown(false);
     }
   }
+
   return (
-    <div className="space-y-10 p-6 pt-20 max-w-7xl mx-auto">
+    <div className="space-y-12 p-6 pt-20 max-w-7xl mx-auto">
       {/* HERO */}
-      <div className="text-center animate-fade-in-up">
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight leading-tight">
-          Explore <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">New Age Careers</span>
-        </h1>
-        <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-          Explore careers with role insights, opportunities, growth scope, and steps to become one.
-        </p>
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-accent to-primary p-8 md:p-12 text-white shadow-xl">
+        <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-28 -left-20 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
+        <div className="relative z-10 text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
+            <Sparkles className="h-3.5 w-3.5" /> Career Library
+          </span>
+          <h1 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+            Explore{" "}
+            <span className="bg-gradient-to-r from-rose-300 via-amber-200 to-yellow-200 bg-clip-text text-transparent">
+              New Age Careers
+            </span>
+          </h1>
+          <p className="text-base md:text-lg text-white/85 mt-4 max-w-3xl mx-auto">
+            Role insights, opportunities, growth scope, and steps to become one — explore the careers of tomorrow, today.
+          </p>
 
-        {/* SEARCH FORM */}
-        <form
-          onSubmit={handleSearchSubmit}
-          className="bg-white/85 backdrop-blur-md border border-white/50 p-2 md:p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-3 relative z-10 w-full max-w-2xl mx-auto"
-        >
-          {/* Career Input */}
-          <div className="relative group text-left w-full md:flex-1 h-16" ref={dropdownRef}>
-            <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-muted-foreground">
-              <Search className="h-5 w-5" />
-            </div>
-            <Input
-              ref={inputRef}
-              type="text"
-              name="careerName"
-              autoComplete="off"
-              value={query}
-              placeholder="E.g., Data Scientist, Pilot, Chef..."
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onFocus={() => query && setShowDropdown(true)}
-              className="w-full pl-14 pr-4 h-full rounded-xl border-slate-200 focus:border-accent focus:ring-2 focus:ring-accent/20 text-lg font-medium"
-            />
-            {showDropdown && suggestions.length > 0 && (
-              <div className="absolute top-full left-0 w-full mt-1 bg-background border border-slate-200 rounded-xl shadow-lg max-h-60 overflow-y-auto z-[9999]">
-                {suggestions.map((s, i) => (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => goToCareer(s.slug)}
-                    onMouseEnter={() => setActiveIndex(i)}
-                    className={`w-full flex items-center justify-between gap-3 px-4 py-3 text-left transition-colors ${
-                      activeIndex === i ? "bg-accent/10" : "hover:bg-accent/5"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <Briefcase className="h-4 w-4 text-muted-foreground shrink-0" />
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium truncate">{s.title}</p>
-                        {s.salaryEntry && (
-                          <p className="text-xs text-muted-foreground">
-                            {s.salaryEntry} · Growth {s.jobGrowth || "—"}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0" />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-accent hover:bg-accent/90 text-white font-bold h-16 px-8 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg w-full md:w-auto text-lg"
+          {/* SEARCH FORM */}
+          <form
+            onSubmit={handleSearchSubmit}
+            className="bg-white rounded-2xl shadow-2xl p-2 md:p-3 flex flex-col md:flex-row gap-3 relative z-10 w-full max-w-2xl mx-auto mt-8"
           >
-            <span>Explore</span>
-            <Sparkles className="h-5 w-5" />
-          </button>
-        </form>
+            <div className="relative group text-left w-full md:flex-1 h-16" ref={dropdownRef}>
+              <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-slate-400">
+                <Search className="h-5 w-5" />
+              </div>
+              <Input
+                ref={inputRef}
+                type="text"
+                name="careerName"
+                autoComplete="off"
+                value={query}
+                placeholder="E.g., Data Scientist, Pilot, Chef..."
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
+                onFocus={() => query && setShowDropdown(true)}
+                className="w-full pl-14 pr-4 h-full rounded-xl border-slate-200 text-slate-800 focus-visible:ring-accent/30 text-lg font-medium"
+              />
+              {showDropdown && suggestions.length > 0 && (
+                <div className="absolute top-full left-0 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg max-h-60 overflow-y-auto z-[9999]">
+                  {suggestions.map((s, i) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => goToCareer(s.slug)}
+                      onMouseEnter={() => setActiveIndex(i)}
+                      className={`w-full flex items-center justify-between gap-3 px-4 py-3 text-left transition-colors ${
+                        activeIndex === i ? "bg-accent/10" : "hover:bg-accent/5"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <Briefcase className="h-4 w-4 text-muted-foreground shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium truncate text-slate-800">{s.title}</p>
+                          {s.salaryEntry && (
+                            <p className="text-xs text-muted-foreground">
+                              {s.salaryEntry} · Growth {s.jobGrowth || "—"}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="bg-accent hover:bg-accent/90 text-white font-bold h-16 px-8 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg w-full md:w-auto text-lg"
+            >
+              <span>Explore</span>
+              <Sparkles className="h-5 w-5" />
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {stats.map((s) => {
+          const Icon = s.icon;
+          return (
+            <div key={s.label} className="flex items-center gap-4 rounded-2xl border bg-card p-5 transition-shadow hover:shadow-md">
+              <span className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${s.grad} text-white shadow-md`}>
+                <Icon className="h-6 w-6" />
+              </span>
+              <div>
+                <p className="text-2xl font-bold leading-none">{s.value}</p>
+                <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* EXPLORE NEW AGE CAREERS (same as original Trending Now) */}
+      {/* EXPLORE NEW AGE CAREERS */}
       <div>
-        <h3 className="text-2xl md:text-3xl font-bold mb-8 tracking-tight text-center">
-          Explore New Age Careers
-        </h3>
+        <div className="text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+            Explore New Age Careers
+          </h3>
+          <p className="text-muted-foreground mt-2">
+            Pick a career to dive into salaries, pathways, and the skills you&apos;ll need.
+          </p>
+        </div>
 
         {loading ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
@@ -430,25 +500,32 @@ export default function CareerLibraryClient() {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-            {trendingCareers.map((c, idx) => {
+            {trendingCareers.map((c: any, idx: number) => {
               const badge = TRENDING_BADGES[idx % TRENDING_BADGES.length];
               const style = CAREER_STYLES[c.name] || { iconType: "generic", bg: "bg-slate-100", text: "text-slate-600" };
               const Icon = ICONS[style.iconType] || FaLayerGroup;
+              const grad = GRADIENTS[style.iconType] || GRADIENTS.generic;
               return (
                 <button
                   key={c.id}
                   onClick={() => goToCareer(c.slug)}
-                  className="group text-left border rounded-2xl p-5 min-h-[160px] flex flex-col items-center gap-3 text-center transition-all hover:shadow-xl hover:-translate-y-1 hover:border-accent/40 hover:bg-gradient-to-b hover:from-accent/5 hover:to-transparent"
+                  className="group flex flex-col text-left rounded-2xl border bg-card p-5 text-center transition-all hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40"
                 >
-                  <span className={`p-4 rounded-full ${style.bg} ${style.text} shadow-sm transition-transform group-hover:scale-110`}>
-                    <Icon className="h-7 w-7" />
-                  </span>
-                  <Badge className={`${badge.color} text-[10px]`}>
-                    {badge.label} {badge.icon}
-                  </Badge>
-                  <p className="text-sm md:text-base font-semibold leading-snug group-hover:text-accent transition-colors">
+                  <div className="flex items-start justify-between">
+                    <span className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${grad} text-white shadow-md transition-transform group-hover:scale-110 group-hover:-rotate-3`}>
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <Badge className={`${badge.color} text-[10px] border`}>{badge.icon} {badge.label}</Badge>
+                  </div>
+                  <p className="mt-4 text-sm md:text-base font-semibold leading-snug group-hover:text-accent transition-colors min-h-[2.5rem]">
                     {c.title}
                   </p>
+                  <div className="mt-3 flex items-center justify-center gap-1 text-xs text-muted-foreground">
+                    <span className="rounded-full bg-muted px-2 py-0.5">💰 {clean(c.salaryEntry) || "—"}</span>
+                  </div>
+                  <div className="mt-auto flex items-center justify-center gap-1 pt-3 text-sm font-medium text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                    Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </div>
                 </button>
               );
             })}
