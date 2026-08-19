@@ -255,6 +255,14 @@ export function TopNav() {
                       {session?.user?.email}
                     </p>
                   </div>
+                  {role === "STUDENT" && (
+                    <DropdownMenuItem>
+                      <a href="/career-preferences" className="flex items-center gap-2">
+                        <Target className="h-4 w-4 text-muted-foreground" />
+                        Career Profile
+                      </a>
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuItem>
                     <a href="/settings" className="flex items-center gap-2">
                       <Settings className="h-4 w-4 text-muted-foreground" />

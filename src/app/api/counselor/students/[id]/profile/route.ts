@@ -60,10 +60,32 @@ export async function PATCH(
     if (body.gender !== undefined) profileData.gender = body.gender || null;
     if (body.gradeLevel !== undefined) profileData.gradeLevel = body.gradeLevel || null;
     if (body.dateOfBirth !== undefined) profileData.dateOfBirth = body.dateOfBirth ? new Date(body.dateOfBirth) : null;
-    if (body.preferredCareer !== undefined) profileData.preferredCareer = body.preferredCareer || null;
-    if (body.targetColleges !== undefined) profileData.targetColleges = body.targetColleges;
-    if (body.targetCountries !== undefined) profileData.targetCountries = body.targetCountries;
+    if (body.preferredCareer !== undefined || body.careerNotFinalized !== undefined) {
+      profileData.preferredCareer = body.careerNotFinalized ? "" : (body.preferredCareer || null);
+    }
+    if (body.targetColleges !== undefined || body.collegeNotFinalized !== undefined) {
+      profileData.targetColleges = body.collegeNotFinalized ? [] : (body.targetColleges || []);
+    }
+    if (body.targetCountries !== undefined || body.countryNotFinalized !== undefined) {
+      profileData.targetCountries = body.countryNotFinalized ? [] : (body.targetCountries || []);
+    }
     if (body.prospectiveSessions !== undefined) profileData.prospectiveSessions = body.prospectiveSessions;
+    if (body.studyLevel !== undefined) profileData.studyLevel = body.studyLevel || null;
+    if (body.exams !== undefined) profileData.exams = body.exams || [];
+    if (body.nationality !== undefined) profileData.nationality = body.nationality || null;
+    if (body.state !== undefined) profileData.state = body.state || null;
+    if (body.hasEnglishResult !== undefined) profileData.hasEnglishResult = body.hasEnglishResult ?? false;
+    if (body.englishTestType !== undefined) profileData.englishTestType = body.englishTestType || null;
+    if (body.englishTestScore !== undefined) profileData.englishTestScore = body.englishTestScore || null;
+    if (body.englishProficiency !== undefined) profileData.englishProficiency = body.englishProficiency || null;
+    if (body.tuitionBudget !== undefined) profileData.tuitionBudget = body.tuitionBudget || null;
+    if (body.fundingSource !== undefined) profileData.fundingSource = body.fundingSource || null;
+    if (body.preferredIntake !== undefined) profileData.preferredIntake = body.preferredIntake || null;
+    if (body.preferredYear !== undefined) profileData.preferredYear = body.preferredYear || null;
+    if (body.highestEducation !== undefined) profileData.highestEducation = body.highestEducation || null;
+    if (body.averageGrade !== undefined) profileData.averageGrade = body.averageGrade || null;
+    if (body.careerPlanNotes !== undefined) profileData.careerPlanNotes = body.careerPlanNotes || null;
+    if (body.careerPrefsFilled !== undefined) profileData.careerPrefsFilled = body.careerPrefsFilled;
 
     if (Object.keys(userData).length > 0) {
       await prisma.user.update({ where: { id }, data: userData });

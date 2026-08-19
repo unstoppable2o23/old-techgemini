@@ -34,6 +34,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { Search, CheckCircle2, XCircle, KeyRound, Plus, Loader2, Clock, User } from "lucide-react";
 import { PageHeader } from "@/components/ui/page-header";
 import { formatUsageMinutes } from "@/lib/format-utils";
+import { CareerPreferencesForm, type CareerPrefsValues } from "@/components/career-preferences/career-preferences-form";
 
 const FEATURE_LABELS: Record<string, string> = {
   collegeSearch: "College Search",
@@ -92,6 +93,9 @@ export function StudentManagementClient({
   const [profileLoading, setProfileLoading] = useState(false);
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileSaved, setProfileSaved] = useState(false);
+  const [careerInitial, setCareerInitial] = useState<Partial<CareerPrefsValues>>({});
+  const [careerSaving, setCareerSaving] = useState(false);
+  const [careerSaved, setCareerSaved] = useState(false);
   const GRADE_OPTIONS = ["8th", "9th", "10th", "11th", "12th", "Pursuing UG", "Completed UG"];
 
   useEffect(() => {
@@ -227,6 +231,7 @@ export function StudentManagementClient({
     setProfileTarget(student);
     setProfileLoading(true);
     setProfileSaved(false);
+    setCareerSaved(false);
     const res = await fetch(`/api/counselor/students/${student.id}/profile`);
     const data = await res.json();
     const s = data.student;
@@ -244,6 +249,28 @@ export function StudentManagementClient({
       preferredCareer: p.preferredCareer || "",
       prospectiveSessions: p.prospectiveSessions || [],
     });
+    setCareerInitial({
+      targetColleges: p.targetColleges || [],
+      collegeNotFinalized: p.careerPrefsFilled ? p.targetColleges.length === 0 : false,
+      nationality: p.nationality || "",
+      state: p.state || "",
+      hasEnglishResult: !!p.hasEnglishResult,
+      englishTestType: p.englishTestType || "",
+      englishTestScore: p.englishTestScore || "",
+      englishProficiency: p.englishProficiency || "",
+      tuitionBudget: p.tuitionBudget || "",
+      fundingSource: p.fundingSource || "",
+      targetCountries: p.targetCountries || [],
+      countryNotFinalized: p.careerPrefsFilled ? p.targetCountries.length === 0 : false,
+      preferredCareer: p.preferredCareer || "",
+      careerNotFinalized: p.careerPrefsFilled ? !p.preferredCareer : false,
+      prospectiveSessions: p.prospectiveSessions || [],
+      preferredIntake: p.preferredIntake || "",
+      preferredYear: p.preferredYear || "",
+      highestEducation: p.highestEducation || "",
+      averageGrade: p.averageGrade || "",
+      careerPlanNotes: p.careerPlanNotes || "",
+    });
     setProfileLoading(false);
   }
 
@@ -258,6 +285,19 @@ export function StudentManagementClient({
     });
     setProfileSaved(true);
     setProfileSaving(false);
+  }
+
+  async function saveCareer(values: CareerPrefsValues) {
+    if (!profileTarget) return;
+    setCareerSaving(true);
+    setCareerSaved(false);
+    const res = await fetch(`/api/counselor/students/${profileTarget.id}/profile`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+    if (res.ok) setCareerSaved(true);
+    setCareerSaving(false);
   }
 
   return (
@@ -496,7 +536,7 @@ export function StudentManagementClient({
       </Card>
 
       <Dialog open={!!profileTarget} onOpenChange={(o) => { if (!o) { setProfileTarget(null); setProfileData(null); } }}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader><DialogTitle>Student Profile</DialogTitle></DialogHeader>
           {profileLoading ? (
             <div className="py-8 text-center text-muted-foreground"><Loader2 className="h-5 w-5 animate-spin mx-auto" /></div>
@@ -544,43 +584,24 @@ export function StudentManagementClient({
                   </SelectContent>
                 </Select>
               </div>
-              {profileData.preferredCareer || profileData.targetColleges?.length > 0 || profileData.targetCountries?.length > 0 ? (
-                <div className="border-t pt-4 space-y-3">
-                  <p className="text-sm font-semibold">Career Preferences</p>
-                  {profileData.targetColleges?.length > 0 && (
-                    <div>
-                      <Label>Target Colleges</Label>
-                      <p className="text-sm text-muted-foreground">{profileData.targetColleges.join(", ")}</p>
-                    </div>
-                  )}
-                  {profileData.targetCountries?.length > 0 && (
-                    <div>
-                      <Label>Target Countries</Label>
-                      <p className="text-sm text-muted-foreground">{profileData.targetCountries.join(", ")}</p>
-                    </div>
-                  )}
-                  {profileData.preferredCareer && (
-                    <div>
-                      <Label>Preferred Career</Label>
-                      <p className="text-sm text-muted-foreground">{profileData.preferredCareer}</p>
-                    </div>
-                  )}
-                  {profileData.prospectiveSessions?.length > 0 && (
-                    <div>
-                      <Label>Prospective Sessions</Label>
-                      <p className="text-sm text-muted-foreground">{profileData.prospectiveSessions.join(", ")}</p>
-                    </div>
-                  )}
-                </div>
-              ) : null}
-              {profileSaved && <p className="text-sm text-green-600">Saved successfully!</p>}
+              {profileSaved && <p className="text-sm text-green-600">Basic details saved successfully!</p>}
+              <div className="border-t pt-5 space-y-4">
+                <p className="text-sm font-semibold">Career Preferences</p>
+                <CareerPreferencesForm
+                  initial={careerInitial}
+                  submitting={careerSaving}
+                  submitLabel="Save Career Preferences"
+                  onSave={saveCareer}
+                />
+                {careerSaved && <p className="text-sm text-green-600">Career preferences saved successfully!</p>}
+              </div>
             </div>
           ) : null}
           <DialogFooter>
             <Button variant="outline" onClick={() => { setProfileTarget(null); setProfileData(null); }}>Cancel</Button>
             <Button onClick={saveProfile} disabled={profileSaving}>
               {profileSaving ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : null}
-              Save Changes
+              Save Basic Details
             </Button>
           </DialogFooter>
         </DialogContent>

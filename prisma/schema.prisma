@@ -132,6 +132,19 @@ model StudentProfile {
   gradeLevel    String?
   studyLevel    String?
   exams         String[]  @default([])
+  nationality   String?
+  state         String?
+  hasEnglishResult Boolean @default(false)
+  englishTestType   String?
+  englishTestScore  String?
+  englishProficiency String?
+  tuitionBudget String?
+  fundingSource String?
+  preferredIntake String?
+  preferredYear String?
+  highestEducation String?
+  averageGrade  String?
+  careerPlanNotes String?
   targetCountry String?
   targetColleges String[]
   targetCountries String[]
