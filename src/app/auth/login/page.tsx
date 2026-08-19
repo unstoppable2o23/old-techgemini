@@ -73,7 +73,7 @@ export default function LoginPage() {
 
       <Card className="relative w-full max-w-sm bg-white/95 backdrop-blur-md shadow-2xl">
         <CardHeader className="text-center">
-          <BrandLogo override={logoUrl} />
+          <BrandLogo className="h-[100px] w-[200px]" override={logoUrl} />
           <CardTitle className="text-2xl">Sign In</CardTitle>
           <CardDescription>
             Enter your credentials to access the platform

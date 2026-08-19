@@ -80,7 +80,7 @@ export default function RegisterPage() {
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
       <Card className="relative w-full max-w-md bg-white/95 backdrop-blur-md shadow-2xl">
         <CardHeader className="text-center">
-          <BrandLogo className="h-16 w-16" />
+          <BrandLogo className="h-[100px] w-[200px]" />
           <CardTitle className="text-2xl">Create Account</CardTitle>
           <CardDescription>Fill in your details to get started</CardDescription>
         </CardHeader>

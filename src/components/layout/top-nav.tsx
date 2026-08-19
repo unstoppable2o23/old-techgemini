@@ -130,7 +130,7 @@ export function TopNav() {
             <img
               src={tenant.logoUrl}
               alt={tenant.brandName || "Brand"}
-              className="h-9 w-auto object-contain"
+              className="h-14 w-auto max-w-[140px] object-contain"
             />
           ) : (
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
