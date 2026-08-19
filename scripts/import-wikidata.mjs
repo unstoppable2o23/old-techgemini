@@ -23,48 +23,77 @@ async function main() {
   const records = JSON.parse(fs.readFileSync(file, "utf8"));
   console.log(`Wikidata records: ${records.length}`);
 
-  const existingWikidata = await prisma.indianInstitution.count({ where: { source: "wikidata" } });
-  if (existingWikidata > 0) {
-    console.log(`DB already has ${existingWikidata} wikidata institutions — skipping import.`);
-    return;
+  const existing = await prisma.indianInstitution.findMany({
+    select: {
+      id: true,
+      name: true,
+      state: true,
+      district: true,
+      website: true,
+      wdId: true,
+      source: true,
+      type: true,
+    },
+  });
+  console.log(`Existing institutions in DB: ${existing.length}`);
+
+  const byWdId = new Map();
+  const byName = new Map();
+  for (const r of existing) {
+    if (r.wdId) byWdId.set(r.wdId, r);
+    const key = norm(r.name);
+    if (!byName.has(key)) byName.set(key, []);
+    byName.get(key).push(r);
   }
 
-  const existingNames = new Set(
-    (await prisma.indianInstitution.findMany({ select: { name: true } })).map((r) => norm(r.name))
-  );
-  console.log(`Existing institutions in DB: ${existingNames.size}`);
-
+  let merged = 0;
+  let inserted = 0;
+  let skippedAlready = 0;
   const toInsert = [];
-  let skippedDuplicateInList = 0;
-  const seenInList = new Set();
+  const processedWd = new Set();
 
-  for (const r of records) {
-    const key = norm(r.name);
-    if (existingNames.has(key)) continue;
-    if (seenInList.has(key)) {
-      skippedDuplicateInList++;
+  for (const w of records) {
+    if (byWdId.has(w.wdId)) {
+      skippedAlready++;
       continue;
     }
-    seenInList.add(key);
-    toInsert.push({
-      wdId: r.wdId,
-      name: r.name,
-      type: classifyType(r.name),
-      state: "",
-      district: r.state || null,
-      website: r.website,
-      yearOfEstablishment: null,
-      location: null,
-      institutionType: "Wikidata",
-      management: null,
-      universityAisheCode: null,
-      universityName: null,
-      source: "wikidata",
-    });
-  }
 
-  console.log(`New Wikidata institutions to add: ${toInsert.length}`);
-  if (toInsert.length === 0) return;
+    const key = norm(w.name);
+    const matches = byName.get(key) || [];
+
+    if (matches.length > 0) {
+      const target = matches.find((r) => r.source === "aishe") || matches[0];
+      const data = { wdId: w.wdId };
+      if (!target.website && w.website) data.website = w.website;
+      if (!target.district && w.state) data.district = w.state;
+      await prisma.indianInstitution.update({ where: { id: target.id }, data });
+      merged++;
+      target.website = data.website || target.website;
+      target.district = data.district || target.district;
+      target.wdId = w.wdId;
+      byWdId.set(w.wdId, target);
+      continue;
+    }
+
+    if (!processedWd.has(w.wdId)) {
+      processedWd.add(w.wdId);
+      toInsert.push({
+        wdId: w.wdId,
+        name: w.name,
+        type: classifyType(w.name),
+        state: "",
+        district: w.state || null,
+        website: w.website,
+        yearOfEstablishment: null,
+        location: null,
+        institutionType: "Wikidata",
+        management: null,
+        universityAisheCode: null,
+        universityName: null,
+        source: "wikidata",
+      });
+    }
+  }
 
   let created = 0;
   for (let i = 0; i < toInsert.length; i += CHUNK_SIZE) {
@@ -77,7 +106,7 @@ async function main() {
     console.log(`  chunk ${i + chunk.length}/${toInsert.length} — inserted ${result.count}`);
   }
 
-  console.log(`Import complete. Added ${created} institutions.`);
+  console.log(`Done. Merged into existing: ${merged}, inserted new: ${created}, already processed: ${skippedAlready}`);
 }
 
 main()
