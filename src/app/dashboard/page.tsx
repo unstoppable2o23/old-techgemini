@@ -110,7 +110,7 @@ export default async function DashboardPage() {
         </div>
         <Card>
           <CardHeader><CardTitle>Quick Actions</CardTitle></CardHeader>
-          <CardContent className="grid gap-4 md:grid-cols-3">
+          <CardContent className="grid gap-4 md:grid-cols-2">
             <a href="/students" className="group flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/30 transition-transform duration-200 group-hover:scale-110">
                 <Users className="h-6 w-6" />
@@ -120,16 +120,6 @@ export default async function DashboardPage() {
                 <p className="text-xs text-muted-foreground">View and configure student access</p>
               </div>
               <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-500" />
-            </a>
-            <a href="/feature-flags" className="group flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 text-white shadow-md shadow-amber-500/30 transition-transform duration-200 group-hover:scale-110">
-                <Activity className="h-6 w-6" />
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold">Feature Flags</p>
-                <p className="text-xs text-muted-foreground">Toggle features per student</p>
-              </div>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-amber-500" />
             </a>
             <a href="/calendar" className="group flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/30 transition-transform duration-200 group-hover:scale-110">

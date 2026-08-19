@@ -33,7 +33,6 @@ import {
   MessageSquare,
   BarChart3,
   Users,
-  Flag,
   Building2,
   Settings,
   LogOut,
@@ -51,7 +50,6 @@ type NavItem = {
 
 const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Student Management", href: "/students", icon: Users, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
-  { label: "Feature Flags", href: "/feature-flags", icon: Flag, color: "text-amber-600", grad: "from-amber-400 to-orange-600" },
   { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
   { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
   { label: "Career Library", href: "/career-library", icon: Library, color: "text-rose-600", grad: "from-rose-500 to-pink-600" },
