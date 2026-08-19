@@ -31,7 +31,6 @@ import {
   Library,
   Landmark,
   CalendarDays,
-  Video,
   MessageSquare,
   BarChart3,
   Users,
@@ -57,7 +56,6 @@ const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
   { label: "Career Library", href: "/career-library", icon: Library },
   { label: "Calendar", href: "/calendar", icon: CalendarDays },
-  { label: "Webinars", href: "/webinars", icon: Video },
   { label: "Messages", href: "/messages", icon: MessageSquare },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
 ];
@@ -132,11 +130,11 @@ export function TopNav() {
             <img
               src={tenant.logoUrl}
               alt={tenant.brandName || "Brand"}
-              className="h-8 w-auto object-contain"
+              className="h-9 w-auto object-contain"
             />
           ) : (
-            <span className="text-lg font-bold text-foreground">
-              {tenant.brandName || "Platform"}
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
+              <LayoutDashboard className="h-5 w-5" />
             </span>
           )}
         </div>

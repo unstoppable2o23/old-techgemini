@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { PageHeader } from "@/components/ui/page-header";
+import { BrandingCard } from "@/components/branding-card";
 import { Users, Plus, Loader2, UserPlus, IndianRupee, MessageCircle, Megaphone, Pencil } from "lucide-react";
 
 export default function AdminCounselorsPage() {
@@ -163,6 +164,8 @@ export default function AdminCounselorsPage() {
           {showForm ? "Cancel" : <><UserPlus className="h-4 w-4 mr-2" /> Add Counselor</>}
         </Button>
       </div>
+
+      <BrandingCard />
 
       {showForm && (
         <Card>

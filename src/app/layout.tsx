@@ -6,6 +6,7 @@ import { TopNav } from "@/components/layout/top-nav";
 import { AccessDeniedModal } from "@/components/access-denied-modal";
 import { SessionTimeout } from "@/components/session-timeout";
 import { Toaster } from "@/components/ui/toaster";
+import { prisma } from "@/lib/prisma";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,12 +21,24 @@ export default async function RootLayout({
 }) {
   const headersList = await headers();
   const tenantId = headersList.get("x-tenant-id") || "";
-  const brandName = headersList.get("x-tenant-brand") || "";
-  const logoUrl = headersList.get("x-tenant-logo-url") || "";
-  const primaryColor =
-    headersList.get("x-tenant-primary-color") || "#0F172A";
-  const accentColor =
-    headersList.get("x-tenant-accent-color") || "#4F46E5";
+  let brandName = "";
+  let logoUrl = "";
+  let primaryColor = "#0F172A";
+  let accentColor = "#4F46E5";
+
+  if (tenantId) {
+    const tenant = await prisma.tenant.findFirst({
+      where: {
+        OR: [{ id: tenantId }, { subdomain: tenantId }, { slug: tenantId }],
+      },
+    });
+    if (tenant) {
+      brandName = tenant.brandName || "";
+      logoUrl = tenant.logoUrl || "";
+      primaryColor = tenant.primaryColor || primaryColor;
+      accentColor = tenant.accentColor || accentColor;
+    }
+  }
 
   return (
     <html lang="en" suppressHydrationWarning>

@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, MessageCircle, IndianRupee, Smartphone, Save, Settings2 } from "lucide-react";
 import { PageHeader } from "@/components/ui/page-header";
+import { BrandingCard } from "@/components/branding-card";
 
 export default function SettingsPage() {
   const { data: session } = useSession();
   const isCounselor = session?.user?.role === "COUNSELOR";
+  const isSuperAdmin = session?.user?.role === "SUPER_ADMIN";
+  const canManageBranding = isCounselor || isSuperAdmin;
 
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -63,8 +66,9 @@ export default function SettingsPage() {
 
   if (!isCounselor) {
     return (
-      <div className="p-6 pt-20 max-w-2xl mx-auto">
+      <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
         <PageHeader icon={Settings2} title="Settings" description="Manage your account" />
+        {canManageBranding && <BrandingCard />}
         <Card>
           <CardHeader><CardTitle>Account</CardTitle></CardHeader>
           <CardContent>
@@ -78,6 +82,8 @@ export default function SettingsPage() {
   return (
     <div className="p-6 pt-20 max-w-2xl mx-auto space-y-6">
       <PageHeader icon={Settings2} title="Settings" description="Manage your appointments and portal settings" />
+
+      {canManageBranding && <BrandingCard />}
 
       <Card>
         <CardHeader><CardTitle className="flex items-center gap-2"><Smartphone className="h-5 w-5" /> Contact Info</CardTitle></CardHeader>
