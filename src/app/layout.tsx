@@ -25,7 +25,7 @@ export default async function RootLayout({
   const primaryColor =
     headersList.get("x-tenant-primary-color") || "#0F172A";
   const accentColor =
-    headersList.get("x-tenant-accent-color") || "#3B82F6";
+    headersList.get("x-tenant-accent-color") || "#4F46E5";
 
   return (
     <html lang="en" suppressHydrationWarning>

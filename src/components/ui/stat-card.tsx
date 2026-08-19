@@ -9,20 +9,26 @@ type StatCardProps = {
 };
 
 const ICON_GRADIENTS: Record<string, string> = {
-  blue: "from-blue-500 to-indigo-600",
-  green: "from-emerald-500 to-teal-600",
-  purple: "from-violet-500 to-purple-600",
-  orange: "from-orange-500 to-amber-600",
-  pink: "from-pink-500 to-rose-600",
+  indigo: "from-primary to-accent",
+  teal: "from-teal-500 to-emerald-600",
+  amber: "from-amber-500 to-orange-600",
+  rose: "from-rose-500 to-pink-600",
 };
 
 export function StatCard({ title, value, icon: Icon, hint }: StatCardProps) {
-  const gradient =
-    ICON_GRADIENTS[(title.match(/student|college/i) ? "blue" : title.match(/test/i) ? "purple" : title.match(/appointment|university/i) ? "green" : title.match(/active|standalone/i) ? "orange" : "blue")] ||
-    ICON_GRADIENTS.blue;
+  const key = title.match(/student/i)
+    ? "indigo"
+    : title.match(/test/i)
+      ? "amber"
+      : title.match(/appointment|university/i)
+        ? "teal"
+        : title.match(/active|standalone/i)
+          ? "rose"
+          : "indigo";
+  const gradient = ICON_GRADIENTS[key] || ICON_GRADIENTS.indigo;
 
   return (
-    <Card className="overflow-hidden transition-shadow hover:shadow-md">
+    <Card className="overflow-hidden transition-shadow hover:shadow-lg">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}
