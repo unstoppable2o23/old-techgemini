@@ -22,7 +22,6 @@ import {
   Lock,
   Menu,
   X,
-  User,
   LayoutDashboard,
   Search,
   Target,
@@ -47,38 +46,46 @@ type NavItem = {
   featureKey?: string;
   icon: LucideIcon;
   color: string;
-  tint: string;
+  grad: string;
 };
 
 const COUNSELOR_NAV_ITEMS: NavItem[] = [
-  { label: "Overview", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-500", tint: "group-hover:text-indigo-600 group-hover:bg-indigo-100" },
-  { label: "Student Management", href: "/students", icon: Users, color: "text-emerald-500", tint: "group-hover:text-emerald-600 group-hover:bg-emerald-100" },
-  { label: "Feature Flags", href: "/feature-flags", icon: Flag, color: "text-amber-500", tint: "group-hover:text-amber-600 group-hover:bg-amber-100" },
-  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-500", tint: "group-hover:text-blue-600 group-hover:bg-blue-100" },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-500", tint: "group-hover:text-violet-600 group-hover:bg-violet-100" },
-  { label: "Career Library", href: "/career-library", icon: Library, color: "text-rose-500", tint: "group-hover:text-rose-600 group-hover:bg-rose-100" },
-  { label: "Calendar", href: "/calendar", icon: CalendarDays, color: "text-orange-500", tint: "group-hover:text-orange-600 group-hover:bg-orange-100" },
-  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-500", tint: "group-hover:text-cyan-600 group-hover:bg-cyan-100" },
-  { label: "Analytics", href: "/analytics", icon: BarChart3, color: "text-teal-500", tint: "group-hover:text-teal-600 group-hover:bg-teal-100" },
+  { label: "Overview", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-600", grad: "from-indigo-500 to-blue-600" },
+  { label: "Student Management", href: "/students", icon: Users, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
+  { label: "Feature Flags", href: "/feature-flags", icon: Flag, color: "text-amber-600", grad: "from-amber-400 to-orange-600" },
+  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
+  { label: "Career Library", href: "/career-library", icon: Library, color: "text-rose-600", grad: "from-rose-500 to-pink-600" },
+  { label: "Calendar", href: "/calendar", icon: CalendarDays, color: "text-orange-600", grad: "from-orange-500 to-red-500" },
+  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-600", grad: "from-cyan-500 to-teal-600" },
+  { label: "Analytics", href: "/analytics", icon: BarChart3, color: "text-teal-600", grad: "from-teal-500 to-emerald-600" },
 ];
 
 const STUDENT_NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-500", tint: "group-hover:text-indigo-600 group-hover:bg-indigo-100" },
-  { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search, color: "text-blue-500", tint: "group-hover:text-blue-600 group-hover:bg-blue-100" },
-  { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target, color: "text-emerald-500", tint: "group-hover:text-emerald-600 group-hover:bg-emerald-100" },
-  { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText, color: "text-amber-500", tint: "group-hover:text-amber-600 group-hover:bg-amber-100" },
-  { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub", icon: Trophy, color: "text-yellow-500", tint: "group-hover:text-yellow-600 group-hover:bg-yellow-100" },
-  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary", icon: Library, color: "text-rose-500", tint: "group-hover:text-rose-600 group-hover:bg-rose-100" },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-500", tint: "group-hover:text-violet-600 group-hover:bg-violet-100" },
-  { label: "Appointments", href: "/appointments", featureKey: "appointments", icon: CalendarDays, color: "text-orange-500", tint: "group-hover:text-orange-600 group-hover:bg-orange-100" },
-  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-500", tint: "group-hover:text-cyan-600 group-hover:bg-cyan-100" },
+  { label: "Home", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-600", grad: "from-indigo-500 to-blue-600" },
+  { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search, color: "text-blue-600", grad: "from-blue-500 to-cyan-600" },
+  { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
+  { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText, color: "text-amber-600", grad: "from-amber-400 to-orange-600" },
+  { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub", icon: Trophy, color: "text-yellow-600", grad: "from-yellow-400 to-amber-600" },
+  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary", icon: Library, color: "text-rose-600", grad: "from-rose-500 to-pink-600" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
+  { label: "Appointments", href: "/appointments", featureKey: "appointments", icon: CalendarDays, color: "text-orange-600", grad: "from-orange-500 to-red-500" },
+  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-600", grad: "from-cyan-500 to-teal-600" },
 ];
 
 const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-500", tint: "group-hover:text-indigo-600 group-hover:bg-indigo-100" },
-  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-500", tint: "group-hover:text-blue-600 group-hover:bg-blue-100" },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-500", tint: "group-hover:text-violet-600 group-hover:bg-violet-100" },
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, color: "text-indigo-600", grad: "from-indigo-500 to-blue-600" },
+  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
 ];
+
+const SUPER_ADMIN_EXTRA: NavItem = {
+  label: "Counselors",
+  href: "/admin/counselors",
+  icon: Users,
+  color: "text-fuchsia-600",
+  grad: "from-fuchsia-500 to-pink-600",
+};
 
 export function TopNav() {
   const pathname = usePathname();
@@ -95,7 +102,15 @@ export function TopNav() {
   const isCounselor = role === "COUNSELOR" || role === "SUPER_ADMIN";
   const isSuperAdmin = role === "SUPER_ADMIN";
   const isUniversityAdmin = role === "UNIVERSITY_ADMIN";
-  const navItems = isUniversityAdmin ? UNIVERSITY_ADMIN_NAV_ITEMS : isCounselor ? (isSuperAdmin ? [...COUNSELOR_NAV_ITEMS, { label: "Counselors", href: "/admin/counselors", icon: Users, color: "text-fuchsia-500", tint: "group-hover:text-fuchsia-600 group-hover:bg-fuchsia-100" }] : COUNSELOR_NAV_ITEMS) : STUDENT_NAV_ITEMS;
+  const navItems = isUniversityAdmin
+    ? UNIVERSITY_ADMIN_NAV_ITEMS
+    : isCounselor
+    ? isSuperAdmin
+      ? [...COUNSELOR_NAV_ITEMS, SUPER_ADMIN_EXTRA]
+      : COUNSELOR_NAV_ITEMS
+    : STUDENT_NAV_ITEMS;
+
+  const initials = `${session?.user?.firstName?.[0] || ""}${session?.user?.lastName?.[0] || ""}`.toUpperCase() || "U";
 
   const statusConfig: Record<string, { label: string; dot: string }> = {
     ONLINE: { label: "Online", dot: "bg-green-500" },
@@ -125,7 +140,9 @@ export function TopNav() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/60 bg-background/85 backdrop-blur-xl shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/60 bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(30,35,90,0.08)]">
+      {/* Gradient accent line on top */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-indigo-500 via-pink-500 to-amber-400" />
       <nav className="mx-auto flex h-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex shrink-0 items-center gap-3">
           {tenant.logoUrl ? (
@@ -135,7 +152,7 @@ export function TopNav() {
               className="h-14 w-auto max-w-[140px] object-contain"
             />
           ) : (
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md">
               <LayoutDashboard className="h-5 w-5" />
             </span>
           )}
@@ -154,7 +171,7 @@ export function TopNav() {
                       <Link
                         href={enabled ? item.href : "#"}
                         onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                        className="relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary to-accent text-white shadow-sm"
+                        className="relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-accent/30"
                       >
                         <Icon className="h-4 w-4 text-white" />
                         <span className="hidden xl:inline">{item.label}</span>
@@ -168,14 +185,16 @@ export function TopNav() {
                     <Link
                       href={enabled ? item.href : "#"}
                       onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                      className={`group relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium transition-all hover:shadow-sm text-muted-foreground hover:text-foreground ${
-                        !enabled ? "opacity-50 cursor-not-allowed" : ""
+                      className={`group relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-medium transition-all hover:-translate-y-0.5 ${
+                        enabled ? "hover:bg-accent/10" : "opacity-50 cursor-not-allowed"
                       }`}
                     >
-                      <span className={`flex h-7 w-7 items-center justify-center rounded-full bg-accent/10 transition-colors ${item.color} ${item.tint}`}>
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${item.grad} text-white shadow-md transition-all group-hover:scale-110 group-hover:shadow-lg`}>
                         <Icon className="h-4 w-4" />
                       </span>
-                      <span className="hidden xl:inline">{item.label}</span>
+                      <span className="hidden xl:inline text-muted-foreground group-hover:text-foreground transition-colors">
+                        {item.label}
+                      </span>
                       {!enabled && <Lock className="h-3.5 w-3.5" />}
                     </Link>
                   </li>
@@ -183,25 +202,30 @@ export function TopNav() {
               })}
             </ul>
 
-            <div className="flex shrink-0 items-center gap-3 pl-2">
+            <div className="flex shrink-0 items-center gap-2 pl-2">
+              {/* Status */}
               <Badge
                 variant="outline"
-                className="hidden sm:inline-flex shrink-0 items-center gap-1.5 px-3 py-1"
+                className="hidden sm:inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1.5 bg-white/70 border-border/70 shadow-sm"
               >
-                <span className={`h-2 w-2 rounded-full ${currentStatus.dot}`} />
-                <span className="text-xs">{currentStatus.label}</span>
+                <span className="relative flex h-2 w-2">
+                  <span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${currentStatus.dot}`} />
+                  <span className={`relative inline-flex h-2 w-2 rounded-full ${currentStatus.dot}`} />
+                </span>
+                <span className="text-xs font-medium">{currentStatus.label}</span>
               </Badge>
 
+              {/* Notifications */}
               <DropdownMenu onOpenChange={(open) => {
                   if (open && unreadCount > 0) {
                     fetch("/api/notifications", { method: "PATCH" }).then(() => refreshNotifications());
                   }
                 }}>
                 <DropdownMenuTrigger>
-                  <Button variant="ghost" size="icon" className="relative">
+                  <Button variant="ghost" size="icon" className="relative h-9 w-9 rounded-full bg-white/70 border border-border/70 shadow-sm hover:bg-white">
                     <Bell className="h-5 w-5" />
                     {unreadCount > 0 && (
-                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
+                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-pink-600 text-[10px] font-bold text-white shadow">
                         {unreadCount > 9 ? "9+" : unreadCount}
                       </span>
                     )}
@@ -242,20 +266,26 @@ export function TopNav() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
+              {/* Profile */}
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <User className="h-5 w-5" />
-                  </Button>
+                  <span className="flex h-9 w-9 shrink-0 cursor-pointer select-none items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-sm font-bold text-white shadow-lg shadow-accent/30 ring-2 ring-white transition-transform hover:scale-105">
+                    {initials}
+                  </span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
-                  <div className="px-3 py-2 border-b">
-                    <p className="text-sm font-medium">
-                      {session?.user?.firstName} {session?.user?.lastName}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {session?.user?.email}
-                    </p>
+                  <div className="px-3 py-2 border-b flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-sm font-bold text-white">
+                      {initials}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium truncate">
+                        {session?.user?.firstName} {session?.user?.lastName}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {session?.user?.email}
+                      </p>
+                    </div>
                   </div>
                   {role === "STUDENT" && (
                     <DropdownMenuItem>
@@ -284,7 +314,7 @@ export function TopNav() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden"
+                className="md:hidden h-9 w-9 rounded-full bg-white/70 border border-border/70 shadow-sm"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -301,7 +331,7 @@ export function TopNav() {
       </nav>
 
       {session && mobileMenuOpen && (
-        <div className="md:hidden border-t bg-background">
+        <div className="md:hidden border-t bg-white/95">
           <ul className="grid grid-cols-2 gap-2 px-4 py-3">
             {navItems.map((item) => {
               const enabled = canShowItem(item);
@@ -322,11 +352,11 @@ export function TopNav() {
                     } ${!enabled ? "opacity-50" : ""}`}
                   >
                     <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
-                        isActive ? "bg-white/20" : "bg-accent/10"
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.grad} text-white ${
+                        isActive ? "" : "shadow-sm"
                       }`}
                     >
-                      <Icon className={`h-4 w-4 ${isActive ? "text-white" : item.color}`} />
+                      <Icon className="h-4 w-4" />
                     </span>
                     <span className="truncate">{item.label}</span>
                     {!enabled && <Lock className="h-3.5 w-3.5 ml-auto" />}
