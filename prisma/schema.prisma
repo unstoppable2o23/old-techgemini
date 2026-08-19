@@ -304,7 +304,8 @@ model University {
 
 model IndianInstitution {
   id                    String  @id @default(cuid())
-  aisheCode             String  @unique
+  aisheCode             String? @unique
+  wdId                  String? @unique
   name                  String
   type                  String
   state                 String
@@ -316,12 +317,14 @@ model IndianInstitution {
   management            String?
   universityAisheCode   String?
   universityName        String?
+  source                String  @default("aishe")
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
   @@index([type, state])
   @@index([name])
   @@index([state])
+  @@index([source])
 }
 
 model Career {
