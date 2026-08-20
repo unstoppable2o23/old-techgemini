@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
@@ -90,6 +90,14 @@ export function TopNav() {
   const { status } = usePresence();
   const { notifications, unreadCount, refresh: refreshNotifications } = useNotifications();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   if (pathname.startsWith("/auth")) return null;
 
@@ -135,9 +143,14 @@ export function TopNav() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/60 bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(30,35,90,0.08)]">
-      {/* Gradient accent line on top */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#c850c0] to-[#4158d0]" />
+    <header className={`fixed top-0 left-0 right-0 z-50 h-16 border-b transition-all duration-300 ${scrolled ? "border-border/80 bg-white/95 shadow-[0_10px_40px_rgba(30,35,90,0.14)] backdrop-blur-xl" : "border-border/60 bg-white/80 shadow-[0_8px_30px_rgba(30,35,90,0.08)] backdrop-blur-xl"}`}>
+      {/* Dynamic accent line: animated sweeping light */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-accent/40 via-accent to-accent/40 bg-[length:200%_100%] animate-[accent-sweep_4s_linear_infinite]" />
+      {/* Floating glow orbs for a dynamic backdrop */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-12 left-[18%] h-28 w-28 rounded-full bg-accent/15 blur-2xl animate-[orb-float_9s_ease-in-out_infinite]" />
+        <div className="absolute -top-14 right-[28%] h-32 w-32 rounded-full bg-primary/10 blur-2xl animate-[orb-float_12s_ease-in-out_infinite_reverse]" />
+      </div>
       <nav className="mx-auto flex h-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex shrink-0 items-center gap-3">
           <Link href="/dashboard" className="flex items-center">
@@ -168,9 +181,10 @@ export function TopNav() {
                       <Link
                         href={enabled ? item.href : "#"}
                         onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                        className="relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-accent/30"
+                        className="group relative inline-flex shrink-0 items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-3 py-1.5 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/40"
                       >
-                        <Icon className="h-4 w-4 text-white" />
+                        <span className="pointer-events-none absolute inset-y-0 w-1/3 bg-white/25 blur-sm animate-[nav-sheen_3.2s_ease-in-out_infinite]" />
+                        <Icon className="h-4 w-4 text-white transition-transform duration-300 group-hover:scale-110" />
                         <span className="hidden xl:inline">{item.label}</span>
                         {!enabled && <Lock className="h-3.5 w-3.5" />}
                       </Link>
@@ -182,17 +196,19 @@ export function TopNav() {
                     <Link
                       href={enabled ? item.href : "#"}
                       onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                      className={`group relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-medium transition-all hover:-translate-y-0.5 ${
+                      className={`group relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
                         enabled ? "hover:bg-accent/10" : "opacity-50 cursor-not-allowed"
                       }`}
                     >
-                      <span className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${item.grad} text-white shadow-md transition-all group-hover:scale-110 group-hover:shadow-lg`}>
-                        <Icon className="h-4 w-4" />
+                      <span className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${item.grad} text-white shadow-md transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:shadow-lg`}>
+                        <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                        <span className="absolute inset-0 rounded-full ring-2 ring-accent/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </span>
                       <span className="hidden xl:inline text-muted-foreground group-hover:text-foreground transition-colors">
                         {item.label}
                       </span>
                       {!enabled && <Lock className="h-3.5 w-3.5" />}
+                      <span className="pointer-events-none absolute -bottom-0.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-accent opacity-0 transition-all duration-300 group-hover:w-[70%] group-hover:opacity-100" />
                     </Link>
                   </li>
                 );
