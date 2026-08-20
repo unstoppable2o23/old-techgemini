@@ -20,8 +20,8 @@ const defaultConfig: TenantConfig = {
   tenantId: "",
   brandName: "",
   logoUrl: "",
-  primaryColor: "#0F172A",
-  accentColor: "#4F46E5",
+  primaryColor: "#2563EB",
+  accentColor: "#2563EB",
 };
 
 const TenantContext = createContext<TenantConfig>(defaultConfig);

@@ -196,9 +196,9 @@ export function TopNav() {
                         enabled ? "hover:bg-accent/10" : "opacity-50 cursor-not-allowed"
                       }`}
                     >
-                      <span className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 ring-1 ring-inset ring-indigo-100 transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:bg-indigo-100 group-hover:text-indigo-700 group-hover:shadow-md`}>
+                      <span className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-600 ring-1 ring-inset ring-blue-100 transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-blue-700 group-hover:shadow-md`}>
                         <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="absolute inset-0 rounded-full ring-2 ring-indigo-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <span className="absolute inset-0 rounded-full ring-2 ring-blue-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </span>
                       <span className="hidden xl:inline text-muted-foreground group-hover:text-foreground transition-colors">
                         {item.label}
@@ -360,7 +360,7 @@ export function TopNav() {
                         : "border-border text-muted-foreground bg-card hover:bg-accent/5"
                     } ${!enabled ? "opacity-50" : ""}`}
                   >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                       <Icon className="h-4 w-4" />
                     </span>
                     <span className="truncate">{item.label}</span>

@@ -79,7 +79,7 @@ export default function CalendarPage() {
   const statusMeta: Record<string, { chip: string; text: string; label: string }> = {
     PENDING: { chip: "from-amber-400 to-orange-500", text: "text-amber-600", label: "Pending" },
     CONFIRMED: { chip: "from-emerald-400 to-teal-600", text: "text-emerald-600", label: "Confirmed" },
-    COMPLETED: { chip: "from-blue-400 to-indigo-600", text: "text-blue-600", label: "Completed" },
+    COMPLETED: { chip: "from-blue-400 to-blue-600", text: "text-blue-600", label: "Completed" },
     CANCELLED: { chip: "from-gray-400 to-gray-500", text: "text-muted-foreground", label: "Cancelled" },
   };
   const statusIcon: Record<string, LucideIcon> = {

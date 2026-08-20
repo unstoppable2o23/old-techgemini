@@ -27,8 +27,8 @@ export default async function RootLayout({
 
   let brandName = "";
   let logoUrl = "";
-  let primaryColor = "#0F172A";
-  let accentColor = "#4F46E5";
+  let primaryColor = "#2563EB";
+  let accentColor = "#2563EB";
 
   // Authoritative tenant comes from the authenticated session. For the login
   // page (no session) we fall back to the request subdomain and finally to the

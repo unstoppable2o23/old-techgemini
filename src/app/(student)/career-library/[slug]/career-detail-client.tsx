@@ -29,10 +29,10 @@ const DEMAND_STYLES: Record<string, string> = {
 };
 
 const STAT_STYLES = [
-  { icon: IndianRupee, label: "Entry Salary", grad: "from-indigo-500 to-blue-500" },
-  { icon: Wallet, label: "Senior Salary", grad: "from-indigo-500 to-blue-500" },
-  { icon: TrendingUp, label: "Job Growth", grad: "from-indigo-500 to-blue-500" },
-  { icon: Landmark, label: "Top Industries", grad: "from-indigo-500 to-blue-500" },
+  { icon: IndianRupee, label: "Entry Salary", grad: "from-blue-500 to-blue-500" },
+  { icon: Wallet, label: "Senior Salary", grad: "from-blue-500 to-blue-500" },
+  { icon: TrendingUp, label: "Job Growth", grad: "from-blue-500 to-blue-500" },
+  { icon: Landmark, label: "Top Industries", grad: "from-blue-500 to-blue-500" },
 ];
 
 type OptionItem = { title?: string; description?: string };
@@ -171,7 +171,7 @@ export default function CareerDetailClient({ career }: { career: any }) {
       )}
 
       <div>
-        <SectionHeader icon={GraduationCap} tint="from-indigo-500 to-blue-500">Eligibility &amp; Requirements</SectionHeader>
+        <SectionHeader icon={GraduationCap} tint="from-blue-500 to-blue-500">Eligibility &amp; Requirements</SectionHeader>
         <div className="space-y-2.5 rounded-2xl border bg-card p-5">
           {career.eligibility.map((e: string, i: number) => (
             <li key={i} className="flex items-start gap-2 text-sm list-none">
@@ -183,7 +183,7 @@ export default function CareerDetailClient({ career }: { career: any }) {
       </div>
 
       <div>
-        <SectionHeader icon={Users} tint="from-indigo-500 to-blue-500">Who Should Pursue This?</SectionHeader>
+        <SectionHeader icon={Users} tint="from-blue-500 to-blue-500">Who Should Pursue This?</SectionHeader>
         <div className="space-y-2.5 rounded-2xl border bg-card p-5">
           {career.whoShouldPursue.map((w: string, i: number) => (
             <li key={i} className="flex items-start gap-2 text-sm list-none">
@@ -195,7 +195,7 @@ export default function CareerDetailClient({ career }: { career: any }) {
       </div>
 
       <div>
-        <SectionHeader icon={Clock} tint="from-indigo-500 to-blue-500">Work Nature &amp; Reality</SectionHeader>
+        <SectionHeader icon={Clock} tint="from-blue-500 to-blue-500">Work Nature &amp; Reality</SectionHeader>
         <div className="rounded-2xl border bg-card p-5">
           <p className="text-sm text-muted-foreground mb-3">{career.workNatureDesc}</p>
           <div className="space-y-2.5">
@@ -211,7 +211,7 @@ export default function CareerDetailClient({ career }: { career: any }) {
 
       {pathways.length > 0 && (
         <div>
-          <SectionHeader icon={Target} tint="from-indigo-500 to-blue-500">Career Pathways</SectionHeader>
+          <SectionHeader icon={Target} tint="from-blue-500 to-blue-500">Career Pathways</SectionHeader>
           <div className="space-y-3">
             {visiblePathways.map((p: Pathway, i: number) => (
               <div key={i} className="overflow-hidden rounded-2xl border bg-card">
@@ -248,23 +248,23 @@ export default function CareerDetailClient({ career }: { career: any }) {
       )}
 
       <div>
-        <SectionHeader icon={Briefcase} tint="from-indigo-500 to-blue-500">Career Options</SectionHeader>
+        <SectionHeader icon={Briefcase} tint="from-blue-500 to-blue-500">Career Options</SectionHeader>
         <div className="space-y-2.5">
           {career.conventionalOptions?.length > 0 && (
             <Accordion icon={<Briefcase className="h-4 w-4" />} title="Conventional Options" tint="from-slate-500 to-slate-600" items={career.conventionalOptions} />
           )}
           {career.newAgeOptions?.length > 0 && (
-            <Accordion icon={<Sparkles className="h-4 w-4" />} title="New-Age Options" tint="from-indigo-500 to-blue-500" items={career.newAgeOptions} />
+            <Accordion icon={<Sparkles className="h-4 w-4" />} title="New-Age Options" tint="from-blue-500 to-blue-500" items={career.newAgeOptions} />
           )}
           {career.aiRelatedOptions?.length > 0 && (
-            <Accordion icon={<Cpu className="h-4 w-4" />} title="AI-Related Options" tint="from-indigo-500 to-blue-500" items={career.aiRelatedOptions} />
+            <Accordion icon={<Cpu className="h-4 w-4" />} title="AI-Related Options" tint="from-blue-500 to-blue-500" items={career.aiRelatedOptions} />
           )}
         </div>
       </div>
 
       {faqs.length > 0 && (
         <div>
-          <SectionHeader icon={Sparkles} tint="from-indigo-500 to-blue-500">FAQs</SectionHeader>
+          <SectionHeader icon={Sparkles} tint="from-blue-500 to-blue-500">FAQs</SectionHeader>
           <div className="space-y-2.5">
             {faqs.map((f, i) => (
               <div key={i} className="rounded-xl border bg-card p-4 transition-shadow hover:shadow-md">
