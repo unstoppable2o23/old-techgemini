@@ -66,16 +66,4 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  @keyframes accent-sweep {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-  @keyframes nav-sheen {
-    0% { transform: translateX(-130%) skewX(-20deg); }
-    55%, 100% { transform: translateX(230%) skewX(-20deg); }
-  }
-  @keyframes orb-float {
-    0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.5; }
-    50% { transform: translate3d(14px, -10px, 0) scale(1.08); opacity: 0.9; }
-  }
 }

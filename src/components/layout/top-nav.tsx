@@ -143,14 +143,7 @@ export function TopNav() {
   }
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 h-16 border-b transition-all duration-300 ${scrolled ? "border-border/80 bg-white/95 shadow-[0_10px_40px_rgba(30,35,90,0.14)] backdrop-blur-xl" : "border-border/60 bg-white/80 shadow-[0_8px_30px_rgba(30,35,90,0.08)] backdrop-blur-xl"}`}>
-      {/* Dynamic accent line: animated sweeping light */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-accent/40 via-accent to-accent/40 bg-[length:200%_100%] animate-[accent-sweep_4s_linear_infinite]" />
-      {/* Floating glow orbs for a dynamic backdrop */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-12 left-[18%] h-28 w-28 rounded-full bg-accent/15 blur-2xl animate-[orb-float_9s_ease-in-out_infinite]" />
-        <div className="absolute -top-14 right-[28%] h-32 w-32 rounded-full bg-primary/10 blur-2xl animate-[orb-float_12s_ease-in-out_infinite_reverse]" />
-      </div>
+    <header className={`fixed top-0 left-0 right-0 z-50 h-16 border-b border-gray-200 transition-all duration-300 ${scrolled ? "bg-white/95 shadow-[0_4px_24px_rgba(15,23,42,0.08)] backdrop-blur" : "bg-white"}`}>
       <nav className="mx-auto flex h-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex shrink-0 items-center gap-3">
           <Link href="/dashboard" className="flex items-center">
@@ -161,7 +154,7 @@ export function TopNav() {
                 className="h-14 w-auto max-w-[140px] object-contain"
               />
             ) : (
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-900 text-white shadow-sm">
                 <LayoutDashboard className="h-5 w-5" />
               </span>
             )}
@@ -174,19 +167,18 @@ export function TopNav() {
               {navItems.map((item) => {
                 const enabled = canShowItem(item);
                 const isActive = pathname.startsWith(item.href);
-                const Icon = item.icon;
                 if (isActive) {
                   return (
                     <li key={item.href}>
                       <Link
                         href={enabled ? item.href : "#"}
                         onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                        className="group relative inline-flex shrink-0 items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-3 py-1.5 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/40"
+                        title={!enabled ? "Not enabled for you yet" : undefined}
+                        className="group relative inline-flex shrink-0 items-center gap-1.5 px-2.5 py-2 text-sm font-semibold text-gray-900 transition-colors"
                       >
-                        <span className="pointer-events-none absolute inset-y-0 w-1/3 bg-white/25 blur-sm animate-[nav-sheen_3.2s_ease-in-out_infinite]" />
-                        <Icon className="h-4 w-4 text-white transition-transform duration-300 group-hover:scale-110" />
-                        <span className="hidden xl:inline">{item.label}</span>
-                        {!enabled && <Lock className="h-3.5 w-3.5" />}
+                        {item.label}
+                        {!enabled && <Lock className="h-3.5 w-3.5 text-gray-400" />}
+                        <span className="absolute inset-x-2 bottom-1 h-0.5 rounded-full bg-gray-900" />
                       </Link>
                     </li>
                   );
@@ -196,19 +188,14 @@ export function TopNav() {
                     <Link
                       href={enabled ? item.href : "#"}
                       onClick={(e: React.MouseEvent) => handleNavClick(e, item)}
-                      className={`group relative inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                        enabled ? "hover:bg-accent/10" : "opacity-50 cursor-not-allowed"
+                      title={!enabled ? "Not enabled for you yet" : undefined}
+                      className={`group relative inline-flex shrink-0 items-center gap-1.5 px-2.5 py-2 text-sm font-medium transition-colors ${
+                        enabled ? "text-gray-500 hover:text-gray-900" : "cursor-not-allowed text-gray-300"
                       }`}
                     >
-                      <span className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${item.grad} text-white shadow-md transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:shadow-lg`}>
-                        <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="absolute inset-0 rounded-full ring-2 ring-accent/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      </span>
-                      <span className="hidden xl:inline text-muted-foreground group-hover:text-foreground transition-colors">
-                        {item.label}
-                      </span>
-                      {!enabled && <Lock className="h-3.5 w-3.5" />}
-                      <span className="pointer-events-none absolute -bottom-0.5 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-accent opacity-0 transition-all duration-300 group-hover:w-[70%] group-hover:opacity-100" />
+                      {item.label}
+                      {!enabled && <Lock className="h-3.5 w-3.5 text-gray-300" />}
+                      <span className="absolute inset-x-2 bottom-1 h-0.5 scale-x-0 rounded-full bg-gray-900 transition-transform duration-300 group-hover:scale-x-100" />
                     </Link>
                   </li>
                 );
@@ -219,7 +206,7 @@ export function TopNav() {
               {/* Status */}
               <Badge
                 variant="outline"
-                className="hidden sm:inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1.5 bg-white/70 border-border/70 shadow-sm"
+                className="hidden sm:inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1 border border-gray-200 bg-white text-gray-600"
               >
                 <span className="relative flex h-2 w-2">
                   <span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${currentStatus.dot}`} />
@@ -235,10 +222,10 @@ export function TopNav() {
                   }
                 }}>
                 <DropdownMenuTrigger>
-                  <Button variant="ghost" size="icon" className="relative h-9 w-9 rounded-full bg-white/70 border border-border/70 shadow-sm hover:bg-white">
+                  <Button variant="ghost" size="icon" className="relative h-9 w-9 rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900">
                     <Bell className="h-5 w-5" />
                     {unreadCount > 0 && (
-                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-pink-600 text-[10px] font-bold text-white shadow">
+                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm">
                         {unreadCount > 9 ? "9+" : unreadCount}
                       </span>
                     )}
@@ -282,13 +269,13 @@ export function TopNav() {
               {/* Profile */}
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <span className="flex h-9 w-9 shrink-0 cursor-pointer select-none items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-sm font-bold text-white shadow-lg shadow-accent/30 ring-2 ring-white transition-transform hover:scale-105">
+                  <span className="flex h-9 w-9 shrink-0 cursor-pointer select-none items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white shadow-sm ring-2 ring-white transition-transform hover:scale-105">
                     {initials}
                   </span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                   <div className="px-3 py-2 border-b flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-sm font-bold text-white">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white">
                       {initials}
                     </span>
                     <div className="min-w-0">
@@ -327,7 +314,7 @@ export function TopNav() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden h-9 w-9 rounded-full bg-white/70 border border-border/70 shadow-sm"
+                className="md:hidden h-9 w-9 rounded-full text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -335,9 +322,14 @@ export function TopNav() {
             </div>
           </>
         ) : (
-          <div className="flex items-center gap-3">
-            <Link href="/auth/login">
-              <Button variant="default" size="sm">Sign In</Button>
+          <div className="flex items-center gap-6">
+            <Link href="/auth/login" className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900">
+              Sign in
+            </Link>
+            <Link href="/auth/register">
+              <Button size="sm" className="rounded-full bg-gray-900 px-5 text-white shadow-sm hover:bg-gray-800">
+                Get started
+              </Button>
             </Link>
           </div>
         )}
@@ -345,11 +337,10 @@ export function TopNav() {
 
       {session && mobileMenuOpen && (
         <div className="md:hidden border-t bg-white/95">
-          <ul className="grid grid-cols-2 gap-2 px-4 py-3">
+          <ul className="grid grid-cols-2 gap-1 px-4 py-3">
             {navItems.map((item) => {
               const enabled = canShowItem(item);
               const isActive = pathname.startsWith(item.href);
-              const Icon = item.icon;
               return (
                 <li key={item.href}>
                   <Link
@@ -358,21 +349,14 @@ export function TopNav() {
                       handleNavClick(e, item);
                       setMobileMenuOpen(false);
                     }}
-                    className={`flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium border transition-colors ${
+                    className={`flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                       isActive
-                        ? "bg-gradient-to-r from-primary to-accent text-white border-transparent shadow-sm"
-                        : "border-border text-muted-foreground bg-card hover:bg-accent/5"
-                    } ${!enabled ? "opacity-50" : ""}`}
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-gray-600 hover:bg-gray-50"
+                    } ${!enabled ? "opacity-40" : ""}`}
                   >
-                    <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.grad} text-white ${
-                        isActive ? "" : "shadow-sm"
-                      }`}
-                    >
-                      <Icon className="h-4 w-4" />
-                    </span>
                     <span className="truncate">{item.label}</span>
-                    {!enabled && <Lock className="h-3.5 w-3.5 ml-auto" />}
+                    {!enabled && <Lock className="h-3.5 w-3.5 ml-auto text-gray-300" />}
                   </Link>
                 </li>
               );
