@@ -22,9 +22,13 @@ export async function GET(
     if (!cp || student.studentProfile?.counselorId !== cp.id) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
+  } else if (session.user.role === "STUDENT" && student.id !== session.user.id) {
+    // Students may only read their own profile.
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  return NextResponse.json({ student });
+  const { passwordHash: _ph, ...safe } = student;
+  return NextResponse.json({ student: safe });
 }
 
 export async function PATCH(
@@ -46,6 +50,9 @@ export async function PATCH(
     if (!cp || student.studentProfile?.counselorId !== cp.id) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
+  } else if (session.user.role === "STUDENT" && student.id !== session.user.id) {
+    // Students may only edit their own profile.
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   try {
@@ -99,7 +106,8 @@ export async function PATCH(
       include: { studentProfile: true },
     });
 
-    return NextResponse.json({ student: updated });
+    const { passwordHash: _ph, ...safe } = updated!;
+    return NextResponse.json({ student: safe });
   } catch (error) {
     console.error("Failed to update student:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

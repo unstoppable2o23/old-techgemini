@@ -57,7 +57,8 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({ student }, { status: 201 });
+    const { passwordHash: _ph, ...safe } = student;
+    return NextResponse.json({ student: safe }, { status: 201 });
   } catch (error) {
     console.error("Failed to create student:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

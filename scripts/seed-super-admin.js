@@ -4,8 +4,20 @@ const bcrypt = require("bcryptjs");
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = "admin@test.com";
-  const password = "admin123!";
+  const email = process.env.SEED_ADMIN_EMAIL;
+  const password = process.env.SEED_ADMIN_PASSWORD;
+
+  if (!email || !password) {
+    console.warn(
+      "No SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD provided. Skipping super admin creation."
+    );
+    return;
+  }
+
+  if (password.length < 12) {
+    console.warn("SEED_ADMIN_PASSWORD must be at least 12 characters. Skipping.");
+    return;
+  }
 
   let tenant = await prisma.tenant.findFirst();
   if (!tenant) {
@@ -41,7 +53,6 @@ async function main() {
 
   console.log("Super admin created:");
   console.log(`  Email:    ${email}`);
-  console.log(`  Password: ${password}`);
   console.log(`  Role:     SUPER_ADMIN`);
 }
 

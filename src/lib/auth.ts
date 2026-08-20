@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "./prisma";
+import { rateLimit } from "./rate-limit";
 
 export const authOptions = {
   providers: [
@@ -12,7 +13,16 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email and password required");
+          throw new Error("Invalid credentials");
+        }
+
+        const limited = await rateLimit(
+          `login:${credentials.email.trim().toLowerCase()}`,
+          8,
+          60
+        );
+        if (!limited.ok) {
+          throw new Error("Too many attempts. Please try again later.");
         }
 
         const user = await prisma.user.findUnique({
@@ -20,16 +30,10 @@ export const authOptions = {
           include: { tenant: true },
         });
 
+        // Generic error for both "no such user" and "wrong password" to avoid
+        // account enumeration.
         if (!user) {
           throw new Error("Invalid credentials");
-        }
-
-        if (!user.isActive) {
-          throw new Error("Account is deactivated");
-        }
-
-        if (!user.tenant.isActive) {
-          throw new Error("Tenant account is inactive");
         }
 
         const isValid = await bcrypt.compare(
@@ -37,7 +41,7 @@ export const authOptions = {
           user.passwordHash
         );
 
-        if (!isValid) {
+        if (!isValid || !user.isActive || !user.tenant.isActive) {
           throw new Error("Invalid credentials");
         }
 

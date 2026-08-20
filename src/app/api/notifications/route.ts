@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redis } from "@/lib/redis";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
@@ -47,10 +48,38 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const limited = await rateLimit(`notifications:${session.user.id}`, 30, 60);
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Too many notifications. Please slow down." },
+        { status: 429 }
+      );
+    }
+
     const { type, title, message, linkUrl, recipientId } = await request.json();
 
     if (!type || !title || !message || !recipientId) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    const isStaff =
+      session.user.role === "COUNSELOR" ||
+      session.user.role === "SUPER_ADMIN" ||
+      session.user.role === "UNIVERSITY_ADMIN";
+
+    // Students may only notify themselves; only staff may notify others,
+    // and only within their own tenant.
+    if (!isStaff && recipientId !== session.user.id) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    const recipient = await prisma.user.findUnique({
+      where: { id: recipientId },
+      select: { id: true, tenantId: true },
+    });
+    if (!recipient) return NextResponse.json({ error: "Recipient not found" }, { status: 404 });
+    if (recipient.tenantId !== session.user.tenantId) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const notification = await prisma.notification.create({

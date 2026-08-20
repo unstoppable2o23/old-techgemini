@@ -70,8 +70,7 @@ export default function CalendarPage() {
   }
 
   function viewProof(url: string) {
-    const w = window.open();
-    if (w) w.document.write(`<img src="${url}" style="max-width:100%;max-height:100vh" />`);
+    setPreviewUrl(url);
   }
 
   const groups: Record<string, Appointment[]> = { PENDING: [], CONFIRMED: [], COMPLETED: [], CANCELLED: [] };
@@ -220,6 +219,18 @@ export default function CalendarPage() {
             </Card>
           );
         })
+      )}
+
+      {previewUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={() => setPreviewUrl(null)}>
+          <div className="max-h-full max-w-full" onClick={(e) => e.stopPropagation()}>
+            {previewUrl.startsWith("data:application/pdf") ? (
+              <iframe src={previewUrl} title="Payment proof" className="h-[80vh] w-[90vw] max-w-4xl rounded-xl bg-white shadow-2xl" />
+            ) : (
+              <img src={previewUrl} alt="Payment proof" className="max-h-[80vh] max-w-full rounded-xl shadow-2xl" />
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

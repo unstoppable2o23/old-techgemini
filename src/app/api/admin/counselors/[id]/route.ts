@@ -66,7 +66,8 @@ export async function PATCH(
       include: { counselorProfile: true },
     });
 
-    return NextResponse.json({ user: updated });
+    const { passwordHash: _ph, ...safe } = updated!;
+    return NextResponse.json({ user: safe });
   } catch (error) {
     console.error("Failed to update counselor:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

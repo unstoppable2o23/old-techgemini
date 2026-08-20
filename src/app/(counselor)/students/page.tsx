@@ -34,5 +34,26 @@ export default async function StudentManagementPage() {
     orderBy: { createdAt: "desc" },
   });
 
-  return <StudentManagementClient students={students} />;
+  const safeStudents = students.map((s) => {
+    const { passwordHash: _ph, studentProfile, ...rest } = s;
+    const safeProfile = studentProfile
+      ? {
+          ...studentProfile,
+          counselor: studentProfile.counselor
+            ? {
+                ...studentProfile.counselor,
+                user: studentProfile.counselor.user
+                  ? (() => {
+                      const { passwordHash: _phu, ...userSafe } = studentProfile.counselor.user!;
+                      return userSafe;
+                    })()
+                  : null,
+              }
+            : null,
+        }
+      : null;
+    return { ...rest, studentProfile: safeProfile };
+  });
+
+  return <StudentManagementClient students={safeStudents} />;
 }

@@ -16,7 +16,9 @@ export async function GET() {
     orderBy: { createdAt: "desc" },
   });
 
-  return NextResponse.json({ counselors });
+  const safeCounselors = counselors.map(({ passwordHash: _ph, ...rest }) => rest);
+
+  return NextResponse.json({ counselors: safeCounselors });
 }
 
 export async function POST(request: NextRequest) {
@@ -62,7 +64,8 @@ export async function POST(request: NextRequest) {
       include: { counselorProfile: true },
     });
 
-    return NextResponse.json({ user }, { status: 201 });
+    const { passwordHash: _ph, ...safe } = user;
+    return NextResponse.json({ user: safe }, { status: 201 });
   } catch (error) {
     console.error("Failed to create counselor:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

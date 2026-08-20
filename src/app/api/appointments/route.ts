@@ -90,6 +90,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No counselor assigned" }, { status: 400 });
     }
 
+    // Server-side feature-flag enforcement: the client-side lock is cosmetic.
+    const featureAccess = await prisma.studentFeatureAccess.findUnique({
+      where: { studentProfileId: studentProfile.id },
+    });
+    if (!featureAccess?.appointments) {
+      return NextResponse.json(
+        { error: "Appointments are not enabled for your account. Contact your counselor." },
+        { status: 403 }
+      );
+    }
+
     const appointment = await prisma.appointment.create({
       data: {
         title,

@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
+    const limited = await rateLimit(`register:${clientIp(request)}`, 10, 600);
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Too many signup attempts. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { firstName, lastName, email, password, dateOfBirth, mobile, gender, gradeLevel, studyLevel, exams } = body;
 
@@ -27,8 +36,9 @@ export async function POST(request: NextRequest) {
 
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) {
+      // Generic message so unauthenticated callers cannot enumerate accounts.
       return NextResponse.json(
-        { error: "Email already in use" },
+        { error: "Unable to create account with these details" },
         { status: 409 }
       );
     }
