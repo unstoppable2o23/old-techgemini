@@ -57,24 +57,24 @@ const ICONS: Record<string, IconType> = {
 };
 
 const GRADIENTS: Record<string, string> = {
-  barChart: "from-blue-500 to-indigo-600",
-  cpu: "from-cyan-500 to-blue-600",
-  target: "from-rose-500 to-pink-600",
-  trendingUp: "from-emerald-500 to-teal-600",
-  zap: "from-purple-500 to-fuchsia-600",
-  building: "from-orange-500 to-amber-600",
-  briefcase: "from-slate-500 to-slate-700",
-  users: "from-red-500 to-rose-600",
-  globe: "from-sky-500 to-cyan-600",
+  barChart: "from-indigo-500 to-blue-600",
+  cpu: "from-indigo-500 to-blue-600",
+  target: "from-indigo-500 to-blue-600",
+  trendingUp: "from-indigo-500 to-blue-600",
+  zap: "from-indigo-500 to-blue-600",
+  building: "from-indigo-500 to-blue-600",
+  briefcase: "from-indigo-500 to-blue-600",
+  users: "from-indigo-500 to-blue-600",
+  globe: "from-indigo-500 to-blue-600",
   generic: "from-indigo-500 to-blue-600",
-  playCircle: "from-purple-500 to-indigo-600",
-  checkCircle: "from-emerald-500 to-green-600",
-  youtube: "from-rose-500 to-red-600",
-  calendar: "from-fuchsia-500 to-pink-600",
-  mapPin: "from-orange-500 to-red-600",
-  volumeHigh: "from-cyan-500 to-teal-600",
-  gradHat: "from-emerald-500 to-cyan-600",
-  sparkles: "from-pink-500 to-rose-600",
+  playCircle: "from-indigo-500 to-blue-600",
+  checkCircle: "from-indigo-500 to-blue-600",
+  youtube: "from-indigo-500 to-blue-600",
+  calendar: "from-indigo-500 to-blue-600",
+  mapPin: "from-indigo-500 to-blue-600",
+  volumeHigh: "from-indigo-500 to-blue-600",
+  gradHat: "from-indigo-500 to-blue-600",
+  sparkles: "from-indigo-500 to-blue-600",
 };
 
 // Original page styling per career (icon + color)
@@ -226,9 +226,9 @@ const TRENDING_BADGES = [
 ];
 
 const STAT_CARDS = [
-  { icon: Compass, label: "Careers Explored", grad: "from-indigo-500 to-violet-600" },
-  { icon: Flame, label: "High Demand", grad: "from-rose-500 to-orange-500" },
-  { icon: Building2, label: "Industry Sectors", grad: "from-cyan-500 to-sky-600" },
+  { icon: Compass, label: "Careers Explored", grad: "from-indigo-500 to-blue-600" },
+  { icon: Flame, label: "High Demand", grad: "from-indigo-500 to-blue-600" },
+  { icon: Building2, label: "Industry Sectors", grad: "from-indigo-500 to-blue-600" },
 ];
 
 // Original page order of all careers (badges cycle by index % 3)
@@ -388,7 +388,7 @@ export default function CareerLibraryClient() {
           </span>
           <h1 className="mt-4 text-3xl md:text-5xl font-bold tracking-tight leading-tight">
             Explore{" "}
-            <span className="bg-gradient-to-r from-rose-300 via-amber-200 to-yellow-200 bg-clip-text text-transparent">
+            <span className="text-indigo-200">
               New Age Careers
             </span>
           </h1>

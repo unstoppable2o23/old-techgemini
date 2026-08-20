@@ -53,10 +53,10 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-8">
-      {/* Page background: pink -> indigo (Colorlib Login V1 palette) */}
+      {/* Page background: indigo -> blue (Colorlib Login V1 structure, professional palette) */}
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(-135deg, #c850c0, #4158d0)" }}
+        style={{ background: "linear-gradient(-135deg, #2563eb, #4f46e5)" }}
       />
       <div className="pointer-events-none absolute -top-32 -left-24 h-[28rem] w-[28rem] rounded-full bg-white/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -right-24 h-[28rem] w-[28rem] rounded-full bg-white/10 blur-3xl" />
@@ -66,7 +66,7 @@ export default function LoginPage() {
         <div className="relative flex flex-col items-center justify-center gap-8 overflow-hidden p-10 lg:flex lg:w-1/2">
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(160deg, #e9b7f0 0%, #9fb8f5 100%)" }}
+            style={{ background: "linear-gradient(160deg, #c7d2fe 0%, #93c5fd 100%)" }}
           />
           <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/40 blur-2xl" />
           <div className="pointer-events-none absolute -bottom-20 -left-16 h-72 w-72 rounded-full bg-indigo-300/40 blur-3xl" />
@@ -106,8 +106,8 @@ export default function LoginPage() {
                 autoComplete="email"
                 className="peer w-full border-0 border-b border-gray-300 bg-transparent px-1 pb-2.5 pr-10 text-sm text-gray-800 outline-none transition-colors placeholder:text-gray-400 focus:border-b-transparent"
               />
-              <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#c850c0] to-[#4158d0] transition-transform duration-300 group-focus-within:scale-x-100" />
-              <Mail className="absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-[#4158d0]" />
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#2563eb] to-[#4f46e5] transition-transform duration-300 group-focus-within:scale-x-100" />
+              <Mail className="absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-[#4f46e5]" />
             </div>
 
             {/* Password */}
@@ -121,14 +121,14 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 className="w-full border-0 border-b border-gray-300 bg-transparent px-1 pb-2.5 pr-10 text-sm text-gray-800 outline-none transition-colors placeholder:text-gray-400 focus:border-b-transparent"
               />
-              <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#c850c0] to-[#4158d0] transition-transform duration-300 group-focus-within:scale-x-100" />
-              <Lock className="absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-[#4158d0]" />
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#2563eb] to-[#4f46e5] transition-transform duration-300 group-focus-within:scale-x-100" />
+              <Lock className="absolute right-0 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-[#4f46e5]" />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#c850c0] to-[#4158d0] py-3 text-sm font-semibold text-white shadow-lg shadow-[#4158d0]/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#4158d0]/40 disabled:pointer-events-none disabled:opacity-60"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2563eb] to-[#4f46e5] py-3 text-sm font-semibold text-white shadow-lg shadow-[#4f46e5]/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#4f46e5]/40 disabled:pointer-events-none disabled:opacity-60"
             >
               {loading ? "Signing in..." : "Login"}
             </button>
@@ -137,7 +137,7 @@ export default function LoginPage() {
           <div className="mt-8 text-center">
             <Link
               href="/auth/register"
-              className="group inline-flex items-center gap-2 font-semibold text-gray-600 transition-colors hover:text-[#4158d0]"
+              className="group inline-flex items-center gap-2 font-semibold text-gray-600 transition-colors hover:text-[#4f46e5]"
             >
               Create your Account
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />

@@ -44,42 +44,38 @@ type NavItem = {
   href: string;
   featureKey?: string;
   icon: LucideIcon;
-  color: string;
-  grad: string;
 };
 
 const COUNSELOR_NAV_ITEMS: NavItem[] = [
-  { label: "Student Management", href: "/students", icon: Users, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
-  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
-  { label: "Career Library", href: "/career-library", icon: Library, color: "text-rose-600", grad: "from-rose-500 to-pink-600" },
-  { label: "Calendar", href: "/calendar", icon: CalendarDays, color: "text-orange-600", grad: "from-orange-500 to-red-500" },
-  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-600", grad: "from-cyan-500 to-teal-600" },
-  { label: "Analytics", href: "/analytics", icon: BarChart3, color: "text-teal-600", grad: "from-teal-500 to-emerald-600" },
+  { label: "Student Management", href: "/students", icon: Users },
+  { label: "Universities", href: "/universities", icon: Building2 },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
+  { label: "Career Library", href: "/career-library", icon: Library },
+  { label: "Calendar", href: "/calendar", icon: CalendarDays },
+  { label: "Messages", href: "/messages", icon: MessageSquare },
+  { label: "Analytics", href: "/analytics", icon: BarChart3 },
 ];
 
 const STUDENT_NAV_ITEMS: NavItem[] = [
-  { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search, color: "text-blue-600", grad: "from-blue-500 to-cyan-600" },
-  { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target, color: "text-emerald-600", grad: "from-emerald-500 to-teal-600" },
-  { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText, color: "text-amber-600", grad: "from-amber-400 to-orange-600" },
-  { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub", icon: Trophy, color: "text-yellow-600", grad: "from-yellow-400 to-amber-600" },
-  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary", icon: Library, color: "text-rose-600", grad: "from-rose-500 to-pink-600" },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
-  { label: "Appointments", href: "/appointments", featureKey: "appointments", icon: CalendarDays, color: "text-orange-600", grad: "from-orange-500 to-red-500" },
-  { label: "Messages", href: "/messages", icon: MessageSquare, color: "text-cyan-600", grad: "from-cyan-500 to-teal-600" },
+  { label: "College Finder", href: "/college-finder", featureKey: "collegeFinder", icon: Search },
+  { label: "AI Odds Calculator", href: "/odds-calculator", featureKey: "aiOddsCalculator", icon: Target },
+  { label: "Mock Tests", href: "/mock-tests", featureKey: "mockTests", icon: FileText },
+  { label: "Scholarships", href: "/scholarships", featureKey: "scholarshipHub", icon: Trophy },
+  { label: "Career Library", href: "/career-library", featureKey: "careerLibrary", icon: Library },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
+  { label: "Appointments", href: "/appointments", featureKey: "appointments", icon: CalendarDays },
+  { label: "Messages", href: "/messages", icon: MessageSquare },
 ];
 
 const UNIVERSITY_ADMIN_NAV_ITEMS: NavItem[] = [
-  { label: "Universities", href: "/universities", icon: Building2, color: "text-blue-600", grad: "from-blue-500 to-indigo-600" },
-  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark, color: "text-violet-600", grad: "from-violet-500 to-purple-600" },
+  { label: "Universities", href: "/universities", icon: Building2 },
+  { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
 ];
 
 const SUPER_ADMIN_EXTRA: NavItem = {
   label: "Counselors",
   href: "/admin/counselors",
   icon: Users,
-  color: "text-fuchsia-600",
-  grad: "from-fuchsia-500 to-pink-600",
 };
 
 export function TopNav() {
@@ -200,9 +196,9 @@ export function TopNav() {
                         enabled ? "hover:bg-accent/10" : "opacity-50 cursor-not-allowed"
                       }`}
                     >
-                      <span className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${item.grad} text-white shadow-md transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:shadow-lg`}>
+                      <span className={`relative flex h-8 w-8 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 ring-1 ring-inset ring-indigo-100 transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:bg-indigo-100 group-hover:text-indigo-700 group-hover:shadow-md`}>
                         <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="absolute inset-0 rounded-full ring-2 ring-accent/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <span className="absolute inset-0 rounded-full ring-2 ring-indigo-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </span>
                       <span className="hidden xl:inline text-muted-foreground group-hover:text-foreground transition-colors">
                         {item.label}
@@ -238,7 +234,7 @@ export function TopNav() {
                   <Button variant="ghost" size="icon" className="relative h-9 w-9 rounded-full bg-white/70 border border-border/70 shadow-sm hover:bg-white">
                     <Bell className="h-5 w-5" />
                     {unreadCount > 0 && (
-                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-pink-600 text-[10px] font-bold text-white shadow">
+                      <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow">
                         {unreadCount > 9 ? "9+" : unreadCount}
                       </span>
                     )}
@@ -364,11 +360,7 @@ export function TopNav() {
                         : "border-border text-muted-foreground bg-card hover:bg-accent/5"
                     } ${!enabled ? "opacity-50" : ""}`}
                   >
-                    <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${item.grad} text-white ${
-                        isActive ? "" : "shadow-sm"
-                      }`}
-                    >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
                       <Icon className="h-4 w-4" />
                     </span>
                     <span className="truncate">{item.label}</span>

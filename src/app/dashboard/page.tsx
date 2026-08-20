@@ -91,10 +91,10 @@ export default async function DashboardPage() {
     });
 
     const stats = [
-      { title: "Total Students", value: studentCount, icon: Users, color: "text-blue-600", hint: "Registered students" },
-      { title: "Tests Completed", value: testCount, icon: FileText, color: "text-purple-600", hint: "All time" },
-      { title: "Upcoming Appointments", value: upcomingAppointments, icon: Calendar, color: "text-green-600", hint: "Confirmed" },
-      { title: "Active Students", value: studentCount, icon: Activity, color: "text-orange-600", hint: "Currently active" },
+      { title: "Total Students", value: studentCount, icon: Users, hint: "Registered students" },
+      { title: "Tests Completed", value: testCount, icon: FileText, hint: "All time" },
+      { title: "Upcoming Appointments", value: upcomingAppointments, icon: Calendar, hint: "Confirmed" },
+      { title: "Active Students", value: studentCount, icon: Activity, hint: "Currently active" },
     ];
 
     return (
@@ -114,24 +114,24 @@ export default async function DashboardPage() {
           <CardHeader><CardTitle>Quick Actions</CardTitle></CardHeader>
           <CardContent className="grid gap-4 md:grid-cols-2">
             <a href="/students" className="group flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/30 transition-transform duration-200 group-hover:scale-110">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/30 transition-transform duration-200 group-hover:scale-110">
                 <Users className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold">Manage Students</p>
                 <p className="text-xs text-muted-foreground">View and configure student access</p>
               </div>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-500" />
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
             </a>
             <a href="/calendar" className="group flex items-center gap-4 rounded-xl border bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/30 transition-transform duration-200 group-hover:scale-110">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/30 transition-transform duration-200 group-hover:scale-110">
                 <Calendar className="h-6 w-6" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold">Calendar</p>
                 <p className="text-xs text-muted-foreground">Manage appointments</p>
               </div>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-orange-500" />
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
             </a>
           </CardContent>
         </Card>
@@ -265,7 +265,7 @@ async function MyStudentsTable({ tenantId, counselorUserId }: { tenantId: string
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/25">
             <Users className="h-5 w-5" />
           </span>
           My Students

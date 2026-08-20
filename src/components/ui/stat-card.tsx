@@ -10,30 +10,30 @@ type StatCardProps = {
 
 const ICON_GRADIENTS: Record<string, string> = {
   indigo: "from-primary to-accent",
-  teal: "from-teal-500 to-emerald-600",
-  amber: "from-amber-500 to-orange-600",
-  rose: "from-rose-500 to-pink-600",
+  teal: "from-primary to-accent",
+  amber: "from-primary to-accent",
+  rose: "from-primary to-accent",
 };
 
 const CHIP_GLOWS: Record<string, string> = {
   indigo: "shadow-primary/25",
-  teal: "shadow-teal-500/25",
-  amber: "shadow-amber-500/25",
-  rose: "shadow-rose-500/25",
+  teal: "shadow-primary/25",
+  amber: "shadow-primary/25",
+  rose: "shadow-primary/25",
 };
 
 const VALUE_COLORS: Record<string, string> = {
   indigo: "text-primary",
-  teal: "text-teal-600",
-  amber: "text-amber-600",
-  rose: "text-rose-600",
+  teal: "text-primary",
+  amber: "text-primary",
+  rose: "text-primary",
 };
 
 const ACCENT_BARS: Record<string, string> = {
   indigo: "from-primary to-accent",
-  teal: "from-teal-500 to-emerald-600",
-  amber: "from-amber-500 to-orange-600",
-  rose: "from-rose-500 to-pink-600",
+  teal: "from-primary to-accent",
+  amber: "from-primary to-accent",
+  rose: "from-primary to-accent",
 };
 
 export function StatCard({ title, value, icon: Icon, hint }: StatCardProps) {

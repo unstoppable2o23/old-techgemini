@@ -231,7 +231,7 @@ export default async function AnalyticsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader><CardTitle className="text-lg flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-sm">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-sm">
               <Users className="h-4 w-4" />
             </span>
             Feature Usage
@@ -265,7 +265,7 @@ export default async function AnalyticsPage() {
 
         <Card>
           <CardHeader><CardTitle className="text-lg flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-sm">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-sm">
               <CalendarCheck className="h-4 w-4" />
             </span>
             Appointment Status
@@ -300,7 +300,7 @@ export default async function AnalyticsPage() {
 
       <Card>
         <CardHeader><CardTitle className="text-lg flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-sm">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-sm">
             <ClipboardCheck className="h-4 w-4" />
           </span>
           Recent Test Results
