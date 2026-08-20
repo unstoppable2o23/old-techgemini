@@ -137,7 +137,7 @@ export function TopNav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/60 bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgba(30,35,90,0.08)]">
       {/* Gradient accent line on top */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-indigo-500 via-pink-500 to-amber-400" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#c850c0] to-[#4158d0]" />
       <nav className="mx-auto flex h-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex shrink-0 items-center gap-3">
           <Link href="/dashboard" className="flex items-center">
