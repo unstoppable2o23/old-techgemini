@@ -28,13 +28,12 @@ export function questionsFor(kind: TestKind): Record<string, RawQuestion> {
   return kind === "stream" ? STREAM_QUESTIONS : IDEAL_QUESTIONS;
 }
 
-export const STUDENTS = [
-  "Alice Johnson",
-  "Bob Smith",
-  "Carla Ruiz",
-  "Dylan Patel",
-  "Emma Wu",
-];
+export type StudentRef = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
 
 function slugify(name: string): string {
   return name.trim().toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -42,6 +41,16 @@ function slugify(name: string): string {
 
 export function tokenFor(student: string, kind: TestKind): string {
   return `${kind === "stream" ? "STREAM" : "IDEAL"}-${slugify(student)}`;
+}
+
+export function tokenForStudent(
+  student: Pick<StudentRef, "id" | "firstName" | "lastName">,
+  kind: TestKind
+): string {
+  const name = `${student.firstName} ${student.lastName}`;
+  return `${kind === "stream" ? "STREAM" : "IDEAL"}-${slugify(name)}-${student.id
+    .slice(-6)
+    .toUpperCase()}`;
 }
 
 export function kindForToken(token: string): TestKind | null {
