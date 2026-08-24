@@ -1,12 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   buildReport,
   DOMAIN_META,
+  KIND_LABELS,
   orderedOptions,
   questionsFor,
   type ExamReport,
@@ -15,6 +18,14 @@ import {
 import personalityProfiles from "@/data/personality-profiles.json";
 
 type Props = { token: string; kind: TestKind };
+
+type ReportMeta = {
+  studentName: string;
+  testTitle: string;
+  logoUrl: string | null;
+  brandName: string;
+  counselorName: string | null;
+};
 
 export function ExamClient({ token, kind }: Props) {
   const bank = useMemo(() => questionsFor(kind), [kind]);
@@ -30,7 +41,11 @@ export function ExamClient({ token, kind }: Props) {
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(false);
   const [report, setReport] = useState<ExamReport | null>(null);
+  const [reportMeta, setReportMeta] = useState<ReportMeta | null>(null);
+  const [completedAt, setCompletedAt] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const sheetRef = useRef<HTMLDivElement>(null);
 
   const progressKey = `exam_progress_${token}`;
   const resultKey = `exam_result_${token}`;
@@ -51,6 +66,15 @@ export function ExamClient({ token, kind }: Props) {
         const savedResult = localStorage.getItem(resultKey);
         if (savedResult && !cancelled) {
           setReport(JSON.parse(savedResult));
+          fetch(`/api/tests/assignments/complete?token=${encodeURIComponent(token)}`)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => {
+              if (d && !cancelled) {
+                setReportMeta(d.meta);
+                setCompletedAt(d.completedAt);
+              }
+            })
+            .catch(() => {});
           setReady(true);
           return;
         }
@@ -61,6 +85,8 @@ export function ExamClient({ token, kind }: Props) {
         );
         if (res.ok && !cancelled) {
           const data = await res.json();
+          if (data.meta) setReportMeta(data.meta);
+          if (data.completedAt) setCompletedAt(data.completedAt);
           if (data.report) {
             setReport(data.report);
             setReady(true);
@@ -126,9 +152,42 @@ export function ExamClient({ token, kind }: Props) {
           setReport(data.report);
           localStorage.setItem(resultKey, JSON.stringify(data.report));
         }
+        if (data.meta) setReportMeta(data.meta);
+        setCompletedAt(new Date().toISOString());
       }
     } catch {}
     setSaving(false);
+  }
+
+  async function downloadPdf() {
+    const sheet = sheetRef.current;
+    if (!sheet || !report) return;
+    setPdfBusy(true);
+    try {
+      const canvas = await html2canvas(sheet, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true,
+      });
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgW = 210;
+      const pageH = 297;
+      const imgH = (canvas.height * imgW) / canvas.width;
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+      pdf.addImage(dataUrl, "JPEG", 0, 0, imgW, imgH);
+      let remaining = imgH - pageH;
+      let page = 1;
+      while (remaining > 0) {
+        pdf.addPage();
+        pdf.addImage(dataUrl, "JPEG", 0, -(pageH * page), imgW, imgH);
+        remaining -= pageH;
+        page++;
+      }
+      const student = reportMeta?.studentName || "Student";
+      const title = reportMeta?.testTitle || KIND_LABELS[kind];
+      pdf.save(`${title} Report - ${student}.pdf`);
+    } catch {}
+    setPdfBusy(false);
   }
 
   function retake() {
@@ -281,11 +340,183 @@ export function ExamClient({ token, kind }: Props) {
                 </ul>
               </div>
             )}
-            <Button variant="outline" onClick={retake}>
-              Retake test
-            </Button>
+            <div className="flex gap-2">
+              <Button onClick={downloadPdf} disabled={pdfBusy}>
+                {pdfBusy ? "Preparing PDF…" : "Download PDF"}
+              </Button>
+              <Button variant="outline" onClick={retake}>
+                Retake test
+              </Button>
+            </div>
           </CardContent>
         </Card>
+
+        <div
+          ref={sheetRef}
+          style={{
+            position: "fixed",
+            left: "-10000px",
+            top: 0,
+            width: 794,
+            background: "#ffffff",
+            color: "#1e293b",
+            fontFamily: "Arial, Helvetica, sans-serif",
+            padding: "48px 56px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "3px solid #2563eb", paddingBottom: 16 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              {reportMeta?.logoUrl && (
+                <img
+                  src={reportMeta.logoUrl}
+                  alt="logo"
+                  style={{ maxHeight: 56, maxWidth: 180, objectFit: "contain" }}
+                />
+              )}
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 700 }}>
+                  {reportMeta?.brandName || "Career Assessment"}
+                </div>
+                {reportMeta?.counselorName && (
+                  <div style={{ fontSize: 12, color: "#64748b" }}>
+                    Counselor: {reportMeta.counselorName}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div style={{ textAlign: "right", fontSize: 12, color: "#64748b" }}>
+              {completedAt && new Date(completedAt).toLocaleDateString()}
+            </div>
+          </div>
+
+          <h1 style={{ fontSize: 24, fontWeight: 700, margin: "28px 0 4px" }}>
+            {(reportMeta?.testTitle || KIND_LABELS[kind]) + " Report"}
+          </h1>
+          <div style={{ fontSize: 14, color: "#475569", marginBottom: 24 }}>
+            Student: <strong>{reportMeta?.studentName || "Student"}</strong>
+          </div>
+
+          {report.kind === "stream" && (
+            <div style={{ marginBottom: 16, padding: 16, background: "#eff6ff", borderRadius: 8 }}>
+              <div style={{ fontSize: 13, color: "#475569" }}>Recommended stream</div>
+              <div style={{ fontSize: 26, fontWeight: 700, color: "#2563eb" }}>
+                {report.recommendedStream}
+              </div>
+            </div>
+          )}
+          {report.kind === "personality" && (
+            <div style={{ marginBottom: 16, padding: 16, background: "#eff6ff", borderRadius: 8 }}>
+              <div style={{ fontSize: 13, color: "#475569" }}>Personality type</div>
+              <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: 4, color: "#2563eb" }}>
+                {report.type}
+              </div>
+            </div>
+          )}
+          {report.kind === "personality" &&
+            (personalityProfiles.profiles as Record<string, string>)[report.type] && (
+              <div
+                style={{
+                  fontSize: 12.5,
+                  lineHeight: 1.65,
+                  color: "#334155",
+                  background: "#f8fafc",
+                  borderRadius: 8,
+                  padding: 16,
+                  marginBottom: 20,
+                }}
+              >
+                {(personalityProfiles.profiles as Record<string, string>)[report.type]
+                  .split(/\n+/)
+                  .map((para: string, i: number) => (
+                    <p key={i} style={{ margin: i > 0 ? "8px 0 0" : 0 }}>
+                      {para}
+                    </p>
+                  ))}
+              </div>
+            )}
+          {report.kind === "intelligences" && (
+            <div style={{ marginBottom: 16, fontSize: 14 }}>
+              Emotional Intelligence score:{" "}
+              <strong style={{ color: "#2563eb" }}>
+                {report.emotionalIntelligence} / 42
+              </strong>
+            </div>
+          )}
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {report.kind === "intelligences"
+              ? report.rows.map((row, i) => {
+                  const pct = Math.round((row.score / row.max) * 100);
+                  const band = i < 3 ? "Strength" : i < 6 ? "Moderate" : "Developing";
+                  return (
+                    <div key={row.key}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#64748b", marginBottom: 4 }}>
+                        <span>
+                          {row.label} <span style={{ color: "#94a3b8" }}>({band})</span>
+                        </span>
+                        <span>
+                          {row.score}/{row.max}
+                        </span>
+                      </div>
+                      <div style={{ height: 10, background: "#e2e8f0", borderRadius: 5 }}>
+                        <div style={{ height: 10, width: `${pct}%`, background: "#2563eb", borderRadius: 5 }} />
+                      </div>
+                    </div>
+                  );
+                })
+              : report.kind === "personality"
+                ? report.rows.map((row) => {
+                    const total = row.first.count + row.second.count || 1;
+                    const pct = Math.round((row.first.count / total) * 100);
+                    return (
+                      <div key={row.key}>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#64748b", marginBottom: 4 }}>
+                          <span>{`${row.first.label} ${row.first.count}`}</span>
+                          <span>{`${row.second.label} ${row.second.count}`}</span>
+                        </div>
+                        <div style={{ display: "flex", height: 10, background: "#e2e8f0", borderRadius: 5, overflow: "hidden" }}>
+                          <div style={{ height: 10, width: `${pct}%`, background: "#2563eb" }} />
+                          <div style={{ height: 10, width: `${100 - pct}%`, background: "#94a3b8" }} />
+                        </div>
+                      </div>
+                    );
+                  })
+                : (report.kind === "stream" ? report.rows : report.domains).map((row) => {
+                    const pct = Math.round((row.score / row.max) * 100);
+                    return (
+                      <div key={row.key}>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#64748b", marginBottom: 4 }}>
+                          <span>{row.label}</span>
+                          <span>
+                            {row.score}/{row.max}
+                          </span>
+                        </div>
+                        <div style={{ height: 10, background: "#e2e8f0", borderRadius: 5 }}>
+                          <div style={{ height: 10, width: `${pct}%`, background: "#2563eb", borderRadius: 5 }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+          </div>
+
+          {report.kind === "ideal" && report.strengths.length > 0 && (
+            <div style={{ marginTop: 24 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Top strengths</div>
+              <ul style={{ fontSize: 12.5, color: "#475569", paddingLeft: 18, margin: 0 }}>
+                {report.strengths.map((s) => (
+                  <li key={s.label}>
+                    {s.label} — {s.pct}%
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div style={{ marginTop: 40, borderTop: "1px solid #e2e8f0", paddingTop: 12, fontSize: 10.5, color: "#94a3b8", display: "flex", justifyContent: "space-between" }}>
+            <span>{reportMeta?.brandName || "Career Assessment Platform"}</span>
+            <span>Generated {new Date().toLocaleDateString()}</span>
+          </div>
+        </div>
       </div>
     );
   }
