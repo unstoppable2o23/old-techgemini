@@ -2,7 +2,7 @@
  "5099": {
   "id": 5099,
   "exam": 114,
-  "question": "Would you prefer going to a party over staying at home?",
+  "question": "Would you rather go out with friends than spend the evening at home?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -57,7 +57,7 @@
  "5100": {
   "id": 5100,
   "exam": 114,
-  "question": "Do you appreciate being liked by others?",
+  "question": "Is it important to you that people like and approve of you?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -112,7 +112,7 @@
  "5101": {
   "id": 5101,
   "exam": 114,
-  "question": "Are you quick to offer constructive criticism to others?",
+  "question": "Do you find it easy to point out how others could improve?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -167,7 +167,7 @@
  "5102": {
   "id": 5102,
   "exam": 114,
-  "question": "Your friends describe you as talkative and carefree.",
+  "question": "Would your friends call you chatty and easy-going?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -222,7 +222,7 @@
  "5103": {
   "id": 5103,
   "exam": 114,
-  "question": "Practical jokes bring you joy.",
+  "question": "Do you enjoy playful pranks and light-hearted jokes?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -277,7 +277,7 @@
  "5104": {
   "id": 5104,
   "exam": 114,
-  "question": "Do you enjoy engaging in conversations with a wide range of people?",
+  "question": "Do you like talking with all kinds of different people?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -332,7 +332,7 @@
  "5105": {
   "id": 5105,
   "exam": 114,
-  "question": "Do you get irritated when someone cuts in front of you in a ticket counter line?",
+  "question": "Does it annoy you when someone pushes ahead of you in a queue?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -387,7 +387,7 @@
  "5106": {
   "id": 5106,
   "exam": 114,
-  "question": "If someone attempts to break a queue, you are likely to ask them to return to the line.",
+  "question": "Would you politely ask someone who jumped a queue to go to the back?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -442,7 +442,7 @@
  "5107": {
   "id": 5107,
   "exam": 114,
-  "question": "You tend not to plan your day in advance.",
+  "question": "You prefer not to plan your day in advance.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -497,7 +497,7 @@
  "5108": {
   "id": 5108,
   "exam": 114,
-  "question": "You take pleasure in gathering friends and organizing get-togethers.",
+  "question": "Do you enjoy bringing friends together and organising hangouts?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -552,7 +552,7 @@
  "5109": {
   "id": 5109,
   "exam": 114,
-  "question": "You feel engaged while watching TV.",
+  "question": "Do you find it relaxing to watch TV in your free time?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -607,7 +607,7 @@
  "5110": {
   "id": 5110,
   "exam": 114,
-  "question": "You have a preference for working as part of a team.",
+  "question": "Do you prefer working in a team rather than alone?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -662,7 +662,7 @@
  "5111": {
   "id": 5111,
   "exam": 114,
-  "question": "You are usually the first one to respond to a doorbell or phone ring at home.",
+  "question": "At home, are you usually the first to answer the doorbell or phone?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -717,7 +717,7 @@
  "5112": {
   "id": 5112,
   "exam": 114,
-  "question": "You openly express your feelings to friends and family.",
+  "question": "Do you share your feelings openly with friends and family?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -772,7 +772,7 @@
  "5113": {
   "id": 5113,
   "exam": 114,
-  "question": "You tend to react spontaneously to events.",
+  "question": "Do you usually react to things in the moment, without much planning?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -827,7 +827,7 @@
  "5114": {
   "id": 5114,
   "exam": 114,
-  "question": "You are a person who experiences and expresses emotions.",
+  "question": "Do you experience emotions strongly and show them openly?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -882,7 +882,7 @@
  "5115": {
   "id": 5115,
   "exam": 114,
-  "question": "You don`t adhere to a strict schedule or routine.",
+  "question": "You do not follow a fixed daily routine.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -937,7 +937,7 @@
  "5116": {
   "id": 5116,
   "exam": 114,
-  "question": "You don`t enjoy spending time in a school laboratory.",
+  "question": "You do not enjoy spending time in a science laboratory.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -992,7 +992,7 @@
  "5117": {
   "id": 5117,
   "exam": 114,
-  "question": "Subjects like Mathematics and Science are not to your liking.",
+  "question": "Subjects like mathematics and science are not your favourites.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -1047,7 +1047,7 @@
  "5118": {
   "id": 5118,
   "exam": 114,
-  "question": "You are always ready to take on responsibilities at home and school.",
+  "question": "Do you willingly take on duties at home and at school?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -1102,7 +1102,7 @@
  "5119": {
   "id": 5119,
   "exam": 114,
-  "question": "You enjoy reading poems, novels, or engaging in artistic activities.",
+  "question": "Do you enjoy reading poetry or novels, or doing something artistic?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -1157,7 +1157,7 @@
  "5120": {
   "id": 5120,
   "exam": 114,
-  "question": "You are forthcoming about your emotions with those you care about.",
+  "question": "Are you open about your emotions with people you love?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -1212,7 +1212,7 @@
  "5121": {
   "id": 5121,
   "exam": 114,
-  "question": "Your decisions are often guided by your heart.",
+  "question": "Do you usually let your heart guide your decisions?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -1267,7 +1267,7 @@
  "5122": {
   "id": 5122,
   "exam": 114,
-  "question": "You can be quite moody.",
+  "question": "Would people describe you as sometimes moody?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -1322,7 +1322,7 @@
  "5123": {
   "id": 5123,
   "exam": 114,
-  "question": "You find it easy to make new friends.",
+  "question": "Do you find it easy to make new friends?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -1377,7 +1377,7 @@
  "5124": {
   "id": 5124,
   "exam": 114,
-  "question": "You have no trouble discussing your feelings.",
+  "question": "Are you comfortable talking about your feelings?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -1432,7 +1432,7 @@
  "5125": {
   "id": 5125,
   "exam": 114,
-  "question": "You have an inclination towards philosophical discussions, poetry, or prose.",
+  "question": "Do you enjoy deep discussions about ideas, poetry or philosophy?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -1487,7 +1487,7 @@
  "5126": {
   "id": 5126,
   "exam": 114,
-  "question": "You tend to complete your homework and assignments at the last minute.",
+  "question": "Do you usually finish homework and assignments just before the deadline?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -1542,7 +1542,7 @@
  "5127": {
   "id": 5127,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nWriting articles for daily news or stories for magazines",
+  "question": "If you had to build a career around it, how appealing is this work: creating content for a popular online magazine?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "278",
@@ -1613,7 +1613,7 @@
  "5128": {
   "id": 5128,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nManaging a company`s business operations",
+  "question": "If you had to build a career around it, how appealing is this work: keeping the accounts and budgets of a growing company?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "279",
@@ -1684,7 +1684,7 @@
  "5129": {
   "id": 5129,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nProviding reviews and reports on current events",
+  "question": "If you had to build a career around it, how appealing is this work: reviewing films and books for a media house?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "279",
@@ -1755,7 +1755,7 @@
  "5130": {
   "id": 5130,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nActing on a stage",
+  "question": "If you had to build a career around it, how appealing is this work: performing on stage in front of an audience?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "280",
@@ -1826,7 +1826,7 @@
  "5131": {
   "id": 5131,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nCreating clothing for special occasions",
+  "question": "If you had to build a career around it, how appealing is this work: designing original clothing collections?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "278",
@@ -1897,7 +1897,7 @@
  "5132": {
   "id": 5132,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nBeing a part of a sports team",
+  "question": "If you had to build a career around it, how appealing is this work: travelling with a professional sports team?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "280",
@@ -1968,7 +1968,7 @@
  "5133": {
   "id": 5133,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nRepairing faults in microwave appliances",
+  "question": "If you had to build a career around it, how appealing is this work: diagnosing and fixing faults in complex machines?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "281",
@@ -2039,7 +2039,7 @@
  "5134": {
   "id": 5134,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nInitiating initiatives to help the needy and poor",
+  "question": "If you had to build a career around it, how appealing is this work: launching and leading new projects from scratch?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "282",
@@ -2110,7 +2110,7 @@
  "5135": {
   "id": 5135,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nInvestigating fraud or crime scenes",
+  "question": "If you had to build a career around it, how appealing is this work: tracking down fraud and financial irregularities?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "281",
@@ -2181,7 +2181,7 @@
  "5136": {
   "id": 5136,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nPersuading people to vote for or support a charity campaign",
+  "question": "If you had to build a career around it, how appealing is this work: convincing people to support a cause or product?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "279",
@@ -2252,7 +2252,7 @@
  "5137": {
   "id": 5137,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nWorking on computers and writing programs and logical codes",
+  "question": "If you had to build a career around it, how appealing is this work: writing software and solving problems with computers?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "283",
@@ -2323,7 +2323,7 @@
  "5138": {
   "id": 5138,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nEducating children",
+  "question": "If you had to build a career around it, how appealing is this work: teaching young children in a classroom?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "282",
@@ -2394,7 +2394,7 @@
  "5139": {
   "id": 5139,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nTranslating ancient languages",
+  "question": "If you had to build a career around it, how appealing is this work: translating classical texts into modern languages?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "281",
@@ -2465,7 +2465,7 @@
  "5140": {
   "id": 5140,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nProviding care and medical assistance to patients",
+  "question": "If you had to build a career around it, how appealing is this work: caring for patients and assisting with their treatment?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "282",
@@ -2536,7 +2536,7 @@
  "5141": {
   "id": 5141,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nServing as an editor for a magazine or newspaper",
+  "question": "If you had to build a career around it, how appealing is this work: shaping articles as an editor for a publishing house?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "281",
@@ -2607,7 +2607,7 @@
  "5142": {
   "id": 5142,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nOperating motorized machines or equipment",
+  "question": "If you had to build a career around it, how appealing is this work: operating heavy machinery in a factory?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "280",
@@ -2678,7 +2678,7 @@
  "5143": {
   "id": 5143,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nUsing various colors to enhance the aesthetics of a space",
+  "question": "If you had to build a career around it, how appealing is this work: working with colours and designs as a visual artist?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "278",
@@ -2749,7 +2749,7 @@
  "5144": {
   "id": 5144,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nServing in adverse conditions on the nation`s border as part of the army",
+  "question": "If you had to build a career around it, how appealing is this work: serving in demanding conditions as a defence officer?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "280",
@@ -2820,7 +2820,7 @@
  "5145": {
   "id": 5145,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nOffering advice and support to comfort distressed individuals",
+  "question": "If you had to build a career around it, how appealing is this work: guiding people through difficult decisions as a counsellor?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "282",
@@ -2891,7 +2891,7 @@
  "5146": {
   "id": 5146,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nParticipating in a space exploration mission",
+  "question": "If you had to build a career around it, how appealing is this work: travelling to space as part of an astronaut crew?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "283",
@@ -2962,7 +2962,7 @@
  "5147": {
   "id": 5147,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nLeading a team and completing projects for clients",
+  "question": "If you had to build a career around it, how appealing is this work: leading a team and delivering projects on schedule?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "279",
@@ -3033,7 +3033,7 @@
  "5148": {
   "id": 5148,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nAttending concerts",
+  "question": "If you had to build a career around it, how appealing is this work: attending live concerts and music festivals regularly?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "278",
@@ -3104,7 +3104,7 @@
  "5149": {
   "id": 5149,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nWorking as an engineer on a bridge construction project",
+  "question": "If you had to build a career around it, how appealing is this work: designing and testing new engineering products?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "283",
@@ -3175,7 +3175,7 @@
  "5150": {
   "id": 5150,
   "exam": 114,
-  "question": "If you ever had to choose a profession, would you like to make a living by:\nInvestigating crime scenes",
+  "question": "If you had to build a career around it, how appealing is this work: examining evidence at crime scenes as an investigator?",
   "question_redirection": null,
   "domain_id": 167,
   "subdomain_id": "283",
@@ -3246,7 +3246,7 @@
  "5151": {
   "id": 5151,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Which of the following numbers could continue the sequence: 3, 6, 9, 12...?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3267,9 +3267,9 @@
    "13509": {
     "id": 13509,
     "question_id": 5151,
-    "answer": "",
+    "answer": "13",
     "marks": 0,
-    "media_path": "/test-media/s-q53-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3283,9 +3283,9 @@
    "13510": {
     "id": 13510,
     "question_id": 5151,
-    "answer": "",
+    "answer": "14",
     "marks": 0,
-    "media_path": "/test-media/s-q53-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3299,9 +3299,9 @@
    "13511": {
     "id": 13511,
     "question_id": 5151,
-    "answer": "",
+    "answer": "15",
     "marks": 1,
-    "media_path": "/test-media/s-q53-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3315,9 +3315,9 @@
    "13512": {
     "id": 13512,
     "question_id": 5151,
-    "answer": "",
+    "answer": "18",
     "marks": 1,
-    "media_path": "/test-media/s-q53-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3333,7 +3333,7 @@
  "5152": {
   "id": 5152,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 4, 8, 12, 16, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3354,9 +3354,9 @@
    "13513": {
     "id": 13513,
     "question_id": 5152,
-    "answer": "",
+    "answer": "20",
     "marks": 1,
-    "media_path": "/test-media/s-q54-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3370,9 +3370,9 @@
    "13514": {
     "id": 13514,
     "question_id": 5152,
-    "answer": "",
+    "answer": "18",
     "marks": 0,
-    "media_path": "/test-media/s-q54-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3386,9 +3386,9 @@
    "13515": {
     "id": 13515,
     "question_id": 5152,
-    "answer": "",
+    "answer": "24",
     "marks": 0,
-    "media_path": "/test-media/s-q54-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3402,9 +3402,9 @@
    "13516": {
     "id": 13516,
     "question_id": 5152,
-    "answer": "",
+    "answer": "14",
     "marks": 0,
-    "media_path": "/test-media/s-q54-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3420,7 +3420,7 @@
  "5153": {
   "id": 5153,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 100, 90, 80, 70, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3441,9 +3441,9 @@
    "13517": {
     "id": 13517,
     "question_id": 5153,
-    "answer": "",
+    "answer": "50",
     "marks": 0,
-    "media_path": "/test-media/s-q55-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3457,9 +3457,9 @@
    "13518": {
     "id": 13518,
     "question_id": 5153,
-    "answer": "",
+    "answer": "60",
     "marks": 0,
-    "media_path": "/test-media/s-q55-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3473,9 +3473,9 @@
    "13519": {
     "id": 13519,
     "question_id": 5153,
-    "answer": "",
+    "answer": "60",
     "marks": 1,
-    "media_path": "/test-media/s-q55-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3489,9 +3489,9 @@
    "13520": {
     "id": 13520,
     "question_id": 5153,
-    "answer": "",
+    "answer": "65",
     "marks": 0,
-    "media_path": "/test-media/s-q55-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3507,7 +3507,7 @@
  "5154": {
   "id": 5154,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 11, 22, 33, 44, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3528,9 +3528,9 @@
    "13521": {
     "id": 13521,
     "question_id": 5154,
-    "answer": "",
+    "answer": "55",
     "marks": 0,
-    "media_path": "/test-media/s-q56-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3544,9 +3544,9 @@
    "13522": {
     "id": 13522,
     "question_id": 5154,
-    "answer": "",
+    "answer": "66",
     "marks": 0,
-    "media_path": "/test-media/s-q56-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3560,9 +3560,9 @@
    "13523": {
     "id": 13523,
     "question_id": 5154,
-    "answer": "",
+    "answer": "44",
     "marks": 0,
-    "media_path": "/test-media/s-q56-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3576,9 +3576,9 @@
    "13524": {
     "id": 13524,
     "question_id": 5154,
-    "answer": "",
+    "answer": "50",
     "marks": 0,
-    "media_path": "/test-media/s-q56-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3594,7 +3594,7 @@
  "5155": {
   "id": 5155,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 7, 14, 21, 28, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3615,9 +3615,9 @@
    "13525": {
     "id": 13525,
     "question_id": 5155,
-    "answer": "",
+    "answer": "35",
     "marks": 0,
-    "media_path": "/test-media/s-q57-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3631,9 +3631,9 @@
    "13526": {
     "id": 13526,
     "question_id": 5155,
-    "answer": "",
+    "answer": "42",
     "marks": 0,
-    "media_path": "/test-media/s-q57-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3647,9 +3647,9 @@
    "13527": {
     "id": 13527,
     "question_id": 5155,
-    "answer": "",
+    "answer": "28",
     "marks": 0,
-    "media_path": "/test-media/s-q57-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3663,9 +3663,9 @@
    "13528": {
     "id": 13528,
     "question_id": 5155,
-    "answer": "",
+    "answer": "30",
     "marks": 0,
-    "media_path": "/test-media/s-q57-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3681,7 +3681,7 @@
  "5156": {
   "id": 5156,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 64, 32, 16, 8, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3702,9 +3702,9 @@
    "13529": {
     "id": 13529,
     "question_id": 5156,
-    "answer": "",
+    "answer": "4",
     "marks": 1,
-    "media_path": "/test-media/s-q58-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3718,9 +3718,9 @@
    "13530": {
     "id": 13530,
     "question_id": 5156,
-    "answer": "",
+    "answer": "6",
     "marks": 0,
-    "media_path": "/test-media/s-q58-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3734,9 +3734,9 @@
    "13531": {
     "id": 13531,
     "question_id": 5156,
-    "answer": "",
+    "answer": "2",
     "marks": 0,
-    "media_path": "/test-media/s-q58-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3750,9 +3750,9 @@
    "13532": {
     "id": 13532,
     "question_id": 5156,
-    "answer": "",
+    "answer": "12",
     "marks": 0,
-    "media_path": "/test-media/s-q58-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3768,7 +3768,7 @@
  "5157": {
   "id": 5157,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 1, 4, 9, 16, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3789,9 +3789,9 @@
    "13533": {
     "id": 13533,
     "question_id": 5157,
-    "answer": "",
+    "answer": "25",
     "marks": 1,
-    "media_path": "/test-media/s-q59-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3805,9 +3805,9 @@
    "13534": {
     "id": 13534,
     "question_id": 5157,
-    "answer": "",
+    "answer": "20",
     "marks": 0,
-    "media_path": "/test-media/s-q59-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3821,9 +3821,9 @@
    "13535": {
     "id": 13535,
     "question_id": 5157,
-    "answer": "",
+    "answer": "24",
     "marks": 0,
-    "media_path": "/test-media/s-q59-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3837,9 +3837,9 @@
    "13536": {
     "id": 13536,
     "question_id": 5157,
-    "answer": "",
+    "answer": "36",
     "marks": 0,
-    "media_path": "/test-media/s-q59-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3855,7 +3855,7 @@
  "5158": {
   "id": 5158,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the letter that continues the sequence: B, D, F, H, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3876,9 +3876,9 @@
    "13537": {
     "id": 13537,
     "question_id": 5158,
-    "answer": "",
+    "answer": "I",
     "marks": 0,
-    "media_path": "/test-media/s-q60-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3892,9 +3892,9 @@
    "13538": {
     "id": 13538,
     "question_id": 5158,
-    "answer": "",
+    "answer": "J",
     "marks": 1,
-    "media_path": "/test-media/s-q60-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3908,9 +3908,9 @@
    "13539": {
     "id": 13539,
     "question_id": 5158,
-    "answer": "",
+    "answer": "K",
     "marks": 0,
-    "media_path": "/test-media/s-q60-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3924,9 +3924,9 @@
    "13540": {
     "id": 13540,
     "question_id": 5158,
-    "answer": "",
+    "answer": "G",
     "marks": 0,
-    "media_path": "/test-media/s-q60-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3942,7 +3942,7 @@
  "5159": {
   "id": 5159,
   "exam": 114,
-  "question": "Complete the sequence by choosing the correct option.",
+  "question": "Find the number that continues the sequence: 5, 10, 20, 40, ?",
   "question_redirection": null,
   "domain_id": 168,
   "subdomain_id": "284",
@@ -3963,9 +3963,9 @@
    "13541": {
     "id": 13541,
     "question_id": 5159,
-    "answer": "",
+    "answer": "60",
     "marks": 0,
-    "media_path": "/test-media/s-q61-o1.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3979,9 +3979,9 @@
    "13542": {
     "id": 13542,
     "question_id": 5159,
-    "answer": "",
+    "answer": "50",
     "marks": 0,
-    "media_path": "/test-media/s-q61-o2.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -3995,9 +3995,9 @@
    "13543": {
     "id": 13543,
     "question_id": 5159,
-    "answer": "",
+    "answer": "80",
     "marks": 1,
-    "media_path": "/test-media/s-q61-o3.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -4011,9 +4011,9 @@
    "13544": {
     "id": 13544,
     "question_id": 5159,
-    "answer": "",
+    "answer": "45",
     "marks": 0,
-    "media_path": "/test-media/s-q61-o4.jpg",
+    "media_path": "",
     "mediatype": 1,
     "answer_format": 3,
     "domain_id": null,
@@ -4029,7 +4029,7 @@
  "5160": {
   "id": 5160,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) K7P2  B) K7P2  C) KP72  D) KP27  E) P7K2. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4116,7 +4116,7 @@
  "5161": {
   "id": 5161,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) M9Q4  B) MQ94  C) M49Q  D) Q9M4  E) MQ94. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4203,7 +4203,7 @@
  "5162": {
   "id": 5162,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) X5W1  B) XW15  C) X15W  D) X15W  E) 5XW1. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4290,7 +4290,7 @@
  "5163": {
   "id": 5163,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) H2N6  B) H6N2  C) HN26  D) N2H6  E) HN26. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4377,7 +4377,7 @@
  "5164": {
   "id": 5164,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) J8F3  B) JF83  C) J38F  D) J8F3  E) F8J3. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4464,7 +4464,7 @@
  "5165": {
   "id": 5165,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) V4T7  B) V4T7  C) VT74  D) V74T  E) T4V7. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4551,7 +4551,7 @@
  "5166": {
   "id": 5166,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) R9L5  B) R59L  C) RL59  D) RL59  E) L9R5. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4638,7 +4638,7 @@
  "5167": {
   "id": 5167,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) T3G8  B) T83G  C) TG83  D) G3T8  E) TG83. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4725,7 +4725,7 @@
  "5168": {
   "id": 5168,
   "exam": 114,
-  "question": "Choose the right option by finding the two identical codes from A, B, C, D, or E",
+  "question": "Study these five codes: A) W6K1  B) KW16  C) K16W  D) W6K1  E) 6WK1. Which two codes are exactly identical?",
   "question_redirection": null,
   "domain_id": 169,
   "subdomain_id": "286",
@@ -4812,7 +4812,7 @@
  "5169": {
   "id": 5169,
   "exam": 114,
-  "question": "If Dog is to pup as Sheep is to",
+  "question": "Cow is to calf as sheep is to...",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -4833,7 +4833,7 @@
    "13581": {
     "id": 13581,
     "question_id": 5169,
-    "answer": "Sheep",
+    "answer": "Foal",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4849,7 +4849,7 @@
    "13582": {
     "id": 13582,
     "question_id": 5169,
-    "answer": "Goat",
+    "answer": "Kid",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4881,7 +4881,7 @@
    "13584": {
     "id": 13584,
     "question_id": 5169,
-    "answer": "Flock",
+    "answer": "Herd",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4899,7 +4899,7 @@
  "5170": {
   "id": 5170,
   "exam": 114,
-  "question": "If Pebble is to Beach, then a Tree is to...",
+  "question": "Sand is to desert as tree is to...",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -4968,7 +4968,7 @@
    "13588": {
     "id": 13588,
     "question_id": 5170,
-    "answer": "Road",
+    "answer": "road",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4986,7 +4986,7 @@
  "5171": {
   "id": 5171,
   "exam": 114,
-  "question": "If Dawn is to Noon, then Dusk is to...",
+  "question": "Page 1 is to page 50 as sunrise is to...",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5007,7 +5007,7 @@
    "13589": {
     "id": 13589,
     "question_id": 5171,
-    "answer": "Night",
+    "answer": "Sunset",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5039,7 +5039,7 @@
    "13591": {
     "id": 13591,
     "question_id": 5171,
-    "answer": "Dark",
+    "answer": "Dawn",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5055,7 +5055,7 @@
    "13592": {
     "id": 13592,
     "question_id": 5171,
-    "answer": "Afternoon",
+    "answer": "Noon",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5073,7 +5073,7 @@
  "5172": {
   "id": 5172,
   "exam": 114,
-  "question": "If Cat is to Hair, then Fish is to...",
+  "question": "Bird is to feathers as fish is to...",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5126,7 +5126,7 @@
    "13595": {
     "id": 13595,
     "question_id": 5172,
-    "answer": "Tall",
+    "answer": "Tail",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5160,7 +5160,7 @@
  "5173": {
   "id": 5173,
   "exam": 114,
-  "question": "If Cat is to Paw, then Horse is to...",
+  "question": "Human is to foot as horse is to...",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5181,7 +5181,7 @@
    "13597": {
     "id": 13597,
     "question_id": 5173,
-    "answer": "Fur ",
+    "answer": "Mane",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5197,7 +5197,7 @@
    "13598": {
     "id": 13598,
     "question_id": 5173,
-    "answer": "Hair",
+    "answer": "Tail",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5213,7 +5213,7 @@
    "13599": {
     "id": 13599,
     "question_id": 5173,
-    "answer": "Shoe",
+    "answer": "Saddle",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5247,7 +5247,7 @@
  "5174": {
   "id": 5174,
   "exam": 114,
-  "question": "Identify the superlative in the following options.",
+  "question": "Identify the superlative form among these options.",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5268,7 +5268,7 @@
    "13601": {
     "id": 13601,
     "question_id": 5174,
-    "answer": "Large",
+    "answer": "Tall",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5284,7 +5284,7 @@
    "13602": {
     "id": 13602,
     "question_id": 5174,
-    "answer": "Larger",
+    "answer": "Taller",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5300,7 +5300,7 @@
    "13603": {
     "id": 13603,
     "question_id": 5174,
-    "answer": "Largest",
+    "answer": "Tallest",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5316,7 +5316,7 @@
    "13604": {
     "id": 13604,
     "question_id": 5174,
-    "answer": "Super Largest",
+    "answer": "More tall",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5334,7 +5334,7 @@
  "5175": {
   "id": 5175,
   "exam": 114,
-  "question": "Identify the prepositions in the following words.",
+  "question": "Which of these words is a preposition?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5355,7 +5355,7 @@
    "13605": {
     "id": 13605,
     "question_id": 5175,
-    "answer": "Location",
+    "answer": "Jump",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5371,7 +5371,7 @@
    "13606": {
     "id": 13606,
     "question_id": 5175,
-    "answer": "no",
+    "answer": "Green",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5387,7 +5387,7 @@
    "13607": {
     "id": 13607,
     "question_id": 5175,
-    "answer": "in",
+    "answer": "Between",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5403,7 +5403,7 @@
    "13608": {
     "id": 13608,
     "question_id": 5175,
-    "answer": "position",
+    "answer": "Slowly",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5421,7 +5421,7 @@
  "5176": {
   "id": 5176,
   "exam": 114,
-  "question": "Choose the correctly spelled option:",
+  "question": "Choose the correctly spelled word.",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5442,7 +5442,7 @@
    "13609": {
     "id": 13609,
     "question_id": 5176,
-    "answer": "Permisible",
+    "answer": "Accomodate",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5458,7 +5458,7 @@
    "13610": {
     "id": 13610,
     "question_id": 5176,
-    "answer": "Permissible",
+    "answer": "Acommodate",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5474,7 +5474,7 @@
    "13611": {
     "id": 13611,
     "question_id": 5176,
-    "answer": "Permissable",
+    "answer": "Accommodate",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5490,7 +5490,7 @@
    "13612": {
     "id": 13612,
     "question_id": 5176,
-    "answer": "Permisable",
+    "answer": "Acomodate",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5508,7 +5508,7 @@
  "5177": {
   "id": 5177,
   "exam": 114,
-  "question": "Choose the correctly spelled option:",
+  "question": "Choose the correctly spelled word.",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5529,7 +5529,7 @@
    "13613": {
     "id": 13613,
     "question_id": 5177,
-    "answer": "Easliey",
+    "answer": "Definately",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5545,7 +5545,7 @@
    "13614": {
     "id": 13614,
     "question_id": 5177,
-    "answer": "Easely",
+    "answer": "Definitely",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5561,7 +5561,7 @@
    "13615": {
     "id": 13615,
     "question_id": 5177,
-    "answer": "Easaly",
+    "answer": "Definetly",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5577,7 +5577,7 @@
    "13616": {
     "id": 13616,
     "question_id": 5177,
-    "answer": "Easily",
+    "answer": "Defenitely",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5595,7 +5595,7 @@
  "5178": {
   "id": 5178,
   "exam": 114,
-  "question": "What is the product of 12 multiplied by 12?",
+  "question": "What is the product of 15 multiplied by 12?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5616,7 +5616,7 @@
    "13617": {
     "id": 13617,
     "question_id": 5178,
-    "answer": "132",
+    "answer": "170",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5632,7 +5632,7 @@
    "13618": {
     "id": 13618,
     "question_id": 5178,
-    "answer": "144",
+    "answer": "180",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5648,7 +5648,7 @@
    "13619": {
     "id": 13619,
     "question_id": 5178,
-    "answer": "120",
+    "answer": "150",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5664,7 +5664,7 @@
    "13620": {
     "id": 13620,
     "question_id": 5178,
-    "answer": "143",
+    "answer": "125",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5682,7 +5682,7 @@
  "5179": {
   "id": 5179,
   "exam": 114,
-  "question": "What is the result of dividing 376 by 100?",
+  "question": "What is the result of dividing 45 by 100?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5703,7 +5703,7 @@
    "13621": {
     "id": 13621,
     "question_id": 5179,
-    "answer": "37.6",
+    "answer": "4.5",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5719,7 +5719,7 @@
    "13622": {
     "id": 13622,
     "question_id": 5179,
-    "answer": "3.76",
+    "answer": "0.45",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5735,7 +5735,7 @@
    "13623": {
     "id": 13623,
     "question_id": 5179,
-    "answer": "376",
+    "answer": "45",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5751,7 +5751,7 @@
    "13624": {
     "id": 13624,
     "question_id": 5179,
-    "answer": "10",
+    "answer": "450",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5769,7 +5769,7 @@
  "5180": {
   "id": 5180,
   "exam": 114,
-  "question": "What is the product of 90.6 and 1,000?",
+  "question": "What is the product of 9.06 and 1,000?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5856,7 +5856,7 @@
  "5181": {
   "id": 5181,
   "exam": 114,
-  "question": "What is the result of dividing 2.4 by 100?",
+  "question": "What is the result of dividing 24 by 100?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5877,7 +5877,7 @@
    "13629": {
     "id": 13629,
     "question_id": 5181,
-    "answer": "24",
+    "answer": "240",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5893,7 +5893,7 @@
    "13630": {
     "id": 13630,
     "question_id": 5181,
-    "answer": "2400",
+    "answer": "2,400",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5909,7 +5909,7 @@
    "13631": {
     "id": 13631,
     "question_id": 5181,
-    "answer": "0.024",
+    "answer": "0.24",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5943,7 +5943,7 @@
  "5182": {
   "id": 5182,
   "exam": 114,
-  "question": "What is the product of 20 multiplied by 920?",
+  "question": "What is the product of 30 multiplied by 600?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5964,7 +5964,7 @@
    "13633": {
     "id": 13633,
     "question_id": 5182,
-    "answer": "1840",
+    "answer": "1,800",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5980,7 +5980,7 @@
    "13634": {
     "id": 13634,
     "question_id": 5182,
-    "answer": "18400",
+    "answer": "18,000",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5996,7 +5996,7 @@
    "13635": {
     "id": 13635,
     "question_id": 5182,
-    "answer": "9200",
+    "answer": "9,000",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6012,7 +6012,7 @@
    "13636": {
     "id": 13636,
     "question_id": 5182,
-    "answer": "184",
+    "answer": "180",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6030,7 +6030,7 @@
  "5183": {
   "id": 5183,
   "exam": 114,
-  "question": "What is the quotient when you divide 1,200 by 400?",
+  "question": "What is the quotient when you divide 1,600 by 400?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6067,7 +6067,7 @@
    "13638": {
     "id": 13638,
     "question_id": 5183,
-    "answer": "3",
+    "answer": "4",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6083,7 +6083,7 @@
    "13639": {
     "id": 13639,
     "question_id": 5183,
-    "answer": "4",
+    "answer": "6",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6117,7 +6117,7 @@
  "5184": {
   "id": 5184,
   "exam": 114,
-  "question": "What is the quotient when you divide 48,000 by 60?",
+  "question": "What is the quotient when you divide 36,000 by 45?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6204,7 +6204,7 @@
  "5185": {
   "id": 5185,
   "exam": 114,
-  "question": "Express 1/9 as a percentage.",
+  "question": "Express 1/8 as a percentage.",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6225,7 +6225,7 @@
    "13645": {
     "id": 13645,
     "question_id": 5185,
-    "answer": "0.09",
+    "answer": "0.125",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6241,7 +6241,7 @@
    "13646": {
     "id": 13646,
     "question_id": 5185,
-    "answer": "11.11",
+    "answer": "12.5",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6257,7 +6257,7 @@
    "13647": {
     "id": 13647,
     "question_id": 5185,
-    "answer": "1.11",
+    "answer": "1.25",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6291,7 +6291,7 @@
  "5186": {
   "id": 5186,
   "exam": 114,
-  "question": "What is the difference between 300 and 287?",
+  "question": "What is the difference between 250 and 236?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6312,7 +6312,7 @@
    "13649": {
     "id": 13649,
     "question_id": 5186,
-    "answer": "13",
+    "answer": "14",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6328,7 +6328,7 @@
    "13650": {
     "id": 13650,
     "question_id": 5186,
-    "answer": "-13",
+    "answer": "-14",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6344,7 +6344,7 @@
    "13651": {
     "id": 13651,
     "question_id": 5186,
-    "answer": "-33",
+    "answer": "-36",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6378,7 +6378,7 @@
  "5187": {
   "id": 5187,
   "exam": 114,
-  "question": "Narendra Nath founded...",
+  "question": "Who wrote the play 'Macbeth'?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6399,7 +6399,7 @@
    "13653": {
     "id": 13653,
     "question_id": 5187,
-    "answer": "National Yoth Day",
+    "answer": "Charles Dickens",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6415,7 +6415,7 @@
    "13654": {
     "id": 13654,
     "question_id": 5187,
-    "answer": "Ramkrishna Math",
+    "answer": "William Shakespeare",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6431,7 +6431,7 @@
    "13655": {
     "id": 13655,
     "question_id": 5187,
-    "answer": "Hinduism",
+    "answer": "Jane Austen",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6447,7 +6447,7 @@
    "13656": {
     "id": 13656,
     "question_id": 5187,
-    "answer": "Indian Philosophy",
+    "answer": "Mark Twain",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6465,7 +6465,7 @@
  "5188": {
   "id": 5188,
   "exam": 114,
-  "question": "Where did Vivekananda travel across the Indian Subcontinent?",
+  "question": "Which is the largest ocean on Earth?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6486,7 +6486,7 @@
    "13657": {
     "id": 13657,
     "question_id": 5188,
-    "answer": "Promote Hinduism",
+    "answer": "Atlantic Ocean",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6502,7 +6502,7 @@
    "13658": {
     "id": 13658,
     "question_id": 5188,
-    "answer": "Attend Parliament of Reliogion",
+    "answer": "Indian Ocean",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6518,7 +6518,7 @@
    "13659": {
     "id": 13659,
     "question_id": 5188,
-    "answer": "Conduct Lectures",
+    "answer": "Pacific Ocean",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6534,7 +6534,7 @@
    "13660": {
     "id": 13660,
     "question_id": 5188,
-    "answer": "None of the above",
+    "answer": "Arctic Ocean",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6552,7 +6552,7 @@
  "5189": {
   "id": 5189,
   "exam": 114,
-  "question": "In which place was Vivekananda born?",
+  "question": "In which century did World War II end?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6589,7 +6589,7 @@
    "13662": {
     "id": 13662,
     "question_id": 5189,
-    "answer": "19 Century",
+    "answer": "20th Century",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6605,7 +6605,7 @@
    "13663": {
     "id": 13663,
     "question_id": 5189,
-    "answer": "20th Century",
+    "answer": "19th Century",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6639,7 +6639,7 @@
  "5190": {
   "id": 5190,
   "exam": 114,
-  "question": "Who was the guru of Narendra Nath Dutta?",
+  "question": "Who is known as the chief architect of the Indian Constitution?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6660,7 +6660,7 @@
    "13665": {
     "id": 13665,
     "question_id": 5190,
-    "answer": "Vishwanath Datta",
+    "answer": "Jawaharlal Nehru",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6676,7 +6676,7 @@
    "13666": {
     "id": 13666,
     "question_id": 5190,
-    "answer": "Narendra's Mother",
+    "answer": "Sardar Patel",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6692,7 +6692,7 @@
    "13667": {
     "id": 13667,
     "question_id": 5190,
-    "answer": "Narendra's father",
+    "answer": "B. R. Ambedkar",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6708,7 +6708,7 @@
    "13668": {
     "id": 13668,
     "question_id": 5190,
-    "answer": "None of the above",
+    "answer": "Mahatma Gandhi",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6726,7 +6726,7 @@
  "5191": {
   "id": 5191,
   "exam": 114,
-  "question": "What was the capital of British India?",
+  "question": "Which gas do plants absorb from the atmosphere for photosynthesis?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6747,7 +6747,7 @@
    "13669": {
     "id": 13669,
     "question_id": 5191,
-    "answer": "New Delhi",
+    "answer": "Oxygen",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6763,7 +6763,7 @@
    "13670": {
     "id": 13670,
     "question_id": 5191,
-    "answer": "Bengal",
+    "answer": "Nitrogen",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6779,7 +6779,7 @@
    "13671": {
     "id": 13671,
     "question_id": 5191,
-    "answer": "Bombay",
+    "answer": "Carbon dioxide",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6795,7 +6795,7 @@
    "13672": {
     "id": 13672,
     "question_id": 5191,
-    "answer": "Calcutta",
+    "answer": "Hydrogen",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6813,7 +6813,7 @@
  "5192": {
   "id": 5192,
   "exam": 114,
-  "question": "If Seema is heavier than Ritu, and Sarita is heavier than Seema- among Seema, Ritu, and Sarita, who is the heaviest?",
+  "question": "Asha is taller than Bela, and Bela is taller than Chhaya. Who is the shortest?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6834,7 +6834,7 @@
    "13673": {
     "id": 13673,
     "question_id": 5192,
-    "answer": "Sarita",
+    "answer": "Asha",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6850,7 +6850,7 @@
    "13674": {
     "id": 13674,
     "question_id": 5192,
-    "answer": "Seema",
+    "answer": "Bela",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6866,7 +6866,7 @@
    "13675": {
     "id": 13675,
     "question_id": 5192,
-    "answer": "Ritu",
+    "answer": "Chhaya",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6900,7 +6900,7 @@
  "5193": {
   "id": 5193,
   "exam": 114,
-  "question": "If Rakhi and Neetu like pizza, Ankita and Priyanka like burgers, and Rakhi and Priyanka both like Samosa- out of Rakhi, Neetu, Ankita, and Priyanka, who prefers pizza and samosa?",
+  "question": "In a class, Amit and Bina like cricket; Bina and Chand like football; Amit and Chand like tennis. Who likes both cricket and football?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -6921,7 +6921,7 @@
    "13677": {
     "id": 13677,
     "question_id": 5193,
-    "answer": "Rakhi ",
+    "answer": "Amit",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -6937,7 +6937,7 @@
    "13678": {
     "id": 13678,
     "question_id": 5193,
-    "answer": "Neetu",
+    "answer": "Bina",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6953,7 +6953,7 @@
    "13679": {
     "id": 13679,
     "question_id": 5193,
-    "answer": "Ankita",
+    "answer": "Chand",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -6987,7 +6987,7 @@
  "5194": {
   "id": 5194,
   "exam": 114,
-  "question": "Who among Priyanka, Neetu, and Neha has an interest in science- if Priyanka likes Maths and Science, Neetu likes Science and English and Priyanka and Neha like History.",
+  "question": "Priyanka likes maths and science; Neetu likes science and history; Neha likes maths only. Who has an interest in science?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -7074,7 +7074,7 @@
  "5195": {
   "id": 5195,
   "exam": 114,
-  "question": "Read the given scenario and answer: amongst John, Rahul, Rohit, and Raunak, who plays both football and hockey?\nThe scenario: John Plays Football. Rahul and Rohit play Cricket. John and Raunak Play Hockey.",
+  "question": "Among Amit, Bina, Chetan and Dev: Amit plays chess and football; Bina plays chess; Chetan plays football; Dev plays neither. Who plays both chess and football?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -7095,7 +7095,7 @@
    "13685": {
     "id": 13685,
     "question_id": 5195,
-    "answer": "Rohit",
+    "answer": "Amit",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -7111,7 +7111,7 @@
    "13686": {
     "id": 13686,
     "question_id": 5195,
-    "answer": "Rahul",
+    "answer": "Bina",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -7127,7 +7127,7 @@
    "13687": {
     "id": 13687,
     "question_id": 5195,
-    "answer": "Raunak",
+    "answer": "Chetan",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -7161,7 +7161,7 @@
  "5196": {
   "id": 5196,
   "exam": 114,
-  "question": "In your career, is MONEY (referring to having a higher income) important to you?",
+  "question": "In your future career, how important is earning a HIGH INCOME to you?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "291",
@@ -7232,7 +7232,7 @@
  "5197": {
   "id": 5197,
   "exam": 114,
-  "question": "Is RESPECT (referring to the prestige and honor associated with certain professions) a significant factor in your career choice?",
+  "question": "How important is SOCIAL PRESTIGE — being respected for your profession — to you?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "292",
@@ -7303,7 +7303,7 @@
  "5198": {
   "id": 5198,
   "exam": 114,
-  "question": "Do you value FREEDOM in your career, meaning the ability to work with a flexible schedule and minimal supervision?",
+  "question": "How important is FLEXIBILITY — choosing your own hours and way of working — to you?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "293",
@@ -7374,7 +7374,7 @@
  "5199": {
   "id": 5199,
   "exam": 114,
-  "question": "Is STABILITY (related to job security) a priority for you in your career?",
+  "question": "How important is JOB SECURITY — knowing your position is safe — to you?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "294",
@@ -7445,7 +7445,7 @@
  "5200": {
   "id": 5200,
   "exam": 114,
-  "question": "Do you seek VARIETY in your career, desiring exposure to diverse experiences and locations?",
+  "question": "How important is VARIETY — new experiences, places and tasks — in your career?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "295",
@@ -7516,7 +7516,7 @@
  "5201": {
   "id": 5201,
   "exam": 114,
-  "question": "Do you prioritize LEISURE in your career, allowing ample time for family and hobbies?",
+  "question": "How important is FREE TIME — room for family, friends and hobbies — in your career?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "296",
@@ -7587,7 +7587,7 @@
  "5202": {
   "id": 5202,
   "exam": 114,
-  "question": "Is LEADERSHIP, involving responsibilities for others and planning, a key aspect you look for in your career?",
+  "question": "How important is LEADING OTHERS — taking charge of people and plans — in your career?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "297",
@@ -7658,7 +7658,7 @@
  "5203": {
   "id": 5203,
   "exam": 114,
-  "question": "Do you value SERVICE, seeking careers that directly help people and society?",
+  "question": "How important is SERVING SOCIETY — work that directly helps people — in your career?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "298",
@@ -7729,7 +7729,7 @@
  "5204": {
   "id": 5204,
   "exam": 114,
-  "question": "Is INTEREST, meaning working in a field you have a natural inclination for, important to you in your career choice?",
+  "question": "How important is PASSION — working in a field you naturally love — in your career?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "299",
@@ -7800,7 +7800,7 @@
  "5205": {
   "id": 5205,
   "exam": 114,
-  "question": "Do you embrace CHALLENGE, preferring fields that are difficult and contribute to improving your skills and abilities in your career?",
+  "question": "How important is TOUGH CHALLENGE — hard problems that stretch your abilities — in your career?",
   "question_redirection": null,
   "domain_id": 171,
   "subdomain_id": "300",
@@ -7871,7 +7871,7 @@
  "5206": {
   "id": 5206,
   "exam": 114,
-  "question": "Are you dedicated to environmental conservation?",
+  "question": "How important is PROTECTING THE ENVIRONMENT — work that conserves nature — in your career?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "301",
@@ -7942,7 +7942,7 @@
  "5207": {
   "id": 5207,
   "exam": 114,
-  "question": "Do you have an interest in understanding the growth and vitality of living organisms?",
+  "question": "Are you curious about how living things grow and stay healthy?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "301",
@@ -7997,7 +7997,7 @@
  "5208": {
   "id": 5208,
   "exam": 114,
-  "question": "Are you comfortable being outdoors in various weather conditions?",
+  "question": "Are you comfortable working outdoors in all kinds of weather?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "301",
@@ -8052,7 +8052,7 @@
  "5209": {
   "id": 5209,
   "exam": 114,
-  "question": "Are you physically active and a nature enthusiast?",
+  "question": "Are you physically active and someone who loves nature?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "301",
@@ -8107,7 +8107,7 @@
  "5210": {
   "id": 5210,
   "exam": 114,
-  "question": "Does the field of biology and related sciences intrigue you?",
+  "question": "Does the study of biology and life sciences fascinate you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "301",
@@ -8162,7 +8162,7 @@
  "5211": {
   "id": 5211,
   "exam": 114,
-  "question": "Are you inclined towards working with numbers?",
+  "question": "Do you enjoy working with numbers and calculations?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8217,7 +8217,7 @@
  "5212": {
   "id": 5212,
   "exam": 114,
-  "question": "Do you find subjects like economics, accounting, and commerce captivating?",
+  "question": "Do subjects like economics, accounting and commerce draw your interest?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8272,7 +8272,7 @@
  "5213": {
   "id": 5213,
   "exam": 114,
-  "question": "Is handling extensive sets of numbers and data challenging for you?",
+  "question": "Do you find it difficult to handle large amounts of numbers and data?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8327,7 +8327,7 @@
  "5214": {
   "id": 5214,
   "exam": 114,
-  "question": "Are you confident in managing other people`s finances?",
+  "question": "Would you feel confident managing money on behalf of other people?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8382,7 +8382,7 @@
  "5215": {
   "id": 5215,
   "exam": 114,
-  "question": "Can you analyze financial data and explain it to others effectively?",
+  "question": "Can you study financial information and explain it clearly to others?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8437,7 +8437,7 @@
  "5216": {
   "id": 5216,
   "exam": 114,
-  "question": "Do you have a strong desire to serve your nation?",
+  "question": "Do you feel a strong desire to serve your country?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "303",
@@ -8492,7 +8492,7 @@
  "5217": {
   "id": 5217,
   "exam": 114,
-  "question": "Are honesty, commitment, and dedication qualities you possess?",
+  "question": "Would you describe yourself as honest, committed and dedicated?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "303",
@@ -8602,7 +8602,7 @@
  "5219": {
   "id": 5219,
   "exam": 114,
-  "question": "Do you lead a disciplined lifestyle?",
+  "question": "Do you live a disciplined and well-structured life?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "303",
@@ -8657,7 +8657,7 @@
  "5220": {
   "id": 5220,
   "exam": 114,
-  "question": "Are you keen on engaging in outdoor activities and adventures?",
+  "question": "Do you love outdoor activities and adventure?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "303",
@@ -8712,7 +8712,7 @@
  "5221": {
   "id": 5221,
   "exam": 114,
-  "question": "Are you imaginative and artistic in nature?",
+  "question": "Would you call yourself imaginative and artistic?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -8767,7 +8767,7 @@
  "5222": {
   "id": 5222,
   "exam": 114,
-  "question": "Do you enjoy working with a wide range of colours and designs?",
+  "question": "Do you enjoy playing with colours, patterns and designs?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -8822,7 +8822,7 @@
  "5223": {
   "id": 5223,
   "exam": 114,
-  "question": "Is your thinking creative and unconventional?",
+  "question": "Is your thinking original and outside the box?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -8877,7 +8877,7 @@
  "5224": {
   "id": 5224,
   "exam": 114,
-  "question": "Do you find pleasure in activities like painting, drawing, photography, or sketching?",
+  "question": "Do you take pleasure in painting, drawing, photography or sketching?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -8932,7 +8932,7 @@
  "5225": {
   "id": 5225,
   "exam": 114,
-  "question": "Do you have a positive attitude towards school?",
+  "question": "Do you have a positive attitude towards school and studies?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -8987,7 +8987,7 @@
  "5226": {
   "id": 5226,
   "exam": 114,
-  "question": "Do you take pleasure in assisting others in learning new skills?",
+  "question": "Do you enjoy helping other people learn new skills?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9042,7 +9042,7 @@
  "5227": {
   "id": 5227,
   "exam": 114,
-  "question": "Are you patient and can provide help with homework or learning?",
+  "question": "Are you patient enough to help someone with their homework?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9097,7 +9097,7 @@
  "5228": {
   "id": 5228,
   "exam": 114,
-  "question": "Can you manage multiple responsibilities simultaneously?",
+  "question": "Can you handle several responsibilities at the same time?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9152,7 +9152,7 @@
  "5229": {
   "id": 5229,
   "exam": 114,
-  "question": "Are you curious and enjoy exploring beyond the standard curriculum?",
+  "question": "Are you curious and keen to explore beyond the standard syllabus?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9207,7 +9207,7 @@
  "5230": {
   "id": 5230,
   "exam": 114,
-  "question": "Do you have an affinity for mathematics and science?",
+  "question": "Do you have a genuine liking for mathematics and science?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9262,7 +9262,7 @@
  "5231": {
   "id": 5231,
   "exam": 114,
-  "question": "Are you skilled at analyzing diverse problems?",
+  "question": "Are you good at analysing all kinds of problems?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9317,7 +9317,7 @@
  "5232": {
   "id": 5232,
   "exam": 114,
-  "question": "Does new technology pique your interest?",
+  "question": "Does new technology spark your curiosity?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9372,7 +9372,7 @@
  "5233": {
   "id": 5233,
   "exam": 114,
-  "question": "Are you an effective team player?",
+  "question": "Are you a strong team player?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9427,7 +9427,7 @@
  "5234": {
   "id": 5234,
   "exam": 114,
-  "question": "Do you have a knack for organizing and planning activities?",
+  "question": "Are you good at organising and planning events or activities?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9482,7 +9482,7 @@
  "5235": {
   "id": 5235,
   "exam": 114,
-  "question": "Are you self-driven and enthusiastic?",
+  "question": "Are you self-driven and enthusiastic about what you do?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9537,7 +9537,7 @@
  "5236": {
   "id": 5236,
   "exam": 114,
-  "question": "Do you enjoy public speaking?",
+  "question": "Do you enjoy speaking in front of an audience?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9592,7 +9592,7 @@
  "5237": {
   "id": 5237,
   "exam": 114,
-  "question": "Are your communication skills strong?",
+  "question": "Would you say your communication skills are strong?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9647,7 +9647,7 @@
  "5238": {
   "id": 5238,
   "exam": 114,
-  "question": "Do you aspire to hold positions of authority?",
+  "question": "Do you dream of holding positions of authority one day?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9702,7 +9702,7 @@
  "5239": {
   "id": 5239,
   "exam": 114,
-  "question": "Do you value rules and regulations?",
+  "question": "Do you respect rules and regulations?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9757,7 +9757,7 @@
  "5240": {
   "id": 5240,
   "exam": 114,
-  "question": "Are you proficient in debates and winning arguments?",
+  "question": "Are you good at debating and holding your ground in an argument?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9812,7 +9812,7 @@
  "5241": {
   "id": 5241,
   "exam": 114,
-  "question": "Would you thrive in a role responsible for the safety of others?",
+  "question": "Would you take pride in a role that keeps other people safe?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -9867,7 +9867,7 @@
  "5242": {
   "id": 5242,
   "exam": 114,
-  "question": "Do you possess decision-making abilities?",
+  "question": "Are you good at making decisions and standing by them?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -9922,7 +9922,7 @@
  "5243": {
   "id": 5243,
   "exam": 114,
-  "question": "Are you fascinated by computers and emerging technologies?",
+  "question": "Are computers and emerging technologies fascinating to you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -9977,7 +9977,7 @@
  "5244": {
   "id": 5244,
   "exam": 114,
-  "question": "Do you enjoy playing video games and exploring their workings?",
+  "question": "Do you enjoy video games and wondering how they are built?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -10032,7 +10032,7 @@
  "5245": {
   "id": 5245,
   "exam": 114,
-  "question": "Can you maintain focus for extended periods without distractions?",
+  "question": "Can you stay focused for long stretches without getting distracted?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -10087,7 +10087,7 @@
  "5246": {
   "id": 5246,
   "exam": 114,
-  "question": "Can you comprehend technical materials, diagrams, and solve technical issues?",
+  "question": "Can you understand technical documents and diagrams and fix technical issues?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "309",
@@ -10142,7 +10142,7 @@
  "5247": {
   "id": 5247,
   "exam": 114,
-  "question": "Do you care about people, their needs, and their problems?",
+  "question": "Do you care deeply about people, their needs and their problems?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "309",
@@ -10197,7 +10197,7 @@
  "5248": {
   "id": 5248,
   "exam": 114,
-  "question": "Are you eager to engage in community service and volunteer work?",
+  "question": "Are you eager to take part in community service and volunteering?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "309",
@@ -10252,7 +10252,7 @@
  "5249": {
   "id": 5249,
   "exam": 114,
-  "question": "Are you dedicated to improving the well-being of others?",
+  "question": "Are you committed to improving the lives of others?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "309",
@@ -10307,7 +10307,7 @@
  "5250": {
   "id": 5250,
   "exam": 114,
-  "question": "Are you an adept listener and skilled at making friends from diverse backgrounds?",
+  "question": "Are you a good listener who makes friends easily from all backgrounds?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "309",
@@ -10362,7 +10362,7 @@
  "5251": {
   "id": 5251,
   "exam": 114,
-  "question": "Do you prioritize factors other than money in your life?",
+  "question": "Do you value things in life other than money?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10417,7 +10417,7 @@
  "5252": {
   "id": 5252,
   "exam": 114,
-  "question": "Do you relish traveling and dining out?",
+  "question": "Do you love travelling and trying new food?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10472,7 +10472,7 @@
  "5253": {
   "id": 5253,
   "exam": 114,
-  "question": "Are you sociable and outgoing?",
+  "question": "Are you sociable and outgoing by nature?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10527,7 +10527,7 @@
  "5254": {
   "id": 5254,
   "exam": 114,
-  "question": "Are you skilled at active listening and capable of forming friendships with individuals from diverse backgrounds?",
+  "question": "Can you listen actively and build friendships with very different people?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10582,7 +10582,7 @@
  "5255": {
   "id": 5255,
   "exam": 114,
-  "question": "Do you assign a lower priority to financial matters in your life?",
+  "question": "Would you place money low on your list of career priorities?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10637,7 +10637,7 @@
  "5256": {
   "id": 5256,
   "exam": 114,
-  "question": "Do you relish traveling and savouring meals at restaurants?",
+  "question": "Do you enjoy exploring new places and eating at new restaurants?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "311",
@@ -10692,7 +10692,7 @@
  "5257": {
   "id": 5257,
   "exam": 114,
-  "question": "Do you possess a sociable and extroverted personality?",
+  "question": "Would you describe your personality as extroverted and friendly?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "311",
@@ -10747,7 +10747,7 @@
  "5258": {
   "id": 5258,
   "exam": 114,
-  "question": "Would you enjoy working in settings like hotels, on cruises, or in restaurants?",
+  "question": "Could you see yourself working in hotels, on cruises or in restaurants?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "311",
@@ -10802,7 +10802,7 @@
  "5259": {
   "id": 5259,
   "exam": 114,
-  "question": "Do you appreciate learning about different cultures?",
+  "question": "Do you enjoy learning about different cultures and ways of life?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "311",
@@ -10857,7 +10857,7 @@
  "5260": {
   "id": 5260,
   "exam": 114,
-  "question": "Would you like to organize events that bring joy to others?",
+  "question": "Would you enjoy organising events that make people happy?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "311",
@@ -10912,7 +10912,7 @@
  "5261": {
   "id": 5261,
   "exam": 114,
-  "question": "Do you have a strong memory?",
+  "question": "Is your memory strong and reliable?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -10967,7 +10967,7 @@
  "5262": {
   "id": 5262,
   "exam": 114,
-  "question": "Are you interested in working in medical facilities or hospitals?",
+  "question": "Could you see yourself working in hospitals or medical facilities?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -11022,7 +11022,7 @@
  "5263": {
   "id": 5263,
   "exam": 114,
-  "question": "Can you provide care to the sick, both humans and animals?",
+  "question": "Would you be able to care for sick people and animals?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -11077,7 +11077,7 @@
  "5264": {
   "id": 5264,
   "exam": 114,
-  "question": "Are you compassionate and empathetic?",
+  "question": "Are you compassionate and quick to empathise with others?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -11132,7 +11132,7 @@
  "5265": {
   "id": 5265,
   "exam": 114,
-  "question": "Does biology hold your interest as a subject?",
+  "question": "Does biology interest you as a subject?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -11242,7 +11242,7 @@
  "5267": {
   "id": 5267,
   "exam": 114,
-  "question": "Do you have a keen interest in government and politics?",
+  "question": "Are you keenly interested in government and politics?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11297,7 +11297,7 @@
  "5268": {
   "id": 5268,
   "exam": 114,
-  "question": "Do you aspire to contribute to the betterment of your country?",
+  "question": "Do you want to contribute to making your country better?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11352,7 +11352,7 @@
  "5269": {
   "id": 5269,
   "exam": 114,
-  "question": "Can you engage in negotiating and debating various ideas and topics effectively?",
+  "question": "Are you good at negotiating and debating ideas and topics?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11407,7 +11407,7 @@
  "5270": {
   "id": 5270,
   "exam": 114,
-  "question": "Are you skilled at planning and collaborating with others?",
+  "question": "Are you good at planning and working together with others?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11462,7 +11462,7 @@
  "5271": {
   "id": 5271,
   "exam": 114,
-  "question": "Are you interested in a career in television, film, or radio?",
+  "question": "Could you imagine a career in television, film or radio?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11517,7 +11517,7 @@
  "5272": {
   "id": 5272,
   "exam": 114,
-  "question": "Does artistic expression hold significance for you?",
+  "question": "Does artistic and creative expression matter to you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11572,7 +11572,7 @@
  "5273": {
   "id": 5273,
   "exam": 114,
-  "question": "Does being the limelight interest you?",
+  "question": "Does being in the spotlight appeal to you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11682,7 +11682,7 @@
  "5275": {
   "id": 5275,
   "exam": 114,
-  "question": "Are you inclined towards subjects like performing arts, writing, design, etc.?",
+  "question": "Are you drawn to subjects like performing arts, writing or design?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11737,7 +11737,7 @@
  "5276": {
   "id": 5276,
   "exam": 114,
-  "question": "Are you enthusiastic about science?",
+  "question": "Are you enthusiastic about science and how things work?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",
@@ -11792,7 +11792,7 @@
  "5277": {
   "id": 5277,
   "exam": 114,
-  "question": "Do you excel in mathematics?",
+  "question": "Do you do well in mathematics and enjoy it?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",
@@ -11847,7 +11847,7 @@
  "5278": {
   "id": 5278,
   "exam": 114,
-  "question": "Do you find pleasure in seeking answers to questions?",
+  "question": "Do you enjoy hunting for answers to difficult questions?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",
@@ -11902,7 +11902,7 @@
  "5279": {
   "id": 5279,
   "exam": 114,
-  "question": "Do you relish working in a laboratory and conducting experiments?",
+  "question": "Would you enjoy working in a laboratory and running experiments?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",
@@ -11957,7 +11957,7 @@
  "5280": {
   "id": 5280,
   "exam": 114,
-  "question": "Can you easily interpret and apply mathematical formulas?",
+  "question": "Can you read and apply mathematical formulas easily?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",

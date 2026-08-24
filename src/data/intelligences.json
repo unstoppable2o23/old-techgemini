@@ -41,7 +41,7 @@
     "marks": 7
    }
   },
-  "question": "My reflexes and reaction times are better than those of most of my peers."
+  "question": "My reflexes and body coordination are better than those of most people my age."
  },
  "2": {
   "id": "2",
@@ -85,7 +85,7 @@
     "marks": 7
    }
   },
-  "question": "I can easily picture complex objects and rotate them in my mind to \"view\" them from different angles."
+  "question": "I can picture complicated shapes in my head and rotate them to see them from different sides."
  },
  "3": {
   "id": "3",
@@ -129,7 +129,7 @@
     "marks": 7
    }
   },
-  "question": "I enjoy writing and am good at expressing my thoughts in written form."
+  "question": "Writing comes naturally to me, and I express my thoughts well on paper."
  },
  "4": {
   "id": "4",
@@ -173,7 +173,7 @@
     "marks": 7
    }
   },
-  "question": "I can easily compute numbers in my head — for example, figuring out totals in a store or calculating percentages."
+  "question": "I can work out sums in my head quickly, like totalling a bill in a shop."
  },
  "5": {
   "id": "5",
@@ -217,7 +217,7 @@
     "marks": 7
    }
   },
-  "question": "When I listen to music, I can tell when a musical note is \"off key\"."
+  "question": "When I listen to music, I notice straight away if a note sounds wrong."
  },
  "6": {
   "id": "6",
@@ -261,7 +261,7 @@
     "marks": 7
    }
   },
-  "question": "In group situations, I am the one who is able to have the most influence."
+  "question": "In a group, I am often the person who has the most influence on others."
  },
  "7": {
   "id": "7",
@@ -305,7 +305,7 @@
     "marks": 7
    }
   },
-  "question": "When recalling past experiences, I am able to describe exactly what I was feeling at different points in time."
+  "question": "When I recall old memories, I can describe exactly what I felt at the time."
  },
  "8": {
   "id": "8",
@@ -349,7 +349,7 @@
     "marks": 7
    }
   },
-  "question": "I can point out similarities and differences in many of the animals, plants, rocks and other features of the area where I live."
+  "question": "I easily spot how animals, plants and rocks are alike and different."
  },
  "9": {
   "id": "9",
@@ -393,7 +393,7 @@
     "marks": 7
    }
   },
-  "question": "I spend time thinking about broad concepts of human nature, such as \"good\" and \"evil\" and why they exist."
+  "question": "I spend time thinking about big questions of human nature, like what makes actions good or bad."
  },
  "10": {
   "id": "10",
@@ -437,7 +437,7 @@
     "marks": 7
    }
   },
-  "question": "I can throw, catch, hit targets or handle objects with great skill and accuracy."
+  "question": "I can throw, catch, hit targets or handle objects with real precision."
  },
  "11": {
   "id": "11",
@@ -481,7 +481,7 @@
     "marks": 7
    }
   },
-  "question": "I am very good at building and assembling models, kits, and other objects, even without any instructions."
+  "question": "I am good at building models and kits, even without instructions."
  },
  "12": {
   "id": "12",
@@ -525,7 +525,7 @@
     "marks": 7
    }
   },
-  "question": "I read — books, articles or online content — for two or more hours per day."
+  "question": "I read books, articles or online content for two or more hours almost every day."
  },
  "13": {
   "id": "13",
@@ -569,7 +569,7 @@
     "marks": 7
    }
   },
-  "question": "I am very good at strategy games and solving puzzles that require step-by-step thinking."
+  "question": "Strategy games and puzzles that need careful step-by-step thinking are my strength."
  },
  "14": {
   "id": "14",
@@ -613,7 +613,7 @@
     "marks": 7
    }
   },
-  "question": "I enjoy playing a musical instrument or singing, and I do it well."
+  "question": "I play a musical instrument or sing, and I do it well."
  },
  "15": {
   "id": "15",
@@ -657,7 +657,7 @@
     "marks": 7
    }
   },
-  "question": "People tell me I have a unique talent for understanding how others feel."
+  "question": "People say I have a special gift for understanding how others feel."
  },
  "16": {
   "id": "16",
@@ -701,7 +701,7 @@
     "marks": 7
    }
   },
-  "question": "The way I would describe myself is very similar to how my close friends and family would describe me."
+  "question": "The way I describe myself matches what my close friends and family would say about me."
  },
  "17": {
   "id": "17",
@@ -745,7 +745,7 @@
     "marks": 7
    }
   },
-  "question": "I think about pollution and other environmental issues that affect the Earth."
+  "question": "I often think about pollution and other environmental problems facing the planet."
  },
  "18": {
   "id": "18",
@@ -789,7 +789,7 @@
     "marks": 7
    }
   },
-  "question": "I get involved with causes that will make a difference in the world."
+  "question": "I get involved in causes that can change the world for the better."
  },
  "19": {
   "id": "19",
@@ -833,7 +833,7 @@
     "marks": 7
    }
   },
-  "question": "I am good at making up and performing new \"moves\" in sports, dance or other physical activities."
+  "question": "I enjoy inventing new moves in sports, dance or other physical activities."
  },
  "20": {
   "id": "20",
@@ -877,7 +877,7 @@
     "marks": 7
    }
   },
-  "question": "I can estimate distances or spaces quite accurately."
+  "question": "I can estimate distances and sizes quite accurately by eye."
  },
  "21": {
   "id": "21",
@@ -921,7 +921,7 @@
     "marks": 7
    }
   },
-  "question": "Compared to others my age, I have and use an extensive vocabulary."
+  "question": "Compared with others my age, I use a very wide vocabulary."
  },
  "22": {
   "id": "22",
@@ -965,7 +965,7 @@
     "marks": 7
    }
   },
-  "question": "I can estimate the answer to a math question before I do the calculation."
+  "question": "I can guess the answer to a maths problem before working it out fully."
  },
  "23": {
   "id": "23",
@@ -1009,7 +1009,7 @@
     "marks": 7
    }
   },
-  "question": "Many of my memories are connected to music."
+  "question": "Many of my strongest memories are connected to music."
  },
  "24": {
   "id": "24",
@@ -1053,7 +1053,7 @@
     "marks": 7
    }
   },
-  "question": "I am the first to notice when other people are feeling down, and I am the one most able to cheer them up."
+  "question": "I am among the first to notice when someone is feeling low, and I know how to help."
  },
  "25": {
   "id": "25",
@@ -1097,7 +1097,7 @@
     "marks": 7
    }
   },
-  "question": "When I am getting upset, I quickly realize it and can easily calm myself before showing the emotion."
+  "question": "When I start getting upset, I notice it quickly and calm myself before it shows."
  },
  "26": {
   "id": "26",
@@ -1141,7 +1141,7 @@
     "marks": 7
    }
   },
-  "question": "I enjoy books, TV shows or movies that focus on animals and nature."
+  "question": "I enjoy books, shows and films about animals and the natural world."
  },
  "27": {
   "id": "27",
@@ -1185,7 +1185,7 @@
     "marks": 7
    }
   },
-  "question": "I like talking about deep topics, such as free will versus destiny."
+  "question": "I like discussing deep topics, such as whether we have free will."
  },
  "28": {
   "id": "28",
@@ -1229,7 +1229,7 @@
     "marks": 7
    }
   },
-  "question": "I like tough physical challenges and think about how to improve each time."
+  "question": "I love tough physical challenges and think about how to improve each time."
  },
  "29": {
   "id": "29",
@@ -1273,7 +1273,7 @@
     "marks": 7
    }
   },
-  "question": "From memory, I can accurately draw or describe what something looks like better than most people."
+  "question": "From memory, I can draw or describe what something looks like better than most people."
  },
  "30": {
   "id": "30",
@@ -1317,7 +1317,7 @@
     "marks": 7
    }
   },
-  "question": "I excel in language classes at school (English and other languages)."
+  "question": "I do very well in language classes, including foreign languages."
  },
  "31": {
   "id": "31",
@@ -1361,7 +1361,7 @@
     "marks": 7
    }
   },
-  "question": "I find math easy and get high grades in my math classes."
+  "question": "I find maths easy and get good grades in it."
  },
  "32": {
   "id": "32",
@@ -1405,7 +1405,7 @@
     "marks": 7
    }
   },
-  "question": "I can focus on the different parts of music I hear. For example, I can pick out each of the different instruments in a song."
+  "question": "I can pick out the separate instruments or voices in a piece of music."
  },
  "33": {
   "id": "33",
@@ -1449,7 +1449,7 @@
     "marks": 7
    }
   },
-  "question": "I fit in quickly when I meet a new group of people — when I start at a new school or join a team, for example."
+  "question": "I fit into a new group quickly, like when I join a new school or team."
  },
  "34": {
   "id": "34",
@@ -1493,7 +1493,7 @@
     "marks": 7
    }
   },
-  "question": "Others would say that I handle criticism extremely well."
+  "question": "Others would say I handle criticism extremely well."
  },
  "35": {
   "id": "35",
@@ -1537,7 +1537,7 @@
     "marks": 7
    }
   },
-  "question": "I do well and enjoy my schoolwork more when it is related to nature or the environment."
+  "question": "I do best in and enjoy schoolwork that involves nature or the environment."
  },
  "36": {
   "id": "36",
@@ -1581,7 +1581,7 @@
     "marks": 7
    }
   },
-  "question": "I think about whether we have a purpose in the universe and what that purpose is."
+  "question": "I think about whether life has a purpose and what that purpose might be."
  },
  "37": {
   "id": "37",
@@ -1625,7 +1625,7 @@
     "marks": 7
    }
   },
-  "question": "Others describe me as physically well-coordinated, or smooth and graceful."
+  "question": "People describe me as physically graceful and well-coordinated."
  },
  "38": {
   "id": "38",
@@ -1669,7 +1669,7 @@
     "marks": 7
    }
   },
-  "question": "I like to draw, doodle, or sketch, and I do it while taking notes or trying to understand something better."
+  "question": "I like to draw, doodle or sketch, especially while taking notes or thinking."
  },
  "39": {
   "id": "39",
@@ -1713,7 +1713,7 @@
     "marks": 7
    }
   },
-  "question": "I understand and use subtle humor much better than others my age."
+  "question": "I get subtle humour and wordplay much more easily than others my age."
  },
  "40": {
   "id": "40",
@@ -1757,7 +1757,7 @@
     "marks": 7
    }
   },
-  "question": "I am good at using different math principles like geometry, algebra and statistics to solve real-life problems and questions."
+  "question": "I can apply ideas from geometry, algebra and statistics to solve real problems."
  },
  "41": {
   "id": "41",
@@ -1801,7 +1801,7 @@
     "marks": 7
    }
   },
-  "question": "I have an excellent sense of rhythm. I can easily pick up on the timing for many different types of music."
+  "question": "I have an excellent sense of rhythm and can pick up timing quickly."
  },
  "42": {
   "id": "42",
@@ -1845,7 +1845,7 @@
     "marks": 7
    }
   },
-  "question": "I enjoy and am excellent in roles in which I help others, such as in tutoring, babysitting or customer service, for example."
+  "question": "I enjoy and do well in roles where I help people, like tutoring or caring."
  },
  "43": {
   "id": "43",
@@ -1889,7 +1889,7 @@
     "marks": 7
    }
   },
-  "question": "I spend a lot of time thinking about my actions and feelings in different situations."
+  "question": "I spend a lot of time reflecting on my actions and feelings in different situations."
  },
  "44": {
   "id": "44",
@@ -1933,7 +1933,7 @@
     "marks": 7
    }
   },
-  "question": "I feel great concern about endangered species and mistreatment of animals."
+  "question": "Endangered species and the mistreatment of animals genuinely worry me."
  },
  "45": {
   "id": "45",
@@ -1977,7 +1977,7 @@
     "marks": 7
    }
   },
-  "question": "It is easy for me to see how topics in school apply to the world outside of school."
+  "question": "It is easy for me to see how school subjects connect to the world outside school."
  },
  "46": {
   "id": "46",
@@ -2021,7 +2021,7 @@
     "marks": 7
    }
   },
-  "question": "I can handle tools, instruments and other physical objects in a skillful way."
+  "question": "I use tools, instruments and physical objects with skill."
  },
  "47": {
   "id": "47",
@@ -2065,7 +2065,7 @@
     "marks": 7
    }
   },
-  "question": "I am excellent at solving jigsaw puzzles, mazes and other visual games."
+  "question": "I am excellent at jigsaw puzzles, mazes and other visual games."
  },
  "48": {
   "id": "48",
@@ -2109,7 +2109,7 @@
     "marks": 7
    }
   },
-  "question": "I take time to learn the meaning of new words that I come across."
+  "question": "I take the time to learn the meaning of new words I come across."
  },
  "49": {
   "id": "49",
@@ -2153,7 +2153,7 @@
     "marks": 7
    }
   },
-  "question": "I tend to think about different possible solutions to a problem, and then analyze each to see which one is best."
+  "question": "I think through several possible solutions to a problem and analyse each one."
  },
  "50": {
   "id": "50",
@@ -2197,7 +2197,7 @@
     "marks": 7
    }
   },
-  "question": "If I hear a song once or twice, I am able to sing or play most of it back fairly accurately."
+  "question": "If I hear a song once or twice, I can sing or play most of it back accurately."
  },
  "51": {
   "id": "51",
@@ -2241,7 +2241,7 @@
     "marks": 7
    }
   },
-  "question": "It is easy for me to work with all types of people, even those whom others find \"difficult\"."
+  "question": "I can work well with all kinds of people, even those others find difficult."
  },
  "52": {
   "id": "52",
@@ -2285,7 +2285,7 @@
     "marks": 7
    }
   },
-  "question": "I consider my strengths and weaknesses before selecting activities and making plans."
+  "question": "I weigh my strengths and weaknesses before choosing activities and making plans."
  },
  "53": {
   "id": "53",
@@ -2329,7 +2329,7 @@
     "marks": 7
    }
   },
-  "question": "I like to collect things and organize them by their features."
+  "question": "I enjoy collecting things and organising them by their features."
  },
  "54": {
   "id": "54",
@@ -2373,6 +2373,6 @@
     "marks": 7
    }
   },
-  "question": "I spend time thinking about the role I play in the larger community."
+  "question": "I think about the part I play in the larger community."
  }
 }
