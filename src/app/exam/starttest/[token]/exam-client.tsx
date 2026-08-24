@@ -322,7 +322,10 @@ export function ExamClient({ token, kind }: Props) {
             </p>
           )}
           <CardTitle className="whitespace-pre-line text-lg leading-relaxed">
-            {current.question}
+            {current.question?.trim() ||
+              (kind === "personality"
+                ? "Which statement sounds more like you?"
+                : "Choose your answer")}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
