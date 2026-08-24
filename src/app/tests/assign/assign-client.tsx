@@ -135,6 +135,9 @@ export function AssignClient({
                     <SelectContent>
                       <SelectItem value="stream">Stream Selector (76 questions)</SelectItem>
                       <SelectItem value="ideal">Ideal Career (182 questions)</SelectItem>
+                      <SelectItem value="personality">
+                        Personality — Do What You Are (36 questions)
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -193,7 +196,12 @@ export function AssignClient({
                           )}
                         </div>
                         <p className="mt-0.5 text-xs text-slate-500">
-                          {a.kind === "stream" ? "Stream Selector" : "Ideal Career"} ·{" "}
+                          {a.kind === "stream"
+                            ? "Stream Selector"
+                            : a.kind === "ideal"
+                              ? "Ideal Career"
+                              : "Personality"}{" "}
+                          ·{" "}
                           assigned {new Date(a.createdAt).toLocaleString()}
                           {a.completedAt &&
                             ` · completed ${new Date(a.completedAt).toLocaleString()}`}

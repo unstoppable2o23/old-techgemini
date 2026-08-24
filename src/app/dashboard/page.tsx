@@ -215,7 +215,11 @@ export default async function DashboardPage() {
                 <div key={t.id} className="flex items-center justify-between gap-4 border-b pb-3 last:border-0 last:pb-0">
                   <div className="min-w-0">
                     <p className="text-sm font-medium">
-                      {t.kind === "stream" ? "Stream Selector Test" : "Ideal Career Test"}
+                      {t.kind === "stream"
+                        ? "Stream Selector Test"
+                        : t.kind === "ideal"
+                          ? "Ideal Career Test"
+                          : "Personality Test (Do What You Are)"}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Assigned {new Date(t.createdAt).toLocaleDateString()}

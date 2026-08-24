@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { studentId, kind } = await request.json();
-    if (!studentId || !["stream", "ideal"].includes(kind)) {
+    if (!studentId || !["stream", "ideal", "personality"].includes(kind)) {
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
     }
 

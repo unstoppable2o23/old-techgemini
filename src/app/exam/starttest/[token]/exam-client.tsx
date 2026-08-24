@@ -153,7 +153,9 @@ export function ExamClient({ token, kind }: Props) {
             <CardTitle>
               {report.kind === "stream"
                 ? "Your Stream Recommendation"
-                : "Your Ideal Career Profile"}
+                : report.kind === "personality"
+                  ? "Your Personality Type"
+                  : "Your Ideal Career Profile"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -165,7 +167,39 @@ export function ExamClient({ token, kind }: Props) {
                 </span>
               </p>
             )}
-            {(report.kind === "stream" ? report.rows : report.domains).map((row) => (
+            {report.kind === "personality" && (
+              <p className="text-sm text-slate-600">
+                Your personality type:{" "}
+                <span className="text-2xl font-bold tracking-widest text-primary">
+                  {report.type}
+                </span>
+              </p>
+            )}
+            {report.kind === "personality"
+              ? report.rows.map((row) => {
+                  const total = row.first.count + row.second.count || 1;
+                  const pct = Math.round((row.first.count / total) * 100);
+                  return (
+                    <div key={row.key}>
+                      <div className="mb-1 flex justify-between text-xs text-slate-500">
+                        <span>
+                          {row.first.label} {row.first.count}
+                        </span>
+                        <span>
+                          {row.second.label} {row.second.count}
+                        </span>
+                      </div>
+                      <div className="flex h-2 overflow-hidden rounded-full bg-slate-100">
+                        <div className="h-2 bg-primary" style={{ width: `${pct}%` }} />
+                        <div
+                          className="h-2 bg-slate-300"
+                          style={{ width: `${100 - pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })
+              : (report.kind === "stream" ? report.rows : report.domains).map((row) => (
               <div key={row.key}>
                 <div className="mb-1 flex justify-between text-xs text-slate-500">
                   <span>{row.label}</span>
