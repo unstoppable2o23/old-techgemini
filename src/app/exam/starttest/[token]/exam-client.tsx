@@ -55,6 +55,11 @@ export function ExamClient({ token, kind }: Props) {
     const result = buildReport(kind, answers);
     setReport(result);
     localStorage.setItem(resultKey, JSON.stringify(result));
+    fetch("/api/tests/assignments/complete", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ token, report: result }),
+    }).catch(() => {});
   }
 
   function retake() {

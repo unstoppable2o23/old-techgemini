@@ -30,5 +30,31 @@ export default async function AssignTestsPage() {
     orderBy: [{ firstName: "asc" }, { lastName: "asc" }],
   });
 
-  return <AssignClient students={students} />;
+  const assignments = await prisma.testAssignment.findMany({
+    where: {
+      tenantId: user.tenantId,
+      ...(user.role === "COUNSELOR"
+        ? { student: { studentProfile: { counselor: { userId: user.id } } } }
+        : {}),
+    },
+    include: {
+      student: { select: { firstName: true, lastName: true, email: true } },
+    },
+    orderBy: { createdAt: "desc" },
+    take: 100,
+  });
+
+  const safeAssignments = assignments.map((a) => ({
+    id: a.id,
+    kind: a.kind as "stream" | "ideal",
+    token: a.token,
+    status: a.status as "ASSIGNED" | "COMPLETED",
+    createdAt: a.createdAt.toISOString(),
+    completedAt: a.completedAt ? a.completedAt.toISOString() : null,
+    hasResult: Boolean(a.result),
+    studentName: `${a.student.firstName} ${a.student.lastName}`,
+    studentEmail: a.student.email,
+  }));
+
+  return <AssignClient students={students} initialAssignments={safeAssignments} />;
 }

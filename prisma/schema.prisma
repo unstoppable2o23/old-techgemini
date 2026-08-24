@@ -14,6 +14,11 @@ enum Role {
   UNIVERSITY_ADMIN
 }
 
+enum TestAssignmentStatus {
+  ASSIGNED
+  COMPLETED
+}
+
 enum TestStatus {
   DRAFT
   ACTIVE
@@ -93,6 +98,8 @@ model User {
   chatsAsStudent          Chat[]            @relation("StudentChats")
   chatsAsCounselor        Chat[]            @relation("CounselorChats")
   messages                Message[]
+  testAssignments         TestAssignment[]  @relation("StudentTestAssignments")
+  createdTestAssignments  TestAssignment[]  @relation("CreatedTestAssignments")
 
   @@index([tenantId])
   @@index([email])
@@ -215,6 +222,24 @@ model TestResult {
 
   @@index([studentId])
   @@index([testId])
+}
+
+model TestAssignment {
+  id           String               @id @default(cuid())
+  tenantId     String
+  studentId    String
+  student      User                 @relation("StudentTestAssignments", fields: [studentId], references: [id], onDelete: Cascade)
+  assignedById String
+  assignedBy   User                 @relation("CreatedTestAssignments", fields: [assignedById], references: [id])
+  kind         String
+  token        String               @unique
+  status       TestAssignmentStatus @default(ASSIGNED)
+  result       Json?
+  createdAt    DateTime             @default(now())
+  completedAt  DateTime?
+
+  @@index([tenantId])
+  @@index([studentId])
 }
 
 model Appointment {

@@ -48,6 +48,7 @@ type NavItem = {
 
 const COUNSELOR_NAV_ITEMS: NavItem[] = [
   { label: "Student Management", href: "/students", icon: Users },
+  { label: "Tests", href: "/tests/assign", icon: FileText },
   { label: "Universities", href: "/universities", icon: Building2 },
   { label: "Indian Colleges and Universities", href: "/indian-colleges", icon: Landmark },
   { label: "Career Library", href: "/career-library", icon: Library },
