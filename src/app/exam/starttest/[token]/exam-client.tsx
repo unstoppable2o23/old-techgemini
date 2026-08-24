@@ -12,6 +12,7 @@ import {
   type ExamReport,
   type TestKind,
 } from "@/lib/tests";
+import personalityProfiles from "@/data/personality-profiles.json";
 
 type Props = { token: string; kind: TestKind };
 
@@ -168,12 +169,29 @@ export function ExamClient({ token, kind }: Props) {
               </p>
             )}
             {report.kind === "personality" && (
-              <p className="text-sm text-slate-600">
-                Your personality type:{" "}
-                <span className="text-2xl font-bold tracking-widest text-primary">
-                  {report.type}
-                </span>
-              </p>
+              <div className="space-y-2">
+                <p className="text-sm text-slate-600">
+                  Your personality type:{" "}
+                  <span className="text-2xl font-bold tracking-widest text-primary">
+                    {report.type}
+                  </span>
+                </p>
+                {(personalityProfiles.profiles as Record<string, string>)[
+                  report.type
+                ] && (
+                  <div className="rounded-lg bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">
+                    {(personalityProfiles.profiles as Record<string, string>)[
+                      report.type
+                    ]
+                      .split(/\n+/)
+                      .map((para, i) => (
+                        <p key={i} className={i > 0 ? "mt-2" : ""}>
+                          {para}
+                        </p>
+                      ))}
+                  </div>
+                )}
+              </div>
             )}
             {report.kind === "personality"
               ? report.rows.map((row) => {
