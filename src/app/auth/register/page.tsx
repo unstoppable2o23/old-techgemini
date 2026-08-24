@@ -22,6 +22,29 @@ const EXAM_OPTIONS = [
   "A-Levels", "IB Diploma", "CELPIP", "PTE", "None yet",
 ];
 
+const COUNTRY_CODES = [
+  { code: "+91", label: "India (+91)" },
+  { code: "+1", label: "USA / Canada (+1)" },
+  { code: "+44", label: "UK (+44)" },
+  { code: "+971", label: "UAE (+971)" },
+  { code: "+61", label: "Australia (+61)" },
+  { code: "+65", label: "Singapore (+65)" },
+  { code: "+966", label: "Saudi Arabia (+966)" },
+  { code: "+977", label: "Nepal (+977)" },
+  { code: "+880", label: "Bangladesh (+880)" },
+  { code: "+94", label: "Sri Lanka (+94)" },
+  { code: "+60", label: "Malaysia (+60)" },
+  { code: "+49", label: "Germany (+49)" },
+  { code: "+33", label: "France (+33)" },
+  { code: "+27", label: "South Africa (+27)" },
+  { code: "+234", label: "Nigeria (+234)" },
+  { code: "+20", label: "Egypt (+20)" },
+  { code: "+55", label: "Brazil (+55)" },
+  { code: "+52", label: "Mexico (+52)" },
+  { code: "+81", label: "Japan (+81)" },
+  { code: "+82", label: "South Korea (+82)" },
+];
+
 export default function RegisterPage() {
   const router = useRouter();
   const [brandName, setBrandName] = useState("Study Abroad Platform");
@@ -31,6 +54,7 @@ export default function RegisterPage() {
     email: "",
     password: "",
     dateOfBirth: "",
+    mobileCountryCode: "+91",
     mobile: "",
     gender: "",
     gradeLevel: "",
@@ -76,7 +100,10 @@ export default function RegisterPage() {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          mobile: `${form.mobileCountryCode} ${form.mobile}`.trim(),
+        }),
       });
 
       if (!res.ok) {
@@ -272,16 +299,36 @@ export default function RegisterPage() {
 
             <div>
               <Label className="mb-1.5 block text-[13px] font-medium text-slate-700">Mobile</Label>
-              <div className="relative">
-                <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                <input
-                  type="tel"
-                  value={form.mobile}
-                  onChange={(e) => update("mobile", e.target.value)}
-                  placeholder="9876543210"
-                  required
-                  className={inputClass}
-                />
+              <div className="flex gap-2">
+                <div className="w-[128px] shrink-0">
+                  <Select
+                    value={form.mobileCountryCode}
+                    onValueChange={(v) => update("mobileCountryCode", v)}
+                  >
+                    <SelectTrigger className={selectClass}>
+                      <SelectValue>{form.mobileCountryCode}</SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {COUNTRY_CODES.map((c) => (
+                        <SelectItem key={c.code} value={c.code}>{c.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="relative flex-1">
+                  <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    value={form.mobile}
+                    onChange={(e) => update("mobile", e.target.value.replace(/[^\d\s-]/g, ""))}
+                    placeholder="9876543210"
+                    required
+                    pattern="[0-9\s\-]{5,15}"
+                    title="Enter a valid mobile number (digits only)"
+                    className={inputClass}
+                  />
+                </div>
               </div>
             </div>
 

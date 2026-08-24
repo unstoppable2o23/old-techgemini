@@ -22,7 +22,7 @@ function Select({ value, onValueChange, children }: SelectProps) {
   const [open, setOpen] = React.useState(false);
   return (
     <SelectContext.Provider value={{ value, onValueChange, open, setOpen }}>
-      {children}
+      <div className="relative">{children}</div>
     </SelectContext.Provider>
   );
 }

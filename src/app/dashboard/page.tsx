@@ -161,6 +161,11 @@ export default async function DashboardPage() {
     include: { test: true },
   });
 
+  const myTests = await prisma.testAssignment.findMany({
+    where: { studentId: user.id },
+    orderBy: { createdAt: "desc" },
+  });
+
   const featureCards = [
     { label: "College Finder", icon: GraduationCap, enabled: featureAccess?.collegeFinder, href: "/college-finder" },
     { label: "AI Odds Calculator", icon: Calculator, enabled: featureAccess?.aiOddsCalculator, href: "/odds-calculator" },
@@ -193,6 +198,50 @@ export default async function DashboardPage() {
           </Card>
         ))}
       </div>
+
+      {myTests.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md shadow-primary/25">
+                <ClipboardCheck className="h-5 w-5" />
+              </span>
+              My Tests
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {myTests.map((t) => (
+                <div key={t.id} className="flex items-center justify-between gap-4 border-b pb-3 last:border-0 last:pb-0">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium">
+                      {t.kind === "stream" ? "Stream Selector Test" : "Ideal Career Test"}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Assigned {new Date(t.createdAt).toLocaleDateString()}
+                      {t.status === "COMPLETED" && t.completedAt &&
+                        ` · Completed ${new Date(t.completedAt).toLocaleDateString()}`}
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2">
+                    {t.status === "COMPLETED" ? (
+                      <Badge variant="success">Completed</Badge>
+                    ) : (
+                      <Badge variant="warning">Pending</Badge>
+                    )}
+                    <a
+                      href={`/exam/starttest/${t.token}`}
+                      className="inline-flex h-8 items-center rounded-md bg-primary px-3 text-xs font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                    >
+                      {t.status === "COMPLETED" ? "View report" : "Start test"}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {recentResults.length > 0 && (
         <Card>
