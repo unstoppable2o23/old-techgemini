@@ -220,7 +220,7 @@ export default async function DashboardPage() {
                         : t.kind === "ideal"
                           ? "Ideal Career Test"
                           : t.kind === "personality"
-                            ? "Personality Test (Do What You Are)"
+                            ? "Personality Type Test"
                             : t.kind === "intelligences"
                               ? "Multiple Intelligences Test"
                               : "Learning & Productivity Test"}

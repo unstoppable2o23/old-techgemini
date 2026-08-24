@@ -7,13 +7,13 @@
   "options": {
    "1931110118104": {
     "id": "1931110118104",
-    "answer": "I have a lot of friends I like to spend time with, and usually enjoy meeting new people. I am in constant contact with friends and often try to get them together to have fun and go places. Just thinking about getting something going gets me excited and motivated.",
+    "answer": "I feel energised after spending a whole day around lots of people.",
     "marks": 1,
     "pole": "E"
    },
    "1931110119104": {
     "id": "1931110119104",
-    "answer": "I am a somewhat private person. I have very close friends I've known for years. I like to do things with them, but I also enjoy spending time alone – doing things I like to do or just relaxing. In social situations, especially new ones, I often prefer to listen and observe awhile before getting involved.",
+    "answer": "I need quiet time by myself to recharge after being around lots of people.",
     "marks": 1,
     "pole": "I"
    }
@@ -27,13 +27,13 @@
   "options": {
    "1941110218104": {
     "id": "1941110218104",
-    "answer": "At lunch I usually sit and talk with other people, and I belong to several clubs – because I like the social interaction. If given a choice, I prefer to do homework with others, and I often chat with my friends while I'm working.",
+    "answer": "When an idea excites me, I want to talk about it with someone right away.",
     "marks": 1,
     "pole": "E"
    },
    "1941110219104": {
     "id": "1941110219104",
-    "answer": "I have excellent powers of concentration and usually prefer to study alone. My interests are complex and intense - like I am - and I know a lot about the things that interest me. I enjoy having a meaningful conversation, but dislike superficial chit-chat.\r\n",
+    "answer": "When an idea strikes me, I prefer to develop it on my own before telling anyone.",
     "marks": 1,
     "pole": "I"
    }
@@ -47,13 +47,13 @@
   "options": {
    "1951110318104": {
     "id": "1951110318104",
-    "answer": "I have lots of energy, prefer to be involved in a variety of activities, and usually jump into new projects with enthusiasm. I often skip over directions and plunge into assignments. I'm very talkative – I think better when I talk things over with other people, and sometimes I dominate conversations.",
+    "answer": "I usually strike up conversations easily, even with people I have just met.",
     "marks": 1,
     "pole": "E"
    },
    "1951110319104": {
     "id": "1951110319104",
-    "answer": "On the outside I may appear calm or distant, though I can get very enthusiastic about things that are important to me or when discussions become intense. Ordinarily I am fairly quiet unless I have something important to say – and when I do, it's usually well thought-out and people find it really interesting.\r\n",
+    "answer": "I take time to warm up to new people, and I am closest to a few old friends.",
     "marks": 1,
     "pole": "I"
    }
@@ -67,13 +67,13 @@
   "options": {
    "1961110418104": {
     "id": "1961110418104",
-    "answer": "When I meet someone new, I start a conversation with them.",
+    "answer": "In a group task I enjoy thinking out loud and building on ideas as we talk.",
     "marks": 1,
     "pole": "E"
    },
    "1961110419104": {
     "id": "1961110419104",
-    "answer": "I wait for others to start conversations with me.",
+    "answer": "In a group task I do my best thinking quietly and share my ideas once they are ready.",
     "marks": 1,
     "pole": "I"
    }
@@ -87,13 +87,13 @@
   "options": {
    "1971110518104": {
     "id": "1971110518104",
-    "answer": "I call up friends to see if they want to get together, and I enjoy parties, because I get to see lots of people.",
+    "answer": "My ideal free day is packed with plans and people.",
     "marks": 1,
     "pole": "E"
    },
    "1971110519104": {
     "id": "1971110519104",
-    "answer": "I would rather hang out with a close friend or two than socialize with a lot of people I don't know very well.",
+    "answer": "My ideal free day is unhurried, with plenty of time to myself.",
     "marks": 1,
     "pole": "I"
    }
@@ -107,13 +107,13 @@
   "options": {
    "1981110618104": {
     "id": "1981110618104",
-    "answer": "I thrive on activity, and get bored and a little restless when nothing's going on.",
+    "answer": "I am usually the one who gets a group moving and keeps the energy up.",
     "marks": 1,
     "pole": "E"
    },
    "1981110619104": {
     "id": "1981110619104",
-    "answer": "I need to spend some quiet time alone – to read, listen to music or just relax.\r\n",
+    "answer": "I am usually comfortable letting others lead the energy while I join in my own way.",
     "marks": 1,
     "pole": "I"
    }
@@ -127,13 +127,13 @@
   "options": {
    "1991110718104": {
     "id": "1991110718104",
-    "answer": "I think through ideas by talking about them with others.",
+    "answer": "Explaining a problem out loud to someone helps me solve it.",
     "marks": 1,
     "pole": "E"
    },
    "1991110719104": {
     "id": "1991110719104",
-    "answer": "I need to think things through before I'm ready to discuss them.",
+    "answer": "Sitting alone with a problem until it makes sense helps me solve it.",
     "marks": 1,
     "pole": "I"
    }
@@ -147,13 +147,13 @@
   "options": {
    "2001110818104": {
     "id": "2001110818104",
-    "answer": "I like to try different things and am often excited to jump into new experiences.",
+    "answer": "I would rather jump into a new activity with a group than watch from the side.",
     "marks": 1,
     "pole": "E"
    },
    "2001110819104": {
     "id": "2001110819104",
-    "answer": "I hang back and watch for awhile before getting involved in new situations.",
+    "answer": "I would rather observe and practise privately before joining a group activity.",
     "marks": 1,
     "pole": "I"
    }
@@ -167,13 +167,13 @@
   "options": {
    "2011110918104": {
     "id": "2011110918104",
-    "answer": "I usually like to share what's going on with my life and am interested to hear what others are doing as well.",
+    "answer": "People who know me would call me outgoing and expressive.",
     "marks": 1,
     "pole": "E"
    },
    "2011110919104": {
     "id": "2011110919104",
-    "answer": "I am a fairly private person and prefer to focus on important events that affect me.",
+    "answer": "People who know me would call me calm and reserved.",
     "marks": 1,
     "pole": "I"
    }
@@ -187,13 +187,13 @@
   "options": {
    "2021112820104": {
     "id": "2021112820104",
-    "answer": "I tend to be very responsible. I plan things in advance and like to follow those plans to save time and avoid surprises. I like it when decisions can be made quickly so things are settled and I can move on to what's next.",
+    "answer": "I plan my day in advance and feel best when I can follow that plan.",
     "marks": 1,
     "pole": "J"
    },
    "2021112821104": {
     "id": "2021112821104",
-    "answer": "I tend to be more casual and spontaneous. Rather than have things planned out, I prefer to keep my options open. Sometimes I even have trouble making up my mind. I often ask a lot of questions and delay my decisions until I have enough information.",
+    "answer": "I keep my day flexible and decide what to do as the day unfolds.",
     "marks": 1,
     "pole": "P"
    }
@@ -207,13 +207,13 @@
   "options": {
    "2031112920104": {
     "id": "2031112920104",
-    "answer": "I really try to be productive and prefer to get my work done before playing or relaxing. I am usually very organized: my assignments are almost always neatly done and on time, or even early. I often feel a big sense of relief when my work is done and I can focus on something else.",
+    "answer": "I finish my work early so I am not rushing near the deadline.",
     "marks": 1,
     "pole": "J"
    },
    "2031112921104": {
     "id": "2031112921104",
-    "answer": "I often delay completing my work until the last minute. Organization is not really one of my strengths and I have been known to lose things. I usually start projects with lots of energy and good intention, but I don't always finish them so well.",
+    "answer": "I often find that a approaching deadline is what finally gets me focused.",
     "marks": 1,
     "pole": "P"
    }
@@ -227,13 +227,13 @@
   "options": {
    "2041113020104": {
     "id": "2041113020104",
-    "answer": "I am pretty time-conscious. I am rarely late and have a good sense of how long things will take. I have strong opinions about many things and usually don't hesitate to take charge and make things happen the way I think they should.",
+    "answer": "A neat, organised workspace helps me concentrate.",
     "marks": 1,
     "pole": "J"
    },
    "2041113021104": {
     "id": "2041113021104",
-    "answer": "I tend to forget about the time and can get sidetracked. This may cause me to be late for appointments or misjudge how long a job or task will take. I sometimes procrastinate with things like my homework and studying, but I usually manage to get everything done that I need to with a last-minute burst of energy.",
+    "answer": "I can work comfortably even when my surroundings are messy.",
     "marks": 1,
     "pole": "P"
    }
@@ -247,13 +247,13 @@
   "options": {
    "2051113120104": {
     "id": "2051113120104",
-    "answer": "I like to plan ahead and am most comfortable when that plan is followed.",
+    "answer": "Once I have made up my mind, I like to move forward without reopening the question.",
     "marks": 1,
     "pole": "J"
    },
    "2051113121104": {
     "id": "2051113121104",
-    "answer": "I don't like to plan too much because I want to be free to respond to opportunities as they arise.",
+    "answer": "I like keeping my options open in case something better comes along.",
     "marks": 1,
     "pole": "P"
    }
@@ -267,13 +267,13 @@
   "options": {
    "2061113220104": {
     "id": "2061113220104",
-    "answer": "I usually have no problem making a decision and typically feel settled once I have made a decision.",
+    "answer": "Knowing the schedule ahead of time puts me at ease.",
     "marks": 1,
     "pole": "J"
    },
    "2061113221104": {
     "id": "2061113221104",
-    "answer": "I tend to think a lot about my decisions, even after making them.",
+    "answer": "Leaving the schedule loose makes room for whatever feels right at the moment.",
     "marks": 1,
     "pole": "P"
    }
@@ -287,13 +287,13 @@
   "options": {
    "2071113320104": {
     "id": "2071113320104",
-    "answer": "I like to know most of the details of an event or situation before I get involved.",
+    "answer": "I make to-do lists and enjoy crossing items off.",
     "marks": 1,
     "pole": "J"
    },
    "2071113321104": {
     "id": "2071113321104",
-    "answer": "I like to figure things out along the way.",
+    "answer": "Lists feel limiting to me; I prefer to handle tasks as they come.",
     "marks": 1,
     "pole": "P"
    }
@@ -307,13 +307,13 @@
   "options": {
    "2081113420104": {
     "id": "2081113420104",
-    "answer": "I am almost always on-time and really dislike being late.",
+    "answer": "I would rather decide quickly and adjust later only if I must.",
     "marks": 1,
     "pole": "J"
    },
    "2081113421104": {
     "id": "2081113421104",
-    "answer": "Despite my best intentions, I am usually running a little late.",
+    "answer": "I would rather wait until the last responsible moment to commit.",
     "marks": 1,
     "pole": "P"
    }
@@ -327,13 +327,13 @@
   "options": {
    "2091113520104": {
     "id": "2091113520104",
-    "answer": "I am fairly organized and usually know where everything is.",
+    "answer": "Last-minute changes to my plans usually frustrate me.",
     "marks": 1,
     "pole": "J"
    },
    "2091113521104": {
     "id": "2091113521104",
-    "answer": "I can be a little disorganized and sometimes have trouble finding things.",
+    "answer": "Last-minute changes to my plans often make things more interesting.",
     "marks": 1,
     "pole": "P"
    }
@@ -347,13 +347,13 @@
   "options": {
    "2101113620104": {
     "id": "2101113620104",
-    "answer": "I am willing to sacrifice being thorough or precise in order to finish things on time.",
+    "answer": "I like tasks that follow a clear, repeatable process.",
     "marks": 1,
     "pole": "J"
    },
    "2101113621104": {
     "id": "2101113621104",
-    "answer": "I am willing to finish things late so I can be thorough or precise.",
+    "answer": "I like tasks that let me improvise and find my own route.",
     "marks": 1,
     "pole": "P"
    }
@@ -367,13 +367,13 @@
   "options": {
    "2111111022104": {
     "id": "2111111022104",
-    "answer": "I am a practical, realistic kind of person. I am pretty observant and have a good memory for details. When I talk to other people, I get right to the point, pay close attention to what they are saying and tend to stick with the subject at hand.",
+    "answer": "I trust information I can see, check and verify far more than a hunch.",
     "marks": 1,
     "pole": "S"
    },
    "2111111023104": {
     "id": "2111111023104",
-    "answer": "I am a very creative person. I'm interested in anything new or unusual, but don't like to get caught up in all the details. I often am more curious about how things could be than how things are now. I like to figure out different ways to solve problems, but get bored pretty quickly once I've mastered something.",
+    "answer": "I often follow my instincts and first impressions about things.",
     "marks": 1,
     "pole": "N"
    }
@@ -387,13 +387,13 @@
   "options": {
    "2121111122104": {
     "id": "2121111122104",
-    "answer": "In school I prefer, and do best at, subjects that deal with real and hands-on things rather than abstract ideas. I do better with questions such as, \"Describe the things related to...\" and \"What are the features of...?\". I like to work with solid facts and observations. I tend to see things for what they are, rather than try to make connections to other ideas.",
+    "answer": "Clear, step-by-step instructions are the best way for me to learn something new.",
     "marks": 1,
     "pole": "S"
    },
    "2121111123104": {
     "id": "2121111123104",
-    "answer": "I like to think about ideas and possibilities. In school I prefer assignments that ask questions such as, \"Why do you think this happened?\" and \"What would happen if...?\". I also like to figure out \"hidden\" meanings and patterns in the information. I am especially curious about why people and things act the way they do.",
+    "answer": "I learn best when I am free to explore and find my own way in.",
     "marks": 1,
     "pole": "N"
    }
@@ -407,13 +407,13 @@
   "options": {
    "2131111222104": {
     "id": "2131111222104",
-    "answer": "I like to work through projects step-by-step, completing one part of an assignment before moving on to the next. I prefer assignments with specific guidelines on what I need to do.",
+    "answer": "I easily recall exact details, numbers and facts that I have read or heard.",
     "marks": 1,
     "pole": "S"
    },
    "2131111223104": {
     "id": "2131111223104",
-    "answer": "I tend to work in bursts of energy, often jumping around to different parts of a project. More often than not, I will go where my instincts take me rather than follow a specific set of steps. I prefer assignments that encourage me to be creative and figure out what the final product will be.",
+    "answer": "I remember the gist or overall feeling of something far better than its details.",
     "marks": 1,
     "pole": "N"
    }
@@ -427,13 +427,13 @@
   "options": {
    "2141111322104": {
     "id": "2141111322104",
-    "answer": "I'm pretty practical and realistic about most things.",
+    "answer": "I enjoy school subjects that deal with real, practical situations.",
     "marks": 1,
     "pole": "S"
    },
    "2141111323104": {
     "id": "2141111323104",
-    "answer": "I have a good imagination and lots of creative energy.",
+    "answer": "I enjoy school subjects that explore ideas, theories and possibilities.",
     "marks": 1,
     "pole": "N"
    }
@@ -447,13 +447,13 @@
   "options": {
    "2151111422104": {
     "id": "2151111422104",
-    "answer": "If something is already working well, I usually don’t like to change it.\r\n",
+    "answer": "A new concept makes sense to me once I see a concrete, real-life example.",
     "marks": 1,
     "pole": "S"
    },
    "2151111423104": {
     "id": "2151111423104",
-    "answer": "I like to tinker with things because I think there is always a better way.",
+    "answer": "A new concept excites me most when I imagine unusual ways it could be used.",
     "marks": 1,
     "pole": "N"
    }
@@ -467,13 +467,13 @@
   "options": {
    "2161111522104": {
     "id": "2161111522104",
-    "answer": "I work best when I can start at the beginning and progress in order through each step of a task.",
+    "answer": "I prefer tasks where there is an established, reliable way of doing things.",
     "marks": 1,
     "pole": "S"
    },
    "2161111523104": {
     "id": "2161111523104",
-    "answer": "I tend to work in bursts of energy, often jumping around from one task to another.",
+    "answer": "I prefer tasks where I can invent a method nobody has tried before.",
     "marks": 1,
     "pole": "N"
    }
@@ -487,13 +487,13 @@
   "options": {
    "2171111622104": {
     "id": "2171111622104",
-    "answer": "I prefer to learn practical things I can use in my everyday life.",
+    "answer": "Most of my attention goes to what is actually happening around me.",
     "marks": 1,
     "pole": "S"
    },
    "2171111623104": {
     "id": "2171111623104",
-    "answer": "I enjoy thinking or talking about possibilities, even if they're not always practical.",
+    "answer": "Most of my attention goes to patterns and what might happen in the future.",
     "marks": 1,
     "pole": "N"
    }
@@ -507,13 +507,13 @@
   "options": {
    "2181111722104": {
     "id": "2181111722104",
-    "answer": "I tend to remember the facts and details about an event.",
+    "answer": "I would rather become really good at one proven skill than dabble in many.",
     "marks": 1,
     "pole": "S"
    },
    "2181111723104": {
     "id": "2181111723104",
-    "answer": "I tend to remember an event from a general impression of what it was like and its overall meaning.",
+    "answer": "I would rather keep trying new skills than repeat the ones I already know.",
     "marks": 1,
     "pole": "N"
    }
@@ -527,13 +527,13 @@
   "options": {
    "2191111822104": {
     "id": "2191111822104",
-    "answer": "I prefer to work on and master the skills I already have.",
+    "answer": "I take language literally and expect descriptions to be exact.",
     "marks": 1,
     "pole": "S"
    },
    "2191111823104": {
     "id": "2191111823104",
-    "answer": "I like to develop new skills often.",
+    "answer": "I enjoy figurative language and reading between the lines.",
     "marks": 1,
     "pole": "N"
    }
@@ -547,13 +547,13 @@
   "options": {
    "2201111924104": {
     "id": "2201111924104",
-    "answer": "I am a logical problem solver. I have a talent for analyzing situations objectively and calmly, and usually have no trouble putting my personal feelings aside when I'm making decisions. Competitive and assertive when I need to be, I rarely take things too personally.",
+    "answer": "When my friends are arguing, I pay most attention to whose facts hold up.",
     "marks": 1,
     "pole": "T"
    },
    "2201111925104": {
     "id": "2201111925104",
-    "answer": "I'm a warm, helpful person who likes to do nice things for other people. A very good friend, I am sensitive to other people's needs and I go out of my way to make them feel comfortable.",
+    "answer": "When my friends are arguing, I pay most attention to how everyone is feeling.",
     "marks": 1,
     "pole": "F"
    }
@@ -567,13 +567,13 @@
   "options": {
    "2211112024104": {
     "id": "2211112024104",
-    "answer": "I can almost always be counted on to give my honest, truthful opinion. I am most impressed by achievement and accomplishment – my own and others' – and I set high standards for myself and others.\r\n",
+    "answer": "I can point out the flaws in someone's plan directly, without worrying about their reaction.",
     "marks": 1,
     "pole": "T"
    },
    "2211112025104": {
     "id": "2211112025104",
-    "answer": "I have strong convictions about lots of things and, while I strive to be honest and direct, I may avoid being entirely truthful in order to spare someone's feelings. Relationships are very important to me, and since I tend to take things to heart, I can easily be disappointed by others.",
+    "answer": "I choose my words carefully so that nobody feels hurt or discouraged.",
     "marks": 1,
     "pole": "F"
    }
@@ -587,13 +587,13 @@
   "options": {
    "2221112124104": {
     "id": "2221112124104",
-    "answer": "I am quite independent. What I think about something is often more important to me than what others think about it. And I am more likely to do something because it's fair and makes sense to me. It doesn't matter if others may not like it.",
+    "answer": "I go with the most logical choice even when it is not the popular one.",
     "marks": 1,
     "pole": "T"
    },
    "2221112125104": {
     "id": "2221112125104",
-    "answer": "A natural helper, I tend to worry about other people's problems – that can make me feel sad. Although I can be competitive, I prefer to work cooperatively with people. I don't usually like to argue and am good at complimenting people when they do something I appreciate.\r\n",
+    "answer": "I weigh how a choice affects people before anything else.",
     "marks": 1,
     "pole": "F"
    }
@@ -607,13 +607,13 @@
   "options": {
    "2231112224104": {
     "id": "2231112224104",
-    "answer": "I am most likely to be convinced by logical arguments.",
+    "answer": "I enjoy a good debate and will argue a side just to test the idea.",
     "marks": 1,
     "pole": "T"
    },
    "2231112225104": {
     "id": "2231112225104",
-    "answer": "I am most likely to be convinced by how I feel, or how others feel, about an issue.",
+    "answer": "I would rather smooth over a disagreement than debate it.",
     "marks": 1,
     "pole": "F"
    }
@@ -627,13 +627,13 @@
   "options": {
    "2241112324104": {
     "id": "2241112324104",
-    "answer": "I am objective and fair-minded and usually don't take things personally.",
+    "answer": "To me, fair means the same rules apply to everybody.",
     "marks": 1,
     "pole": "T"
    },
    "2241112325104": {
     "id": "2241112325104",
-    "answer": "I am sensitive and compassionate, and my feelings can get hurt pretty easily.",
+    "answer": "To me, fair means accounting for each person's circumstances.",
     "marks": 1,
     "pole": "F"
    }
@@ -647,13 +647,13 @@
   "options": {
    "2251112424104": {
     "id": "2251112424104",
-    "answer": "I like to be judged by my accomplishments, and don't dwell on what others think of me personally.",
+    "answer": "I give blunt, honest feedback because that is what actually helps people improve.",
     "marks": 1,
     "pole": "T"
    },
    "2251112425104": {
     "id": "2251112425104",
-    "answer": "I like to feel appreciated and enjoy being helpful to others.",
+    "answer": "I start with encouragement and frame feedback gently.",
     "marks": 1,
     "pole": "F"
    }
@@ -667,13 +667,13 @@
   "options": {
    "2261112524104": {
     "id": "2261112524104",
-    "answer": "I get satisfaction from remaining objective and coming up with logical solutions to problems.",
+    "answer": "Head over heart — analysis should decide important choices.",
     "marks": 1,
     "pole": "T"
    },
    "2261112525104": {
     "id": "2261112525104",
-    "answer": "I get satisfaction from helping people with their problems.",
+    "answer": "Heart and head together — how I feel belongs in important choices.",
     "marks": 1,
     "pole": "F"
    }
@@ -687,13 +687,13 @@
   "options": {
    "2271112624104": {
     "id": "2271112624104",
-    "answer": "I can be counted on to tell people what I honestly believe, even if they don't like it.",
+    "answer": "I am comfortable telling someone hard truths straight to their face.",
     "marks": 1,
     "pole": "T"
    },
    "2271112625104": {
     "id": "2271112625104",
-    "answer": "I sometimes say things more gently to avoid hurting someone's feelings.",
+    "answer": "I am comfortable softening hard truths to keep a relationship steady.",
     "marks": 1,
     "pole": "F"
    }
@@ -707,13 +707,13 @@
   "options": {
    "2281112724104": {
     "id": "2281112724104",
-    "answer": "I often do something because I think it's the smart and sensible thing to do.",
+    "answer": "I most admire people who stay cool and rational under pressure.",
     "marks": 1,
     "pole": "T"
    },
    "2281112725104": {
     "id": "2281112725104",
-    "answer": "I often do something because I feel strongly that it will make people happy.",
+    "answer": "I most admire people who are warm and understanding under pressure.",
     "marks": 1,
     "pole": "F"
    }

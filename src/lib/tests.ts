@@ -93,7 +93,7 @@ export function kindForToken(token: string): TestKind | null {
 export const KIND_LABELS: Record<TestKind, string> = {
   stream: "Stream Selector",
   ideal: "Ideal Career",
-  personality: "Personality (Do What You Are)",
+  personality: "Personality Type Profile",
   intelligences: "Multiple Intelligences",
   learning: "Learning & Productivity",
 };

@@ -353,7 +353,37 @@ export function ExamClient({ token, kind }: Props) {
               </div>
             ))
             : null}
-            {report.kind === "ideal" && (
+            {report.kind === "personality" && (
+            <div style={{ marginTop: 24 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 10 }}>
+                Your preferences explained
+              </div>
+              {report.rows.map((row, i) => {
+                const dim = (
+                  personalityProfiles.dimensions as Array<{
+                    name: string;
+                    preferLabel: string;
+                    notPreferLabel: string;
+                    preferTraits: string[];
+                    notPreferTraits: string[];
+                  }>
+                )[i];
+                const prefersFirst = row.first.count >= row.second.count;
+                const label = prefersFirst ? dim.preferLabel : dim.notPreferLabel;
+                const traits = prefersFirst ? dim.preferTraits : dim.notPreferTraits;
+                return (
+                  <div key={row.key} style={{ marginBottom: 10 }}>
+                    <div style={{ fontSize: 12.5, fontWeight: 700 }}>{dim.name}</div>
+                    <div style={{ fontSize: 11.5, color: "#475569" }}>
+                      You lean towards <strong>{label}</strong> — {traits.join("; ")}.
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {report.kind === "ideal" && (
               <div>
                 <h3 className="mb-2 text-sm font-medium">Top strengths</h3>
                 <ul className="list-inside list-disc text-sm text-slate-600">
