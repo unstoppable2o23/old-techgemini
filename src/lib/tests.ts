@@ -1,8 +1,9 @@
 import streamBank from "@/data/stream-selector.json";
 import idealBank from "@/data/ideal-career.json";
 import personalityBank from "@/data/personality.json";
+import intelligencesBank from "@/data/intelligences.json";
 
-export type TestKind = "stream" | "ideal" | "personality";
+export type TestKind = "stream" | "ideal" | "personality" | "intelligences";
 
 export type RawOption = {
   id: number;
@@ -29,11 +30,16 @@ export const PERSONALITY_QUESTIONS = personalityBank as unknown as Record<
   string,
   RawQuestion
 >;
+export const INTELLIGENCES_QUESTIONS = intelligencesBank as unknown as Record<
+  string,
+  RawQuestion
+>;
 
 export function questionsFor(kind: TestKind): Record<string, RawQuestion> {
   if (kind === "stream") return STREAM_QUESTIONS;
   if (kind === "ideal") return IDEAL_QUESTIONS;
-  return PERSONALITY_QUESTIONS;
+  if (kind === "personality") return PERSONALITY_QUESTIONS;
+  return INTELLIGENCES_QUESTIONS;
 }
 
 export type StudentRef = {
@@ -57,7 +63,13 @@ export function tokenForStudent(
 ): string {
   const name = `${student.firstName} ${student.lastName}`;
   const prefix =
-    kind === "stream" ? "STREAM" : kind === "ideal" ? "IDEAL" : "PERSONALITY";
+    kind === "stream"
+      ? "STREAM"
+      : kind === "ideal"
+        ? "IDEAL"
+        : kind === "personality"
+          ? "PERSONALITY"
+          : "INTELLIGENCE";
   return `${prefix}-${slugify(name)}-${student.id.slice(-6).toUpperCase()}`;
 }
 
@@ -66,6 +78,7 @@ export function kindForToken(token: string): TestKind | null {
   if (t.startsWith("STREAM")) return "stream";
   if (t.startsWith("IDEAL")) return "ideal";
   if (t.startsWith("PERSONALITY")) return "personality";
+  if (t.startsWith("INTELLIGENCE")) return "intelligences";
   return null;
 }
 
@@ -73,6 +86,7 @@ export const KIND_LABELS: Record<TestKind, string> = {
   stream: "Stream Selector",
   ideal: "Ideal Career",
   personality: "Personality (Do What You Are)",
+  intelligences: "Multiple Intelligences",
 };
 
 export function orderedOptions(q: RawQuestion): RawOption[] {
@@ -105,13 +119,42 @@ export type PersonalityReport = {
   rows: PersonalityRow[];
 };
 
-export type ExamReport = StreamReport | IdealReport | PersonalityReport;
+export type IntelligenceRow = {
+  key: string;
+  label: string;
+  score: number;
+  max: number;
+};
+
+export type IntelligencesReport = {
+  kind: "intelligences";
+  rows: IntelligenceRow[];
+  emotionalIntelligence: number;
+};
+
+export type ExamReport =
+  | StreamReport
+  | IdealReport
+  | PersonalityReport
+  | IntelligencesReport;
 
 const PERSONALITY_DIMENSIONS: Record<number, [string, string]> = {
   1: ["Extraversion", "Introversion"],
   2: ["Sensing", "Intuition"],
   3: ["Thinking", "Feeling"],
   4: ["Judging", "Perceiving"],
+};
+
+const INTELLIGENCE_LABELS: Record<number, string> = {
+  1: "Bodily-Kinesthetic",
+  2: "Visual-Spatial",
+  3: "Linguistic",
+  4: "Logical-Mathematical",
+  5: "Musical",
+  6: "Interpersonal",
+  7: "Intrapersonal",
+  8: "Naturalist",
+  9: "Existential",
 };
 
 const STREAM_LABELS: Record<string, string> = {
@@ -170,6 +213,17 @@ export const DOMAIN_META: Record<TestKind, Record<number, { label: string; intro
   ideal: Object.fromEntries(
     Object.entries(IDEAL_DOMAINS).map(([id, label]) => [id, { label }])
   ),
+  intelligences: {
+    1: { label: "Bodily-Kinesthetic" },
+    2: { label: "Visual-Spatial" },
+    3: { label: "Linguistic" },
+    4: { label: "Logical-Mathematical" },
+    5: { label: "Musical" },
+    6: { label: "Interpersonal" },
+    7: { label: "Intrapersonal" },
+    8: { label: "Naturalist" },
+    9: { label: "Existential" },
+  },
   personality: {
     1: {
       label: "Extraversion or Introversion",
@@ -199,6 +253,33 @@ export function buildReport(
   answers: Record<string, string>
 ): ExamReport {
   const bank = questionsFor(kind);
+
+  if (kind === "intelligences") {
+    const totals: Record<number, number> = {};
+    for (const q of Object.values(bank)) {
+      const d = Number(q.domain_id);
+      const chosen = answers[String(q.id)];
+      if (!chosen) continue;
+      const opt = Object.values(q.options).find((o) => String(o.id) === String(chosen));
+      if (opt) totals[d] = (totals[d] || 0) + opt.marks;
+    }
+    const rows: IntelligenceRow[] = Object.keys(INTELLIGENCE_LABELS)
+      .map(Number)
+      .map((d) => ({
+        key: String(d),
+        label: INTELLIGENCE_LABELS[d],
+        score: totals[d] || 0,
+        max: 42,
+      }))
+      .sort((a, b) => b.score - a.score);
+    const interpersonal = totals[6] || 0;
+    const intrapersonal = totals[7] || 0;
+    return {
+      kind: "intelligences",
+      rows,
+      emotionalIntelligence: Math.round(((interpersonal + intrapersonal) / 2) * 10) / 10,
+    };
+  }
 
   if (kind === "personality") {
     const firstCounts: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };

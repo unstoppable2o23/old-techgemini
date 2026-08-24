@@ -156,7 +156,9 @@ export function ExamClient({ token, kind }: Props) {
                 ? "Your Stream Recommendation"
                 : report.kind === "personality"
                   ? "Your Personality Type"
-                  : "Your Ideal Career Profile"}
+                  : report.kind === "intelligences"
+                    ? "Your Intelligence Profile"
+                    : "Your Ideal Career Profile"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -168,7 +170,40 @@ export function ExamClient({ token, kind }: Props) {
                 </span>
               </p>
             )}
-            {report.kind === "personality" && (
+            {report.kind === "intelligences" && (
+              <p className="text-sm text-slate-600">
+                Emotional Intelligence score:{" "}
+                <span className="font-semibold text-primary">
+                  {report.emotionalIntelligence} / 42
+                </span>
+              </p>
+            )}
+            {report.kind === "intelligences"
+              ? report.rows.map((row, i) => {
+                  const pct = Math.round((row.score / row.max) * 100);
+                  const band =
+                    i < 3 ? "Strength" : i < 6 ? "Moderate" : "Developing";
+                  return (
+                    <div key={row.key}>
+                      <div className="mb-1 flex justify-between text-xs text-slate-500">
+                        <span>
+                          {row.label}{" "}
+                          <span className="text-slate-400">({band})</span>
+                        </span>
+                        <span>
+                          {row.score}/{row.max}
+                        </span>
+                      </div>
+                      <div className="h-2 rounded-full bg-slate-100">
+                        <div
+                          className="h-2 rounded-full bg-primary"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })
+              : report.kind === "personality" && (
               <div className="space-y-2">
                 <p className="text-sm text-slate-600">
                   Your personality type:{" "}
@@ -217,7 +252,8 @@ export function ExamClient({ token, kind }: Props) {
                     </div>
                   );
                 })
-              : (report.kind === "stream" ? report.rows : report.domains).map((row) => (
+              : report.kind !== "intelligences" &&
+                (report.kind === "stream" ? report.rows : report.domains).map((row) => (
               <div key={row.key}>
                 <div className="mb-1 flex justify-between text-xs text-slate-500">
                   <span>{row.label}</span>
@@ -297,30 +333,58 @@ export function ExamClient({ token, kind }: Props) {
               className="max-h-72 rounded-lg border border-slate-200 bg-white object-contain p-2"
             />
           )}
-          {orderedOptions(current).map((o) => {
-            const selected = answers[String(current.id)] === String(o.id);
-            return (
-              <button
-                key={o.id}
-                onClick={() => select(String(current.id), String(o.id))}
-                className={`w-full rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
-                  selected
-                    ? "border-blue-600 bg-blue-50 font-medium text-blue-700"
-                    : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                }`}
-              >
-                {o.media_path ? (
-                  <img
-                    src={o.media_path}
-                    alt={`Option`}
-                    className="mx-auto max-h-24 object-contain"
-                  />
-                ) : (
-                  o.answer
-                )}
-              </button>
-            );
-          })}
+          {orderedOptions(current).length === 7 &&
+          kind === "intelligences" ? (
+            <div className="flex flex-wrap items-center justify-between gap-2 py-2">
+              {orderedOptions(current).map((o) => {
+                const selected = answers[String(current.id)] === String(o.id);
+                return (
+                  <button
+                    key={o.id}
+                    type="button"
+                    onClick={() => select(String(current.id), String(o.id))}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full border text-sm font-medium transition-colors ${
+                      selected
+                        ? "border-blue-600 bg-blue-600 text-white shadow-sm"
+                        : "border-slate-200 bg-white text-slate-600 hover:border-blue-400 hover:text-blue-600"
+                    }`}
+                    title={o.answer}
+                  >
+                    {o.marks}
+                  </button>
+                );
+              })}
+              <div className="flex w-full justify-between text-[11px] text-slate-400">
+                <span>Not at All</span>
+                <span>Completely</span>
+              </div>
+            </div>
+          ) : (
+            orderedOptions(current).map((o) => {
+              const selected = answers[String(current.id)] === String(o.id);
+              return (
+                <button
+                  key={o.id}
+                  onClick={() => select(String(current.id), String(o.id))}
+                  className={`w-full rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
+                    selected
+                      ? "border-blue-600 bg-blue-50 font-medium text-blue-700"
+                      : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                  }`}
+                >
+                  {o.media_path ? (
+                    <img
+                      src={o.media_path}
+                      alt={`Option`}
+                      className="mx-auto max-h-24 object-contain"
+                    />
+                  ) : (
+                    o.answer
+                  )}
+                </button>
+              );
+            })
+          )}
 
           <div className="flex items-center justify-between pt-2">
             <Button

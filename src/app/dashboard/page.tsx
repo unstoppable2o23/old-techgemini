@@ -219,7 +219,9 @@ export default async function DashboardPage() {
                         ? "Stream Selector Test"
                         : t.kind === "ideal"
                           ? "Ideal Career Test"
-                          : "Personality Test (Do What You Are)"}
+                          : t.kind === "personality"
+                            ? "Personality Test (Do What You Are)"
+                            : "Multiple Intelligences Test"}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Assigned {new Date(t.createdAt).toLocaleDateString()}

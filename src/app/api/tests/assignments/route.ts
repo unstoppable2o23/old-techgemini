@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { studentId, kind } = await request.json();
-    if (!studentId || !["stream", "ideal", "personality"].includes(kind)) {
+    if (!studentId || !["stream", "ideal", "personality", "intelligences"].includes(kind)) {
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
     }
 
@@ -91,3 +91,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
+

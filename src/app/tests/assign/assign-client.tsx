@@ -138,6 +138,9 @@ export function AssignClient({
                       <SelectItem value="personality">
                         Personality — Do What You Are (36 questions)
                       </SelectItem>
+                      <SelectItem value="intelligences">
+                        Multiple Intelligences (54 questions)
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
