@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   buildReport,
+  DOMAIN_META,
   orderedOptions,
   questionsFor,
   type ExamReport,
@@ -15,11 +17,11 @@ type Props = { token: string; kind: TestKind };
 
 export function ExamClient({ token, kind }: Props) {
   const bank = useMemo(() => questionsFor(kind), [kind]);
-  const ids = useMemo(
+  const ordered = useMemo(
     () =>
       Object.values(bank)
         .sort((a, b) => Number(a.id) - Number(b.id))
-        .map((q) => String(q.id)),
+        .map((q) => ({ id: String(q.id), domain: Number(q.domain_id) })),
     [bank]
   );
 
@@ -27,16 +29,22 @@ export function ExamClient({ token, kind }: Props) {
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(false);
   const [report, setReport] = useState<ExamReport | null>(null);
+  const [saving, setSaving] = useState(false);
 
   const progressKey = `exam_progress_${token}`;
   const resultKey = `exam_result_${token}`;
+  const progressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      let localProgress: Record<string, string> = {};
       try {
         const savedProgress = localStorage.getItem(progressKey);
-        if (savedProgress && !cancelled) setAnswers(JSON.parse(savedProgress));
+        if (savedProgress) {
+          localProgress = JSON.parse(savedProgress);
+          if (!cancelled) setAnswers(localProgress);
+        }
       } catch {}
       try {
         const savedResult = localStorage.getItem(resultKey);
@@ -52,7 +60,16 @@ export function ExamClient({ token, kind }: Props) {
         );
         if (res.ok && !cancelled) {
           const data = await res.json();
-          if (data.report) setReport(data.report);
+          if (data.report) {
+            setReport(data.report);
+            setReady(true);
+            return;
+          }
+          if (!localProgress || Object.keys(localProgress).length === 0) {
+            if (data.answers && Object.keys(data.answers).length > 0) {
+              setAnswers(data.answers);
+            }
+          }
         }
       } catch {}
       if (!cancelled) setReady(true);
@@ -60,27 +77,57 @@ export function ExamClient({ token, kind }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [resultKey, token, progressKey]);
+  }, [resultKey, progressKey, token]);
 
-  const answeredCount = ids.filter((id) => answers[id]).length;
-  const allAnswered = answeredCount === ids.length;
-  const q = bank[ids[idx]];
+  const saveProgressToDb = useCallback(
+    (next: Record<string, string>) => {
+      if (progressTimer.current) clearTimeout(progressTimer.current);
+      progressTimer.current = setTimeout(() => {
+        fetch("/api/tests/assignments/progress", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ token, answers: next }),
+        }).catch(() => {});
+      }, 800);
+    },
+    [token]
+  );
+
+  const answeredCount = ordered.filter((q) => answers[q.id]).length;
+  const allAnswered = answeredCount === ordered.length;
+  const current = bank[ordered[idx]?.id];
+  const prevDomain = idx > 0 ? ordered[idx - 1]?.domain : undefined;
+  const showIntro =
+    current && ordered[idx]?.domain !== prevDomain && idx > 0;
+  const meta = current ? DOMAIN_META[kind][Number(current.domain_id)] : undefined;
 
   function select(qid: string, optId: string) {
     const next = { ...answers, [qid]: optId };
     setAnswers(next);
     localStorage.setItem(progressKey, JSON.stringify(next));
+    saveProgressToDb(next);
   }
 
-  function finish() {
-    const result = buildReport(kind, answers);
-    setReport(result);
-    localStorage.setItem(resultKey, JSON.stringify(result));
-    fetch("/api/tests/assignments/complete", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ token, report: result }),
-    }).catch(() => {});
+  async function finish() {
+    setSaving(true);
+    const localReport = buildReport(kind, answers);
+    setReport(localReport);
+    localStorage.setItem(resultKey, JSON.stringify(localReport));
+    try {
+      const res = await fetch("/api/tests/assignments/complete", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ token, answers }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.report) {
+          setReport(data.report);
+          localStorage.setItem(resultKey, JSON.stringify(data.report));
+        }
+      }
+    } catch {}
+    setSaving(false);
   }
 
   function retake() {
@@ -89,6 +136,11 @@ export function ExamClient({ token, kind }: Props) {
     setIdx(0);
     localStorage.removeItem(progressKey);
     localStorage.removeItem(resultKey);
+    fetch("/api/tests/assignments/progress", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ token, answers: {} }),
+    }).catch(() => {});
   }
 
   if (!ready) return null;
@@ -150,50 +202,70 @@ export function ExamClient({ token, kind }: Props) {
     );
   }
 
-  if (!q) return null;
+  if (!current) return null;
 
   return (
     <div className="mx-auto max-w-2xl py-10">
       <div className="mb-4">
         <div className="mb-1 flex justify-between text-xs text-slate-500">
           <span>
-            Question {idx + 1} of {ids.length}
+            Question {idx + 1} of {ordered.length}
           </span>
           <span>
-            {answeredCount}/{ids.length} answered
+            {answeredCount}/{ordered.length} answered
           </span>
         </div>
         <div className="h-2 rounded-full bg-slate-100">
           <div
             className="h-2 rounded-full bg-primary transition-all"
-            style={{ width: `${Math.round((answeredCount / ids.length) * 100)}%` }}
+            style={{ width: `${Math.round((answeredCount / ordered.length) * 100)}%` }}
           />
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg leading-relaxed">{q.question}</CardTitle>
+          <div className="flex items-center gap-2">
+            <Badge variant="secondary">{meta?.label}</Badge>
+          </div>
+          {showIntro && meta?.intro && (
+            <p className="mt-2 rounded-lg bg-blue-50 px-3 py-2 text-xs leading-relaxed text-blue-800">
+              {meta.intro}
+            </p>
+          )}
+          <CardTitle className="whitespace-pre-line text-lg leading-relaxed">
+            {current.question}
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          {q.media_path && (
-            <div className="flex h-40 items-center justify-center rounded-lg border border-dashed border-slate-200 bg-slate-50 text-xs text-slate-400">
-              Figure {q.media_path} (diagram not available)
-            </div>
+          {current.media_path && (
+            <img
+              src={current.media_path}
+              alt={`Question figure`}
+              className="max-h-72 rounded-lg border border-slate-200 bg-white object-contain p-2"
+            />
           )}
-          {orderedOptions(q).map((o) => {
-            const selected = answers[String(q.id)] === String(o.id);
+          {orderedOptions(current).map((o) => {
+            const selected = answers[String(current.id)] === String(o.id);
             return (
               <button
                 key={o.id}
-                onClick={() => select(String(q.id), String(o.id))}
+                onClick={() => select(String(current.id), String(o.id))}
                 className={`w-full rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
                   selected
                     ? "border-blue-600 bg-blue-50 font-medium text-blue-700"
                     : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
                 }`}
               >
-                {o.answer}
+                {o.media_path ? (
+                  <img
+                    src={o.media_path}
+                    alt={`Option`}
+                    className="mx-auto max-h-24 object-contain"
+                  />
+                ) : (
+                  o.answer
+                )}
               </button>
             );
           })}
@@ -206,11 +278,11 @@ export function ExamClient({ token, kind }: Props) {
             >
               Back
             </Button>
-            {idx < ids.length - 1 ? (
+            {idx < ordered.length - 1 ? (
               <Button onClick={() => setIdx((i) => i + 1)}>Next</Button>
             ) : (
-              <Button disabled={!allAnswered} onClick={finish}>
-                Finish &amp; see report
+              <Button disabled={!allAnswered || saving} onClick={finish}>
+                {saving ? "Saving…" : "Finish & see report"}
               </Button>
             )}
           </div>
@@ -218,8 +290,8 @@ export function ExamClient({ token, kind }: Props) {
       </Card>
 
       <p className="mt-4 text-center text-xs text-slate-400">
-        Your answers are saved automatically. You can close this page and resume any
-        time with the same link.
+        Answers are saved automatically to your account — close this page and resume
+        on any device with the same link.
       </p>
     </div>
   );

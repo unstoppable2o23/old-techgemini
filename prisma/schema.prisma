@@ -234,6 +234,7 @@ model TestAssignment {
   kind         String
   token        String               @unique
   status       TestAssignmentStatus @default(ASSIGNED)
+  answers      Json?
   result       Json?
   createdAt    DateTime             @default(now())
   completedAt  DateTime?

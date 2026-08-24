@@ -97,6 +97,47 @@ const IDEAL_DOMAINS: Record<number, string> = {
   172: "Situational Exploration",
 };
 
+const STREAM_DOMAINS: Record<number, { label: string; intro?: string }> = {
+  173: {
+    label: "Like / Dislike",
+    intro:
+      "Your goal to discover your ideal stream has begun. These questions are based on your own liking or disliking — choose the option which most appeals to you.",
+  },
+  174: {
+    label: "Work Situations",
+    intro:
+      "Imagine yourself in a work-life situation where you need to do the task mentioned in the question for earning your daily bread and butter.",
+  },
+  175: {
+    label: "Understanding Situations",
+    intro:
+      "This exercise is like solving a visual puzzle. You need to fill out two similar codes as mentioned in the question and choose the correct option.",
+  },
+  176: {
+    label: "Important Information",
+    intro:
+      "Relax and treat this like playing a game. Read the question carefully — the answer is hidden in the information provided — then hit the correct option.",
+  },
+  177: {
+    label: "Careful Reasoning",
+    intro:
+      "Read each statement carefully and select the option that you think is right — TRUE, FALSE, or Cannot tell.",
+  },
+  178: { label: "Words Game" },
+  179: {
+    label: "Incomplete Sequence",
+    intro:
+      "Observe the question's diagram carefully and find the shape that completes the sequence.",
+  },
+};
+
+export const DOMAIN_META: Record<TestKind, Record<number, { label: string; intro?: string }>> = {
+  stream: STREAM_DOMAINS,
+  ideal: Object.fromEntries(
+    Object.entries(IDEAL_DOMAINS).map(([id, label]) => [id, { label }])
+  ),
+};
+
 export function buildReport(
   kind: TestKind,
   answers: Record<string, string>
