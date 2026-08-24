@@ -217,7 +217,9 @@ export function ExamClient({ token, kind }: Props) {
                   ? "Your Personality Type"
                   : report.kind === "intelligences"
                     ? "Your Intelligence Profile"
-                    : "Your Ideal Career Profile"}
+                    : report.kind === "learning"
+                      ? "Your Learning & Productivity Profile"
+                      : "Your Ideal Career Profile"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -311,8 +313,30 @@ export function ExamClient({ token, kind }: Props) {
                     </div>
                   );
                 })
-              : report.kind !== "intelligences" &&
-                (report.kind === "stream" ? report.rows : report.domains).map((row) => (
+              : report.kind === "learning"
+                ? report.groups.map((group) => (
+                    <div key={group.name} className="mt-2 first:mt-0">
+                      <h3 className="mb-2 text-sm font-medium">{group.name}</h3>
+                      <div className="space-y-3">
+                        {group.rows.map((row) => (
+                          <div key={row.abbrev}>
+                            <div className="mb-1 flex justify-between text-xs text-slate-500">
+                              <span>{row.label}</span>
+                              <span>{row.score}%</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-slate-100">
+                              <div
+                                className="h-2 rounded-full bg-primary"
+                                style={{ width: `${Math.round(row.score)}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+              : report.kind === "stream" || report.kind === "ideal"
+                ? (report.kind === "stream" ? report.rows : report.domains).map((row) => (
               <div key={row.key}>
                 <div className="mb-1 flex justify-between text-xs text-slate-500">
                   <span>{row.label}</span>
@@ -327,7 +351,8 @@ export function ExamClient({ token, kind }: Props) {
                   />
                 </div>
               </div>
-            ))}
+            ))
+            : null}
             {report.kind === "ideal" && (
               <div>
                 <h3 className="mb-2 text-sm font-medium">Top strengths</h3>
@@ -444,7 +469,28 @@ export function ExamClient({ token, kind }: Props) {
           )}
 
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {report.kind === "intelligences"
+            {report.kind === "learning"
+              ? report.groups.map((group) => (
+                  <div key={group.name} style={{ marginTop: 8 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 10 }}>
+                      {group.name}
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                      {group.rows.map((row) => (
+                        <div key={row.abbrev}>
+                          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "#64748b", marginBottom: 4 }}>
+                            <span>{row.label}</span>
+                            <span>{row.score}%</span>
+                          </div>
+                          <div style={{ height: 10, background: "#e2e8f0", borderRadius: 5 }}>
+                            <div style={{ height: 10, width: `${Math.round(row.score)}%`, background: "#2563eb", borderRadius: 5 }} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              : report.kind === "intelligences"
               ? report.rows.map((row, i) => {
                   const pct = Math.round((row.score / row.max) * 100);
                   const band = i < 3 ? "Strength" : i < 6 ? "Moderate" : "Developing";
@@ -567,8 +613,34 @@ export function ExamClient({ token, kind }: Props) {
               className="max-h-72 rounded-lg border border-slate-200 bg-white object-contain p-2"
             />
           )}
-          {orderedOptions(current).length === 7 &&
-          kind === "intelligences" ? (
+          {(orderedOptions(current).length === 7 && kind === "intelligences") ||
+          (orderedOptions(current).length === 5 && kind === "learning") ? (
+            <div className="flex flex-wrap items-center justify-between gap-2 py-2">
+              {orderedOptions(current).map((o) => {
+                const selected = answers[String(current.id)] === String(o.id);
+                return (
+                  <button
+                    key={o.id}
+                    type="button"
+                    onClick={() => select(String(current.id), String(o.id))}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full border text-sm font-medium transition-colors ${
+                      selected
+                        ? "border-blue-600 bg-blue-600 text-white shadow-sm"
+                        : "border-slate-200 bg-white text-slate-600 hover:border-blue-400 hover:text-blue-600"
+                    }`}
+                    title={o.answer}
+                  >
+                    {o.marks}
+                  </button>
+                );
+              })}
+              <div className="flex w-full justify-between text-[11px] text-slate-400">
+                <span>Strongly Disagree</span>
+                <span>Strongly Agree</span>
+              </div>
+            </div>
+          ) : orderedOptions(current).length === 7 &&
+            kind === "intelligences" ? (
             <div className="flex flex-wrap items-center justify-between gap-2 py-2">
               {orderedOptions(current).map((o) => {
                 const selected = answers[String(current.id)] === String(o.id);

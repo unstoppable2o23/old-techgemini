@@ -2,8 +2,9 @@ import streamBank from "@/data/stream-selector.json";
 import idealBank from "@/data/ideal-career.json";
 import personalityBank from "@/data/personality.json";
 import intelligencesBank from "@/data/intelligences.json";
+import learningBank from "@/data/learning-productivity.json";
 
-export type TestKind = "stream" | "ideal" | "personality" | "intelligences";
+export type TestKind = "stream" | "ideal" | "personality" | "intelligences" | "learning";
 
 export type RawOption = {
   id: number;
@@ -31,6 +32,10 @@ export const PERSONALITY_QUESTIONS = personalityBank as unknown as Record<
   RawQuestion
 >;
 export const INTELLIGENCES_QUESTIONS = intelligencesBank as unknown as Record<
+  string,
+  RawQuestion
+>;
+export const LEARNING_QUESTIONS = learningBank as unknown as Record<
   string,
   RawQuestion
 >;
@@ -69,7 +74,9 @@ export function tokenForStudent(
         ? "IDEAL"
         : kind === "personality"
           ? "PERSONALITY"
-          : "INTELLIGENCE";
+          : kind === "intelligences"
+            ? "INTELLIGENCE"
+            : "LEARNING";
   return `${prefix}-${slugify(name)}-${student.id.slice(-6).toUpperCase()}`;
 }
 
@@ -79,6 +86,7 @@ export function kindForToken(token: string): TestKind | null {
   if (t.startsWith("IDEAL")) return "ideal";
   if (t.startsWith("PERSONALITY")) return "personality";
   if (t.startsWith("INTELLIGENCE")) return "intelligences";
+  if (t.startsWith("LEARNING")) return "learning";
   return null;
 }
 
@@ -87,6 +95,7 @@ export const KIND_LABELS: Record<TestKind, string> = {
   ideal: "Ideal Career",
   personality: "Personality (Do What You Are)",
   intelligences: "Multiple Intelligences",
+  learning: "Learning & Productivity",
 };
 
 export function orderedOptions(q: RawQuestion): RawOption[] {
@@ -132,11 +141,53 @@ export type IntelligencesReport = {
   emotionalIntelligence: number;
 };
 
+export type LearningGroup = {
+  name: string;
+  rows: { abbrev: string; label: string; score: number }[];
+};
+
+export type LearningReport = {
+  kind: "learning";
+  groups: LearningGroup[];
+};
+
 export type ExamReport =
   | StreamReport
   | IdealReport
   | PersonalityReport
-  | IntelligencesReport;
+  | IntelligencesReport
+  | LearningReport;
+
+const LEARNING_DIMENSIONS: Record<string, string> = {
+  VIS: "Visual",
+  AUD: "Auditory",
+  TAC: "Tactile",
+  KIN: "Kinesthetic",
+  SND: "Sound (need for quiet)",
+  DES: "Setting (formal vs informal)",
+  LHT: "Light",
+  TMP: "Temperature",
+  ITK: "Intake (eating/drinking)",
+  MOB: "Mobility",
+  TIM: "Time of Day",
+  ALN: "Collaborative vs Independent",
+  STR: "Structure",
+  PER: "Focus & Persistence",
+  TCR: "Teacher Motivation",
+  MOT: "Self-Motivation",
+};
+
+const LEARNING_GROUPS: { name: string; dims: string[] }[] = [
+  { name: "Sensory Preferences", dims: ["VIS", "AUD", "TAC", "KIN"] },
+  {
+    name: "Environmental Preferences",
+    dims: ["SND", "DES", "LHT", "TMP", "ITK", "MOB", "TIM"],
+  },
+  {
+    name: "Mindset Preferences",
+    dims: ["ALN", "STR", "PER", "TCR", "MOT"],
+  },
+];
 
 const PERSONALITY_DIMENSIONS: Record<number, [string, string]> = {
   1: ["Extraversion", "Introversion"],
@@ -224,6 +275,23 @@ export const DOMAIN_META: Record<TestKind, Record<number, { label: string; intro
     8: { label: "Naturalist" },
     9: { label: "Existential" },
   },
+  learning: {
+    1: {
+      label: "Sensory Preferences",
+      intro:
+        "How you prefer to take in information — by seeing, hearing, touching or doing.",
+    },
+    2: {
+      label: "Environmental Preferences",
+      intro:
+        "The study surroundings that help you focus — sound, light, temperature, seating, snacks and time of day.",
+    },
+    3: {
+      label: "Mindset Preferences",
+      intro:
+        "Your attitude toward learning — motivation, structure, persistence and who you study with.",
+    },
+  },
   personality: {
     1: {
       label: "Extraversion or Introversion",
@@ -279,6 +347,35 @@ export function buildReport(
       rows,
       emotionalIntelligence: Math.round(((interpersonal + intrapersonal) / 2) * 10) / 10,
     };
+  }
+
+  if (kind === "learning") {
+    const sums: Record<string, { total: number; count: number }> = {};
+    for (const q of Object.values(bank)) {
+      const dim = String(q.subdomain_id);
+      const chosen = answers[String(q.id)];
+      if (!chosen) continue;
+      const opt = Object.values(q.options).find((o) => String(o.id) === String(chosen));
+      if (!opt) continue;
+      const pol = (q as { polarity?: number }).polarity === 0 ? 6 - opt.marks : opt.marks;
+      sums[dim] = sums[dim] || { total: 0, count: 0 };
+      sums[dim].total += pol;
+      sums[dim].count += 1;
+    }
+    const scoreOf = (dim: string) => {
+      const s = sums[dim];
+      if (!s || s.count === 0) return 50;
+      return Math.round(((s.total / s.count - 1) / 4) * 1000) / 10;
+    };
+    const groups: LearningGroup[] = LEARNING_GROUPS.map((g) => ({
+      name: g.name,
+      rows: g.dims.map((d) => ({
+        abbrev: d,
+        label: LEARNING_DIMENSIONS[d],
+        score: scoreOf(d),
+      })),
+    }));
+    return { kind: "learning", groups };
   }
 
   if (kind === "personality") {

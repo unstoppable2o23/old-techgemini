@@ -221,7 +221,9 @@ export default async function DashboardPage() {
                           ? "Ideal Career Test"
                           : t.kind === "personality"
                             ? "Personality Test (Do What You Are)"
-                            : "Multiple Intelligences Test"}
+                            : t.kind === "intelligences"
+                              ? "Multiple Intelligences Test"
+                              : "Learning & Productivity Test"}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Assigned {new Date(t.createdAt).toLocaleDateString()}

@@ -203,7 +203,11 @@ export function AssignClient({
                             ? "Stream Selector"
                             : a.kind === "ideal"
                               ? "Ideal Career"
-                              : "Personality"}{" "}
+                              : a.kind === "personality"
+                                ? "Personality"
+                                : a.kind === "intelligences"
+                                  ? "Intelligences"
+                                  : "Learning & Productivity"}{" "}
                           ·{" "}
                           assigned {new Date(a.createdAt).toLocaleString()}
                           {a.completedAt &&
