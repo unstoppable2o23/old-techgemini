@@ -32,14 +32,35 @@ export function ExamClient({ token, kind }: Props) {
   const resultKey = `exam_result_${token}`;
 
   useEffect(() => {
-    try {
-      const savedProgress = localStorage.getItem(progressKey);
-      if (savedProgress) setAnswers(JSON.parse(savedProgress));
-      const savedResult = localStorage.getItem(resultKey);
-      if (savedResult) setReport(JSON.parse(savedResult));
-    } catch {}
-    setReady(true);
-  }, [progressKey, resultKey]);
+    let cancelled = false;
+    (async () => {
+      try {
+        const savedProgress = localStorage.getItem(progressKey);
+        if (savedProgress && !cancelled) setAnswers(JSON.parse(savedProgress));
+      } catch {}
+      try {
+        const savedResult = localStorage.getItem(resultKey);
+        if (savedResult && !cancelled) {
+          setReport(JSON.parse(savedResult));
+          setReady(true);
+          return;
+        }
+      } catch {}
+      try {
+        const res = await fetch(
+          `/api/tests/assignments/complete?token=${encodeURIComponent(token)}`
+        );
+        if (res.ok && !cancelled) {
+          const data = await res.json();
+          if (data.report) setReport(data.report);
+        }
+      } catch {}
+      if (!cancelled) setReady(true);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [resultKey, token, progressKey]);
 
   const answeredCount = ids.filter((id) => answers[id]).length;
   const allAnswered = answeredCount === ids.length;
