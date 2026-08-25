@@ -57,7 +57,7 @@
  "5100": {
   "id": 5100,
   "exam": 114,
-  "question": "Is it important to you that people like and approve of you?",
+  "question": "Do you care a lot about making a good impression on others?",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "274",
@@ -442,7 +442,7 @@
  "5107": {
   "id": 5107,
   "exam": 114,
-  "question": "You prefer not to plan your day in advance.",
+  "question": "You like to take each day as it comes, without a fixed plan.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -662,7 +662,7 @@
  "5111": {
   "id": 5111,
   "exam": 114,
-  "question": "At home, are you usually the first to answer the doorbell or phone?",
+  "question": "When someone knocks or the phone rings at home, you tend to be the one who jumps up.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -717,7 +717,7 @@
  "5112": {
   "id": 5112,
   "exam": 114,
-  "question": "Do you share your feelings openly with friends and family?",
+  "question": "You find it easy to tell the people close to you how you feel.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -937,7 +937,7 @@
  "5116": {
   "id": 5116,
   "exam": 114,
-  "question": "You do not enjoy spending time in a science laboratory.",
+  "question": "Laboratory sessions at school have never appealed to you.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -992,7 +992,7 @@
  "5117": {
   "id": 5117,
   "exam": 114,
-  "question": "Subjects like mathematics and science are not your favourites.",
+  "question": "You would rather avoid subjects like maths and science.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "277",
@@ -1157,7 +1157,7 @@
  "5120": {
   "id": 5120,
   "exam": 114,
-  "question": "Are you open about your emotions with people you love?",
+  "question": "You show the people you love what is going on inside your heart.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -1322,7 +1322,7 @@
  "5123": {
   "id": 5123,
   "exam": 114,
-  "question": "Do you find it easy to make new friends?",
+  "question": "Strangers quickly turn into friends when you meet them.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "276",
@@ -1377,7 +1377,7 @@
  "5124": {
   "id": 5124,
   "exam": 114,
-  "question": "Are you comfortable talking about your feelings?",
+  "question": "Putting your emotions into words in front of others is something you do comfortably.",
   "question_redirection": null,
   "domain_id": 166,
   "subdomain_id": "275",
@@ -4812,7 +4812,7 @@
  "5169": {
   "id": 5169,
   "exam": 114,
-  "question": "Cow is to calf as sheep is to...",
+  "question": "Kid is to goat as lamb is to...",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -4833,7 +4833,7 @@
    "13581": {
     "id": 13581,
     "question_id": 5169,
-    "answer": "Foal",
+    "answer": "Sheep",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4849,7 +4849,7 @@
    "13582": {
     "id": 13582,
     "question_id": 5169,
-    "answer": "Kid",
+    "answer": "Horse",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4865,7 +4865,7 @@
    "13583": {
     "id": 13583,
     "question_id": 5169,
-    "answer": "Lamb",
+    "answer": "Cow",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -4881,7 +4881,7 @@
    "13584": {
     "id": 13584,
     "question_id": 5169,
-    "answer": "Herd",
+    "answer": "Dog",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5247,7 +5247,7 @@
  "5174": {
   "id": 5174,
   "exam": 114,
-  "question": "Identify the superlative form among these options.",
+  "question": "Which of these is the superlative degree of the adjective 'happy'?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5268,7 +5268,7 @@
    "13601": {
     "id": 13601,
     "question_id": 5174,
-    "answer": "Tall",
+    "answer": "Happier",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5284,7 +5284,7 @@
    "13602": {
     "id": 13602,
     "question_id": 5174,
-    "answer": "Taller",
+    "answer": "Happiest",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5300,7 +5300,7 @@
    "13603": {
     "id": 13603,
     "question_id": 5174,
-    "answer": "Tallest",
+    "answer": "More happy",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -5316,7 +5316,7 @@
    "13604": {
     "id": 13604,
     "question_id": 5174,
-    "answer": "More tall",
+    "answer": "Very happy",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -5421,7 +5421,7 @@
  "5176": {
   "id": 5176,
   "exam": 114,
-  "question": "Choose the correctly spelled word.",
+  "question": "Pick the word with the right spelling.",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5508,7 +5508,7 @@
  "5177": {
   "id": 5177,
   "exam": 114,
-  "question": "Choose the correctly spelled word.",
+  "question": "Which of these is spelled correctly?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "288",
@@ -5595,7 +5595,7 @@
  "5178": {
   "id": 5178,
   "exam": 114,
-  "question": "What is the product of 15 multiplied by 12?",
+  "question": "Work out: 15 × 12 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5682,7 +5682,7 @@
  "5179": {
   "id": 5179,
   "exam": 114,
-  "question": "What is the result of dividing 45 by 100?",
+  "question": "Work out: 45 ÷ 100 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5769,7 +5769,7 @@
  "5180": {
   "id": 5180,
   "exam": 114,
-  "question": "What is the product of 9.06 and 1,000?",
+  "question": "Work out: 9.06 × 1,000 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5856,7 +5856,7 @@
  "5181": {
   "id": 5181,
   "exam": 114,
-  "question": "What is the result of dividing 24 by 100?",
+  "question": "Work out: 24 ÷ 100 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -5943,7 +5943,7 @@
  "5182": {
   "id": 5182,
   "exam": 114,
-  "question": "What is the product of 30 multiplied by 600?",
+  "question": "Work out: 30 × 600 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6030,7 +6030,7 @@
  "5183": {
   "id": 5183,
   "exam": 114,
-  "question": "What is the quotient when you divide 1,600 by 400?",
+  "question": "Work out: 1,600 ÷ 400 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6117,7 +6117,7 @@
  "5184": {
   "id": 5184,
   "exam": 114,
-  "question": "What is the quotient when you divide 36,000 by 45?",
+  "question": "Work out: 36,000 ÷ 45 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6204,7 +6204,7 @@
  "5185": {
   "id": 5185,
   "exam": 114,
-  "question": "Express 1/8 as a percentage.",
+  "question": "Convert 1/8 into a percentage.",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6291,7 +6291,7 @@
  "5186": {
   "id": 5186,
   "exam": 114,
-  "question": "What is the difference between 250 and 236?",
+  "question": "Work out: 250 − 236 = ?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "289",
@@ -6987,7 +6987,7 @@
  "5194": {
   "id": 5194,
   "exam": 114,
-  "question": "Priyanka likes maths and science; Neetu likes science and history; Neha likes maths only. Who has an interest in science?",
+  "question": "Three friends study different combinations: Priyanka studies maths and science; Neetu studies science and history; Neha studies maths. Which two share an interest in science?",
   "question_redirection": null,
   "domain_id": 170,
   "subdomain_id": "290",
@@ -8052,7 +8052,7 @@
  "5209": {
   "id": 5209,
   "exam": 114,
-  "question": "Are you physically active and someone who loves nature?",
+  "question": "Do you love the outdoors and keep yourself physically active?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "301",
@@ -8217,7 +8217,7 @@
  "5212": {
   "id": 5212,
   "exam": 114,
-  "question": "Do subjects like economics, accounting and commerce draw your interest?",
+  "question": "Do fields like accounting, economics and commerce spark your curiosity?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8327,7 +8327,7 @@
  "5214": {
   "id": 5214,
   "exam": 114,
-  "question": "Would you feel confident managing money on behalf of other people?",
+  "question": "Would you be comfortable investing and handling funds for clients?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8382,7 +8382,7 @@
  "5215": {
   "id": 5215,
   "exam": 114,
-  "question": "Can you study financial information and explain it clearly to others?",
+  "question": "Are you able to read financial reports and present the key points clearly?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "302",
@@ -8547,7 +8547,7 @@
  "5218": {
   "id": 5218,
   "exam": 114,
-  "question": "Are you physically fit and in good shape?",
+  "question": "Would you say you are fit and take good care of your health?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "303",
@@ -8877,7 +8877,7 @@
  "5224": {
   "id": 5224,
   "exam": 114,
-  "question": "Do you take pleasure in painting, drawing, photography or sketching?",
+  "question": "Are hobbies like painting, sketching or photography your kind of thing?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -8932,7 +8932,7 @@
  "5225": {
   "id": 5225,
   "exam": 114,
-  "question": "Do you have a positive attitude towards school and studies?",
+  "question": "Do you generally feel good about going to school and studying?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "304",
@@ -9097,7 +9097,7 @@
  "5228": {
   "id": 5228,
   "exam": 114,
-  "question": "Can you handle several responsibilities at the same time?",
+  "question": "Are you able to juggle several tasks and duties at once?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9207,7 +9207,7 @@
  "5230": {
   "id": 5230,
   "exam": 114,
-  "question": "Do you have a genuine liking for mathematics and science?",
+  "question": "Do maths and science genuinely appeal to you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "305",
@@ -9427,7 +9427,7 @@
  "5234": {
   "id": 5234,
   "exam": 114,
-  "question": "Are you good at organising and planning events or activities?",
+  "question": "Do you enjoy taking charge of planning and coordinating activities?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9482,7 +9482,7 @@
  "5235": {
   "id": 5235,
   "exam": 114,
-  "question": "Are you self-driven and enthusiastic about what you do?",
+  "question": "Would people describe you as driven and full of energy?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "306",
@@ -9537,7 +9537,7 @@
  "5236": {
   "id": 5236,
   "exam": 114,
-  "question": "Do you enjoy speaking in front of an audience?",
+  "question": "Is speaking to an audience something you enjoy?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9592,7 +9592,7 @@
  "5237": {
   "id": 5237,
   "exam": 114,
-  "question": "Would you say your communication skills are strong?",
+  "question": "Do you express yourself clearly and confidently?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "307",
@@ -9867,7 +9867,7 @@
  "5242": {
   "id": 5242,
   "exam": 114,
-  "question": "Are you good at making decisions and standing by them?",
+  "question": "Are you decisive and comfortable owning your choices?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -9922,7 +9922,7 @@
  "5243": {
   "id": 5243,
   "exam": 114,
-  "question": "Are computers and emerging technologies fascinating to you?",
+  "question": "Do computers and the latest tech innovations capture your interest?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "308",
@@ -10142,7 +10142,7 @@
  "5247": {
   "id": 5247,
   "exam": 114,
-  "question": "Do you care deeply about people, their needs and their problems?",
+  "question": "If a classmate is struggling, do you tend to step in and support them?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "309",
@@ -10472,7 +10472,7 @@
  "5253": {
   "id": 5253,
   "exam": 114,
-  "question": "Are you sociable and outgoing by nature?",
+  "question": "At gatherings, are you usually the one mingling and chatting with everyone?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10527,7 +10527,7 @@
  "5254": {
   "id": 5254,
   "exam": 114,
-  "question": "Can you listen actively and build friendships with very different people?",
+  "question": "Do you listen well and befriend people from all walks of life?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "310",
@@ -10802,7 +10802,7 @@
  "5259": {
   "id": 5259,
   "exam": 114,
-  "question": "Do you enjoy learning about different cultures and ways of life?",
+  "question": "Are you curious about other cultures and lifestyles?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "311",
@@ -10912,7 +10912,7 @@
  "5261": {
   "id": 5261,
   "exam": 114,
-  "question": "Is your memory strong and reliable?",
+  "question": "Would you trust yourself to remember details without writing them down?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -10967,7 +10967,7 @@
  "5262": {
   "id": 5262,
   "exam": 114,
-  "question": "Could you see yourself working in hospitals or medical facilities?",
+  "question": "Can you picture yourself working in a hospital or clinic setting?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -11132,7 +11132,7 @@
  "5265": {
   "id": 5265,
   "exam": 114,
-  "question": "Does biology interest you as a subject?",
+  "question": "Is biology a subject that appeals to you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "312",
@@ -11187,7 +11187,7 @@
  "5266": {
   "id": 5266,
   "exam": 114,
-  "question": "Are you passionate about public service?",
+  "question": "Does the idea of a career in public service attract you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11352,7 +11352,7 @@
  "5269": {
   "id": 5269,
   "exam": 114,
-  "question": "Are you good at negotiating and debating ideas and topics?",
+  "question": "Can you hold your own in negotiations and debates?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11407,7 +11407,7 @@
  "5270": {
   "id": 5270,
   "exam": 114,
-  "question": "Are you good at planning and working together with others?",
+  "question": "Are you good at coordinating plans and working in a team?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "313",
@@ -11462,7 +11462,7 @@
  "5271": {
   "id": 5271,
   "exam": 114,
-  "question": "Could you imagine a career in television, film or radio?",
+  "question": "Have you ever imagined yourself on TV, film or radio?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11627,7 +11627,7 @@
  "5274": {
   "id": 5274,
   "exam": 114,
-  "question": "Do you enjoy performing or presenting in front of an audience?",
+  "question": "Do you light up when performing or presenting to a crowd?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11682,7 +11682,7 @@
  "5275": {
   "id": 5275,
   "exam": 114,
-  "question": "Are you drawn to subjects like performing arts, writing or design?",
+  "question": "Would you rather study something creative, like drama, writing or art?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "314",
@@ -11737,7 +11737,7 @@
  "5276": {
   "id": 5276,
   "exam": 114,
-  "question": "Are you enthusiastic about science and how things work?",
+  "question": "Does science and discovering how things work excite you?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",
@@ -11957,7 +11957,7 @@
  "5280": {
   "id": 5280,
   "exam": 114,
-  "question": "Can you read and apply mathematical formulas easily?",
+  "question": "Do you find it easy to read and use mathematical formulas?",
   "question_redirection": null,
   "domain_id": 172,
   "subdomain_id": "315",

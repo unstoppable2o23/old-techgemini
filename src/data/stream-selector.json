@@ -2,7 +2,7 @@
  "5023": {
   "id": 5023,
   "exam": 115,
-  "question": "Do you enjoy giving your time to help people in your community?",
+  "question": "Are you happy to spend your free time volunteering for a good cause?",
   "question_redirection": null,
   "domain_id": 173,
   "subdomain_id": "3",
@@ -144,7 +144,7 @@
  "5025": {
   "id": 5025,
   "exam": 115,
-  "question": "Do you find it easy to work with large sets of numbers and data?",
+  "question": "Working with big spreadsheets and datasets — does that come easily to you?",
   "question_redirection": null,
   "domain_id": 173,
   "subdomain_id": "2",
@@ -215,7 +215,7 @@
  "5026": {
   "id": 5026,
   "exam": 115,
-  "question": "Would you feel confident managing money matters on behalf of other people?",
+  "question": "Would you trust yourself to invest and manage funds for clients?",
   "question_redirection": null,
   "domain_id": 173,
   "subdomain_id": "2",
@@ -570,7 +570,7 @@
  "5031": {
   "id": 5031,
   "exam": 115,
-  "question": "Can you study financial information and explain it clearly to others?",
+  "question": "Are you able to dig into financial reports and present the findings clearly?",
   "question_redirection": null,
   "domain_id": 173,
   "subdomain_id": "2",
@@ -3101,7 +3101,7 @@
    "13165": {
     "id": 13165,
     "question_id": 5065,
-    "answer": "To fill free time only",
+    "answer": "Just to fill spare hours",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -3133,7 +3133,7 @@
    "13167": {
     "id": 13167,
     "question_id": 5065,
-    "answer": "To plan how your study hours are spent",
+    "answer": "To plan where your study hours actually go",
     "marks": 1,
     "media_path": "",
     "mediatype": 0,
@@ -3149,7 +3149,7 @@
    "13168": {
     "id": 13168,
     "question_id": 5065,
-    "answer": "To avoid studying",
+    "answer": "To put off studying",
     "marks": 0,
     "media_path": "",
     "mediatype": 0,
@@ -4795,7 +4795,7 @@
  "5086": {
   "id": 5086,
   "exam": 115,
-  "question": "Radio waves, microwaves, visible light and X-rays are all examples of:",
+  "question": "Which category do radio waves, microwaves and X-rays all belong to?",
   "question_redirection": null,
   "domain_id": 177,
   "subdomain_id": "4",
@@ -5095,7 +5095,7 @@
  "5090": {
   "id": 5090,
   "exam": 115,
-  "question": "Choose the correctly spelled word.",
+  "question": "Which word is spelled the right way?",
   "question_redirection": null,
   "domain_id": 178,
   "subdomain_id": "3",

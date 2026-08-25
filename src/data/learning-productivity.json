@@ -42,7 +42,7 @@
   "subdomain_id": "DES",
   "dimension": "DES",
   "polarity": 1,
-  "question": "I concentrate best when sitting at a proper desk or table.",
+  "question": "Working at a proper table or desk is how I get the most done.",
   "options": {
    "56568101": {
     "id": "56568101",
@@ -150,7 +150,7 @@
   "subdomain_id": "ITK",
   "dimension": "ITK",
   "polarity": 1,
-  "question": "I often snack on something while I study.",
+  "question": "Munching on a snack is part of my study routine.",
   "options": {
    "59598101": {
     "id": "59598101",
@@ -258,7 +258,7 @@
   "subdomain_id": "KIN",
   "dimension": "KIN",
   "polarity": 1,
-  "question": "I remember things I have actually done better than things I only saw or heard about.",
+  "question": "I recall hands-on experiences better than things I merely saw or heard.",
   "options": {
    "62628101": {
     "id": "62628101",
@@ -366,7 +366,7 @@
   "subdomain_id": "DES",
   "dimension": "DES",
   "polarity": 1,
-  "question": "I study most comfortably on a couch or soft chair.",
+  "question": "I do my studying sunk into a comfy sofa or armchair.",
   "options": {
    "656513101": {
     "id": "656513101",
@@ -402,7 +402,7 @@
   "subdomain_id": "ALN",
   "dimension": "ALN",
   "polarity": 1,
-  "question": "Studying with one or two friends helps me more than studying alone.",
+  "question": "Having a friend or two around makes studying better for me.",
   "options": {
    "66668101": {
     "id": "66668101",
@@ -438,7 +438,7 @@
   "subdomain_id": "MOT",
   "dimension": "MOT",
   "polarity": 1,
-  "question": "I genuinely enjoy learning new things at school.",
+  "question": "The excitement of learning something new at school is something I love.",
   "options": {
    "67678101": {
     "id": "67678101",
@@ -474,7 +474,7 @@
   "subdomain_id": "TMP",
   "dimension": "TMP",
   "polarity": 1,
-  "question": "I feel more comfortable in warm weather than in cool weather.",
+  "question": "Give me a hot sunny day over a chilly one any time.",
   "options": {
    "68688101": {
     "id": "68688101",
@@ -546,7 +546,7 @@
   "subdomain_id": "TIM",
   "dimension": "TIM",
   "polarity": 0,
-  "question": "My schoolwork turns out better when I do it later in the day.",
+  "question": "Evening hours are when my schoolwork comes out best.",
   "options": {
    "707013101": {
     "id": "707013101",
@@ -582,7 +582,7 @@
   "subdomain_id": "PER",
   "dimension": "PER",
   "polarity": 0,
-  "question": "I often drift away from my schoolwork to do other things instead.",
+  "question": "Other activities often pull me away from my schoolwork.",
   "options": {
    "717113101": {
     "id": "717113101",
@@ -762,7 +762,7 @@
   "subdomain_id": "ALN",
   "dimension": "ALN",
   "polarity": 0,
-  "question": "When the work piles up, I prefer to deal with it on my own.",
+  "question": "When tasks stack up, I would rather handle them solo.",
   "options": {
    "767613101": {
     "id": "767613101",
@@ -870,7 +870,7 @@
   "subdomain_id": "VIS",
   "dimension": "VIS",
   "polarity": 1,
-  "question": "I understand and remember things better when I read them myself.",
+  "question": "Reading something myself helps me understand and remember it.",
   "options": {
    "79798101": {
     "id": "79798101",
@@ -906,7 +906,7 @@
   "subdomain_id": "ITK",
   "dimension": "ITK",
   "polarity": 1,
-  "question": "Chewing or sipping something helps me think while I study.",
+  "question": "Sipping or chewing something aids my thinking while studying.",
   "options": {
    "80808101": {
     "id": "80808101",
@@ -1230,7 +1230,7 @@
   "subdomain_id": "SND",
   "dimension": "SND",
   "polarity": 1,
-  "question": "It is hard for me to think when there is noise around me.",
+  "question": "Concentrating is difficult for me when there is noise.",
   "options": {
    "898913101": {
     "id": "898913101",
@@ -1482,7 +1482,7 @@
   "subdomain_id": "TCR",
   "dimension": "TCR",
   "polarity": 1,
-  "question": "What my teachers say about my schoolwork matters to me.",
+  "question": "My teachers' feedback on my work matters to me.",
   "options": {
    "96968101": {
     "id": "96968101",
@@ -1734,7 +1734,7 @@
   "subdomain_id": "KIN",
   "dimension": "KIN",
   "polarity": 0,
-  "question": "I remember things I have watched or listened to better than things I have done.",
+  "question": "Things I watched or listened to stick in my memory better than things I did.",
   "options": {
    "10310313101": {
     "id": "10310313101",
@@ -1770,7 +1770,7 @@
   "subdomain_id": "ALN",
   "dimension": "ALN",
   "polarity": 1,
-  "question": "I do better work in a group than on my own.",
+  "question": "Group work brings out better results from me than working solo.",
   "options": {
    "1041048101": {
     "id": "1041048101",
@@ -2022,7 +2022,7 @@
   "subdomain_id": "MOT",
   "dimension": "MOT",
   "polarity": 0,
-  "question": "I find it hard to care about my schoolwork.",
+  "question": "Caring about my schoolwork is a struggle for me.",
   "options": {
    "11111113101": {
     "id": "11111113101",
@@ -2166,7 +2166,7 @@
   "subdomain_id": "TAC",
   "dimension": "TAC",
   "polarity": 1,
-  "question": "Making things with my hands is one of the best ways for me to learn.",
+  "question": "Hands-on making and building is among the best ways for me to learn.",
   "options": {
    "1151158101": {
     "id": "1151158101",
@@ -2238,7 +2238,7 @@
   "subdomain_id": "ITK",
   "dimension": "ITK",
   "polarity": 1,
-  "question": "I like to chew or sip something while I work.",
+  "question": "While I work, I like to have something to chew or sip.",
   "options": {
    "1171178101": {
     "id": "1171178101",
@@ -2346,7 +2346,7 @@
   "subdomain_id": "TIM",
   "dimension": "TIM",
   "polarity": 1,
-  "question": "Morning is when I learn best.",
+  "question": "My learning peaks in the morning hours.",
   "options": {
    "1201208101": {
     "id": "1201208101",
@@ -2382,7 +2382,7 @@
   "subdomain_id": "SND",
   "dimension": "SND",
   "polarity": 1,
-  "question": "A quiet room is the best study environment for me.",
+  "question": "For studying, nothing beats a quiet room.",
   "options": {
    "12112113101": {
     "id": "12112113101",
@@ -2418,7 +2418,7 @@
   "subdomain_id": "TMP",
   "dimension": "TMP",
   "polarity": 0,
-  "question": "I enjoy cool weather more than warm weather.",
+  "question": "I would pick a cold breezy day over a hot one.",
   "options": {
    "12212213101": {
     "id": "12212213101",
