@@ -229,33 +229,33 @@ const STREAM_DOMAINS: Record<number, { label: string; intro?: string }> = {
   173: {
     label: "Like / Dislike",
     intro:
-      "Your goal to discover your ideal stream has begun. These questions are based on your own liking or disliking — choose the option which most appeals to you.",
+      "This first section is about your personal tastes. For each activity or interest, simply pick how much it appeals to you — there are no right or wrong answers.",
   },
   174: {
     label: "Work Situations",
     intro:
-      "Imagine yourself in a work-life situation where you need to do the task mentioned in the question for earning your daily bread and butter.",
+      "Picture yourself doing each job below as your full-time work. Choose how much you think you would enjoy earning your living that way.",
   },
   175: {
     label: "Understanding Situations",
     intro:
-      "This exercise is like solving a visual puzzle. You need to fill out two similar codes as mentioned in the question and choose the correct option.",
+      "This section tests how carefully you can compare information. Read each puzzle, study the details given, and pick the answer that fits.",
   },
   176: {
     label: "Important Information",
     intro:
-      "Relax and treat this like playing a game. Read the question carefully — the answer is hidden in the information provided — then hit the correct option.",
+      "Every question here contains everything you need — no outside knowledge required. Read each one closely and choose the answer that follows from the information given.",
   },
   177: {
     label: "Careful Reasoning",
     intro:
-      "Read each statement carefully and select the option that you think is right — TRUE, FALSE, or Cannot tell.",
+      "Each item makes a claim. Decide whether it is clearly true, clearly false, or whether it cannot be judged from what you know.",
   },
   178: { label: "Words Game" },
   179: {
     label: "Incomplete Sequence",
     intro:
-      "Observe the question's diagram carefully and find the shape that completes the sequence.",
+      "Look at the pattern in each question and work out which option continues it.",
   },
 };
 
